@@ -8,6 +8,6 @@ namespace Destiny_DAL
 {
     public static class DatabaseOperations
     {
-        public static void test() { }
+       
     }
 }
