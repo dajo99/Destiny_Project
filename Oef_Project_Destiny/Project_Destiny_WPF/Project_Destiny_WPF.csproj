@@ -66,6 +66,9 @@
     <Compile Include="Inlogscreen.xaml.cs">
       <DependentUpon>Inlogscreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Registerscreen.xaml.cs">
+      <DependentUpon>Registerscreen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Character.xaml.cs">
       <DependentUpon>Character.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Registerscreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Character.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
