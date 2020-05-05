@@ -1,5 +1,5 @@
 /.idea
 /node_modules
-/Debug
+**/Debug
 Oef_Project_Destiny/.vs
-/.suo
+**/.suo
