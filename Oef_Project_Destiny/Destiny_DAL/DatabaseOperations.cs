@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Destiny_DAL
 {
-    public class DatabaseOperations
+    public static class DatabaseOperations
     {
+        public static void test() { }
     }
 }
