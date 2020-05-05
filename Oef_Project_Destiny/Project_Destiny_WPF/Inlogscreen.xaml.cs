@@ -23,5 +23,10 @@ namespace Project_Destiny_WPF
         {
             InitializeComponent();
         }
+
+        private void BtnInlogAfsluiten_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

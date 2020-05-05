@@ -64,11 +64,25 @@ namespace Project_Destiny_WPF
                 usc = new Character();
                 GridMain.Children.Add(usc);
             }
-                    
-                
-           
+
         }
 
-        
+        private void BtnInloggen_Click(object sender, RoutedEventArgs e)
+        {
+            Inlogscreen inlog = new Inlogscreen();
+            inlog.Show();
+        }
+
+        private void BtnAfsluiten_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult Result = MessageBox.Show("Ben je zeker dat je wilt afsluiten?", "Afsluiten", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (Result == MessageBoxResult.Yes)
+            {
+                App.Current.Shutdown();
+            }
+            
+            
+        }
     }
 }

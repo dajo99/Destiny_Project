@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Project_Destiny_WPF"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1080" Loaded="Window_Loaded">
+        Title="MainWindow" Height="600" Width="1080" WindowStyle="None" AllowsTransparency="True" Loaded="Window_Loaded">
     <Window.Resources>
         <Storyboard x:Key="OpenMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="rectangle">
@@ -64,9 +64,10 @@
                 </materialDesign:PopupBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Visibility="Visible">
-                <Button x:Name="BtnInloggen" Content="Inloggen" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Height="30" />
+                <Button x:Name="BtnInloggen" Content="Inloggen" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnInloggen_Click" />
                 <Button x:Name="BtnRegistreren" Content="Registreren" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}" materialDesign:ButtonAssist.CornerRadius="5" Height="30"  />
             </StackPanel>
+            <Button x:Name="BtnAfsluiten" Content="Afsluiten" Margin="180,18,750,12" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnAfsluiten_Click" />
             <Button x:Name="BtnHome" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Height="36" Margin="482,10,476,14" Width="114">Destiny</Button>
         </Grid>
         <Grid x:Name="GridMenu" HorizontalAlignment="Left" Width="70" Background="#FF00C7A3">
@@ -104,8 +105,8 @@
                         </StackPanel>
                     </ListViewItem>
                 </ListView>
-
             </StackPanel>
+            
             <Button x:Name="ButtonMenu" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="70" Height="70" Click="ButtonMenu_Click">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Rectangle x:Name="rectangle" Width="30" Height="5" Margin="0 0 0 0" Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="-0,0.5">
