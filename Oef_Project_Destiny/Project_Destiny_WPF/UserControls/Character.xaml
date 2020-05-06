@@ -5,8 +5,63 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Project_Destiny_WPF.UserControls"
              mc:Ignorable="d" 
-             Background="Aquamarine">
-    <Grid>
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight ="400" d:DesignWidth ="600"
+             Background="{x:Null}">
             
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Character" FontSize="24" Margin="0,-10,0,9.8" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="AntiqueWhite" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0"/>
+        <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonProgressAssist.Value="-1"
+    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+    Content="Character aanmaken"
+    Margin="10" Background="Gold" Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom"/>
+        <ListBox x:Name="lbCharacters" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalContentAlignment="Center" FontSize="16" Margin="10" BorderThickness="1" BorderBrush="Black" Background="White" Foreground="Black">
+            <ListBoxItem>
+                Hello
+            </ListBoxItem>
+            <ListBoxItem>
+                World
+            </ListBoxItem>
+            <ListBoxItem>
+                :D :D
+            </ListBoxItem>
+        </ListBox>
+        <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonProgressAssist.Value="-1"
+    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+    Content="Character aanpassen"
+    Margin="10" Background="Gold" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+
+        <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonProgressAssist.Value="-1"
+    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+    Content="Inventory bekijken"
+    Margin="10" Background="Gold" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
+        <Button
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    materialDesign:ButtonProgressAssist.Value="-1"
+    materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
+    materialDesign:ButtonProgressAssist.IsIndeterminate="True"
+    Content="Character verwid"
+    Margin="10" Background="Gold" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"/>
+
     </Grid>
 </UserControl>
