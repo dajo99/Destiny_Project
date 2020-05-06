@@ -17,8 +17,8 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Npc()
         {
-            this.Mission = new HashSet<Mission>();
-            this.NpcSellItem = new HashSet<NpcSellItem>();
+            this.Missions = new HashSet<Mission>();
+            this.NpcSellItems = new HashSet<NpcSellItem>();
         }
     
         public int id { get; set; }
@@ -32,9 +32,9 @@ namespace Destiny_DAL
         public virtual Currency Currency { get; set; }
         public virtual Map Map { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Mission> Mission { get; set; }
+        public virtual ICollection<Mission> Missions { get; set; }
         public virtual Ras Ras { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NpcSellItem> NpcSellItem { get; set; }
+        public virtual ICollection<NpcSellItem> NpcSellItems { get; set; }
     }
 }

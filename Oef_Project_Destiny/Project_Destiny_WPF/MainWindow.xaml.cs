@@ -94,5 +94,10 @@ namespace Project_Destiny_WPF
             usc = new Instellingen();
             GridMain.Children.Add(usc);
         }
+
+        private void BtnHome_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

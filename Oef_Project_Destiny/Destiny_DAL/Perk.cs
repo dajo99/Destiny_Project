@@ -17,8 +17,8 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Perk()
         {
-            this.PerkArmor = new HashSet<PerkArmor>();
-            this.PerkWapen = new HashSet<PerkWapen>();
+            this.PerkArmors = new HashSet<PerkArmor>();
+            this.PerkWapens = new HashSet<PerkWapen>();
         }
     
         public int id { get; set; }
@@ -28,8 +28,8 @@ namespace Destiny_DAL
         public string Soort { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PerkArmor> PerkArmor { get; set; }
+        public virtual ICollection<PerkArmor> PerkArmors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PerkWapen> PerkWapen { get; set; }
+        public virtual ICollection<PerkWapen> PerkWapens { get; set; }
     }
 }

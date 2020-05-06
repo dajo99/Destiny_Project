@@ -17,7 +17,7 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Locatie()
         {
-            this.Mission = new HashSet<Mission>();
+            this.Missions = new HashSet<Mission>();
         }
     
         public int id { get; set; }
@@ -27,6 +27,6 @@ namespace Destiny_DAL
     
         public virtual Map Map { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Mission> Mission { get; set; }
+        public virtual ICollection<Mission> Missions { get; set; }
     }
 }

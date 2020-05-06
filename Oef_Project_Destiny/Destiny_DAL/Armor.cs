@@ -17,7 +17,7 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Armor()
         {
-            this.PerkArmor = new HashSet<PerkArmor>();
+            this.PerkArmors = new HashSet<PerkArmor>();
         }
     
         public int id { get; set; }
@@ -33,6 +33,6 @@ namespace Destiny_DAL
     
         public virtual Item Item { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PerkArmor> PerkArmor { get; set; }
+        public virtual ICollection<PerkArmor> PerkArmors { get; set; }
     }
 }

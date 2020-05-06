@@ -12,7 +12,7 @@ namespace Destiny_DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class SubklassePerks
+    public partial class SubklassePerk
     {
         public int id { get; set; }
         public string PerkName { get; set; }

@@ -17,16 +17,15 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CharacterInventory()
         {
-            this.CurrencyInventory = new HashSet<CurrencyInventory>();
+            this.CurrencyInventories = new HashSet<CurrencyInventory>();
         }
     
         public int id { get; set; }
-        public int CharacterId { get; set; }
         public int ItemId { get; set; }
     
         public virtual Character Character { get; set; }
         public virtual Item Item { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CurrencyInventory> CurrencyInventory { get; set; }
+        public virtual ICollection<CurrencyInventory> CurrencyInventories { get; set; }
     }
 }
