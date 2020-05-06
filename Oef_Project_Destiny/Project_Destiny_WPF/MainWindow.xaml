@@ -45,13 +45,17 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
-    <Grid Background="#FF4F4F4F">
+    <Grid Background="#FF7C7C7C">
         <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010"/>
         <Grid Height="60" VerticalAlignment="Top" Background="#FF00C7A3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="13*"/>
+                <ColumnDefinition Width="32*"/>
+            </Grid.ColumnDefinitions>
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
             </Grid.Effect>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Visibility="Hidden">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Visibility="Hidden" Grid.Column="1">
                 <TextBlock Text="Accountnaam" VerticalAlignment="Center" FontSize="16"/>
                 <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                     <StackPanel Width="150">
@@ -63,12 +67,14 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Visibility="Visible">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,10,10" Visibility="Visible" Grid.Column="1">
                 <Button x:Name="BtnInloggen" Content="Inloggen" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnInloggen_Click" />
                 <Button x:Name="BtnRegistreren" Content="Registreren" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}" materialDesign:ButtonAssist.CornerRadius="5" Height="30"  />
             </StackPanel>
-            <Button x:Name="BtnAfsluiten" Content="Afsluiten" Margin="180,18,750,12" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnAfsluiten_Click" />
-            <Button x:Name="BtnHome" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Height="36" Margin="482,10,476,14" Width="114">Destiny</Button>
+
+    
+            <Button x:Name="BtnAfsluiten" Content="Afsluiten" Margin="234,20,696,10" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnAfsluiten_Click" Grid.ColumnSpan="2" />
+            <Button x:Name="BtnHome" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Height="36" Margin="174.149,10,480,14" Width="114" Grid.Column="1" Click="BtnHome_Click">Destiny</Button>
         </Grid>
         <Grid x:Name="GridMenu" HorizontalAlignment="Left" Width="70" Background="#FF00C7A3">
             <StackPanel>
@@ -106,7 +112,7 @@
                     </ListViewItem>
                 </ListView>
             </StackPanel>
-            
+
             <Button x:Name="ButtonMenu" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="70" Height="70" Click="ButtonMenu_Click">
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Rectangle x:Name="rectangle" Width="30" Height="5" Margin="0 0 0 0" Fill="Black" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="-0,0.5">

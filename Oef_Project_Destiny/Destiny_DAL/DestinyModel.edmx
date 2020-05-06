@@ -1,0 +1,2506 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DestinyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Accountnaam" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Regio" Type="varchar" MaxLength="255" />
+          <Property Name="Wachtwoord" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Armor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Mobility" Type="int" />
+          <Property Name="Resilience" Type="int" />
+          <Property Name="Recovery" Type="int" />
+          <Property Name="Discipline" Type="int" />
+          <Property Name="Intellect" Type="int" />
+          <Property Name="Strength" Type="int" />
+          <Property Name="MaxPerks" Type="int" />
+          <Property Name="ArmorSlot" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="LightAmount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Character">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CharacterCustomizationId" Type="int" Nullable="false" />
+          <Property Name="AccountId" Type="int" Nullable="false" />
+          <Property Name="CharacterKlasseId" Type="int" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CharacterCustomization">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RasId" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Face" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="HeadOption" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Marking" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CharacterInventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CharacterId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CharacterKlasse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubklasseId" Type="int" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CharacterSubklasse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Beschrijving" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="CurrencyDropTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RewardTableId" Type="int" Nullable="false" />
+          <Property Name="CurrencyId" Type="int" Nullable="false" />
+          <Property Name="AmountOfCurrency" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurrencyInventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CharacterInventoryId" Type="int" Nullable="false" />
+          <Property Name="CurrencyId" Type="int" Nullable="false" />
+          <Property Name="AmountOfCurrency" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Damagetype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Enemy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoortEnemy" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Toughness" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Archtypes" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SchildDamageTypeId" Type="int" />
+          <Property Name="RasId" Type="int" Nullable="false" />
+          <Property Name="WapenId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GranaatAbilityDamage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DamagetypeId" Type="int" Nullable="false" />
+          <Property Name="Damage" Type="int" Nullable="false" />
+          <Property Name="DamageTickRate" Type="int" />
+          <Property Name="GranaatSubklasseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GranaatSubklasse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CharacterSubklasseId" Type="int" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Prijs" Type="int" />
+          <Property Name="Beschrijving" Type="varchar" MaxLength="255" />
+          <Property Name="Zeldzaamheid" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Can_Be_Sold" Type="bit" />
+        </EntityType>
+        <EntityType Name="Locatie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RestrictedArea" Type="bit" Nullable="false" />
+          <Property Name="MapId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Map">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Wereld" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MapEnemy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MapId" Type="int" Nullable="false" />
+          <Property Name="EnemyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mission">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Titel" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TaskDescr" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TypeBounty" Type="varchar" MaxLength="255" />
+          <Property Name="RefreshTime" Type="time" Precision="7" />
+          <Property Name="TimeToFinish" Type="time" Precision="7" />
+          <Property Name="TimeBetweenEvents" Type="time" Precision="7" />
+          <Property Name="MinParticipants" Type="int" />
+          <Property Name="TypeMission" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="LocatieId" Type="int" Nullable="false" />
+          <Property Name="NpcId" Type="int" />
+        </EntityType>
+        <EntityType Name="Npc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsMerchant" Type="bit" Nullable="false" />
+          <Property Name="Beschrijving" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CurrencyId" Type="int" />
+          <Property Name="MapId" Type="int" Nullable="false" />
+          <Property Name="RasId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NpcSellItem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NpcId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Perk">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Omschrijving" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Soort" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PerkArmor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArmorId" Type="int" Nullable="false" />
+          <Property Name="PerkId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PerkWapen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WapenId" Type="int" Nullable="false" />
+          <Property Name="PerkId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ras">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RewardTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MissionId" Type="int" />
+          <Property Name="EnemyId" Type="int" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="HoeveelheidItems" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpecialItem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="255" />
+          <Property Name="Durability" Type="int" Nullable="false" />
+          <Property Name="Boost" Type="int" Nullable="false" />
+          <Property Name="CategorieId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpecialItemCategorie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubklasseAbility">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CharacterSubklasseId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DamageTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubklassePerks">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PerkName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Effect" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CharacterSubklasseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Wapen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Magazine" Type="int" Nullable="false" />
+          <Property Name="FireRate" Type="int" Nullable="false" />
+          <Property Name="Impact" Type="int" Nullable="false" />
+          <Property Name="Stability" Type="int" Nullable="false" />
+          <Property Name="ReloadSpeed" Type="int" Nullable="false" />
+          <Property Name="Soort" Type="varchar" MaxLength="10" />
+          <Property Name="LightAmount" Type="int" Nullable="false" />
+          <Property Name="MaxPerks" Type="int" />
+          <Property Name="DamagetypeId" Type="int" Nullable="false" />
+          <Property Name="WapenklasseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Wapenklasse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naam" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Armor_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Armor" Type="Self.Armor" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Armor">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_Ras">
+          <End Role="Ras" Type="Self.Ras" Multiplicity="1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="CharacterCustomizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CharacterCustomization_Ras">
+          <End Role="Ras" Type="Self.Ras" Multiplicity="1" />
+          <End Role="CharacterCustomization" Type="Self.CharacterCustomization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CharacterCustomization">
+              <PropertyRef Name="RasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CharacterInventory_Character">
+          <End Role="Character" Type="Self.Character" Multiplicity="1" />
+          <End Role="CharacterInventory" Type="Self.CharacterInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CharacterInventory">
+              <PropertyRef Name="CharacterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CharacterInventory_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="CharacterInventory" Type="Self.CharacterInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CharacterInventory">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CharacterKlasse_Character_Subklasse">
+          <End Role="CharacterSubklasse" Type="Self.CharacterSubklasse" Multiplicity="1" />
+          <End Role="CharacterKlasse" Type="Self.CharacterKlasse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CharacterKlasse">
+              <PropertyRef Name="SubklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrencyDropTable_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="CurrencyDropTable" Type="Self.CurrencyDropTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CurrencyDropTable">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrencyDropTable_RewardTable">
+          <End Role="RewardTable" Type="Self.RewardTable" Multiplicity="1" />
+          <End Role="CurrencyDropTable" Type="Self.CurrencyDropTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RewardTable">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CurrencyDropTable">
+              <PropertyRef Name="RewardTableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrencyInventory_CharacterInventory">
+          <End Role="CharacterInventory" Type="Self.CharacterInventory" Multiplicity="1" />
+          <End Role="CurrencyInventory" Type="Self.CurrencyInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterInventory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CurrencyInventory">
+              <PropertyRef Name="CharacterInventoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrencyInventory_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="CurrencyInventory" Type="Self.CurrencyInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CurrencyInventory">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customization_Character_Klasse">
+          <End Role="CharacterKlasse" Type="Self.CharacterKlasse" Multiplicity="1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterKlasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="CharacterKlasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enemy_Ras">
+          <End Role="Ras" Type="Self.Ras" Multiplicity="1" />
+          <End Role="Enemy" Type="Self.Enemy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enemy">
+              <PropertyRef Name="RasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enemy_SchildDamagetype">
+          <End Role="Damagetype" Type="Self.Damagetype" Multiplicity="0..1" />
+          <End Role="Enemy" Type="Self.Enemy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Damagetype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enemy">
+              <PropertyRef Name="SchildDamageTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enemy_Wapen">
+          <End Role="Wapen" Type="Self.Wapen" Multiplicity="1" />
+          <End Role="Enemy" Type="Self.Enemy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wapen">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enemy">
+              <PropertyRef Name="WapenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GranaatAbilityDamage_Damagetype">
+          <End Role="Damagetype" Type="Self.Damagetype" Multiplicity="1" />
+          <End Role="GranaatAbilityDamage" Type="Self.GranaatAbilityDamage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Damagetype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GranaatAbilityDamage">
+              <PropertyRef Name="DamagetypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GranaatAbilityDamage_GranaatSubklasse">
+          <End Role="GranaatSubklasse" Type="Self.GranaatSubklasse" Multiplicity="1" />
+          <End Role="GranaatAbilityDamage" Type="Self.GranaatAbilityDamage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GranaatSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GranaatAbilityDamage">
+              <PropertyRef Name="GranaatSubklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GranaatSubklasse_Character_Subklasse">
+          <End Role="CharacterSubklasse" Type="Self.CharacterSubklasse" Multiplicity="1" />
+          <End Role="GranaatSubklasse" Type="Self.GranaatSubklasse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GranaatSubklasse">
+              <PropertyRef Name="CharacterSubklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locatie_Map">
+          <End Role="Map" Type="Self.Map" Multiplicity="1" />
+          <End Role="Locatie" Type="Self.Locatie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Map">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Locatie">
+              <PropertyRef Name="MapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MapEnemy_Enemy">
+          <End Role="Enemy" Type="Self.Enemy" Multiplicity="1" />
+          <End Role="MapEnemy" Type="Self.MapEnemy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enemy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MapEnemy">
+              <PropertyRef Name="EnemyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MapEnemy_Map">
+          <End Role="Map" Type="Self.Map" Multiplicity="1" />
+          <End Role="MapEnemy" Type="Self.MapEnemy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Map">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MapEnemy">
+              <PropertyRef Name="MapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mission_Locatie">
+          <End Role="Locatie" Type="Self.Locatie" Multiplicity="1" />
+          <End Role="Mission" Type="Self.Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locatie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mission">
+              <PropertyRef Name="LocatieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mission_Npc">
+          <End Role="Npc" Type="Self.Npc" Multiplicity="0..1" />
+          <End Role="Mission" Type="Self.Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Npc">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mission">
+              <PropertyRef Name="NpcId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Npc_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="Npc" Type="Self.Npc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Npc">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Npc_Map">
+          <End Role="Map" Type="Self.Map" Multiplicity="1" />
+          <End Role="Npc" Type="Self.Npc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Map">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Npc">
+              <PropertyRef Name="MapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Npc_Ras">
+          <End Role="Ras" Type="Self.Ras" Multiplicity="1" />
+          <End Role="Npc" Type="Self.Npc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Npc">
+              <PropertyRef Name="RasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NpcSellItem_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="NpcSellItem" Type="Self.NpcSellItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NpcSellItem">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NpcSellItem_Npc">
+          <End Role="Npc" Type="Self.Npc" Multiplicity="1" />
+          <End Role="NpcSellItem" Type="Self.NpcSellItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Npc">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NpcSellItem">
+              <PropertyRef Name="NpcId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerkArmor_Armor">
+          <End Role="Armor" Type="Self.Armor" Multiplicity="1" />
+          <End Role="PerkArmor" Type="Self.PerkArmor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Armor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PerkArmor">
+              <PropertyRef Name="ArmorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerkArmor_Perk">
+          <End Role="Perk" Type="Self.Perk" Multiplicity="1" />
+          <End Role="PerkArmor" Type="Self.PerkArmor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perk">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PerkArmor">
+              <PropertyRef Name="PerkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerkWapen_Perk">
+          <End Role="Perk" Type="Self.Perk" Multiplicity="1" />
+          <End Role="PerkWapen" Type="Self.PerkWapen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perk">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PerkWapen">
+              <PropertyRef Name="PerkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerkWapen_Wapen">
+          <End Role="Wapen" Type="Self.Wapen" Multiplicity="1" />
+          <End Role="PerkWapen" Type="Self.PerkWapen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wapen">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PerkWapen">
+              <PropertyRef Name="WapenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RewardTable_Enemy">
+          <End Role="Enemy" Type="Self.Enemy" Multiplicity="0..1" />
+          <End Role="RewardTable" Type="Self.RewardTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enemy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RewardTable">
+              <PropertyRef Name="EnemyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RewardTable_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="RewardTable" Type="Self.RewardTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RewardTable">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RewardTable_Mission">
+          <End Role="Mission" Type="Self.Mission" Multiplicity="0..1" />
+          <End Role="RewardTable" Type="Self.RewardTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mission">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RewardTable">
+              <PropertyRef Name="MissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpecialItem_Categorie">
+          <End Role="SpecialItemCategorie" Type="Self.SpecialItemCategorie" Multiplicity="1" />
+          <End Role="SpecialItem" Type="Self.SpecialItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpecialItemCategorie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SpecialItem">
+              <PropertyRef Name="CategorieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpecialItem_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="SpecialItem" Type="Self.SpecialItem" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SpecialItem">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubklasseAbility_Character_Subklasse">
+          <End Role="CharacterSubklasse" Type="Self.CharacterSubklasse" Multiplicity="1" />
+          <End Role="SubklasseAbility" Type="Self.SubklasseAbility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubklasseAbility">
+              <PropertyRef Name="CharacterSubklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubklasseAbility_DamageType">
+          <End Role="Damagetype" Type="Self.Damagetype" Multiplicity="1" />
+          <End Role="SubklasseAbility" Type="Self.SubklasseAbility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Damagetype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubklasseAbility">
+              <PropertyRef Name="DamageTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubklassePerks_Character_Subklasse">
+          <End Role="CharacterSubklasse" Type="Self.CharacterSubklasse" Multiplicity="1" />
+          <End Role="SubklassePerks" Type="Self.SubklassePerks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubklassePerks">
+              <PropertyRef Name="CharacterSubklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wapen_Damagetype">
+          <End Role="Damagetype" Type="Self.Damagetype" Multiplicity="1" />
+          <End Role="Wapen" Type="Self.Wapen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Damagetype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Wapen">
+              <PropertyRef Name="DamagetypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wapen_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Wapen" Type="Self.Wapen" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Wapen">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wapen_Wapenklasse">
+          <End Role="Wapenklasse" Type="Self.Wapenklasse" Multiplicity="1" />
+          <End Role="Wapen" Type="Self.Wapen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wapenklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Wapen">
+              <PropertyRef Name="WapenklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DestinyModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Armor" EntityType="Self.Armor" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Character" EntityType="Self.Character" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="CharacterCustomization" EntityType="Self.CharacterCustomization" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="CharacterInventory" EntityType="Self.CharacterInventory" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="CharacterKlasse" EntityType="Self.CharacterKlasse" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="CharacterSubklasse" EntityType="Self.CharacterSubklasse" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="CurrencyDropTable" EntityType="Self.CurrencyDropTable" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="CurrencyInventory" EntityType="Self.CurrencyInventory" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Damagetype" EntityType="Self.Damagetype" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Enemy" EntityType="Self.Enemy" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="GranaatAbilityDamage" EntityType="Self.GranaatAbilityDamage" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="GranaatSubklasse" EntityType="Self.GranaatSubklasse" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Locatie" EntityType="Self.Locatie" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Map" EntityType="Self.Map" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="MapEnemy" EntityType="Self.MapEnemy" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Mission" EntityType="Self.Mission" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Npc" EntityType="Self.Npc" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="NpcSellItem" EntityType="Self.NpcSellItem" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Perk" EntityType="Self.Perk" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="PerkArmor" EntityType="Self.PerkArmor" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="PerkWapen" EntityType="Self.PerkWapen" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Ras" EntityType="Self.Ras" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="RewardTable" EntityType="Self.RewardTable" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="SpecialItem" EntityType="Self.SpecialItem" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="SpecialItemCategorie" EntityType="Self.SpecialItemCategorie" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="SubklasseAbility" EntityType="Self.SubklasseAbility" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="SubklassePerks" EntityType="Self.SubklassePerks" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Wapen" EntityType="Self.Wapen" Schema="Destiny" store:Type="Tables" />
+          <EntitySet Name="Wapenklasse" EntityType="Self.Wapenklasse" Schema="Destiny" store:Type="Tables" />
+          <AssociationSet Name="FK_Armor_Item" Association="Self.FK_Armor_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Armor" EntitySet="Armor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_Account" Association="Self.FK_Character_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_Ras" Association="Self.FK_Character_Ras">
+            <End Role="Ras" EntitySet="Ras" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CharacterCustomization_Ras" Association="Self.FK_CharacterCustomization_Ras">
+            <End Role="Ras" EntitySet="Ras" />
+            <End Role="CharacterCustomization" EntitySet="CharacterCustomization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CharacterInventory_Character" Association="Self.FK_CharacterInventory_Character">
+            <End Role="Character" EntitySet="Character" />
+            <End Role="CharacterInventory" EntitySet="CharacterInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CharacterInventory_Item" Association="Self.FK_CharacterInventory_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="CharacterInventory" EntitySet="CharacterInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CharacterKlasse_Character_Subklasse" Association="Self.FK_CharacterKlasse_Character_Subklasse">
+            <End Role="CharacterSubklasse" EntitySet="CharacterSubklasse" />
+            <End Role="CharacterKlasse" EntitySet="CharacterKlasse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrencyDropTable_Currency" Association="Self.FK_CurrencyDropTable_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="CurrencyDropTable" EntitySet="CurrencyDropTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrencyDropTable_RewardTable" Association="Self.FK_CurrencyDropTable_RewardTable">
+            <End Role="RewardTable" EntitySet="RewardTable" />
+            <End Role="CurrencyDropTable" EntitySet="CurrencyDropTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrencyInventory_CharacterInventory" Association="Self.FK_CurrencyInventory_CharacterInventory">
+            <End Role="CharacterInventory" EntitySet="CharacterInventory" />
+            <End Role="CurrencyInventory" EntitySet="CurrencyInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrencyInventory_Currency" Association="Self.FK_CurrencyInventory_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="CurrencyInventory" EntitySet="CurrencyInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customization_Character_Klasse" Association="Self.FK_Customization_Character_Klasse">
+            <End Role="CharacterKlasse" EntitySet="CharacterKlasse" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enemy_Ras" Association="Self.FK_Enemy_Ras">
+            <End Role="Ras" EntitySet="Ras" />
+            <End Role="Enemy" EntitySet="Enemy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enemy_SchildDamagetype" Association="Self.FK_Enemy_SchildDamagetype">
+            <End Role="Damagetype" EntitySet="Damagetype" />
+            <End Role="Enemy" EntitySet="Enemy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enemy_Wapen" Association="Self.FK_Enemy_Wapen">
+            <End Role="Wapen" EntitySet="Wapen" />
+            <End Role="Enemy" EntitySet="Enemy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GranaatAbilityDamage_Damagetype" Association="Self.FK_GranaatAbilityDamage_Damagetype">
+            <End Role="Damagetype" EntitySet="Damagetype" />
+            <End Role="GranaatAbilityDamage" EntitySet="GranaatAbilityDamage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GranaatAbilityDamage_GranaatSubklasse" Association="Self.FK_GranaatAbilityDamage_GranaatSubklasse">
+            <End Role="GranaatSubklasse" EntitySet="GranaatSubklasse" />
+            <End Role="GranaatAbilityDamage" EntitySet="GranaatAbilityDamage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GranaatSubklasse_Character_Subklasse" Association="Self.FK_GranaatSubklasse_Character_Subklasse">
+            <End Role="CharacterSubklasse" EntitySet="CharacterSubklasse" />
+            <End Role="GranaatSubklasse" EntitySet="GranaatSubklasse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locatie_Map" Association="Self.FK_Locatie_Map">
+            <End Role="Map" EntitySet="Map" />
+            <End Role="Locatie" EntitySet="Locatie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MapEnemy_Enemy" Association="Self.FK_MapEnemy_Enemy">
+            <End Role="Enemy" EntitySet="Enemy" />
+            <End Role="MapEnemy" EntitySet="MapEnemy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MapEnemy_Map" Association="Self.FK_MapEnemy_Map">
+            <End Role="Map" EntitySet="Map" />
+            <End Role="MapEnemy" EntitySet="MapEnemy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mission_Locatie" Association="Self.FK_Mission_Locatie">
+            <End Role="Locatie" EntitySet="Locatie" />
+            <End Role="Mission" EntitySet="Mission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mission_Npc" Association="Self.FK_Mission_Npc">
+            <End Role="Npc" EntitySet="Npc" />
+            <End Role="Mission" EntitySet="Mission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Npc_Currency" Association="Self.FK_Npc_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Npc" EntitySet="Npc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Npc_Map" Association="Self.FK_Npc_Map">
+            <End Role="Map" EntitySet="Map" />
+            <End Role="Npc" EntitySet="Npc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Npc_Ras" Association="Self.FK_Npc_Ras">
+            <End Role="Ras" EntitySet="Ras" />
+            <End Role="Npc" EntitySet="Npc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NpcSellItem_Item" Association="Self.FK_NpcSellItem_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="NpcSellItem" EntitySet="NpcSellItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NpcSellItem_Npc" Association="Self.FK_NpcSellItem_Npc">
+            <End Role="Npc" EntitySet="Npc" />
+            <End Role="NpcSellItem" EntitySet="NpcSellItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerkArmor_Armor" Association="Self.FK_PerkArmor_Armor">
+            <End Role="Armor" EntitySet="Armor" />
+            <End Role="PerkArmor" EntitySet="PerkArmor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerkArmor_Perk" Association="Self.FK_PerkArmor_Perk">
+            <End Role="Perk" EntitySet="Perk" />
+            <End Role="PerkArmor" EntitySet="PerkArmor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerkWapen_Perk" Association="Self.FK_PerkWapen_Perk">
+            <End Role="Perk" EntitySet="Perk" />
+            <End Role="PerkWapen" EntitySet="PerkWapen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerkWapen_Wapen" Association="Self.FK_PerkWapen_Wapen">
+            <End Role="Wapen" EntitySet="Wapen" />
+            <End Role="PerkWapen" EntitySet="PerkWapen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RewardTable_Enemy" Association="Self.FK_RewardTable_Enemy">
+            <End Role="Enemy" EntitySet="Enemy" />
+            <End Role="RewardTable" EntitySet="RewardTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RewardTable_Item" Association="Self.FK_RewardTable_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="RewardTable" EntitySet="RewardTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RewardTable_Mission" Association="Self.FK_RewardTable_Mission">
+            <End Role="Mission" EntitySet="Mission" />
+            <End Role="RewardTable" EntitySet="RewardTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpecialItem_Categorie" Association="Self.FK_SpecialItem_Categorie">
+            <End Role="SpecialItemCategorie" EntitySet="SpecialItemCategorie" />
+            <End Role="SpecialItem" EntitySet="SpecialItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpecialItem_Item" Association="Self.FK_SpecialItem_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="SpecialItem" EntitySet="SpecialItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubklasseAbility_Character_Subklasse" Association="Self.FK_SubklasseAbility_Character_Subklasse">
+            <End Role="CharacterSubklasse" EntitySet="CharacterSubklasse" />
+            <End Role="SubklasseAbility" EntitySet="SubklasseAbility" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubklasseAbility_DamageType" Association="Self.FK_SubklasseAbility_DamageType">
+            <End Role="Damagetype" EntitySet="Damagetype" />
+            <End Role="SubklasseAbility" EntitySet="SubklasseAbility" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubklassePerks_Character_Subklasse" Association="Self.FK_SubklassePerks_Character_Subklasse">
+            <End Role="CharacterSubklasse" EntitySet="CharacterSubklasse" />
+            <End Role="SubklassePerks" EntitySet="SubklassePerks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wapen_Damagetype" Association="Self.FK_Wapen_Damagetype">
+            <End Role="Damagetype" EntitySet="Damagetype" />
+            <End Role="Wapen" EntitySet="Wapen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wapen_Item" Association="Self.FK_Wapen_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Wapen" EntitySet="Wapen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wapen_Wapenklasse" Association="Self.FK_Wapen_Wapenklasse">
+            <End Role="Wapenklasse" EntitySet="Wapenklasse" />
+            <End Role="Wapen" EntitySet="Wapen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DestinyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Accountnaam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Regio" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Wachtwoord" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Character_Account" FromRole="Account" ToRole="Character" />
+        </EntityType>
+        <EntityType Name="Armor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Mobility" Type="Int32" />
+          <Property Name="Resilience" Type="Int32" />
+          <Property Name="Recovery" Type="Int32" />
+          <Property Name="Discipline" Type="Int32" />
+          <Property Name="Intellect" Type="Int32" />
+          <Property Name="Strength" Type="Int32" />
+          <Property Name="MaxPerks" Type="Int32" />
+          <Property Name="ArmorSlot" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LightAmount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Armor_Item" FromRole="Armor" ToRole="Item" />
+          <NavigationProperty Name="PerkArmors" Relationship="Self.FK_PerkArmor_Armor" FromRole="Armor" ToRole="PerkArmor" />
+        </EntityType>
+        <EntityType Name="Character">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CharacterCustomizationId" Type="Int32" Nullable="false" />
+          <Property Name="AccountId" Type="Int32" Nullable="false" />
+          <Property Name="CharacterKlasseId" Type="Int32" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_Character_Account" FromRole="Character" ToRole="Account" />
+          <NavigationProperty Name="Ras" Relationship="Self.FK_Character_Ras" FromRole="Character" ToRole="Ras" />
+          <NavigationProperty Name="CharacterInventory" Relationship="Self.FK_CharacterInventory_Character" FromRole="Character" ToRole="CharacterInventory" />
+          <NavigationProperty Name="CharacterKlasse" Relationship="Self.FK_Customization_Character_Klasse" FromRole="Character" ToRole="CharacterKlasse" />
+        </EntityType>
+        <EntityType Name="CharacterCustomization">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RasId" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Face" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HeadOption" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Marking" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Ras" Relationship="Self.FK_CharacterCustomization_Ras" FromRole="CharacterCustomization" ToRole="Ras" />
+        </EntityType>
+        <EntityType Name="CharacterInventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Character" Relationship="Self.FK_CharacterInventory_Character" FromRole="CharacterInventory" ToRole="Character" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_CharacterInventory_Item" FromRole="CharacterInventory" ToRole="Item" />
+          <NavigationProperty Name="CurrencyInventories" Relationship="Self.FK_CurrencyInventory_CharacterInventory" FromRole="CharacterInventory" ToRole="CurrencyInventory" />
+        </EntityType>
+        <EntityType Name="CharacterKlasse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Customization_Character_Klasse" FromRole="CharacterKlasse" ToRole="Character" />
+          <NavigationProperty Name="CharacterSubklasses" Relationship="DestinyModel.FK_CharacterSubKlasse_Characterklasse" FromRole="CharacterKlasse" ToRole="CharacterSubklasses" />
+        </EntityType>
+        <EntityType Name="CharacterSubklasse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" Nullable="false" Unicode="false" FixedLength="false" MaxLength="255" />
+          <NavigationProperty Name="CharacterKlasse" Relationship="DestinyModel.FK_CharacterSubKlasse_Characterklasse" FromRole="CharacterSubklasses" ToRole="CharacterKlasse" />
+          <NavigationProperty Name="GranaatSubklasses" Relationship="Self.FK_GranaatSubklasse_Character_Subklasse" FromRole="CharacterSubklasse" ToRole="GranaatSubklasse" />
+          <NavigationProperty Name="SubklasseAbilities" Relationship="Self.FK_SubklasseAbility_Character_Subklasse" FromRole="CharacterSubklasse" ToRole="SubklasseAbility" />
+          <NavigationProperty Name="SubklassePerks" Relationship="Self.FK_SubklassePerks_Character_Subklasse" FromRole="CharacterSubklasse" ToRole="SubklassePerks" />
+          <Property Name="CharacterKlasseId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Beschrijving" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CurrencyDropTables" Relationship="Self.FK_CurrencyDropTable_Currency" FromRole="Currency" ToRole="CurrencyDropTable" />
+          <NavigationProperty Name="CurrencyInventories" Relationship="Self.FK_CurrencyInventory_Currency" FromRole="Currency" ToRole="CurrencyInventory" />
+          <NavigationProperty Name="Npcs" Relationship="Self.FK_Npc_Currency" FromRole="Currency" ToRole="Npc" />
+        </EntityType>
+        <EntityType Name="CurrencyDropTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RewardTableId" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="AmountOfCurrency" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_CurrencyDropTable_Currency" FromRole="CurrencyDropTable" ToRole="Currency" />
+          <NavigationProperty Name="RewardTable" Relationship="Self.FK_CurrencyDropTable_RewardTable" FromRole="CurrencyDropTable" ToRole="RewardTable" />
+        </EntityType>
+        <EntityType Name="CurrencyInventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CharacterInventoryId" Type="Int32" Nullable="false" />
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="AmountOfCurrency" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CharacterInventory" Relationship="Self.FK_CurrencyInventory_CharacterInventory" FromRole="CurrencyInventory" ToRole="CharacterInventory" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_CurrencyInventory_Currency" FromRole="CurrencyInventory" ToRole="Currency" />
+        </EntityType>
+        <EntityType Name="Damagetype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Enemies" Relationship="Self.FK_Enemy_SchildDamagetype" FromRole="Damagetype" ToRole="Enemy" />
+          <NavigationProperty Name="GranaatAbilityDamages" Relationship="Self.FK_GranaatAbilityDamage_Damagetype" FromRole="Damagetype" ToRole="GranaatAbilityDamage" />
+          <NavigationProperty Name="SubklasseAbilities" Relationship="Self.FK_SubklasseAbility_DamageType" FromRole="Damagetype" ToRole="SubklasseAbility" />
+          <NavigationProperty Name="Wapens" Relationship="Self.FK_Wapen_Damagetype" FromRole="Damagetype" ToRole="Wapen" />
+        </EntityType>
+        <EntityType Name="Enemy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoortEnemy" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Toughness" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Archtypes" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SchildDamageTypeId" Type="Int32" />
+          <Property Name="RasId" Type="Int32" Nullable="false" />
+          <Property Name="WapenId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Damagetype" Relationship="Self.FK_Enemy_SchildDamagetype" FromRole="Enemy" ToRole="Damagetype" />
+          <NavigationProperty Name="Ras" Relationship="Self.FK_Enemy_Ras" FromRole="Enemy" ToRole="Ras" />
+          <NavigationProperty Name="Wapen" Relationship="Self.FK_Enemy_Wapen" FromRole="Enemy" ToRole="Wapen" />
+          <NavigationProperty Name="MapEnemies" Relationship="Self.FK_MapEnemy_Enemy" FromRole="Enemy" ToRole="MapEnemy" />
+          <NavigationProperty Name="RewardTables" Relationship="DestinyModel.FK_RewardTable_Enemy" FromRole="Enemy" ToRole="RewardTable" />
+        </EntityType>
+        <EntityType Name="GranaatAbilityDamage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DamagetypeId" Type="Int32" Nullable="false" />
+          <Property Name="Damage" Type="Int32" Nullable="false" />
+          <Property Name="DamageTickRate" Type="Int32" />
+          <Property Name="GranaatSubklasseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Damagetype" Relationship="Self.FK_GranaatAbilityDamage_Damagetype" FromRole="GranaatAbilityDamage" ToRole="Damagetype" />
+          <NavigationProperty Name="GranaatSubklasse" Relationship="Self.FK_GranaatAbilityDamage_GranaatSubklasse" FromRole="GranaatAbilityDamage" ToRole="GranaatSubklasse" />
+        </EntityType>
+        <EntityType Name="GranaatSubklasse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CharacterSubklasseId" Type="Int32" Nullable="false" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CharacterSubklasse" Relationship="Self.FK_GranaatSubklasse_Character_Subklasse" FromRole="GranaatSubklasse" ToRole="CharacterSubklasse" />
+          <NavigationProperty Name="GranaatAbilityDamages" Relationship="Self.FK_GranaatAbilityDamage_GranaatSubklasse" FromRole="GranaatSubklasse" ToRole="GranaatAbilityDamage" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prijs" Type="Int32" />
+          <Property Name="Beschrijving" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Zeldzaamheid" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Can_Be_Sold" Type="Boolean" />
+          <NavigationProperty Name="Armor" Relationship="Self.FK_Armor_Item" FromRole="Item" ToRole="Armor" />
+          <NavigationProperty Name="CharacterInventories" Relationship="Self.FK_CharacterInventory_Item" FromRole="Item" ToRole="CharacterInventory" />
+          <NavigationProperty Name="NpcSellItems" Relationship="Self.FK_NpcSellItem_Item" FromRole="Item" ToRole="NpcSellItem" />
+          <NavigationProperty Name="RewardTables" Relationship="Self.FK_RewardTable_Item" FromRole="Item" ToRole="RewardTable" />
+          <NavigationProperty Name="SpecialItem" Relationship="Self.FK_SpecialItem_Item" FromRole="Item" ToRole="SpecialItem" />
+          <NavigationProperty Name="Wapen" Relationship="Self.FK_Wapen_Item" FromRole="Item" ToRole="Wapen" />
+        </EntityType>
+        <EntityType Name="Locatie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RestrictedArea" Type="Boolean" Nullable="false" />
+          <Property Name="MapId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Map" Relationship="Self.FK_Locatie_Map" FromRole="Locatie" ToRole="Map" />
+          <NavigationProperty Name="Missions" Relationship="Self.FK_Mission_Locatie" FromRole="Locatie" ToRole="Mission" />
+        </EntityType>
+        <EntityType Name="Map">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Wereld" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Locaties" Relationship="Self.FK_Locatie_Map" FromRole="Map" ToRole="Locatie" />
+          <NavigationProperty Name="MapEnemies" Relationship="Self.FK_MapEnemy_Map" FromRole="Map" ToRole="MapEnemy" />
+          <NavigationProperty Name="Npcs" Relationship="Self.FK_Npc_Map" FromRole="Map" ToRole="Npc" />
+        </EntityType>
+        <EntityType Name="MapEnemy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MapId" Type="Int32" Nullable="false" />
+          <Property Name="EnemyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Enemy" Relationship="Self.FK_MapEnemy_Enemy" FromRole="MapEnemy" ToRole="Enemy" />
+          <NavigationProperty Name="Map" Relationship="Self.FK_MapEnemy_Map" FromRole="MapEnemy" ToRole="Map" />
+        </EntityType>
+        <EntityType Name="Mission">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Titel" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TaskDescr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeBounty" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="RefreshTime" Type="Time" Precision="7" />
+          <Property Name="TimeToFinish" Type="Time" Precision="7" />
+          <Property Name="TimeBetweenEvents" Type="Time" Precision="7" />
+          <Property Name="MinParticipants" Type="Int32" />
+          <Property Name="TypeMission" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LocatieId" Type="Int32" Nullable="false" />
+          <Property Name="NpcId" Type="Int32" />
+          <NavigationProperty Name="Locatie" Relationship="Self.FK_Mission_Locatie" FromRole="Mission" ToRole="Locatie" />
+          <NavigationProperty Name="Npc" Relationship="Self.FK_Mission_Npc" FromRole="Mission" ToRole="Npc" />
+          <NavigationProperty Name="RewardTables" Relationship="Self.FK_RewardTable_Mission" FromRole="Mission" ToRole="RewardTable" />
+        </EntityType>
+        <EntityType Name="Npc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsMerchant" Type="Boolean" Nullable="false" />
+          <Property Name="Beschrijving" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CurrencyId" Type="Int32" />
+          <Property Name="MapId" Type="Int32" Nullable="false" />
+          <Property Name="RasId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Currency" Relationship="Self.FK_Npc_Currency" FromRole="Npc" ToRole="Currency" />
+          <NavigationProperty Name="Map" Relationship="Self.FK_Npc_Map" FromRole="Npc" ToRole="Map" />
+          <NavigationProperty Name="Missions" Relationship="Self.FK_Mission_Npc" FromRole="Npc" ToRole="Mission" />
+          <NavigationProperty Name="Ras" Relationship="Self.FK_Npc_Ras" FromRole="Npc" ToRole="Ras" />
+          <NavigationProperty Name="NpcSellItems" Relationship="Self.FK_NpcSellItem_Npc" FromRole="Npc" ToRole="NpcSellItem" />
+        </EntityType>
+        <EntityType Name="NpcSellItem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NpcId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_NpcSellItem_Item" FromRole="NpcSellItem" ToRole="Item" />
+          <NavigationProperty Name="Npc" Relationship="Self.FK_NpcSellItem_Npc" FromRole="NpcSellItem" ToRole="Npc" />
+        </EntityType>
+        <EntityType Name="Perk">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Omschrijving" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Soort" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PerkArmors" Relationship="Self.FK_PerkArmor_Perk" FromRole="Perk" ToRole="PerkArmor" />
+          <NavigationProperty Name="PerkWapens" Relationship="Self.FK_PerkWapen_Perk" FromRole="Perk" ToRole="PerkWapen" />
+        </EntityType>
+        <EntityType Name="PerkArmor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArmorId" Type="Int32" Nullable="false" />
+          <Property Name="PerkId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Armor" Relationship="Self.FK_PerkArmor_Armor" FromRole="PerkArmor" ToRole="Armor" />
+          <NavigationProperty Name="Perk" Relationship="Self.FK_PerkArmor_Perk" FromRole="PerkArmor" ToRole="Perk" />
+        </EntityType>
+        <EntityType Name="PerkWapen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WapenId" Type="Int32" Nullable="false" />
+          <Property Name="PerkId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Perk" Relationship="Self.FK_PerkWapen_Perk" FromRole="PerkWapen" ToRole="Perk" />
+          <NavigationProperty Name="Wapen" Relationship="Self.FK_PerkWapen_Wapen" FromRole="PerkWapen" ToRole="Wapen" />
+        </EntityType>
+        <EntityType Name="Ras">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Character_Ras" FromRole="Ras" ToRole="Character" />
+          <NavigationProperty Name="CharacterCustomizations" Relationship="Self.FK_CharacterCustomization_Ras" FromRole="Ras" ToRole="CharacterCustomization" />
+          <NavigationProperty Name="Enemies" Relationship="Self.FK_Enemy_Ras" FromRole="Ras" ToRole="Enemy" />
+          <NavigationProperty Name="Npcs" Relationship="Self.FK_Npc_Ras" FromRole="Ras" ToRole="Npc" />
+        </EntityType>
+        <EntityType Name="RewardTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MissionId" Type="Int32" />
+          <Property Name="EnemyId" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="HoeveelheidItems" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_RewardTable_Item" FromRole="RewardTable" ToRole="Item" />
+          <NavigationProperty Name="Mission" Relationship="Self.FK_RewardTable_Mission" FromRole="RewardTable" ToRole="Mission" />
+          <NavigationProperty Name="Enemy" Relationship="DestinyModel.FK_RewardTable_Enemy" FromRole="RewardTable" ToRole="Enemy" />
+          </EntityType>
+        <EntityType Name="SpecialItem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Durability" Type="Int32" Nullable="false" />
+          <Property Name="Boost" Type="Int32" Nullable="false" />
+          <Property Name="CategorieId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_SpecialItem_Item" FromRole="SpecialItem" ToRole="Item" />
+          <NavigationProperty Name="SpecialItemCategorie" Relationship="Self.FK_SpecialItem_Categorie" FromRole="SpecialItem" ToRole="SpecialItemCategorie" />
+        </EntityType>
+        <EntityType Name="SpecialItemCategorie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="SpecialItems" Relationship="Self.FK_SpecialItem_Categorie" FromRole="SpecialItemCategorie" ToRole="SpecialItem" />
+        </EntityType>
+        <EntityType Name="SubklasseAbility">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CharacterSubklasseId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DamageTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CharacterSubklasse" Relationship="Self.FK_SubklasseAbility_Character_Subklasse" FromRole="SubklasseAbility" ToRole="CharacterSubklasse" />
+          <NavigationProperty Name="Damagetype" Relationship="Self.FK_SubklasseAbility_DamageType" FromRole="SubklasseAbility" ToRole="Damagetype" />
+        </EntityType>
+        <EntityType Name="SubklassePerk">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PerkName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Effect" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CharacterSubklasseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CharacterSubklasse" Relationship="Self.FK_SubklassePerks_Character_Subklasse" FromRole="SubklassePerks" ToRole="CharacterSubklasse" />
+        </EntityType>
+        <EntityType Name="Wapen">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Magazine" Type="Int32" Nullable="false" />
+          <Property Name="FireRate" Type="Int32" Nullable="false" />
+          <Property Name="Impact" Type="Int32" Nullable="false" />
+          <Property Name="Stability" Type="Int32" Nullable="false" />
+          <Property Name="ReloadSpeed" Type="Int32" Nullable="false" />
+          <Property Name="Soort" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LightAmount" Type="Int32" Nullable="false" />
+          <Property Name="MaxPerks" Type="Int32" />
+          <Property Name="DamagetypeId" Type="Int32" Nullable="false" />
+          <Property Name="WapenklasseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Damagetype" Relationship="Self.FK_Wapen_Damagetype" FromRole="Wapen" ToRole="Damagetype" />
+          <NavigationProperty Name="Enemies" Relationship="Self.FK_Enemy_Wapen" FromRole="Wapen" ToRole="Enemy" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_Wapen_Item" FromRole="Wapen" ToRole="Item" />
+          <NavigationProperty Name="PerkWapens" Relationship="Self.FK_PerkWapen_Wapen" FromRole="Wapen" ToRole="PerkWapen" />
+          <NavigationProperty Name="Wapenklasse" Relationship="Self.FK_Wapen_Wapenklasse" FromRole="Wapen" ToRole="Wapenklasse" />
+        </EntityType>
+        <EntityType Name="Wapenklasse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Wapens" Relationship="Self.FK_Wapen_Wapenklasse" FromRole="Wapenklasse" ToRole="Wapen" />
+        </EntityType>
+        <Association Name="FK_Character_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Armor_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Armor" Type="Self.Armor" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Armor">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerkArmor_Armor">
+          <End Role="Armor" Type="Self.Armor" Multiplicity="1" />
+          <End Role="PerkArmor" Type="Self.PerkArmor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Armor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PerkArmor">
+              <PropertyRef Name="ArmorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_Ras">
+          <End Role="Ras" Type="Self.Ras" Multiplicity="1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="CharacterCustomizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CharacterInventory_Character">
+          <End Role="Character" Type="Self.Character" Multiplicity="1" />
+          <End Role="CharacterInventory" Type="Self.CharacterInventory" Multiplicity="1" />
+        </Association>
+        <Association Name="FK_Customization_Character_Klasse">
+          <End Role="CharacterKlasse" Type="Self.CharacterKlasse" Multiplicity="1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterKlasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="CharacterKlasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CharacterCustomization_Ras">
+          <End Role="Ras" Type="Self.Ras" Multiplicity="1" />
+          <End Role="CharacterCustomization" Type="Self.CharacterCustomization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CharacterCustomization">
+              <PropertyRef Name="RasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CharacterInventory_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="CharacterInventory" Type="Self.CharacterInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CharacterInventory">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrencyInventory_CharacterInventory">
+          <End Role="CharacterInventory" Type="Self.CharacterInventory" Multiplicity="1" />
+          <End Role="CurrencyInventory" Type="DestinyModel.CurrencyInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterInventory">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CurrencyInventory">
+              <PropertyRef Name="CharacterInventoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CharacterSubKlasse_Characterklasse">
+          <End Role="CharacterSubklasses" Type="Self.CharacterSubklasse" Multiplicity="*" />
+          <End Role="CharacterKlasse" Type="Self.CharacterKlasse" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterKlasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CharacterSubklasses">
+              <PropertyRef Name="CharacterKlasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GranaatSubklasse_Character_Subklasse">
+          <End Role="CharacterSubklasse" Type="Self.CharacterSubklasse" Multiplicity="1" />
+          <End Role="GranaatSubklasse" Type="Self.GranaatSubklasse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GranaatSubklasse">
+              <PropertyRef Name="CharacterSubklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubklasseAbility_Character_Subklasse">
+          <End Role="CharacterSubklasse" Type="Self.CharacterSubklasse" Multiplicity="1" />
+          <End Role="SubklasseAbility" Type="Self.SubklasseAbility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubklasseAbility">
+              <PropertyRef Name="CharacterSubklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubklassePerks_Character_Subklasse">
+          <End Role="CharacterSubklasse" Type="Self.CharacterSubklasse" Multiplicity="1" />
+          <End Role="SubklassePerks" Type="DestinyModel.SubklassePerk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubklassePerks">
+              <PropertyRef Name="CharacterSubklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrencyDropTable_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="CurrencyDropTable" Type="Self.CurrencyDropTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CurrencyDropTable">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrencyInventory_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="1" />
+          <End Role="CurrencyInventory" Type="DestinyModel.CurrencyInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CurrencyInventory">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Npc_Currency">
+          <End Role="Currency" Type="Self.Currency" Multiplicity="0..1" />
+          <End Role="Npc" Type="Self.Npc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Currency">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Npc">
+              <PropertyRef Name="CurrencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrencyDropTable_RewardTable">
+          <End Role="RewardTable" Type="Self.RewardTable" Multiplicity="1" />
+          <End Role="CurrencyDropTable" Type="Self.CurrencyDropTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RewardTable">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CurrencyDropTable">
+              <PropertyRef Name="RewardTableId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enemy_SchildDamagetype">
+          <End Role="Damagetype" Type="Self.Damagetype" Multiplicity="0..1" />
+          <End Role="Enemy" Type="Self.Enemy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Damagetype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enemy">
+              <PropertyRef Name="SchildDamageTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GranaatAbilityDamage_Damagetype">
+          <End Role="Damagetype" Type="Self.Damagetype" Multiplicity="1" />
+          <End Role="GranaatAbilityDamage" Type="Self.GranaatAbilityDamage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Damagetype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GranaatAbilityDamage">
+              <PropertyRef Name="DamagetypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubklasseAbility_DamageType">
+          <End Role="Damagetype" Type="Self.Damagetype" Multiplicity="1" />
+          <End Role="SubklasseAbility" Type="Self.SubklasseAbility" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Damagetype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubklasseAbility">
+              <PropertyRef Name="DamageTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wapen_Damagetype">
+          <End Role="Damagetype" Type="Self.Damagetype" Multiplicity="1" />
+          <End Role="Wapen" Type="Self.Wapen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Damagetype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Wapen">
+              <PropertyRef Name="DamagetypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enemy_Ras">
+          <End Role="Ras" Type="Self.Ras" Multiplicity="1" />
+          <End Role="Enemy" Type="Self.Enemy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enemy">
+              <PropertyRef Name="RasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enemy_Wapen">
+          <End Role="Wapen" Type="Self.Wapen" Multiplicity="1" />
+          <End Role="Enemy" Type="Self.Enemy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wapen">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enemy">
+              <PropertyRef Name="WapenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MapEnemy_Enemy">
+          <End Role="Enemy" Type="Self.Enemy" Multiplicity="1" />
+          <End Role="MapEnemy" Type="Self.MapEnemy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enemy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MapEnemy">
+              <PropertyRef Name="EnemyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GranaatAbilityDamage_GranaatSubklasse">
+          <End Role="GranaatSubklasse" Type="Self.GranaatSubklasse" Multiplicity="1" />
+          <End Role="GranaatAbilityDamage" Type="Self.GranaatAbilityDamage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GranaatSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="GranaatAbilityDamage">
+              <PropertyRef Name="GranaatSubklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NpcSellItem_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="NpcSellItem" Type="Self.NpcSellItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NpcSellItem">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RewardTable_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="RewardTable" Type="Self.RewardTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RewardTable">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpecialItem_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="SpecialItem" Type="Self.SpecialItem" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SpecialItem">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wapen_Item">
+          <End Role="Item" Type="Self.Item" Multiplicity="1" />
+          <End Role="Wapen" Type="Self.Wapen" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Wapen">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Locatie_Map">
+          <End Role="Map" Type="Self.Map" Multiplicity="1" />
+          <End Role="Locatie" Type="Self.Locatie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Map">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Locatie">
+              <PropertyRef Name="MapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mission_Locatie">
+          <End Role="Locatie" Type="Self.Locatie" Multiplicity="1" />
+          <End Role="Mission" Type="Self.Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locatie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mission">
+              <PropertyRef Name="LocatieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MapEnemy_Map">
+          <End Role="Map" Type="Self.Map" Multiplicity="1" />
+          <End Role="MapEnemy" Type="Self.MapEnemy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Map">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MapEnemy">
+              <PropertyRef Name="MapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Npc_Map">
+          <End Role="Map" Type="Self.Map" Multiplicity="1" />
+          <End Role="Npc" Type="Self.Npc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Map">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Npc">
+              <PropertyRef Name="MapId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mission_Npc">
+          <End Role="Npc" Type="Self.Npc" Multiplicity="0..1" />
+          <End Role="Mission" Type="Self.Mission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Npc">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Mission">
+              <PropertyRef Name="NpcId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RewardTable_Mission">
+          <End Role="Mission" Type="Self.Mission" Multiplicity="0..1" />
+          <End Role="RewardTable" Type="Self.RewardTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mission">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RewardTable">
+              <PropertyRef Name="MissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Npc_Ras">
+          <End Role="Ras" Type="Self.Ras" Multiplicity="1" />
+          <End Role="Npc" Type="Self.Npc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Npc">
+              <PropertyRef Name="RasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NpcSellItem_Npc">
+          <End Role="Npc" Type="Self.Npc" Multiplicity="1" />
+          <End Role="NpcSellItem" Type="Self.NpcSellItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Npc">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="NpcSellItem">
+              <PropertyRef Name="NpcId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerkArmor_Perk">
+          <End Role="Perk" Type="Self.Perk" Multiplicity="1" />
+          <End Role="PerkArmor" Type="Self.PerkArmor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perk">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PerkArmor">
+              <PropertyRef Name="PerkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerkWapen_Perk">
+          <End Role="Perk" Type="Self.Perk" Multiplicity="1" />
+          <End Role="PerkWapen" Type="Self.PerkWapen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perk">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PerkWapen">
+              <PropertyRef Name="PerkId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PerkWapen_Wapen">
+          <End Role="Wapen" Type="Self.Wapen" Multiplicity="1" />
+          <End Role="PerkWapen" Type="Self.PerkWapen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wapen">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PerkWapen">
+              <PropertyRef Name="WapenId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpecialItem_Categorie">
+          <End Role="SpecialItemCategorie" Type="Self.SpecialItemCategorie" Multiplicity="1" />
+          <End Role="SpecialItem" Type="Self.SpecialItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpecialItemCategorie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SpecialItem">
+              <PropertyRef Name="CategorieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wapen_Wapenklasse">
+          <End Role="Wapenklasse" Type="Self.Wapenklasse" Multiplicity="1" />
+          <End Role="Wapen" Type="Self.Wapen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wapenklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Wapen">
+              <PropertyRef Name="WapenklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DestinyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="Armor" EntityType="Self.Armor" />
+          <EntitySet Name="Character" EntityType="Self.Character" />
+          <EntitySet Name="CharacterCustomization" EntityType="Self.CharacterCustomization" />
+          <EntitySet Name="CharacterInventory" EntityType="Self.CharacterInventory" />
+          <EntitySet Name="CharacterKlasse" EntityType="Self.CharacterKlasse" />
+          <EntitySet Name="CharacterSubklasse" EntityType="Self.CharacterSubklasse" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" />
+          <EntitySet Name="CurrencyDropTable" EntityType="Self.CurrencyDropTable" />
+          <EntitySet Name="CurrencyInventory" EntityType="DestinyModel.CurrencyInventory" />
+          <EntitySet Name="Damagetype" EntityType="Self.Damagetype" />
+          <EntitySet Name="Enemy" EntityType="Self.Enemy" />
+          <EntitySet Name="GranaatAbilityDamage" EntityType="Self.GranaatAbilityDamage" />
+          <EntitySet Name="GranaatSubklasse" EntityType="Self.GranaatSubklasse" />
+          <EntitySet Name="Item" EntityType="Self.Item" />
+          <EntitySet Name="Locatie" EntityType="Self.Locatie" />
+          <EntitySet Name="Map" EntityType="Self.Map" />
+          <EntitySet Name="MapEnemy" EntityType="Self.MapEnemy" />
+          <EntitySet Name="Mission" EntityType="Self.Mission" />
+          <EntitySet Name="Npc" EntityType="Self.Npc" />
+          <EntitySet Name="NpcSellItem" EntityType="Self.NpcSellItem" />
+          <EntitySet Name="Perk" EntityType="Self.Perk" />
+          <EntitySet Name="PerkArmor" EntityType="Self.PerkArmor" />
+          <EntitySet Name="PerkWapen" EntityType="Self.PerkWapen" />
+          <EntitySet Name="Ras" EntityType="Self.Ras" />
+          <EntitySet Name="RewardTable" EntityType="Self.RewardTable" />
+          <EntitySet Name="SpecialItem" EntityType="Self.SpecialItem" />
+          <EntitySet Name="SpecialItemCategorie" EntityType="Self.SpecialItemCategorie" />
+          <EntitySet Name="SubklasseAbility" EntityType="Self.SubklasseAbility" />
+          <EntitySet Name="SubklassePerks" EntityType="DestinyModel.SubklassePerk" />
+          <EntitySet Name="Wapen" EntityType="Self.Wapen" />
+          <EntitySet Name="Wapenklasse" EntityType="Self.Wapenklasse" />
+          <AssociationSet Name="FK_Character_Account" Association="Self.FK_Character_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Armor_Item" Association="Self.FK_Armor_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Armor" EntitySet="Armor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerkArmor_Armor" Association="Self.FK_PerkArmor_Armor">
+            <End Role="Armor" EntitySet="Armor" />
+            <End Role="PerkArmor" EntitySet="PerkArmor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Character_Ras" Association="Self.FK_Character_Ras">
+            <End Role="Ras" EntitySet="Ras" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CharacterInventory_Character" Association="Self.FK_CharacterInventory_Character">
+            <End Role="Character" EntitySet="Character" />
+            <End Role="CharacterInventory" EntitySet="CharacterInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customization_Character_Klasse" Association="Self.FK_Customization_Character_Klasse">
+            <End Role="CharacterKlasse" EntitySet="CharacterKlasse" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CharacterCustomization_Ras" Association="Self.FK_CharacterCustomization_Ras">
+            <End Role="Ras" EntitySet="Ras" />
+            <End Role="CharacterCustomization" EntitySet="CharacterCustomization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CharacterInventory_Item" Association="Self.FK_CharacterInventory_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="CharacterInventory" EntitySet="CharacterInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrencyInventory_CharacterInventory" Association="Self.FK_CurrencyInventory_CharacterInventory">
+            <End Role="CharacterInventory" EntitySet="CharacterInventory" />
+            <End Role="CurrencyInventory" EntitySet="CurrencyInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CharacterKlasse_Character_Subklasse" Association="DestinyModel.FK_CharacterSubKlasse_Characterklasse">
+            <End Role="CharacterSubklasses" EntitySet="CharacterSubklasse" />
+            <End Role="CharacterKlasse" EntitySet="CharacterKlasse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GranaatSubklasse_Character_Subklasse" Association="Self.FK_GranaatSubklasse_Character_Subklasse">
+            <End Role="CharacterSubklasse" EntitySet="CharacterSubklasse" />
+            <End Role="GranaatSubklasse" EntitySet="GranaatSubklasse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubklasseAbility_Character_Subklasse" Association="Self.FK_SubklasseAbility_Character_Subklasse">
+            <End Role="CharacterSubklasse" EntitySet="CharacterSubklasse" />
+            <End Role="SubklasseAbility" EntitySet="SubklasseAbility" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubklassePerks_Character_Subklasse" Association="Self.FK_SubklassePerks_Character_Subklasse">
+            <End Role="CharacterSubklasse" EntitySet="CharacterSubklasse" />
+            <End Role="SubklassePerks" EntitySet="SubklassePerks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrencyDropTable_Currency" Association="Self.FK_CurrencyDropTable_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="CurrencyDropTable" EntitySet="CurrencyDropTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrencyInventory_Currency" Association="Self.FK_CurrencyInventory_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="CurrencyInventory" EntitySet="CurrencyInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Npc_Currency" Association="Self.FK_Npc_Currency">
+            <End Role="Currency" EntitySet="Currency" />
+            <End Role="Npc" EntitySet="Npc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrencyDropTable_RewardTable" Association="Self.FK_CurrencyDropTable_RewardTable">
+            <End Role="RewardTable" EntitySet="RewardTable" />
+            <End Role="CurrencyDropTable" EntitySet="CurrencyDropTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enemy_SchildDamagetype" Association="Self.FK_Enemy_SchildDamagetype">
+            <End Role="Damagetype" EntitySet="Damagetype" />
+            <End Role="Enemy" EntitySet="Enemy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GranaatAbilityDamage_Damagetype" Association="Self.FK_GranaatAbilityDamage_Damagetype">
+            <End Role="Damagetype" EntitySet="Damagetype" />
+            <End Role="GranaatAbilityDamage" EntitySet="GranaatAbilityDamage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubklasseAbility_DamageType" Association="Self.FK_SubklasseAbility_DamageType">
+            <End Role="Damagetype" EntitySet="Damagetype" />
+            <End Role="SubklasseAbility" EntitySet="SubklasseAbility" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wapen_Damagetype" Association="Self.FK_Wapen_Damagetype">
+            <End Role="Damagetype" EntitySet="Damagetype" />
+            <End Role="Wapen" EntitySet="Wapen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enemy_Ras" Association="Self.FK_Enemy_Ras">
+            <End Role="Ras" EntitySet="Ras" />
+            <End Role="Enemy" EntitySet="Enemy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enemy_Wapen" Association="Self.FK_Enemy_Wapen">
+            <End Role="Wapen" EntitySet="Wapen" />
+            <End Role="Enemy" EntitySet="Enemy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MapEnemy_Enemy" Association="Self.FK_MapEnemy_Enemy">
+            <End Role="Enemy" EntitySet="Enemy" />
+            <End Role="MapEnemy" EntitySet="MapEnemy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GranaatAbilityDamage_GranaatSubklasse" Association="Self.FK_GranaatAbilityDamage_GranaatSubklasse">
+            <End Role="GranaatSubklasse" EntitySet="GranaatSubklasse" />
+            <End Role="GranaatAbilityDamage" EntitySet="GranaatAbilityDamage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NpcSellItem_Item" Association="Self.FK_NpcSellItem_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="NpcSellItem" EntitySet="NpcSellItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RewardTable_Item" Association="Self.FK_RewardTable_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="RewardTable" EntitySet="RewardTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpecialItem_Item" Association="Self.FK_SpecialItem_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="SpecialItem" EntitySet="SpecialItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wapen_Item" Association="Self.FK_Wapen_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Wapen" EntitySet="Wapen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Locatie_Map" Association="Self.FK_Locatie_Map">
+            <End Role="Map" EntitySet="Map" />
+            <End Role="Locatie" EntitySet="Locatie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mission_Locatie" Association="Self.FK_Mission_Locatie">
+            <End Role="Locatie" EntitySet="Locatie" />
+            <End Role="Mission" EntitySet="Mission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MapEnemy_Map" Association="Self.FK_MapEnemy_Map">
+            <End Role="Map" EntitySet="Map" />
+            <End Role="MapEnemy" EntitySet="MapEnemy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Npc_Map" Association="Self.FK_Npc_Map">
+            <End Role="Map" EntitySet="Map" />
+            <End Role="Npc" EntitySet="Npc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mission_Npc" Association="Self.FK_Mission_Npc">
+            <End Role="Npc" EntitySet="Npc" />
+            <End Role="Mission" EntitySet="Mission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RewardTable_Mission" Association="Self.FK_RewardTable_Mission">
+            <End Role="Mission" EntitySet="Mission" />
+            <End Role="RewardTable" EntitySet="RewardTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Npc_Ras" Association="Self.FK_Npc_Ras">
+            <End Role="Ras" EntitySet="Ras" />
+            <End Role="Npc" EntitySet="Npc" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NpcSellItem_Npc" Association="Self.FK_NpcSellItem_Npc">
+            <End Role="Npc" EntitySet="Npc" />
+            <End Role="NpcSellItem" EntitySet="NpcSellItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerkArmor_Perk" Association="Self.FK_PerkArmor_Perk">
+            <End Role="Perk" EntitySet="Perk" />
+            <End Role="PerkArmor" EntitySet="PerkArmor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerkWapen_Perk" Association="Self.FK_PerkWapen_Perk">
+            <End Role="Perk" EntitySet="Perk" />
+            <End Role="PerkWapen" EntitySet="PerkWapen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PerkWapen_Wapen" Association="Self.FK_PerkWapen_Wapen">
+            <End Role="Wapen" EntitySet="Wapen" />
+            <End Role="PerkWapen" EntitySet="PerkWapen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpecialItem_Categorie" Association="Self.FK_SpecialItem_Categorie">
+            <End Role="SpecialItemCategorie" EntitySet="SpecialItemCategorie" />
+            <End Role="SpecialItem" EntitySet="SpecialItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wapen_Wapenklasse" Association="Self.FK_Wapen_Wapenklasse">
+            <End Role="Wapenklasse" EntitySet="Wapenklasse" />
+            <End Role="Wapen" EntitySet="Wapen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RewardTable_Enemy" Association="DestinyModel.FK_RewardTable_Enemy">
+            <End Role="Enemy" EntitySet="Enemy" />
+            <End Role="RewardTable" EntitySet="RewardTable" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_RewardTable_Enemy">
+          <End Type="DestinyModel.Enemy" Role="Enemy" Multiplicity="0..1" />
+          <End Type="DestinyModel.RewardTable" Role="RewardTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Enemy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RewardTable">
+              <PropertyRef Name="EnemyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DestinyModelStoreContainer" CdmEntityContainer="DestinyEntities">
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="DestinyModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Accountnaam" ColumnName="Accountnaam" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Regio" ColumnName="Regio" />
+                <ScalarProperty Name="Wachtwoord" ColumnName="Wachtwoord" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Armor">
+            <EntityTypeMapping TypeName="DestinyModel.Armor">
+              <MappingFragment StoreEntitySet="Armor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Mobility" ColumnName="Mobility" />
+                <ScalarProperty Name="Resilience" ColumnName="Resilience" />
+                <ScalarProperty Name="Recovery" ColumnName="Recovery" />
+                <ScalarProperty Name="Discipline" ColumnName="Discipline" />
+                <ScalarProperty Name="Intellect" ColumnName="Intellect" />
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="MaxPerks" ColumnName="MaxPerks" />
+                <ScalarProperty Name="ArmorSlot" ColumnName="ArmorSlot" />
+                <ScalarProperty Name="LightAmount" ColumnName="LightAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Character">
+            <EntityTypeMapping TypeName="DestinyModel.Character">
+              <MappingFragment StoreEntitySet="Character">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CharacterCustomizationId" ColumnName="CharacterCustomizationId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="CharacterKlasseId" ColumnName="CharacterKlasseId" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CharacterCustomization">
+            <EntityTypeMapping TypeName="DestinyModel.CharacterCustomization">
+              <MappingFragment StoreEntitySet="CharacterCustomization">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="RasId" ColumnName="RasId" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Face" ColumnName="Face" />
+                <ScalarProperty Name="HeadOption" ColumnName="HeadOption" />
+                <ScalarProperty Name="Marking" ColumnName="Marking" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CharacterInventory">
+            <EntityTypeMapping TypeName="DestinyModel.CharacterInventory">
+              <MappingFragment StoreEntitySet="CharacterInventory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CharacterKlasse">
+            <EntityTypeMapping TypeName="DestinyModel.CharacterKlasse">
+              <MappingFragment StoreEntitySet="CharacterKlasse">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CharacterSubklasse">
+            <EntityTypeMapping TypeName="DestinyModel.CharacterSubklasse">
+              <MappingFragment StoreEntitySet="CharacterSubklasse">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currency">
+            <EntityTypeMapping TypeName="DestinyModel.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Beschrijving" ColumnName="Beschrijving" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrencyDropTable">
+            <EntityTypeMapping TypeName="DestinyModel.CurrencyDropTable">
+              <MappingFragment StoreEntitySet="CurrencyDropTable">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="RewardTableId" ColumnName="RewardTableId" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="AmountOfCurrency" ColumnName="AmountOfCurrency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrencyInventory">
+            <EntityTypeMapping TypeName="DestinyModel.CurrencyInventory">
+              <MappingFragment StoreEntitySet="CurrencyInventory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CharacterInventoryId" ColumnName="CharacterInventoryId" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="AmountOfCurrency" ColumnName="AmountOfCurrency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Damagetype">
+            <EntityTypeMapping TypeName="DestinyModel.Damagetype">
+              <MappingFragment StoreEntitySet="Damagetype">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enemy">
+            <EntityTypeMapping TypeName="DestinyModel.Enemy">
+              <MappingFragment StoreEntitySet="Enemy">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="SoortEnemy" ColumnName="SoortEnemy" />
+                <ScalarProperty Name="Toughness" ColumnName="Toughness" />
+                <ScalarProperty Name="Archtypes" ColumnName="Archtypes" />
+                <ScalarProperty Name="SchildDamageTypeId" ColumnName="SchildDamageTypeId" />
+                <ScalarProperty Name="RasId" ColumnName="RasId" />
+                <ScalarProperty Name="WapenId" ColumnName="WapenId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GranaatAbilityDamage">
+            <EntityTypeMapping TypeName="DestinyModel.GranaatAbilityDamage">
+              <MappingFragment StoreEntitySet="GranaatAbilityDamage">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="DamagetypeId" ColumnName="DamagetypeId" />
+                <ScalarProperty Name="Damage" ColumnName="Damage" />
+                <ScalarProperty Name="DamageTickRate" ColumnName="DamageTickRate" />
+                <ScalarProperty Name="GranaatSubklasseId" ColumnName="GranaatSubklasseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GranaatSubklasse">
+            <EntityTypeMapping TypeName="DestinyModel.GranaatSubklasse">
+              <MappingFragment StoreEntitySet="GranaatSubklasse">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CharacterSubklasseId" ColumnName="CharacterSubklasseId" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item">
+            <EntityTypeMapping TypeName="DestinyModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Prijs" ColumnName="Prijs" />
+                <ScalarProperty Name="Beschrijving" ColumnName="Beschrijving" />
+                <ScalarProperty Name="Zeldzaamheid" ColumnName="Zeldzaamheid" />
+                <ScalarProperty Name="Can_Be_Sold" ColumnName="Can_Be_Sold" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locatie">
+            <EntityTypeMapping TypeName="DestinyModel.Locatie">
+              <MappingFragment StoreEntitySet="Locatie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="RestrictedArea" ColumnName="RestrictedArea" />
+                <ScalarProperty Name="MapId" ColumnName="MapId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Map">
+            <EntityTypeMapping TypeName="DestinyModel.Map">
+              <MappingFragment StoreEntitySet="Map">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Wereld" ColumnName="Wereld" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MapEnemy">
+            <EntityTypeMapping TypeName="DestinyModel.MapEnemy">
+              <MappingFragment StoreEntitySet="MapEnemy">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MapId" ColumnName="MapId" />
+                <ScalarProperty Name="EnemyId" ColumnName="EnemyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mission">
+            <EntityTypeMapping TypeName="DestinyModel.Mission">
+              <MappingFragment StoreEntitySet="Mission">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Titel" ColumnName="Titel" />
+                <ScalarProperty Name="TaskDescr" ColumnName="TaskDescr" />
+                <ScalarProperty Name="TypeBounty" ColumnName="TypeBounty" />
+                <ScalarProperty Name="RefreshTime" ColumnName="RefreshTime" />
+                <ScalarProperty Name="TimeToFinish" ColumnName="TimeToFinish" />
+                <ScalarProperty Name="TimeBetweenEvents" ColumnName="TimeBetweenEvents" />
+                <ScalarProperty Name="MinParticipants" ColumnName="MinParticipants" />
+                <ScalarProperty Name="TypeMission" ColumnName="TypeMission" />
+                <ScalarProperty Name="LocatieId" ColumnName="LocatieId" />
+                <ScalarProperty Name="NpcId" ColumnName="NpcId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Npc">
+            <EntityTypeMapping TypeName="DestinyModel.Npc">
+              <MappingFragment StoreEntitySet="Npc">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsMerchant" ColumnName="IsMerchant" />
+                <ScalarProperty Name="Beschrijving" ColumnName="Beschrijving" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="MapId" ColumnName="MapId" />
+                <ScalarProperty Name="RasId" ColumnName="RasId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NpcSellItem">
+            <EntityTypeMapping TypeName="DestinyModel.NpcSellItem">
+              <MappingFragment StoreEntitySet="NpcSellItem">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="NpcId" ColumnName="NpcId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perk">
+            <EntityTypeMapping TypeName="DestinyModel.Perk">
+              <MappingFragment StoreEntitySet="Perk">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="Omschrijving" ColumnName="Omschrijving" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Soort" ColumnName="Soort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PerkArmor">
+            <EntityTypeMapping TypeName="DestinyModel.PerkArmor">
+              <MappingFragment StoreEntitySet="PerkArmor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ArmorId" ColumnName="ArmorId" />
+                <ScalarProperty Name="PerkId" ColumnName="PerkId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PerkWapen">
+            <EntityTypeMapping TypeName="DestinyModel.PerkWapen">
+              <MappingFragment StoreEntitySet="PerkWapen">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="WapenId" ColumnName="WapenId" />
+                <ScalarProperty Name="PerkId" ColumnName="PerkId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ras">
+            <EntityTypeMapping TypeName="DestinyModel.Ras">
+              <MappingFragment StoreEntitySet="Ras">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RewardTable">
+            <EntityTypeMapping TypeName="DestinyModel.RewardTable">
+              <MappingFragment StoreEntitySet="RewardTable">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MissionId" ColumnName="MissionId" />
+                <ScalarProperty Name="EnemyId" ColumnName="EnemyId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="HoeveelheidItems" ColumnName="HoeveelheidItems" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialItem">
+            <EntityTypeMapping TypeName="DestinyModel.SpecialItem">
+              <MappingFragment StoreEntitySet="SpecialItem">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Durability" ColumnName="Durability" />
+                <ScalarProperty Name="Boost" ColumnName="Boost" />
+                <ScalarProperty Name="CategorieId" ColumnName="CategorieId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialItemCategorie">
+            <EntityTypeMapping TypeName="DestinyModel.SpecialItemCategorie">
+              <MappingFragment StoreEntitySet="SpecialItemCategorie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubklasseAbility">
+            <EntityTypeMapping TypeName="DestinyModel.SubklasseAbility">
+              <MappingFragment StoreEntitySet="SubklasseAbility">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CharacterSubklasseId" ColumnName="CharacterSubklasseId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+                <ScalarProperty Name="DamageTypeId" ColumnName="DamageTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubklassePerks">
+            <EntityTypeMapping TypeName="DestinyModel.SubklassePerk">
+              <MappingFragment StoreEntitySet="SubklassePerks">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PerkName" ColumnName="PerkName" />
+                <ScalarProperty Name="Effect" ColumnName="Effect" />
+                <ScalarProperty Name="CharacterSubklasseId" ColumnName="CharacterSubklasseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wapen">
+            <EntityTypeMapping TypeName="DestinyModel.Wapen">
+              <MappingFragment StoreEntitySet="Wapen">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Magazine" ColumnName="Magazine" />
+                <ScalarProperty Name="FireRate" ColumnName="FireRate" />
+                <ScalarProperty Name="Impact" ColumnName="Impact" />
+                <ScalarProperty Name="Stability" ColumnName="Stability" />
+                <ScalarProperty Name="ReloadSpeed" ColumnName="ReloadSpeed" />
+                <ScalarProperty Name="Soort" ColumnName="Soort" />
+                <ScalarProperty Name="LightAmount" ColumnName="LightAmount" />
+                <ScalarProperty Name="MaxPerks" ColumnName="MaxPerks" />
+                <ScalarProperty Name="DamagetypeId" ColumnName="DamagetypeId" />
+                <ScalarProperty Name="WapenklasseId" ColumnName="WapenklasseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wapenklasse">
+            <EntityTypeMapping TypeName="DestinyModel.Wapenklasse">
+              <MappingFragment StoreEntitySet="Wapenklasse">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Naam" ColumnName="Naam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

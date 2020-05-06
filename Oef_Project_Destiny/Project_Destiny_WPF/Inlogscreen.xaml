@@ -24,7 +24,7 @@
             <Label Content="Wachtwoord" Foreground="#00FFFF" />
             <PasswordBox Name="txtWachtwoord" Background="#555555" Foreground="White" FontSize="18"/>
             <CheckBox Content="Onthoud me" Foreground="White" Height="31"/>
-            <Button x:Name="BtnInloggen" Content="Inloggen" Background="#555555" Foreground="White" BorderBrush="{x:Null}" Margin="20" RenderTransformOrigin="0.49,-0.153"/>
+            <Button x:Name="BtnInloggen" Content="Inloggen" Background="#555555" Foreground="White" BorderBrush="{x:Null}" Margin="70,30" RenderTransformOrigin="0.49,-0.153"/>
             <Button x:Name="BtnGeenAccount" Content="Nog geen account?" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}"/>
 
 
