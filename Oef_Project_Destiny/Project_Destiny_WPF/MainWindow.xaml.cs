@@ -60,11 +60,17 @@ namespace Project_Destiny_WPF
         {
             GridMain.Children.Clear();
 
-            if (((ListViewItem)((ListView)sender).SelectedItem).Name == "Character") {
-                usc = new Character();
-                GridMain.Children.Add(usc);
+            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            {
+                case "Character":
+                    usc = new Character();
+                    GridMain.Children.Add(usc);
+                    break;
+                case "Wapens":
+                    usc = new Weapons();
+                    GridMain.Children.Add(usc);
+                    break;
             }
-
         }
 
         private void BtnInloggen_Click(object sender, RoutedEventArgs e)
