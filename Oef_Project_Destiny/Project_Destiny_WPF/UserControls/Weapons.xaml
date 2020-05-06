@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Project_Destiny_WPF.UserControls.Weapons"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:Project_Destiny_WPF.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" Width="800" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblWapens" Content="Wapens" Grid.Column="1" FontWeight="Bold" FontSize="30" Foreground="#333333" HorizontalAlignment="Center" Margin="7"></Label>
+
+        <TextBox Grid.Row="1"  Width="230" FontSize="15" KeyDown="TextBox_KeyDown"
+  materialDesign:HintAssist.Hint="Zoek wapens" materialDesign:TextFieldAssist.UnderlineBrush="#333"
+  VerticalAlignment="Bottom" />
+        <ComboBox x:Name="cmbCategorie" Grid.Column="1" Grid.Row="1" Width="230" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
+                     materialDesign:HintAssist.Hint="Kies categorie" SelectionChanged="cmbCategorie_SelectionChanged">
+        </ComboBox>
+        <ComboBox x:Name="cmbZeldzaamheid" Grid.Column="2" Grid.Row="1" Width="230" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
+                     materialDesign:HintAssist.Hint="Kies zeldzaamheid" SelectionChanged="cmbZeldzaamheid_SelectionChanged">
+        </ComboBox>
+        
+        <DataGrid x:Name="dbWapens" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbWapens_SelectionChanged"  Margin="50,20" >
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#333" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="BorderThickness" Value="0,0,2,0"></Setter>
+                    <Setter Property="BorderBrush" Value="#fff"/>
+                </Style>
+
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naam" Width="200"/>
+                <DataGridTextColumn Header="Categorie" Width="150"/>
+                <DataGridTextColumn Header="Zeldzaamheid" Width=""/>
+                <DataGridTextColumn Header="Damagetype"/>
+                <DataGridTextColumn Header="Power"/>
+                <DataGridTextColumn Header="Impact"/>
+                <DataGridTextColumn Header="Range"/>
+                <DataGridTextColumn Header="Magazine"/>
+                <DataGridTextColumn Header="Light"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </Grid>
+</UserControl>
