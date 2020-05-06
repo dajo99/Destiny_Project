@@ -71,8 +71,10 @@
                 <Button x:Name="BtnInloggen" Content="Inloggen" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnInloggen_Click" />
                 <Button x:Name="BtnRegistreren" Content="Registreren" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}" materialDesign:ButtonAssist.CornerRadius="5" Height="30"  />
             </StackPanel>
+
+    
             <Button x:Name="BtnAfsluiten" Content="Afsluiten" Margin="234,20,696,10" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnAfsluiten_Click" Grid.ColumnSpan="2" />
-            <Button x:Name="BtnHome" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Height="36" Margin="174.149,10,480,14" Width="114" Grid.Column="1">Destiny</Button>
+            <Button x:Name="BtnHome" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Height="36" Margin="174.149,10,480,14" Width="114" Grid.Column="1" Click="BtnHome_Click">Destiny</Button>
         </Grid>
         <Grid x:Name="GridMenu" HorizontalAlignment="Left" Width="70" Background="#FF00C7A3">
             <StackPanel>
