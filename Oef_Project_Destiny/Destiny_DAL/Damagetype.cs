@@ -17,22 +17,22 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Damagetype()
         {
-            this.Enemy = new HashSet<Enemy>();
-            this.GranaatAbilityDamage = new HashSet<GranaatAbilityDamage>();
-            this.SubklasseAbility = new HashSet<SubklasseAbility>();
-            this.Wapen = new HashSet<Wapen>();
+            this.Enemies = new HashSet<Enemy>();
+            this.GranaatAbilityDamages = new HashSet<GranaatAbilityDamage>();
+            this.SubklasseAbilities = new HashSet<SubklasseAbility>();
+            this.Wapens = new HashSet<Wapen>();
         }
     
         public int id { get; set; }
         public string Naam { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Enemy> Enemy { get; set; }
+        public virtual ICollection<Enemy> Enemies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GranaatAbilityDamage> GranaatAbilityDamage { get; set; }
+        public virtual ICollection<GranaatAbilityDamage> GranaatAbilityDamages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubklasseAbility> SubklasseAbility { get; set; }
+        public virtual ICollection<SubklasseAbility> SubklasseAbilities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Wapen> Wapen { get; set; }
+        public virtual ICollection<Wapen> Wapens { get; set; }
     }
 }

@@ -17,9 +17,9 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Currency()
         {
-            this.CurrencyDropTable = new HashSet<CurrencyDropTable>();
-            this.CurrencyInventory = new HashSet<CurrencyInventory>();
-            this.Npc = new HashSet<Npc>();
+            this.CurrencyDropTables = new HashSet<CurrencyDropTable>();
+            this.CurrencyInventories = new HashSet<CurrencyInventory>();
+            this.Npcs = new HashSet<Npc>();
         }
     
         public int id { get; set; }
@@ -27,10 +27,10 @@ namespace Destiny_DAL
         public string Beschrijving { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CurrencyDropTable> CurrencyDropTable { get; set; }
+        public virtual ICollection<CurrencyDropTable> CurrencyDropTables { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CurrencyInventory> CurrencyInventory { get; set; }
+        public virtual ICollection<CurrencyInventory> CurrencyInventories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Npc> Npc { get; set; }
+        public virtual ICollection<Npc> Npcs { get; set; }
     }
 }

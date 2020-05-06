@@ -17,7 +17,7 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Mission()
         {
-            this.RewardTable = new HashSet<RewardTable>();
+            this.RewardTables = new HashSet<RewardTable>();
         }
     
         public int id { get; set; }
@@ -35,6 +35,6 @@ namespace Destiny_DAL
         public virtual Locatie Locatie { get; set; }
         public virtual Npc Npc { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RewardTable> RewardTable { get; set; }
+        public virtual ICollection<RewardTable> RewardTables { get; set; }
     }
 }

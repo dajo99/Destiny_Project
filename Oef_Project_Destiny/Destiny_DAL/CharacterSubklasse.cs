@@ -17,22 +17,21 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CharacterSubklasse()
         {
-            this.CharacterKlasse = new HashSet<CharacterKlasse>();
-            this.GranaatSubklasse = new HashSet<GranaatSubklasse>();
-            this.SubklasseAbility = new HashSet<SubklasseAbility>();
-            this.SubklassePerks = new HashSet<SubklassePerks>();
+            this.GranaatSubklasses = new HashSet<GranaatSubklasse>();
+            this.SubklasseAbilities = new HashSet<SubklasseAbility>();
+            this.SubklassePerks = new HashSet<SubklassePerk>();
         }
     
         public int id { get; set; }
         public string Naam { get; set; }
+        public int CharacterKlasseId { get; set; }
     
+        public virtual CharacterKlasse CharacterKlasse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CharacterKlasse> CharacterKlasse { get; set; }
+        public virtual ICollection<GranaatSubklasse> GranaatSubklasses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GranaatSubklasse> GranaatSubklasse { get; set; }
+        public virtual ICollection<SubklasseAbility> SubklasseAbilities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubklasseAbility> SubklasseAbility { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SubklassePerks> SubklassePerks { get; set; }
+        public virtual ICollection<SubklassePerk> SubklassePerks { get; set; }
     }
 }

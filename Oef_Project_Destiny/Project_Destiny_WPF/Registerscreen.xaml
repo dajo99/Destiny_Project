@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Project_Destiny_WPF"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Registerscreen" Height="400" Width="600" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
+        Title="Registerscreen" Height="500" Width="600" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
     <Grid>
         <Rectangle RadiusY="7.895" RadiusX="7.895" Fill="#AAAAAA"/>
         <StackPanel HorizontalAlignment="Right" Margin="5">
@@ -19,6 +19,8 @@
             <Label Content="Registreren" FontWeight="Bold" Foreground="White" FontSize="25" Margin="20" HorizontalAlignment="Center" />
             <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod " Foreground="white" TextWrapping="Wrap" TextAlignment="Center"/>
             <Separator></Separator>
+            <Label Content="Gebruikersnaam" Foreground="#00FFFF"/>
+            <TextBox Name="txtGebruikersnaam" Background="#555555" Foreground="White" FontSize="18"/>
             <Label Content="Emailadres" Foreground="#00FFFF"/>
             <TextBox Name="txtEmailadres" Background="#555555" Foreground="White" FontSize="18"/>
             <Label Content="Wachtwoord" Foreground="#00FFFF" />
@@ -26,7 +28,7 @@
             <Label Content="Herhaal Wachtwoord" Foreground="#00FFFF" />
             <PasswordBox Name="txtHerhaalWachtwoord" Background="#555555" Foreground="White" FontSize="18"/>
             
-            <Button x:Name="BtnInloggen" Content="Inloggen" Background="#555555" Foreground="White" BorderBrush="{x:Null}" Margin="20" RenderTransformOrigin="0.49,-0.153"/>
+            <Button x:Name="BtnRegistreren" Content="Registreren" Background="#555555" Foreground="White" BorderBrush="{x:Null}" Margin="60" RenderTransformOrigin="0.49,-0.153"/>
             
 
 

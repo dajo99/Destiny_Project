@@ -17,13 +17,13 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SpecialItemCategorie()
         {
-            this.SpecialItem = new HashSet<SpecialItem>();
+            this.SpecialItems = new HashSet<SpecialItem>();
         }
     
         public int id { get; set; }
         public string Naam { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SpecialItem> SpecialItem { get; set; }
+        public virtual ICollection<SpecialItem> SpecialItems { get; set; }
     }
 }

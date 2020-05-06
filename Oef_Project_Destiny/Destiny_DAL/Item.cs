@@ -17,9 +17,9 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item()
         {
-            this.CharacterInventory = new HashSet<CharacterInventory>();
-            this.NpcSellItem = new HashSet<NpcSellItem>();
-            this.RewardTable = new HashSet<RewardTable>();
+            this.CharacterInventories = new HashSet<CharacterInventory>();
+            this.NpcSellItems = new HashSet<NpcSellItem>();
+            this.RewardTables = new HashSet<RewardTable>();
         }
     
         public int id { get; set; }
@@ -31,11 +31,11 @@ namespace Destiny_DAL
     
         public virtual Armor Armor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CharacterInventory> CharacterInventory { get; set; }
+        public virtual ICollection<CharacterInventory> CharacterInventories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NpcSellItem> NpcSellItem { get; set; }
+        public virtual ICollection<NpcSellItem> NpcSellItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RewardTable> RewardTable { get; set; }
+        public virtual ICollection<RewardTable> RewardTables { get; set; }
         public virtual SpecialItem SpecialItem { get; set; }
         public virtual Wapen Wapen { get; set; }
     }

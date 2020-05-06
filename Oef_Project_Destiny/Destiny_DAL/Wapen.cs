@@ -17,8 +17,8 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Wapen()
         {
-            this.Enemy = new HashSet<Enemy>();
-            this.PerkWapen = new HashSet<PerkWapen>();
+            this.Enemies = new HashSet<Enemy>();
+            this.PerkWapens = new HashSet<PerkWapen>();
         }
     
         public int id { get; set; }
@@ -35,10 +35,10 @@ namespace Destiny_DAL
     
         public virtual Damagetype Damagetype { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Enemy> Enemy { get; set; }
+        public virtual ICollection<Enemy> Enemies { get; set; }
         public virtual Item Item { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PerkWapen> PerkWapen { get; set; }
+        public virtual ICollection<PerkWapen> PerkWapens { get; set; }
         public virtual Wapenklasse Wapenklasse { get; set; }
     }
 }

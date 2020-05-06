@@ -17,7 +17,7 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Account()
         {
-            this.Character = new HashSet<Character>();
+            this.Characters = new HashSet<Character>();
         }
     
         public int id { get; set; }
@@ -27,6 +27,6 @@ namespace Destiny_DAL
         public string Wachtwoord { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Character> Character { get; set; }
+        public virtual ICollection<Character> Characters { get; set; }
     }
 }

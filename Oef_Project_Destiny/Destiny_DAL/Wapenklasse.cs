@@ -17,13 +17,13 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Wapenklasse()
         {
-            this.Wapen = new HashSet<Wapen>();
+            this.Wapens = new HashSet<Wapen>();
         }
     
         public int id { get; set; }
         public string Naam { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Wapen> Wapen { get; set; }
+        public virtual ICollection<Wapen> Wapens { get; set; }
     }
 }

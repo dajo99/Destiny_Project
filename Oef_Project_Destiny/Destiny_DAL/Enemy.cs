@@ -17,7 +17,8 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Enemy()
         {
-            this.MapEnemy = new HashSet<MapEnemy>();
+            this.MapEnemies = new HashSet<MapEnemy>();
+            this.RewardTables = new HashSet<RewardTable>();
         }
     
         public int id { get; set; }
@@ -32,6 +33,8 @@ namespace Destiny_DAL
         public virtual Ras Ras { get; set; }
         public virtual Wapen Wapen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MapEnemy> MapEnemy { get; set; }
+        public virtual ICollection<MapEnemy> MapEnemies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RewardTable> RewardTables { get; set; }
     }
 }

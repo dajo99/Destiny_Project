@@ -17,22 +17,22 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Ras()
         {
-            this.Character = new HashSet<Character>();
-            this.CharacterCustomization = new HashSet<CharacterCustomization>();
-            this.Enemy = new HashSet<Enemy>();
-            this.Npc = new HashSet<Npc>();
+            this.Characters = new HashSet<Character>();
+            this.CharacterCustomizations = new HashSet<CharacterCustomization>();
+            this.Enemies = new HashSet<Enemy>();
+            this.Npcs = new HashSet<Npc>();
         }
     
         public int id { get; set; }
         public string Naam { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Character> Character { get; set; }
+        public virtual ICollection<Character> Characters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CharacterCustomization> CharacterCustomization { get; set; }
+        public virtual ICollection<CharacterCustomization> CharacterCustomizations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Enemy> Enemy { get; set; }
+        public virtual ICollection<Enemy> Enemies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Npc> Npc { get; set; }
+        public virtual ICollection<Npc> Npcs { get; set; }
     }
 }
