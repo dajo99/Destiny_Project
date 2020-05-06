@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Project_Destiny_WPF.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="800">
     <Grid>
         <StackPanel HorizontalAlignment="Center" Margin="240,30,240,0" Width="336">
             <Label Content="Instellingen" FontWeight="Bold" FontSize="30" Foreground="#333333" HorizontalAlignment="Center"/>
@@ -27,7 +27,7 @@
                 <ComboBoxItem Name="LightMode">Light Mode</ComboBoxItem>
             </ComboBox>
 
-            <Button x:Name="BtnOpslaanInstellingen" Content="Opslaan" Background="#333333" BorderBrush="{x:Null}" materialDesign:ButtonAssist.CornerRadius="5" Margin="90,90,90,10"/>
+            <Button x:Name="BtnOpslaanInstellingen" Content="Opslaan" Background="#333333" BorderBrush="{x:Null}" materialDesign:ButtonAssist.CornerRadius="5" Margin="90,110,90,10"/>
         </StackPanel>
        
     </Grid>
