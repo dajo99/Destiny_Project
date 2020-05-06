@@ -17,19 +17,19 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Map()
         {
-            this.Locatie = new HashSet<Locatie>();
-            this.MapEnemy = new HashSet<MapEnemy>();
-            this.Npc = new HashSet<Npc>();
+            this.Locaties = new HashSet<Locatie>();
+            this.MapEnemies = new HashSet<MapEnemy>();
+            this.Npcs = new HashSet<Npc>();
         }
     
         public int id { get; set; }
         public string Wereld { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Locatie> Locatie { get; set; }
+        public virtual ICollection<Locatie> Locaties { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MapEnemy> MapEnemy { get; set; }
+        public virtual ICollection<MapEnemy> MapEnemies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Npc> Npc { get; set; }
+        public virtual ICollection<Npc> Npcs { get; set; }
     }
 }

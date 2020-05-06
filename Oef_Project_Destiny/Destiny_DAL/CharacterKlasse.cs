@@ -17,15 +17,16 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CharacterKlasse()
         {
-            this.Character = new HashSet<Character>();
+            this.Characters = new HashSet<Character>();
+            this.CharacterSubklasses = new HashSet<CharacterSubklasse>();
         }
     
         public int id { get; set; }
-        public int SubklasseId { get; set; }
         public string Naam { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Character> Character { get; set; }
-        public virtual CharacterSubklasse CharacterSubklasse { get; set; }
+        public virtual ICollection<Character> Characters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CharacterSubklasse> CharacterSubklasses { get; set; }
     }
 }

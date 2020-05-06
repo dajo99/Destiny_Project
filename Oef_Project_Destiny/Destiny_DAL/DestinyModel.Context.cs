@@ -54,7 +54,7 @@ namespace Destiny_DAL
         public virtual DbSet<SpecialItem> SpecialItem { get; set; }
         public virtual DbSet<SpecialItemCategorie> SpecialItemCategorie { get; set; }
         public virtual DbSet<SubklasseAbility> SubklasseAbility { get; set; }
-        public virtual DbSet<SubklassePerks> SubklassePerks { get; set; }
+        public virtual DbSet<SubklassePerk> SubklassePerks { get; set; }
         public virtual DbSet<Wapen> Wapen { get; set; }
         public virtual DbSet<Wapenklasse> Wapenklasse { get; set; }
     }

@@ -14,12 +14,6 @@ namespace Destiny_DAL
     
     public partial class Character
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Character()
-        {
-            this.CharacterInventory = new HashSet<CharacterInventory>();
-        }
-    
         public int id { get; set; }
         public int CharacterCustomizationId { get; set; }
         public int AccountId { get; set; }
@@ -28,8 +22,7 @@ namespace Destiny_DAL
     
         public virtual Account Account { get; set; }
         public virtual Ras Ras { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CharacterInventory> CharacterInventory { get; set; }
+        public virtual CharacterInventory CharacterInventory { get; set; }
         public virtual CharacterKlasse CharacterKlasse { get; set; }
     }
 }

@@ -157,7 +157,7 @@
     <Compile Include="SubklasseAbility.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SubklassePerks.cs">
+    <Compile Include="SubklassePerk.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Wapen.cs">
