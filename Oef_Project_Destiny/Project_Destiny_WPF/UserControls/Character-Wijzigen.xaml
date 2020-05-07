@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="Project_Destiny_WPF.UserControls.Character_Wijzigen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Project_Destiny_WPF.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="220"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Character-Wijzigen" FontSize="24" Margin="0,-10,0,9.8" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="AntiqueWhite" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"/>
+        <Button x:Name="btnTerug" Click="btnTerug_Click" HorizontalAlignment="Left" Margin="10"
+  Style="{StaticResource MaterialDesignIconForegroundButton}"
+  ToolTip="MaterialDesignIconForegroundButton">
+            <materialDesign:PackIcon
+     Kind="ArrowBack" 
+                Height="30"
+                Width="40"
+                Foreground="DarkGoldenrod"/>
+        </Button>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Label  Content="Selecteer wat je wil wijzigen" Margin="20,15,0,0"  Foreground="White" FontSize="20" HorizontalAlignment="Left" Width="344" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+            <RadioButton Background="White" Grid.Row="1" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbMarking"
+            Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+            ToolTip="MaterialDesignFlatPrimaryToggleButton"
+                         IsChecked="True">
+                <materialDesign:PackIcon
+                         Kind="SkullCrossbonesOutline"
+                            Height="21"
+                              Width="21" Foreground="DarkGoldenrod"/>
+ 
+            </RadioButton>
+            <Label Content="Marking" Grid.Row="1" Foreground="White" Margin="60,15,0,0" FontSize="16"/>
+
+            <RadioButton Background="White" Grid.Row="2" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbHaar"
+            Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+            ToolTip="MaterialDesignFlatPrimaryToggleButton"
+                         IsChecked="False">
+                <materialDesign:PackIcon
+                         Kind="HairDryer"
+                            Height="21"
+                              Width="21" Foreground="DarkGoldenrod"/>
+
+            </RadioButton>
+            <Label Content="Haar" Grid.Row="2" Foreground="White" Margin="60,15,0,0" FontSize="16"/>
+
+            <RadioButton Background="White" Grid.Row="3" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbGezicht"
+            Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+            ToolTip="MaterialDesignFlatPrimaryToggleButton"
+                         IsChecked="False">
+                <materialDesign:PackIcon
+                         Kind="BabyFaceOutline"
+                            Height="21"
+                              Width="21" Foreground="DarkGoldenrod"/>
+
+            </RadioButton>
+            <Label Content="Gezicht" Grid.Row="3"  Foreground="White" Margin="60,15,0,0" FontSize="16"/>
+
+
+        </Grid>
+        <ListBox x:Name="lstOpties" Background="White" Grid.Row="1"  Grid.Column="1" BorderThickness="1" BorderBrush="Black" Margin="7.5">
+        </ListBox>
+
+        <Grid Grid.Column="0" Grid.Row="2" Background="White" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label  Content="Selecteer wat je wil toevoegen" Margin="20,1,0,0"  Foreground="Black" FontSize="20"  Width="344" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
+            <RadioButton Background="Black" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbMarkingWijzigen"
+            Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+            ToolTip="MaterialDesignFlatPrimaryToggleButton"
+                         IsChecked="True">
+
+                <materialDesign:PackIcon
+                         Kind="SkullCrossbonesOutline"
+                            Height="21"
+                              Width="21" Foreground="DarkGoldenrod"/>
+            </RadioButton>
+            <Label Content="Marking" Grid.Row="1" Foreground="Black" Margin="60,15,0,0" FontSize="16"/>
+
+            <RadioButton Background="Black" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbHaarWijzigen"
+            Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+            ToolTip="MaterialDesignFlatPrimaryToggleButton"
+                         IsChecked="False">
+                <materialDesign:PackIcon
+                         Kind="HairDryer"
+                            Height="21"
+                              Width="21" Foreground="DarkGoldenrod"/>
+
+            </RadioButton>
+            <Label Content="Haar" Grid.Row="1" Grid.Column="1" Foreground="Black" Margin="60,15,0,0" FontSize="16"/>
+
+            <RadioButton Background="Black" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbGezichtWijzigen"
+            Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+            ToolTip="MaterialDesignFlatPrimaryToggleButton"
+                         IsChecked="False">
+                <materialDesign:PackIcon
+                         Kind="BabyFaceOutline"
+                            Height="21"
+                              Width="21" Foreground="DarkGoldenrod"/>
+
+            </RadioButton>
+            <Label Content="Gezicht" Grid.Row="1" Grid.Column="2"  Foreground="Black" Margin="55.2,15,5.4,39.6" FontSize="16" Grid.RowSpan="2"/>
+            <TextBox x:Name="txtWijziging" Grid.Row="2" Margin="5" Grid.Column="0" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="0.5" FontSize="12" materialDesign:HintAssist.Hint="Geef hier de naam van wat je wil toevoegen in"/>
+            <Button x:Name="btnToevoegen" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,5.4,3"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    ToolTip="Resource name: MaterialDesignRaisedButton" Content="Toevoegen" VerticalContentAlignment="Top" Background="Black" Foreground="DarkGoldenrod" VerticalAlignment="Bottom">
+            </Button>
+        </Grid>
+
+        <Button x:Name="btnOpslaan" Grid.Row="2" Grid.Column="1" Click="btnOpslaan_Click"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    ToolTip="Resource name: MaterialDesignRaisedButton" Content="Opslaan" VerticalAlignment="Bottom"  Background="White" Foreground="Black" Margin="197,131,0,9.6" HorizontalAlignment="Left" Width="195">
+        </Button>
+    </Grid>
+</UserControl>

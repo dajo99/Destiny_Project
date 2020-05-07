@@ -12,35 +12,49 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Project_Destiny_WPF.UserControls;
+
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
-    /// Interaction logic for Character.xaml
+    /// Interaction logic for Character_Wijzigen.xaml
     /// </summary>
-    public partial class Character : UserControl
+    public partial class Character_Wijzigen : UserControl
     {
-        public Character()
+        public Character_Wijzigen()
         {
             InitializeComponent();
         }
-
-        public Window Parent { get; set; }
-
-        public Character(Window parent)
+        public Window Parent
+        {
+            get;
+            set;
+        }
+        public Character_Wijzigen(Window parent)
         {
             this.Parent = parent;
             InitializeComponent();
         }
-        private void btnAanpassen_Click(object sender, RoutedEventArgs e)
+        
+       
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
 
+            
+
+        }
+
+        private void btnOpslaan_Click(object sender, RoutedEventArgs e)
+        { 
+              
+        }
+
+        private void btnTerug_Click(object sender, RoutedEventArgs e)
+        {
             MainWindow w = (MainWindow)Parent;
+
             w.GridMain.Children.Clear();
-            UserControl usc = new Character_Wijzigen(w);
+            UserControl usc = new Character(w);
             w.GridMain.Children.Add(usc);
-
-
         }
     }
 }
