@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Project_Destiny_WPF.UserControls.Locations"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Project_Destiny_WPF.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblLocations" Content="Locations" Grid.Column="1" FontWeight="Bold" FontSize="30" Foreground="#333333" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="7"></Label>
+
+        <ComboBox x:Name="cmbWorld" Grid.Column="1" Grid.Row="1" Width="230" FontSize="15" HorizontalAlignment="Center" HorizontalContentAlignment="Center"
+                     materialDesign:HintAssist.Hint="choose world" SelectionChanged="cmbWorld_SelectionChanged">
+        </ComboBox>
+
+
+        <DataGrid x:Name="dbLocations" Grid.Row="2"  AutoGenerateColumns="False" SelectionChanged="dbLocations_SelectionChanged"  Margin="190,40,190,0" Grid.ColumnSpan="3" Width="428">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#333" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="BorderThickness" Value="0,0,2,0"></Setter>
+                    <Setter Property="BorderBrush" Value="#fff"/>
+                </Style>
+
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Width="215"/>
+                <DataGridTextColumn Header="Restricted area" Width="215"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="3" HorizontalAlignment="Center" Margin="0,10,0,10">
+            <TextBox x:Name="txtLocations" materialDesign:HintAssist.Hint="Locatie" Width="205" Margin="0,0,10,0" />
+            <TextBox x:Name="txtArea" materialDesign:HintAssist.Hint="Area" Width="205" Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <Button x:Name="BtnWijzig" Content="Wijzig" Grid.Column="0" Grid.Row="4" Margin="10,10,10,20"/>
+        <Button x:Name="BtnToeevogen" Content="Voeg toe" Grid.Column="1" Grid.Row="4" Margin="10,10,10,20"/>
+        <Button x:Name="BtnVerwijderen" Content="Verwijderen" Grid.Column="2" Grid.Row="4" Margin="10,10,10,20"/>
+
+
+
+
+    </Grid>
+</UserControl>
