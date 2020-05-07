@@ -56,14 +56,14 @@ namespace Project_Destiny_WPF
             StateClosed = !StateClosed;
         }
 
-        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             GridMain.Children.Clear();
 
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "Character":
-                    usc = new Character();
+                    usc = new Character(this);
                     GridMain.Children.Add(usc);
                     break;
                 case "Wapens":
