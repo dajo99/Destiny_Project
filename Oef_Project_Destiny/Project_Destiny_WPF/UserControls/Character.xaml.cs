@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Project_Destiny_WPF.UserControls;
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
@@ -23,6 +23,24 @@ namespace Project_Destiny_WPF.UserControls
         public Character()
         {
             InitializeComponent();
+        }
+
+        public Window Parent { get; set; }
+
+        public Character(Window parent)
+        {
+            this.Parent = parent;
+            InitializeComponent();
+        }
+        private void btnAanpassen_Click(object sender, RoutedEventArgs e)
+        {
+
+            MainWindow w = (MainWindow)Parent;
+            w.GridMain.Children.Clear();
+            UserControl usc = new Character_Wijzigen(w);
+            w.GridMain.Children.Add(usc);
+
+
         }
     }
 }

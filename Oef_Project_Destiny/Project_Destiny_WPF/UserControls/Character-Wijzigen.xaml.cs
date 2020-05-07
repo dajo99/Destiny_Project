@@ -24,5 +24,37 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
+        public Window Parent
+        {
+            get;
+            set;
+        }
+        public Character_Wijzigen(Window parent)
+        {
+            this.Parent = parent;
+            InitializeComponent();
+        }
+        
+       
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            
+
+        }
+
+        private void btnOpslaan_Click(object sender, RoutedEventArgs e)
+        { 
+              
+        }
+
+        private void btnTerug_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow w = (MainWindow)Parent;
+
+            w.GridMain.Children.Clear();
+            UserControl usc = new Character(w);
+            w.GridMain.Children.Add(usc);
+        }
     }
 }

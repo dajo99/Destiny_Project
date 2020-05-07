@@ -9,7 +9,7 @@
              d:DesignHeight ="400" d:DesignWidth ="600"
              Background="{x:Null}">
             
-    <Grid>
+    <Grid x:Name="gridCharacter">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="80"/>
@@ -40,7 +40,7 @@
                 :D :D
             </ListBoxItem>
         </ListBox>
-        <Button
+        <Button x:Name="btnAanpassen" Click="btnAanpassen_Click"
     Style="{StaticResource MaterialDesignRaisedButton}"
     materialDesign:ButtonProgressAssist.Value="-1"
     materialDesign:ButtonProgressAssist.IsIndicatorVisible="True"
