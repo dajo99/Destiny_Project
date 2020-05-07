@@ -33,9 +33,6 @@ namespace Project_Destiny_WPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             GridMain.Children.Clear();
-
-
-
             usc = new Welkom();
             GridMain.Children.Add(usc);
         }
@@ -58,8 +55,6 @@ namespace Project_Destiny_WPF
 
         public void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "Wapens":
@@ -96,24 +91,41 @@ namespace Project_Destiny_WPF
             if (Result == MessageBoxResult.Yes)
             {
                 App.Current.Shutdown();
-            }
-            
-            
+            }           
         }
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
             GridMain.Children.Clear();
-
-
-
             usc = new Instellingen();
             GridMain.Children.Add(usc);
         }
-
-        private void BtnHome_Click_1(object sender, RoutedEventArgs e)
+        private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            var item = sender as ListViewItem;
+            if (item != null && item.IsSelected)
+            {
+                switch (item.Name)
+                {
+                    case "Wapens":
+                        GridMain.Children.Clear();
+                        usc = new Weapons();
+                        GridMain.Children.Add(usc);
+                        break;
+                    case "Character":
 
+                        GridMain.Children.Clear();
+                        usc = new Character(this);
+                        GridMain.Children.Add(usc);
+                        break;
+
+                    case "Locations":
+                        GridMain.Children.Clear();
+                        usc = new Locations();
+                        GridMain.Children.Add(usc);
+                        break;
+                }
+            }
         }
     }
 }

@@ -36,12 +36,13 @@
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="193*"/>
+                <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
-            
-            <Label  Content="Selecteer wat je wil wijzigen" Margin="20,15,0,0"  Foreground="White" FontSize="20" HorizontalAlignment="Left" Width="344" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
-            <RadioButton Background="White" Grid.Row="1" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbMarking"
+
+            <Label  Content="Selecteer wat je wil wijzigen" Margin="20,15,0,0.4"  Foreground="White" FontSize="20" HorizontalAlignment="Left" Width="344" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+            <RadioButton Background="White" Grid.Row="1" HorizontalAlignment="Left" Margin="20,10.6,0,9.8" Height="30" Width="30" x:Name="rbMarking"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
             ToolTip="MaterialDesignFlatPrimaryToggleButton"
                          IsChecked="True">
@@ -49,11 +50,11 @@
                          Kind="SkullCrossbonesOutline"
                             Height="21"
                               Width="21" Foreground="DarkGoldenrod"/>
- 
-            </RadioButton>
-            <Label Content="Marking" Grid.Row="1" Foreground="White" Margin="60,15,0,0" FontSize="16"/>
 
-            <RadioButton Background="White" Grid.Row="2" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbHaar"
+            </RadioButton>
+            <Label Content="Marking" Grid.Row="1" Foreground="White" Margin="60,14.6,0,49.4" FontSize="16" Grid.RowSpan="2"/>
+
+            <RadioButton Background="White" Grid.Row="2" HorizontalAlignment="Left" Margin="20,10.2,0,9.4" Height="30" Width="30" x:Name="rbHaar"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
             ToolTip="MaterialDesignFlatPrimaryToggleButton"
                          IsChecked="False">
@@ -63,9 +64,9 @@
                               Width="21" Foreground="DarkGoldenrod"/>
 
             </RadioButton>
-            <Label Content="Haar" Grid.Row="2" Foreground="White" Margin="60,15,0,0" FontSize="16"/>
+            <Label Content="Haar" Grid.Row="2" Foreground="White" Margin="60,15.2,0,0.4" FontSize="16"/>
 
-            <RadioButton Background="White" Grid.Row="3" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbGezicht"
+            <RadioButton Background="White" Grid.Row="3" HorizontalAlignment="Left" Margin="20,9.6,0,10" Height="30" Width="30" x:Name="rbGezicht"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
             ToolTip="MaterialDesignFlatPrimaryToggleButton"
                          IsChecked="False">
@@ -75,7 +76,7 @@
                               Width="21" Foreground="DarkGoldenrod"/>
 
             </RadioButton>
-            <Label Content="Gezicht" Grid.Row="3"  Foreground="White" Margin="60,15,0,0" FontSize="16"/>
+            <Label Content="Gezicht" Grid.Row="3"  Foreground="White" Margin="60,14.6,0,0" FontSize="16"/>
 
 
         </Grid>

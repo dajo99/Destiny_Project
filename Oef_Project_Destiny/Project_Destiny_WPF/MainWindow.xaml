@@ -80,6 +80,11 @@
             <StackPanel>
                 <Grid Height="150" Background="White"/>
                 <ListView x:Name="ListViewMenu"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <EventSetter Event="PreviewMouseLeftButtonDown" Handler="ListViewItem_PreviewMouseLeftButtonDown"></EventSetter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListViewItem x:Name="Character" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Accessibility" Height="25" Width="25" Margin="10"/>
