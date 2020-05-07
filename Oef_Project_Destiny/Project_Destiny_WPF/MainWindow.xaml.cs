@@ -58,13 +58,28 @@ namespace Project_Destiny_WPF
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            GridMain.Children.Clear();
+            
 
-            if (((ListViewItem)((ListView)sender).SelectedItem).Name == "Character") {
-                usc = new Character();
-                GridMain.Children.Add(usc);
+            switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
+            {
+                case "Wapens":
+                    GridMain.Children.Clear();
+                    usc = new Weapons();
+                    GridMain.Children.Add(usc);
+                    break;
+                case "Character":
+                    GridMain.Children.Clear();
+                    usc = new Character();
+                    GridMain.Children.Add(usc);
+                    break;
+
+                case "Locations":
+                    GridMain.Children.Clear();
+                    usc = new Locations();
+                    GridMain.Children.Add(usc);
+                    break;
+
             }
-
         }
 
         private void BtnInloggen_Click(object sender, RoutedEventArgs e)

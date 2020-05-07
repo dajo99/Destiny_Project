@@ -86,7 +86,7 @@
                             <TextBlock Text="Character" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem x:Name="ItemCreate" Height="60">
+                    <ListViewItem x:Name="Wapens" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="BoomGate" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Wapens" VerticalAlignment="Center" Margin="20 10"/>
@@ -104,7 +104,7 @@
                             <TextBlock Text="Items" VerticalAlignment="Center"  Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="Locations" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="MapSearchOutline" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Locations" VerticalAlignment="Center"  Margin="20 10"/>
