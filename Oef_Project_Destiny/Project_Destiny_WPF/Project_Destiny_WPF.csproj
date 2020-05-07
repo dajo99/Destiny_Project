@@ -83,6 +83,9 @@
     <Compile Include="UserControls\Instellingen.xaml.cs">
       <DependentUpon>Instellingen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Locations.xaml.cs">
+      <DependentUpon>Locations.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Welkom.xaml.cs">
       <DependentUpon>Welkom.xaml</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Instellingen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Locations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

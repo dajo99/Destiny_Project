@@ -73,6 +73,12 @@ namespace Project_Destiny_WPF
                     GridMain.Children.Add(usc);
                     break;
 
+                case "Locations":
+                    GridMain.Children.Clear();
+                    usc = new Locations();
+                    GridMain.Children.Add(usc);
+                    break;
+
             }
         }
 
