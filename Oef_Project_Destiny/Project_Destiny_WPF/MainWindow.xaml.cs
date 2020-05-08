@@ -55,27 +55,22 @@ namespace Project_Destiny_WPF
 
         public void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            GridMain.Children.Clear();
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "Wapens":
-                    GridMain.Children.Clear();
                     usc = new Weapons();
-                    GridMain.Children.Add(usc);
                     break;
                 case "Character":
-
-                    GridMain.Children.Clear();
                     usc = new Character(this);
-                    GridMain.Children.Add(usc);
                     break;
 
                 case "Locations":
-                    GridMain.Children.Clear();
-                    usc = new Locations();
-                    GridMain.Children.Add(usc);
+                    usc = new Locations();  
                     break;
 
             }
+            GridMain.Children.Add(usc);
         }
 
         private void BtnInloggen_Click(object sender, RoutedEventArgs e)
@@ -103,29 +98,24 @@ namespace Project_Destiny_WPF
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var item = sender as ListViewItem;
+            GridMain.Children.Clear();
             if (item != null && item.IsSelected)
             {
                 switch (item.Name)
                 {
                     case "Wapens":
-                        GridMain.Children.Clear();
                         usc = new Weapons();
-                        GridMain.Children.Add(usc);
                         break;
                     case "Character":
-
-                        GridMain.Children.Clear();
                         usc = new Character(this);
-                        GridMain.Children.Add(usc);
                         break;
 
                     case "Locations":
-                        GridMain.Children.Clear();
                         usc = new Locations();
-                        GridMain.Children.Add(usc);
                         break;
                 }
             }
+            GridMain.Children.Add(usc);
         }
     }
 }
