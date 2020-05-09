@@ -14,14 +14,22 @@ namespace Destiny_DAL
     
     public partial class RewardTable
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RewardTable()
+        {
+            this.CurrencyDropTables = new HashSet<CurrencyDropTable>();
+        }
+    
         public int id { get; set; }
         public Nullable<int> MissionId { get; set; }
         public Nullable<int> EnemyId { get; set; }
         public int ItemId { get; set; }
         public int HoeveelheidItems { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CurrencyDropTable> CurrencyDropTables { get; set; }
+        public virtual Enemy Enemy { get; set; }
         public virtual Item Item { get; set; }
         public virtual Mission Mission { get; set; }
-        public virtual Enemy Enemy { get; set; }
     }
 }

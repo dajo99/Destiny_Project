@@ -22,13 +22,13 @@ namespace Destiny_DAL
         }
     
         public int id { get; set; }
-        public int Magazine { get; set; }
-        public int FireRate { get; set; }
-        public int Impact { get; set; }
-        public int Stability { get; set; }
-        public int ReloadSpeed { get; set; }
+        public Nullable<int> Magazine { get; set; }
+        public Nullable<int> FireRate { get; set; }
+        public Nullable<int> Impact { get; set; }
+        public Nullable<int> Stability { get; set; }
+        public Nullable<int> ReloadSpeed { get; set; }
         public string Soort { get; set; }
-        public int LightAmount { get; set; }
+        public Nullable<int> LightAmount { get; set; }
         public Nullable<int> MaxPerks { get; set; }
         public int DamagetypeId { get; set; }
         public int WapenklasseId { get; set; }
