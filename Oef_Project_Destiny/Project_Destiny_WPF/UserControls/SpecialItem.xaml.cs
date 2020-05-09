@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
-    /// Interaction logic for Special_Item.xaml
+    /// Interaction logic for SpecialItem.xaml
     /// </summary>
-    public partial class Special_Item : UserControl
+    public partial class SpecialItem : UserControl
     {
-        public Special_Item()
+        public SpecialItem()
         {
             InitializeComponent();
         }

@@ -72,6 +72,12 @@
     <Compile Include="Registerscreen.xaml.cs">
       <DependentUpon>Registerscreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Account.xaml.cs">
+      <DependentUpon>Account.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Armor.xaml.cs">
+      <DependentUpon>Armor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Character-Wijzigen.xaml.cs">
       <DependentUpon>Character-Wijzigen.xaml</DependentUpon>
     </Compile>
@@ -83,6 +89,9 @@
     </Compile>
     <Compile Include="UserControls\Locations.xaml.cs">
       <DependentUpon>Locations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SpecialItem.xaml.cs">
+      <DependentUpon>SpecialItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Weapons.xaml.cs">
       <DependentUpon>Weapons.xaml</DependentUpon>
@@ -110,6 +119,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Account.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Armor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Character-Wijzigen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Locations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SpecialItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
