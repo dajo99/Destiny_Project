@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="DestinyModel.Account" Width="1.5" PointX="1.5" PointY="31.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Armor" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Character" Width="1.5" PointX="3.75" PointY="32.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.CharacterCustomization" Width="1.5" PointX="11.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.CharacterCustomization" Width="2.625" PointX="11.25" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.CharacterKlasse" Width="2.25" PointX="0.75" PointY="34.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.CharacterSubklasse" Width="2.375" PointX="2.875" PointY="38.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Currency" Width="2.625" PointX="1.5" PointY="28.25" IsExpanded="true" />
@@ -35,7 +35,7 @@
         <EntityTypeShape EntityType="DestinyModel.SpecialItemCategorie" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.SubklasseAbility" Width="2.625" PointX="11.25" PointY="24.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.SubklassePerk" Width="2.75" PointX="6" PointY="42.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.Wapen" Width="1.5" PointX="9" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.Wapen" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Wapenklasse" Width="1.5" PointX="6.75" PointY="19.125" IsExpanded="true" />
         <AssociationConnector Association="DestinyModel.FK_Character_Account" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_Armor_Item" ManuallyRouted="false" />

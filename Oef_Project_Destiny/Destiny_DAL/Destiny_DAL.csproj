@@ -144,7 +144,7 @@
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ra.cs">
+    <Compile Include="Ras.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RewardTable.cs">
