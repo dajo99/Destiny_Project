@@ -58,13 +58,18 @@ namespace Project_Destiny_WPF
             GridMain.Children.Clear();
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
-                case "Wapens":
-                    usc = new Weapons();
-                    break;
                 case "Character":
                     usc = new Character(this);
                     break;
-
+                case "Wapens":
+                    usc = new Weapons();
+                    break;
+                case "Armor":
+                    usc = new Armor();
+                    break;
+                case "SpecialItems":
+                    usc = new SpecialItem();
+                    break;
                 case "Locations":
                     usc = new Locations();  
                     break;
@@ -92,7 +97,7 @@ namespace Project_Destiny_WPF
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
             GridMain.Children.Clear();
-            usc = new Instellingen();
+            usc = new Account();
             GridMain.Children.Add(usc);
         }
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -103,13 +108,18 @@ namespace Project_Destiny_WPF
             {
                 switch (item.Name)
                 {
-                    case "Wapens":
-                        usc = new Weapons();
-                        break;
                     case "Character":
                         usc = new Character(this);
                         break;
-
+                    case "Wapens":
+                        usc = new Weapons();
+                        break;
+                    case "Armor":
+                        usc = new Armor();
+                        break;
+                    case "SpecialItems":
+                        usc = new SpecialItem();
+                        break;
                     case "Locations":
                         usc = new Locations();
                         break;

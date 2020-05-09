@@ -97,13 +97,13 @@
                             <TextBlock Text="Wapens" VerticalAlignment="Center" Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="Armor" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="SunProtection" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Armor" VerticalAlignment="Center"  Margin="20 10"/>
                         </StackPanel>
                     </ListViewItem>
-                    <ListViewItem Height="60">
+                    <ListViewItem x:Name="SpecialItems" Height="60">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Archive" Height="25" Width="25" Margin="10"/>
                             <TextBlock Text="Items" VerticalAlignment="Center"  Margin="20 10"/>
