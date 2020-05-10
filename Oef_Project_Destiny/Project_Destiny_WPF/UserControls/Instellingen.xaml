@@ -17,17 +17,17 @@
 
 
             <ComboBox x:Name="cbFont">
-                <ComboBoxItem Name="Roboto" IsSelected="True">Arial</ComboBoxItem>
+                <ComboBoxItem Name="Roboto">Arial</ComboBoxItem>
                 <ComboBoxItem Name="Arial">Roboto Condensed</ComboBoxItem>
             </ComboBox>
 
             <Label Content="Layout Scherm:" FontWeight="Bold" FontSize="22" Foreground="#333333" HorizontalAlignment="Left" Margin="0,40,0,10"/>
             <ComboBox x:Name="cbLayout">
-                <ComboBoxItem Name="DarkMode" IsSelected="True">Dark Mode</ComboBoxItem>
-                <ComboBoxItem Name="LightMode">Light Mode</ComboBoxItem>
+                <ComboBoxItem Name="DarkMode">Green Mode</ComboBoxItem>
+                <ComboBoxItem Name="LightMode">Red Mode</ComboBoxItem>
             </ComboBox>
 
-            <Button x:Name="BtnOpslaanInstellingen" Content="Opslaan" Background="#333333" BorderBrush="{x:Null}" materialDesign:ButtonAssist.CornerRadius="5" Margin="90,110,90,10"/>
+            <Button x:Name="BtnOpslaanInstellingen" Content="Pas aan"   materialDesign:ButtonAssist.CornerRadius="5" Margin="90,110,90,10" Click="BtnOpslaanInstellingen_Click"/>
         </StackPanel>
        
     </Grid>

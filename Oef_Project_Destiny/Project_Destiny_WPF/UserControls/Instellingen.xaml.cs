@@ -24,5 +24,42 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
+
+        private void cbLayout_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            
+        }
+
+        private void BtnOpslaanInstellingen_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = (MainWindow)Application.Current.MainWindow;
+            var bc = new BrushConverter();
+            Uri uri = null;
+            if (cbLayout.SelectedIndex == 0)
+            {
+                mw.GridNav.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
+                mw.GridMenu.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
+
+                uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
+                
+
+                
+            }
+
+            if (cbLayout.SelectedIndex == 1)
+            {
+                mw.GridNav.Background = Brushes.IndianRed;
+                mw.GridMenu.Background = Brushes.IndianRed;
+
+                uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml");
+                
+                
+            }
+
+            System.Windows.Application.Current.Resources.MergedDictionaries.RemoveAt(3);
+            System.Windows.Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
+
+        }
     }
 }
