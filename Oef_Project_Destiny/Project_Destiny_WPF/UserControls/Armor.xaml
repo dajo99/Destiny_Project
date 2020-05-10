@@ -55,39 +55,39 @@
         </DataGrid>
         <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" Margin="110,10,0,10">
             
-            <TextBox x:Name="txtNaam"    Width="165" FontSize="13" HorizontalAlignment="Center"
+            <TextBox x:Name="txtNaam"    Width="165" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Naam"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0" />
 
-            <ComboBox x:Name="cmbDbZeldzaamheid" Width="105" FontSize="13" HorizontalAlignment="Center"
+            <ComboBox x:Name="cmbDbZeldzaamheid" Width="105" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Zeldzaamheid"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,5" />
 
-            <ComboBox x:Name="cmbDbArmorSlot" Width="100" FontSize="13" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Zeldzaamheid"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+            <ComboBox x:Name="cmbDbArmorSlot" Width="100" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Armor slot"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,5"/>
 
-            <TextBox x:Name="txtMobility"    Width="65" FontSize="13" HorizontalAlignment="Center"
+            <TextBox x:Name="txtMobility"    Width="65" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Mobility"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0" />
 
-            <TextBox x:Name="txtResilience"    Width="75" FontSize="13" HorizontalAlignment="Center"
+            <TextBox x:Name="txtResilience"    Width="75" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Resilience"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0" />
 
-            <TextBox x:Name="txtRecovery"    Width="70" FontSize="13" HorizontalAlignment="Center"
+            <TextBox x:Name="txtRecovery"    Width="70" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Recovery"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0" />
 
-            <TextBox x:Name="txtDiscipline" Width="75" FontSize="13" HorizontalAlignment="Center"
+            <TextBox x:Name="txtDiscipline" Width="75" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Discipline" materialDesign:TextFieldAssist.UnderlineBrush="#333"  BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0"/>
 
-            <TextBox x:Name="txtIntellect" Width="65" FontSize="13" HorizontalAlignment="Center"
+            <TextBox x:Name="txtIntellect" Width="65" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Intellect" materialDesign:TextFieldAssist.UnderlineBrush="#333"  BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0"/>
 
-            <TextBox x:Name="txtStrength" Width="75" FontSize="13" HorizontalAlignment="Center"
+            <TextBox x:Name="txtStrength" Width="75" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Strength" materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,0,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0"/>
         </WrapPanel>

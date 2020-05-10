@@ -30,7 +30,7 @@
         <ComboBox x:Name="cmbZeldzaamheid" Grid.Column="2" Width="230" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
                      materialDesign:HintAssist.Hint="Kies zeldzaamheid" SelectionChanged="cmbZeldzaamheid_SelectionChanged"  Grid.Row="1"/>
 
-        <DataGrid x:Name="dbWapens" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbWapens_SelectionChanged" HorizontalAlignment="Center" Margin="5,20,5,20">
+        <DataGrid x:Name="dbWapens" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbWapens_SelectionChanged" HorizontalAlignment="Center" Margin="5,20,5,10">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="#333" />
@@ -57,31 +57,31 @@
   materialDesign:HintAssist.Hint="Naam"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0"/>
 
-            <ComboBox x:Name="cmbDbCategorie" Width="120" FontSize="15" HorizontalAlignment="Center"
+            <ComboBox x:Name="cmbDbCategorie" Width="120" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Categorie"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="5,0,0,5"/>
 
-            <ComboBox x:Name="cmbDbZeldzaamheid" Width="120" FontSize="15" HorizontalAlignment="Center"
+            <ComboBox x:Name="cmbDbZeldzaamheid" Width="120" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Zeldzaamheid"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="5,0,0,5"/>
 
-            <ComboBox x:Name="cmbDbDamagetype" Width="110" FontSize="15" HorizontalAlignment="Center"
+            <ComboBox x:Name="cmbDbDamagetype" Width="110" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Damagetype"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="5,0,0,5"/>
 
-            <TextBox x:Name="txtImpact"    Width="66" FontSize="15" HorizontalAlignment="Center"
+            <TextBox x:Name="txtImpact"    Width="66" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Impact"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="5,0,0,0" />
 
-            <TextBox x:Name="txtRange"    Width="66" FontSize="15" HorizontalAlignment="Center"
+            <TextBox x:Name="txtRange"    Width="66" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Range"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="5,0,0,0" />
 
-            <TextBox x:Name="txtMagazine"    Width="78" FontSize="15" HorizontalAlignment="Center"
+            <TextBox x:Name="txtMagazine"    Width="78" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Magazine"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0" />
 
-            <TextBox x:Name="txtLight" Width="70" FontSize="15" HorizontalAlignment="Center"
+            <TextBox x:Name="txtLight" Width="70" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Light" materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,0,1"
   VerticalAlignment="Bottom" Padding="2,0,0,0"/>
         </WrapPanel>
