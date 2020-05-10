@@ -24,5 +24,25 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
+
+        private void tbZoekItem_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void cmbCategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cmbZeldzaamheid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void dbItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
