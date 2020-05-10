@@ -25,6 +25,8 @@ namespace Destiny_DAL
         public string Mail { get; set; }
         public string Regio { get; set; }
         public string Wachtwoord { get; set; }
+        public string Voornaam { get; set; }
+        public string Naam { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Character> Characters { get; set; }

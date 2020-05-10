@@ -24,5 +24,41 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
+
+        private void btnwijzigen_Click(object sender, RoutedEventArgs e)
+        {
+            txtAchternaam.IsEnabled = true;
+            txtVoornaam.IsEnabled = true;
+            txtMail.IsEnabled = true;
+            cmbRegio.IsEnabled = true;
+            txtProfielnaam.IsEnabled = true;
+            txtWachtwoord.IsEnabled = true;
+            btnOpslaan.IsEnabled = true;
+            btnwijzigen.IsEnabled = false;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtProfielnaam.Text = "Kevin";
+            ResetVelden();
+        }
+
+
+        private void btnOpslaan_Click(object sender, RoutedEventArgs e)
+        {
+            ResetVelden();
+        }
+
+        private void ResetVelden()
+        {
+            txtAchternaam.IsEnabled = false;
+            txtVoornaam.IsEnabled = false;
+            txtMail.IsEnabled = false;         
+            cmbRegio.IsEnabled = false;
+            txtProfielnaam.IsEnabled = false;
+            txtWachtwoord.IsEnabled = false;
+            btnOpslaan.IsEnabled = false;
+            btnwijzigen.IsEnabled = true;
+        }
     }
 }
