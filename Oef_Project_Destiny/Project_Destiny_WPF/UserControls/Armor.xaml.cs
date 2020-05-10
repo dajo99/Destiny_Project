@@ -24,5 +24,30 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
+
+        private void tbZoekArmor_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void cmbZeldzaamheid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void dbArmor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cmbArmorSlot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
