@@ -30,6 +30,8 @@ namespace Project_Destiny_WPF
         private void BtnInlogAfsluiten_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            w.BtnInloggen.IsEnabled = true;
+            w.BtnRegistreren.IsEnabled = true;
         }
 
         private void BtnInloggen_Click(object sender, RoutedEventArgs e)

@@ -31,8 +31,11 @@ namespace Project_Destiny_WPF
         private void BtnRegistrerenAfsluiten_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            w.BtnInloggen.IsEnabled = true;
+            w.BtnRegistreren.IsEnabled = true;
 
         }
+        MainWindow w = (MainWindow)Application.Current.MainWindow;
 
         private string ValideerGegevens()
         {
@@ -80,7 +83,6 @@ namespace Project_Destiny_WPF
                         int ok = DatabaseOperations.ToevoegenAccount(a);
                         if (ok > 0)
                         {
-                            MainWindow w = (MainWindow)Application.Current.MainWindow;
                             this.Close();
                             w.Accountnaam.Text = a.Accountnaam;
                             w.Loginpanel.Visibility = Visibility.Hidden;

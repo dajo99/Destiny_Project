@@ -17,7 +17,7 @@
         </StackPanel>
         <StackPanel Margin="150,1,160,1">
             <Label Content="Inloggen" FontWeight="Bold" Foreground="White" FontSize="25" Margin="20" HorizontalAlignment="Center" />
-            <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod " Foreground="white" TextWrapping="Wrap" TextAlignment="Center"/>
+            <TextBlock Text="Meld je hier aan om verder te gaan!" Foreground="white" TextWrapping="Wrap" TextAlignment="Center"/>
             <Separator></Separator>
             <Label Content="Gebruikersnaam" Foreground="#00FFFF"/>
             <TextBox Name="txtGebruikersnaam" Background="#555555" Foreground="White" FontSize="18"/>

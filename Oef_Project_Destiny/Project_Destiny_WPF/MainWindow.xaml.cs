@@ -35,6 +35,8 @@ namespace Project_Destiny_WPF
             GridMain.Children.Clear();
             usc = new Welkom();
             GridMain.Children.Add(usc);
+            BtnRegistreren.IsEnabled = true;
+            BtnInloggen.IsEnabled = true;
         }
 
         private void ButtonMenu_Click(object sender, RoutedEventArgs e)
@@ -83,6 +85,8 @@ namespace Project_Destiny_WPF
             
             Inlogscreen inlog = new Inlogscreen();
             inlog.Show();
+            BtnRegistreren.IsEnabled = false;
+            BtnInloggen.IsEnabled = false;
         }
 
         private void BtnAfsluiten_Click(object sender, RoutedEventArgs e)
@@ -133,6 +137,8 @@ namespace Project_Destiny_WPF
         {
             Registerscreen registreer = new Registerscreen();
             registreer.Show();
+            BtnRegistreren.IsEnabled = false;
+            BtnInloggen.IsEnabled = false;
         }
     }
 }
