@@ -55,8 +55,8 @@
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
             </Grid.Effect>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Visibility="Hidden" Grid.Column="1">
-                <TextBlock Text="Accountnaam" VerticalAlignment="Center" FontSize="16"/>
+            <StackPanel x:Name="Accountpanel" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="Hidden" Grid.Column="1">
+                <TextBlock x:Name="Accountnaam" VerticalAlignment="Center" FontSize="16"/>
                 <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                     <StackPanel Width="150">
                         <Button Content="Settings"/>
@@ -67,7 +67,7 @@
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,10,10" Visibility="Visible" Grid.Column="1">
+            <StackPanel x:Name="Loginpanel" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,10,10" Visibility="Visible" Grid.Column="1">
                 <Button x:Name="BtnInloggen" Content="Inloggen" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnInloggen_Click" />
                 <Button x:Name="BtnRegistreren" Content="Registreren" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}" materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnRegistreren_Click" />
             </StackPanel>

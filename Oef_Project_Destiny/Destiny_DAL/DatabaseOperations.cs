@@ -26,5 +26,20 @@ namespace Destiny_DAL
 				return 0;
 			}
         }
-    }
+
+		public static List<Account> CheckLogin()
+		{
+			using (DestinyEntities destinyEntities = new DestinyEntities())
+			{
+				var query = destinyEntities.Accounts;
+					
+
+				return query.ToList();
+
+			}
+		}
+
+		
+
+	}
 }
