@@ -14,8 +14,6 @@
 
             <Label Content="Font Family:" FontWeight="Bold" FontSize="22" Foreground="#333333" HorizontalAlignment="Left" Margin="0,40,0,10"/>
 
-
-
             <ComboBox x:Name="cbFont">
                 <ComboBoxItem Name="Segoe" IsSelected="True">Segoe UI</ComboBoxItem>
                 <ComboBoxItem Name="Comic">Comic Sans MS</ComboBoxItem>
@@ -29,6 +27,6 @@
 
             <Button x:Name="BtnOpslaanInstellingen" Content="Pas aan"   materialDesign:ButtonAssist.CornerRadius="5" Margin="90,110,90,10" Click="BtnOpslaanInstellingen_Click"/>
         </StackPanel>
-       
+
     </Grid>
 </UserControl>

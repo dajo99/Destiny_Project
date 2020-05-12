@@ -30,53 +30,30 @@ namespace Project_Destiny_WPF.UserControls
             MainWindow mw = (MainWindow)Application.Current.MainWindow;
             var bc = new BrushConverter();
             Uri uri = null;
+
+
             if (cbFont.SelectedIndex == 0)
             {
-                Style style1 = new Style
-                {
-                    TargetType = typeof(TextBlock)
-                };
-
-                style1.Setters.Add(new Setter(TextBlock.FontFamilyProperty, new FontFamily("Segoe UI")));
-                Application.Current.Resources["textblock"] = style1;
-
-                Style style2 = new Style
-                {
-                    TargetType = typeof(Control)
-                };
-
-                style2.Setters.Add(new Setter(Control.FontFamilyProperty, new FontFamily("Segoe UI")));
-
-                Application.Current.Resources["control"] = style2;
+                //gaat aanpassingen doen in app.xaml
+                App.Current.Resources["font"] = new FontFamily("Segoe UI");
+                
 
             }
 
             if (cbFont.SelectedIndex == 1)
-            {
-                Style style1 = new Style
-                {
-                    TargetType = typeof(TextBlock)
-                };
-
-                style1.Setters.Add(new Setter(TextBlock.FontFamilyProperty, new FontFamily("Comic Sans MS")));
-                Application.Current.Resources["textblock"] = style1;
-
-                Style style2 = new Style
-                {
-                    TargetType = typeof(Control)
-                };
-
-                style2.Setters.Add(new Setter(Control.FontFamilyProperty, new FontFamily("Comic Sans MS")));
-
-                Application.Current.Resources["control"] = style2;
+            { 
+                //gaat aanpassingen doen in app.xaml
+                App.Current.Resources["font"] = new FontFamily("Comic Sans MS");
 
             }
 
             if (cbLayout.SelectedIndex == 0)
             {
+                //Zo kan ik met Hex - kleurwaarden werken
                 mw.GridNav.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
                 mw.GridMenu.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
 
+                
                 uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
 
             }
@@ -90,6 +67,7 @@ namespace Project_Destiny_WPF.UserControls
                 
             }
 
+            //gaat aanpassingen doen in app.xaml
             System.Windows.Application.Current.Resources.MergedDictionaries.RemoveAt(3);
             System.Windows.Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
 
