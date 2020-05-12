@@ -17,13 +17,13 @@
 
 
             <ComboBox x:Name="cbFont">
-                <ComboBoxItem Name="Roboto">Arial</ComboBoxItem>
-                <ComboBoxItem Name="Arial">Roboto Condensed</ComboBoxItem>
+                <ComboBoxItem Name="Segoe" IsSelected="True">Segoe UI</ComboBoxItem>
+                <ComboBoxItem Name="Comic">Comic Sans MS</ComboBoxItem>
             </ComboBox>
 
             <Label Content="Layout Scherm:" FontWeight="Bold" FontSize="22" Foreground="#333333" HorizontalAlignment="Left" Margin="0,40,0,10"/>
             <ComboBox x:Name="cbLayout">
-                <ComboBoxItem Name="DarkMode">Green Mode</ComboBoxItem>
+                <ComboBoxItem Name="DarkMode" IsSelected="True">Green Mode</ComboBoxItem>
                 <ComboBoxItem Name="LightMode">Red Mode</ComboBoxItem>
             </ComboBox>
 

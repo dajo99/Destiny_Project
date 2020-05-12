@@ -5,6 +5,13 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <Style x:Key="textblock" TargetType="{x:Type TextBlock}">
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+            </Style>
+
+            <Style x:Key="control" TargetType="{x:Type Control}">
+                <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />

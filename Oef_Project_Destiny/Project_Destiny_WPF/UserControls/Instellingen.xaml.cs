@@ -25,26 +25,60 @@ namespace Project_Destiny_WPF.UserControls
             InitializeComponent();
         }
 
-        private void cbLayout_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            
-        }
-
         private void BtnOpslaanInstellingen_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mw = (MainWindow)Application.Current.MainWindow;
             var bc = new BrushConverter();
             Uri uri = null;
+            if (cbFont.SelectedIndex == 0)
+            {
+                Style style1 = new Style
+                {
+                    TargetType = typeof(TextBlock)
+                };
+
+                style1.Setters.Add(new Setter(TextBlock.FontFamilyProperty, new FontFamily("Segoe UI")));
+                Application.Current.Resources["textblock"] = style1;
+
+                Style style2 = new Style
+                {
+                    TargetType = typeof(Control)
+                };
+
+                style2.Setters.Add(new Setter(Control.FontFamilyProperty, new FontFamily("Segoe UI")));
+
+                Application.Current.Resources["control"] = style2;
+
+            }
+
+            if (cbFont.SelectedIndex == 1)
+            {
+                Style style1 = new Style
+                {
+                    TargetType = typeof(TextBlock)
+                };
+
+                style1.Setters.Add(new Setter(TextBlock.FontFamilyProperty, new FontFamily("Comic Sans MS")));
+                Application.Current.Resources["textblock"] = style1;
+
+                Style style2 = new Style
+                {
+                    TargetType = typeof(Control)
+                };
+
+                style2.Setters.Add(new Setter(Control.FontFamilyProperty, new FontFamily("Comic Sans MS")));
+
+                Application.Current.Resources["control"] = style2;
+
+            }
+
             if (cbLayout.SelectedIndex == 0)
             {
                 mw.GridNav.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
                 mw.GridMenu.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
 
                 uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
-                
 
-                
             }
 
             if (cbLayout.SelectedIndex == 1)
@@ -53,7 +87,6 @@ namespace Project_Destiny_WPF.UserControls
                 mw.GridMenu.Background = Brushes.IndianRed;
 
                 uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml");
-                
                 
             }
 
