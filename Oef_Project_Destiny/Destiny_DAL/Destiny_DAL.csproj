@@ -134,6 +134,7 @@
     <Compile Include="NpcSellItem.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Partials\Account.cs" />
     <Compile Include="Perk.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
@@ -195,8 +196,12 @@
       <LastGenOutput>DestinyModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Partials\" />
+    <ProjectReference Include="..\Destiny_Models\Destiny_Models.csproj">
+      <Project>{16F32F33-765A-4F53-A231-EAACE37ECB7C}</Project>
+      <Name>Destiny_Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
