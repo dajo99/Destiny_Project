@@ -25,19 +25,13 @@ namespace Project_Destiny_WPF.UserControls
             InitializeComponent();
         }
 
-        public Window Parent { get; set; }
+        MainWindow w = (MainWindow)Application.Current.MainWindow;
 
-        public Character(Window parent)
-        {
-            this.Parent = parent;
-            InitializeComponent();
-        }
         private void btnAanpassen_Click(object sender, RoutedEventArgs e)
         {
 
-            MainWindow w = (MainWindow)Parent;
             w.GridMain.Children.Clear();
-            UserControl usc = new Character_Wijzigen(w);
+            UserControl usc = new Character_Wijzigen();
             w.GridMain.Children.Add(usc);
 
 

@@ -59,7 +59,7 @@ namespace Project_Destiny_WPF
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "Character":
-                    usc = new Character(this);
+                    usc = new Character();
                     break;
                 case "Wapens":
                     usc = new Weapons();
@@ -109,7 +109,7 @@ namespace Project_Destiny_WPF
                 switch (item.Name)
                 {
                     case "Character":
-                        usc = new Character(this);
+                        usc = new Character();
                         break;
                     case "Wapens":
                         usc = new Weapons();
