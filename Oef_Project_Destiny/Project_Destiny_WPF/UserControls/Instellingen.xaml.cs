@@ -47,6 +47,8 @@ namespace Project_Destiny_WPF.UserControls
 
             }
 
+           
+
             if (cbLayout.SelectedIndex == 0)
             {
                 //Zo kan ik met Hex - kleurwaarden werken
