@@ -127,5 +127,11 @@ namespace Project_Destiny_WPF
             }
             GridMain.Children.Add(usc);
         }
+
+        private void BtnRegistreren_Click(object sender, RoutedEventArgs e)
+        {
+            Registerscreen registreer = new Registerscreen();
+            registreer.Show();
+        }
     }
 }

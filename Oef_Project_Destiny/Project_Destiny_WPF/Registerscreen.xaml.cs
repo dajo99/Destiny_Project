@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +12,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Destiny_DAL;
+using Destiny_Models;
+
+using System.ComponentModel.DataAnnotations;//voor mail te checken
 
 namespace Project_Destiny_WPF
 {
@@ -23,10 +28,63 @@ namespace Project_Destiny_WPF
         {
             InitializeComponent();
         }
-
         private void BtnRegistrerenAfsluiten_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
 
+        }
+
+        private string ValideerGegevens()
+        {
+            string password = txtWachtwoord.Password;
+            //Lengte van ingegeven gebruikersnaam checken
+            if (txtGebruikersnaam.Text.Length < 3)
+            {
+                return "Gebruikersnaam moet langer zijn dan 3 characters";
+            }
+            //checken als email-adres valide
+            if (!new EmailAddressAttribute().IsValid(txtEmailadres.Text))
+            {
+                return "Het opgegeven mailadres bestaat niet!";
+            }
+            //Wachtwoordvalidatie
+            if (password.Length < 6)
+            {
+                return "Lengte van wachtwoord moet langer zijn dan 6 characters!";
+            }
+            if (password != txtHerhaalWachtwoord.Password)
+            {
+                return "Wachtwoorden komen niet overeen!";
+            }
+            return "";
+        }
+
+        private void BtnRegistreren_Click(object sender, RoutedEventArgs e)
+        {
+            string foutmeldingen = ValideerGegevens();
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            {
+                Account a = new Account();
+                a.Accountnaam = txtGebruikersnaam.Text;
+                a.Mail = txtEmailadres.Text;
+                a.Wachtwoord = txtWachtwoord.Password;
+                if (a.IsGeldig())
+                {
+                    int ok = DatabaseOperations.ToevoegenAccount(a);
+                    if (ok > 0)
+                    {
+                        MessageBox.Show("Het account is toegevoegd!", "Registratie", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(a.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show(foutmeldingen, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

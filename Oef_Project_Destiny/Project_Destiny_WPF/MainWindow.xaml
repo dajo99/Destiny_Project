@@ -69,7 +69,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,10,10" Visibility="Visible" Grid.Column="1">
                 <Button x:Name="BtnInloggen" Content="Inloggen" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnInloggen_Click" />
-                <Button x:Name="BtnRegistreren" Content="Registreren" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}" materialDesign:ButtonAssist.CornerRadius="5" Height="30"  />
+                <Button x:Name="BtnRegistreren" Content="Registreren" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}" materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnRegistreren_Click" />
             </StackPanel>
 
     
