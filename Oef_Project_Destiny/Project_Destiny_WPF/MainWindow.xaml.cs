@@ -80,6 +80,7 @@ namespace Project_Destiny_WPF
 
         private void BtnInloggen_Click(object sender, RoutedEventArgs e)
         {
+            
             Inlogscreen inlog = new Inlogscreen();
             inlog.Show();
         }

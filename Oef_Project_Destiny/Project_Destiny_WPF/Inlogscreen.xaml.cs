@@ -1,4 +1,5 @@
 ﻿using Destiny_DAL;
+using Destiny_Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,13 +47,13 @@ namespace Project_Destiny_WPF
             {
                 namen.Add(account.Accountnaam);
                 wachtwoorden.Add(account.Wachtwoord);
-
             }
-
             if (namen.Contains(a.Accountnaam))
             {
                 int idx = namen.IndexOf(a.Accountnaam);
-                if (a.Wachtwoord == wachtwoorden[idx])
+                //deëncrypteren van database-wachtwoord van account;
+                string dp = SecurePassword.DecryptString(wachtwoorden[idx]);
+                if (a.Wachtwoord == dp)
                 {
                     this.Close();
                     w.Accountnaam.Text = a.Accountnaam;
@@ -62,12 +63,12 @@ namespace Project_Destiny_WPF
                 }
                 else
                 {
-                    MessageBox.Show("wachtwoord fout", "fout");
+                    MessageBox.Show("De opgegeven gebruikersnaam en het wachtwoord komen niet overeen!", "foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Gebruikersnaam en wachtwoord komen niet overeen", "fout");
+                MessageBox.Show("Deze gebruikersnaam bestaat niet!", "foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

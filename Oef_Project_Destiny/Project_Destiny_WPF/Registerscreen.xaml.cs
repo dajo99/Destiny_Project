@@ -64,17 +64,38 @@ namespace Project_Destiny_WPF
             string foutmeldingen = ValideerGegevens();
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
+                //nieuw account aanmaken
                 Account a = new Account();
                 a.Accountnaam = txtGebruikersnaam.Text;
                 a.Mail = txtEmailadres.Text;
-                a.Wachtwoord = txtWachtwoord.Password;
+                //wachtwoord encrypteren
+                string ep = SecurePassword.EncryptString(txtWachtwoord.Password);
+                a.Wachtwoord = ep;
                 if (a.IsGeldig())
                 {
-                    int ok = DatabaseOperations.ToevoegenAccount(a);
-                    if (ok > 0)
+                    List<Account> accounts = new List<Account>();
+                    accounts = DatabaseOperations.CheckLogin();
+                    if (!accounts.Contains(a))
                     {
-                        MessageBox.Show("Het account is toegevoegd!", "Registratie", MessageBoxButton.OK, MessageBoxImage.Information);
+                        int ok = DatabaseOperations.ToevoegenAccount(a);
+                        if (ok > 0)
+                        {
+                            MainWindow w = (MainWindow)Application.Current.MainWindow;
+                            this.Close();
+                            w.Accountnaam.Text = a.Accountnaam;
+                            w.Loginpanel.Visibility = Visibility.Hidden;
+                            w.Accountpanel.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Account is niet toegevoegd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show(a.Accountnaam + " is al in gebruik!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
                 }
                 else
                 {
@@ -85,6 +106,13 @@ namespace Project_Destiny_WPF
             {
                 MessageBox.Show(foutmeldingen, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void BtnAlAccount_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            Inlogscreen inlog = new Inlogscreen();
+            inlog.Show();
         }
     }
 }
