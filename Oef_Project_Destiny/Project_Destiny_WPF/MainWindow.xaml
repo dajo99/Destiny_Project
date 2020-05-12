@@ -45,9 +45,9 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
-    <Grid Background="#FF7C7C7C">
+    <Grid x:Name="GridMainWindow" Background="#FF7C7C7C">
         <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010"/>
-        <Grid Height="60" VerticalAlignment="Top" Background="#FF00C7A3">
+        <Grid x:Name="GridNav" Height="60" VerticalAlignment="Top" Background="#FF00C7A3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="13*"/>
                 <ColumnDefinition Width="32*"/>
@@ -59,7 +59,7 @@
                 <TextBlock Text="Accountnaam" VerticalAlignment="Center" FontSize="16"/>
                 <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                     <StackPanel Width="150">
-                        <Button Content="Settings"/>
+                        <Button x:Name="BtnSettings" Content="Settings" Click="BtnSettings_Click"/>
                         <Button Content="Account"/>
                         <Button Content="Help"/>
                         <Separator/>
@@ -78,7 +78,7 @@
         </Grid>
         <Grid x:Name="GridMenu" HorizontalAlignment="Left" Width="70" Background="#FF00C7A3">
             <StackPanel>
-                <Grid Height="150" Background="White"/>
+                <Grid x:Name="GridHamburger" Height="150" Background="White"/>
                 <ListView x:Name="ListViewMenu"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">

@@ -96,9 +96,7 @@ namespace Project_Destiny_WPF
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
-            GridMain.Children.Clear();
-            usc = new Account();
-            GridMain.Children.Add(usc);
+            
         }
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -125,6 +123,14 @@ namespace Project_Destiny_WPF
                         break;
                 }
             }
+            GridMain.Children.Add(usc);
+        }
+
+
+        private void BtnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            GridMain.Children.Clear();
+            usc = new Instellingen();
             GridMain.Children.Add(usc);
         }
     }
