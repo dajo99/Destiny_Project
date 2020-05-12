@@ -24,18 +24,7 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
-        public Window Parent
-        {
-            get;
-            set;
-        }
-        public Character_Wijzigen(Window parent)
-        {
-            this.Parent = parent;
-            InitializeComponent();
-        }
-        
-       
+        MainWindow w = (MainWindow)Application.Current.MainWindow;
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -50,10 +39,8 @@ namespace Project_Destiny_WPF.UserControls
 
         private void btnTerug_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow w = (MainWindow)Parent;
-
             w.GridMain.Children.Clear();
-            UserControl usc = new Character(w);
+            UserControl usc = new Character();
             w.GridMain.Children.Add(usc);
         }
     }

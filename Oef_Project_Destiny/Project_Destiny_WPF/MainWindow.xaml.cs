@@ -61,7 +61,7 @@ namespace Project_Destiny_WPF
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "Character":
-                    usc = new Character(this);
+                    usc = new Character();
                     break;
                 case "Wapens":
                     usc = new Weapons();
@@ -101,9 +101,7 @@ namespace Project_Destiny_WPF
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
-            GridMain.Children.Clear();
-            usc = new Account();
-            GridMain.Children.Add(usc);
+            
         }
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -114,7 +112,7 @@ namespace Project_Destiny_WPF
                 switch (item.Name)
                 {
                     case "Character":
-                        usc = new Character(this);
+                        usc = new Character();
                         break;
                     case "Wapens":
                         usc = new Weapons();
@@ -139,6 +137,13 @@ namespace Project_Destiny_WPF
             registreer.Show();
             BtnRegistreren.IsEnabled = false;
             BtnInloggen.IsEnabled = false;
+        }
+
+        private void BtnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            GridMain.Children.Clear();
+            usc = new Instellingen();
+            GridMain.Children.Add(usc);
         }
     }
 }
