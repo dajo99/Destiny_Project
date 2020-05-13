@@ -22,7 +22,7 @@ namespace Destiny_DAL
 			catch (Exception ex)
 			{
 				MessageBox.Show(ex.Message);
-				/*FileOperations.Foutloggen(ex);*/
+                fileOperations.Foutloggen(ex);
 				return 0;
 			}
         }
@@ -39,7 +39,52 @@ namespace Destiny_DAL
 			}
 		}
 
-		
+        public static List<CharacterCustomization> OphalenCharacterOptiesVoorAanmaken()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                var query = destinyEntities.CharacterCustomizations.Include("Ras");
+                return query.ToList();
+            }
+        }
+        public static List<CharacterKlasse> OphalenCharacterKlasseVoorAanmaken()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                var query = destinyEntities.CharacterKlasses;
+                return query.ToList();
+            }
+        }
 
-	}
+        public static List<CharacterSubklasse> OphalenCharacterSubklasseVoorAanmaken(int id)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                var query = destinyEntities.CharacterSubklasses.Where(x => x.CharacterKlasseId == id);
+                return query.ToList();
+            }
+        }
+
+        public static List<Ras> OphalenRasVoorAanmaken()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                var query = destinyEntities.Ras1;
+                return query.ToList();
+            }
+        }
+        public static int InstellingenVanAanmakenOpslaanInDatabase(CharacterCustomization aanmaking)
+        {
+           
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.CharacterCustomizations.Add(aanmaking);
+                    return destinyEntities.SaveChanges();
+                }
+           
+            
+        }
+
+
+    }
 }

@@ -66,9 +66,6 @@
     <Compile Include="Character.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CharacterCustomization.cs">
-      <DependentUpon>DestinyModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="CharacterKlasse.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
@@ -106,6 +103,7 @@
     <Compile Include="Enemy.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="fileOperations.cs" />
     <Compile Include="GranaatAbilityDamage.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
@@ -137,6 +135,9 @@
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Partials\Account.cs" />
+    <Compile Include="Partials\CharacterKlasse.cs" />
+    <Compile Include="Partials\CharacterSubklasse.cs" />
+    <Compile Include="Partials\Ras.cs" />
     <Compile Include="Perk.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
@@ -177,11 +178,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="DestinyModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DestinyModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
     <None Include="DestinyModel.edmx.diagram">
       <DependentUpon>DestinyModel.edmx</DependentUpon>
     </None>
@@ -190,8 +191,8 @@
   <ItemGroup>
     <Content Include="DestinyModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DestinyModel.Context.cs</LastGenOutput>
       <DependentUpon>DestinyModel.edmx</DependentUpon>
+      <LastGenOutput>DestinyModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DestinyModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -199,7 +200,6 @@
       <LastGenOutput>DestinyModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Destiny_Models\Destiny_Models.csproj">
       <Project>{16F32F33-765A-4F53-A231-EAACE37ECB7C}</Project>

@@ -4,50 +4,48 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f716ff2488d54e23a83da5d45a4bd4e6" Name="Diagram1">
-        <EntityTypeShape EntityType="DestinyModel.Account" Width="1.5" PointX="1.5" PointY="31.625" IsExpanded="true" />
+      <Diagram DiagramId="56407b0f62884b4db2e010cbf81e8b63" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="DestinyModel.Account" Width="1.5" PointX="1.5" PointY="31.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Armor" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.Character" Width="1.5" PointX="3.75" PointY="32.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.CharacterCustomization" Width="2.625" PointX="11.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.Character" Width="1.5" PointX="3.75" PointY="32.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.CharacterKlasse" Width="2.25" PointX="0.75" PointY="34.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.CharacterSubklasse" Width="2.375" PointX="2.875" PointY="38.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.Currency" Width="2.625" PointX="1.5" PointY="28.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.CurrencyDropTable" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.CurrencyInventory" Width="1.5" PointX="8.25" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.Damagetype" Width="2.5" PointX="8" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.CharacterSubklasse" Width="2.25" PointX="3" PointY="38.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.Currency" Width="2.25" PointX="0.75" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.CurrencyDropTable" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.CurrencyInventory" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.Damagetype" Width="3" PointX="7.5" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Enemy" Width="1.5" PointX="11.25" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.GranaatAbilityDamage" Width="1.5" PointX="11.25" PointY="21" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.GranaatSubklasse" Width="2.5" PointX="6" PointY="37.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.Inventory" Width="2.25" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.GranaatAbilityDamage" Width="1.5" PointX="11.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.GranaatSubklasse" Width="2.875" PointX="6" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.Inventory" Width="2.125" PointX="5.375" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Item" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Locatie" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Map" Width="1.5" PointX="1.5" PointY="20.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.MapEnemy" Width="1.5" PointX="13.5" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.MapEnemy" Width="1.5" PointX="13.5" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Mission" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Npc" Width="1.5" PointX="1.5" PointY="23.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.NpcSellItem" Width="1.5" PointX="6" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.NpcSellItem" Width="1.5" PointX="6" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Perk" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.PerkArmor" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.PerkWapen" Width="1.5" PointX="14.25" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.Ras" Width="2" PointX="8.5" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.RewardTable" Width="2.625" PointX="1.875" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.SpecialItem" Width="2.25" PointX="3" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.PerkArmor" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.PerkWapen" Width="1.5" PointX="14.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.Ras" Width="1.5" PointX="9" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.RewardTable" Width="2.625" PointX="1.875" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.SpecialItem" Width="2" PointX="3" PointY="16.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.SpecialItemCategorie" Width="1.5" PointX="0.75" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.SubklasseAbility" Width="2.625" PointX="11.25" PointY="24.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.SubklassePerk" Width="2.75" PointX="6" PointY="42.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.Wapen" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.SubklasseAbility" Width="2.875" PointX="11.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.SubklassePerk" Width="2.5" PointX="6" PointY="42.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.Wapen" Width="1.5" PointX="9" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Wapenklasse" Width="1.5" PointX="6.75" PointY="19.125" IsExpanded="true" />
         <AssociationConnector Association="DestinyModel.FK_Character_Account" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_Armor_Item" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_PerkArmor_Armor" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_Character_Ras" ManuallyRouted="false" />
-        <AssociationConnector Association="DestinyModel.FK_Customization_Character_Klasse" ManuallyRouted="false" />
+        <AssociationConnector Association="DestinyModel.FK_Customization_CharacterKlasse" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_Inventory_Character" ManuallyRouted="false" />
-        <AssociationConnector Association="DestinyModel.FK_CharacterCustomization_Ras" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_CharacterSubklasse_CharacterKlasse" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_GranaatSubklasse_Character_Subklasse" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_SubklasseAbility_Character_Subklasse" ManuallyRouted="false" />
-        <AssociationConnector Association="DestinyModel.FK_SubklassePerks_Character_Subklasse" ManuallyRouted="false" />
+        <AssociationConnector Association="DestinyModel.FK_SubklassePerks_CharacterSubklasse" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_CurrencyDropTable_Currency" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_CurrencyInventory_Currency" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_Npc_Currency" ManuallyRouted="false" />
@@ -80,7 +78,6 @@
         <AssociationConnector Association="DestinyModel.FK_PerkWapen_Wapen" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_SpecialItem_Categorie" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_Wapen_Wapenklasse" ManuallyRouted="false" />
-        <AssociationConnector Association="DestinyModel.FK_Inventory_Character1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
