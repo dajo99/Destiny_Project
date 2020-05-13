@@ -18,7 +18,6 @@ namespace Destiny_DAL
         public Ras()
         {
             this.Characters = new HashSet<Character>();
-            this.CharacterCustomizations = new HashSet<CharacterCustomization>();
             this.Enemies = new HashSet<Enemy>();
             this.Npcs = new HashSet<Npc>();
         }
@@ -28,8 +27,6 @@ namespace Destiny_DAL
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Character> Characters { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CharacterCustomization> CharacterCustomizations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Enemy> Enemies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

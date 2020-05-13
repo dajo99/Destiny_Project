@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DestinyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DestinyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -14,8 +14,6 @@
           <Property Name="Mail" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Regio" Type="varchar" MaxLength="255" />
           <Property Name="Wachtwoord" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Voornaam" Type="varchar" MaxLength="255" />
-          <Property Name="Naam" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Armor">
           <Key>
@@ -37,21 +35,14 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CharacterCustomizationId" Type="int" Nullable="false" />
           <Property Name="AccountId" Type="int" Nullable="false" />
           <Property Name="CharacterKlasseId" Type="int" Nullable="false" />
           <Property Name="Level" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CharacterCustomization">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RasId" Type="int" Nullable="false" />
           <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Face" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="HeadOption" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Marking" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RasId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CharacterKlasse">
           <Key>
@@ -138,6 +129,7 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="CharacterId" Type="int" Nullable="false" />
           <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -344,18 +336,6 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Character">
-              <PropertyRef Name="CharacterCustomizationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CharacterCustomization_Ras">
-          <End Role="Ras" Type="Self.Ras" Multiplicity="1" />
-          <End Role="CharacterCustomization" Type="Self.CharacterCustomization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ras">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="CharacterCustomization">
               <PropertyRef Name="RasId" />
             </Dependent>
           </ReferentialConstraint>
@@ -420,7 +400,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Customization_Character_Klasse">
+        <Association Name="FK_Customization_CharacterKlasse">
           <End Role="CharacterKlasse" Type="Self.CharacterKlasse" Multiplicity="1" />
           <End Role="Character" Type="Self.Character" Multiplicity="*" />
           <ReferentialConstraint>
@@ -506,13 +486,13 @@
         </Association>
         <Association Name="FK_Inventory_Character">
           <End Role="Character" Type="Self.Character" Multiplicity="1" />
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Character">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Inventory">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="CharacterId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -780,7 +760,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SubklassePerks_Character_Subklasse">
+        <Association Name="FK_SubklassePerks_CharacterSubklasse">
           <End Role="CharacterSubklasse" Type="Self.CharacterSubklasse" Multiplicity="1" />
           <End Role="SubklassePerks" Type="Self.SubklassePerks" Multiplicity="*" />
           <ReferentialConstraint>
@@ -832,7 +812,6 @@
           <EntitySet Name="Account" EntityType="Self.Account" Schema="Destiny" store:Type="Tables" />
           <EntitySet Name="Armor" EntityType="Self.Armor" Schema="Destiny" store:Type="Tables" />
           <EntitySet Name="Character" EntityType="Self.Character" Schema="Destiny" store:Type="Tables" />
-          <EntitySet Name="CharacterCustomization" EntityType="Self.CharacterCustomization" Schema="Destiny" store:Type="Tables" />
           <EntitySet Name="CharacterKlasse" EntityType="Self.CharacterKlasse" Schema="Destiny" store:Type="Tables" />
           <EntitySet Name="CharacterSubklasse" EntityType="Self.CharacterSubklasse" Schema="Destiny" store:Type="Tables" />
           <EntitySet Name="Currency" EntityType="Self.Currency" Schema="Destiny" store:Type="Tables" />
@@ -873,10 +852,6 @@
             <End Role="Ras" EntitySet="Ras" />
             <End Role="Character" EntitySet="Character" />
           </AssociationSet>
-          <AssociationSet Name="FK_CharacterCustomization_Ras" Association="Self.FK_CharacterCustomization_Ras">
-            <End Role="Ras" EntitySet="Ras" />
-            <End Role="CharacterCustomization" EntitySet="CharacterCustomization" />
-          </AssociationSet>
           <AssociationSet Name="FK_CharacterSubklasse_CharacterKlasse" Association="Self.FK_CharacterSubklasse_CharacterKlasse">
             <End Role="CharacterKlasse" EntitySet="CharacterKlasse" />
             <End Role="CharacterSubklasse" EntitySet="CharacterSubklasse" />
@@ -897,7 +872,7 @@
             <End Role="Inventory" EntitySet="Inventory" />
             <End Role="CurrencyInventory" EntitySet="CurrencyInventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Customization_Character_Klasse" Association="Self.FK_Customization_Character_Klasse">
+          <AssociationSet Name="FK_Customization_CharacterKlasse" Association="Self.FK_Customization_CharacterKlasse">
             <End Role="CharacterKlasse" EntitySet="CharacterKlasse" />
             <End Role="Character" EntitySet="Character" />
           </AssociationSet>
@@ -1017,7 +992,7 @@
             <End Role="Damagetype" EntitySet="Damagetype" />
             <End Role="SubklasseAbility" EntitySet="SubklasseAbility" />
           </AssociationSet>
-          <AssociationSet Name="FK_SubklassePerks_Character_Subklasse" Association="Self.FK_SubklassePerks_Character_Subklasse">
+          <AssociationSet Name="FK_SubklassePerks_CharacterSubklasse" Association="Self.FK_SubklassePerks_CharacterSubklasse">
             <End Role="CharacterSubklasse" EntitySet="CharacterSubklasse" />
             <End Role="SubklassePerks" EntitySet="SubklassePerks" />
           </AssociationSet>
@@ -1034,7 +1009,8 @@
             <End Role="Wapen" EntitySet="Wapen" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DestinyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1048,8 +1024,6 @@
           <Property Name="Regio" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Wachtwoord" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Characters" Relationship="Self.FK_Character_Account" FromRole="Account" ToRole="Character" />
-          <Property Name="Voornaam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Armor">
           <Key>
@@ -1073,27 +1047,18 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CharacterCustomizationId" Type="Int32" Nullable="false" />
           <Property Name="AccountId" Type="Int32" Nullable="false" />
           <Property Name="CharacterKlasseId" Type="Int32" Nullable="false" />
           <Property Name="Level" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Account" Relationship="Self.FK_Character_Account" FromRole="Character" ToRole="Account" />
-          <NavigationProperty Name="Ras" Relationship="Self.FK_Character_Ras" FromRole="Character" ToRole="Ras" />
-          <NavigationProperty Name="CharacterKlasse" Relationship="Self.FK_Customization_Character_Klasse" FromRole="Character" ToRole="CharacterKlasse" />
-          <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_Character" FromRole="Character" ToRole="Inventory" />
-          <NavigationProperty Name="Inventory" Relationship="DestinyModel.FK_Inventory_Character1" FromRole="Character" ToRole="Inventory" />
-        </EntityType>
-        <EntityType Name="CharacterCustomization">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RasId" Type="Int32" Nullable="false" />
           <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Face" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HeadOption" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Marking" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Ras" Relationship="Self.FK_CharacterCustomization_Ras" FromRole="CharacterCustomization" ToRole="Ras" />
+          <Property Name="RasId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_Character_Account" FromRole="Character" ToRole="Account" />
+          <NavigationProperty Name="Ras" Relationship="Self.FK_Character_Ras" FromRole="Character" ToRole="Ras" />
+          <NavigationProperty Name="CharacterKlasse" Relationship="Self.FK_Customization_CharacterKlasse" FromRole="Character" ToRole="CharacterKlasse" />
+          <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_Character" FromRole="Character" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="CharacterKlasse">
           <Key>
@@ -1101,7 +1066,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Characters" Relationship="Self.FK_Customization_Character_Klasse" FromRole="CharacterKlasse" ToRole="Character" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK_Customization_CharacterKlasse" FromRole="CharacterKlasse" ToRole="Character" />
           <NavigationProperty Name="CharacterSubklasses" Relationship="Self.FK_CharacterSubklasse_CharacterKlasse" FromRole="CharacterKlasse" ToRole="CharacterSubklasse" />
         </EntityType>
         <EntityType Name="CharacterSubklasse">
@@ -1114,7 +1079,7 @@
           <NavigationProperty Name="CharacterKlasse" Relationship="Self.FK_CharacterSubklasse_CharacterKlasse" FromRole="CharacterSubklasse" ToRole="CharacterKlasse" />
           <NavigationProperty Name="GranaatSubklasses" Relationship="Self.FK_GranaatSubklasse_Character_Subklasse" FromRole="CharacterSubklasse" ToRole="GranaatSubklasse" />
           <NavigationProperty Name="SubklasseAbilities" Relationship="Self.FK_SubklasseAbility_Character_Subklasse" FromRole="CharacterSubklasse" ToRole="SubklasseAbility" />
-          <NavigationProperty Name="SubklassePerks" Relationship="Self.FK_SubklassePerks_Character_Subklasse" FromRole="CharacterSubklasse" ToRole="SubklassePerks" />
+          <NavigationProperty Name="SubklassePerks" Relationship="Self.FK_SubklassePerks_CharacterSubklasse" FromRole="CharacterSubklasse" ToRole="SubklassePerks" />
         </EntityType>
         <EntityType Name="Currency">
           <Key>
@@ -1156,7 +1121,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Enemies" Relationship="Self.FK_Enemy_SchildDamagetype" FromRole="Damagetype" ToRole="Enemy" />
-          <NavigationProperty Name="GranaatAbilityDamages" Relationship="Self.FK_GranaatAbilityDamage_Damagetype" FromRole="Damagetype" ToRole="GranaatAbilityDamage" />
+          <NavigationProperty Name="GranaatAbilitiesDamage" Relationship="Self.FK_GranaatAbilityDamage_Damagetype" FromRole="Damagetype" ToRole="GranaatAbilityDamage" />
           <NavigationProperty Name="SubklasseAbilities" Relationship="Self.FK_SubklasseAbility_DamageType" FromRole="Damagetype" ToRole="SubklasseAbility" />
           <NavigationProperty Name="Wapens" Relationship="Self.FK_Wapen_Damagetype" FromRole="Damagetype" ToRole="Wapen" />
         </EntityType>
@@ -1197,7 +1162,7 @@
           <Property Name="CharacterSubklasseId" Type="Int32" Nullable="false" />
           <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CharacterSubklasse" Relationship="Self.FK_GranaatSubklasse_Character_Subklasse" FromRole="GranaatSubklasse" ToRole="CharacterSubklasse" />
-          <NavigationProperty Name="GranaatAbilityDamages" Relationship="Self.FK_GranaatAbilityDamage_GranaatSubklasse" FromRole="GranaatSubklasse" ToRole="GranaatAbilityDamage" />
+          <NavigationProperty Name="GranaatAbilitiesDamage" Relationship="Self.FK_GranaatAbilityDamage_GranaatSubklasse" FromRole="GranaatSubklasse" ToRole="GranaatAbilityDamage" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -1206,10 +1171,10 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="CharacterId" Type="Int32" Nullable="false" />
           <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Character" Relationship="Self.FK_Inventory_Character" FromRole="Inventory" ToRole="Character" />
           <NavigationProperty Name="CurrencyInventories" Relationship="Self.FK_CurrencyInventory_Inventory" FromRole="Inventory" ToRole="CurrencyInventory" />
           <NavigationProperty Name="Item" Relationship="Self.FK_Inventory_Item" FromRole="Inventory" ToRole="Item" />
-          <NavigationProperty Name="Character1" Relationship="DestinyModel.FK_Inventory_Character1" FromRole="Inventory" ToRole="Character" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -1344,7 +1309,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Naam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Characters" Relationship="Self.FK_Character_Ras" FromRole="Ras" ToRole="Character" />
-          <NavigationProperty Name="CharacterCustomizations" Relationship="Self.FK_CharacterCustomization_Ras" FromRole="Ras" ToRole="CharacterCustomization" />
           <NavigationProperty Name="Enemies" Relationship="Self.FK_Enemy_Ras" FromRole="Ras" ToRole="Enemy" />
           <NavigationProperty Name="Npcs" Relationship="Self.FK_Npc_Ras" FromRole="Ras" ToRole="Npc" />
         </EntityType>
@@ -1402,7 +1366,7 @@
           <Property Name="PerkName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Effect" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CharacterSubklasseId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CharacterSubklasse" Relationship="Self.FK_SubklassePerks_Character_Subklasse" FromRole="SubklassePerks" ToRole="CharacterSubklasse" />
+          <NavigationProperty Name="CharacterSubklasse" Relationship="Self.FK_SubklassePerks_CharacterSubklasse" FromRole="SubklassePerks" ToRole="CharacterSubklasse" />
         </EntityType>
         <EntityType Name="Wapen">
           <Key>
@@ -1422,7 +1386,7 @@
           <NavigationProperty Name="Damagetype" Relationship="Self.FK_Wapen_Damagetype" FromRole="Wapen" ToRole="Damagetype" />
           <NavigationProperty Name="Enemies" Relationship="Self.FK_Enemy_Wapen" FromRole="Wapen" ToRole="Enemy" />
           <NavigationProperty Name="Item" Relationship="Self.FK_Wapen_Item" FromRole="Wapen" ToRole="Item" />
-          <NavigationProperty Name="PerkWapens" Relationship="Self.FK_PerkWapen_Wapen" FromRole="Wapen" ToRole="PerkWapen" />
+          <NavigationProperty Name="PerksWapen" Relationship="Self.FK_PerkWapen_Wapen" FromRole="Wapen" ToRole="PerkWapen" />
           <NavigationProperty Name="Wapenklasse" Relationship="Self.FK_Wapen_Wapenklasse" FromRole="Wapen" ToRole="Wapenklasse" />
         </EntityType>
         <EntityType Name="Wapenklasse">
@@ -1477,11 +1441,11 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Character">
-              <PropertyRef Name="CharacterCustomizationId" />
+              <PropertyRef Name="RasId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Customization_Character_Klasse">
+        <Association Name="FK_Customization_CharacterKlasse">
           <End Role="CharacterKlasse" Type="Self.CharacterKlasse" Multiplicity="1" />
           <End Role="Character" Type="Self.Character" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1502,18 +1466,6 @@
             </Principal>
             <Dependent Role="Inventory">
               <PropertyRef Name="CharacterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CharacterCustomization_Ras">
-          <End Role="Ras" Type="DestinyModel.Ras" Multiplicity="1" />
-          <End Role="CharacterCustomization" Type="Self.CharacterCustomization" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ras">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="CharacterCustomization">
-              <PropertyRef Name="RasId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1553,7 +1505,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SubklassePerks_Character_Subklasse">
+        <Association Name="FK_SubklassePerks_CharacterSubklasse">
           <End Role="CharacterSubklasse" Type="Self.CharacterSubklasse" Multiplicity="1" />
           <End Role="SubklassePerks" Type="Self.SubklassePerk" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1953,7 +1905,6 @@
           <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="Armors" EntityType="Self.Armor" />
           <EntitySet Name="Characters" EntityType="Self.Character" />
-          <EntitySet Name="CharacterCustomizations" EntityType="Self.CharacterCustomization" />
           <EntitySet Name="CharacterKlasses" EntityType="Self.CharacterKlasse" />
           <EntitySet Name="CharacterSubklasses" EntityType="Self.CharacterSubklasse" />
           <EntitySet Name="Currencies" EntityType="Self.Currency" />
@@ -1998,17 +1949,13 @@
             <End Role="Ras" EntitySet="Ras1" />
             <End Role="Character" EntitySet="Characters" />
           </AssociationSet>
-          <AssociationSet Name="FK_Customization_Character_Klasse" Association="Self.FK_Customization_Character_Klasse">
+          <AssociationSet Name="FK_Customization_CharacterKlasse" Association="Self.FK_Customization_CharacterKlasse">
             <End Role="CharacterKlasse" EntitySet="CharacterKlasses" />
             <End Role="Character" EntitySet="Characters" />
           </AssociationSet>
           <AssociationSet Name="FK_Inventory_Character" Association="Self.FK_Inventory_Character">
             <End Role="Character" EntitySet="Characters" />
             <End Role="Inventory" EntitySet="Inventories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CharacterCustomization_Ras" Association="Self.FK_CharacterCustomization_Ras">
-            <End Role="Ras" EntitySet="Ras1" />
-            <End Role="CharacterCustomization" EntitySet="CharacterCustomizations" />
           </AssociationSet>
           <AssociationSet Name="FK_CharacterSubklasse_CharacterKlasse" Association="Self.FK_CharacterSubklasse_CharacterKlasse">
             <End Role="CharacterKlasse" EntitySet="CharacterKlasses" />
@@ -2022,7 +1969,7 @@
             <End Role="CharacterSubklasse" EntitySet="CharacterSubklasses" />
             <End Role="SubklasseAbility" EntitySet="SubklasseAbilities" />
           </AssociationSet>
-          <AssociationSet Name="FK_SubklassePerks_Character_Subklasse" Association="Self.FK_SubklassePerks_Character_Subklasse">
+          <AssociationSet Name="FK_SubklassePerks_CharacterSubklasse" Association="Self.FK_SubklassePerks_CharacterSubklasse">
             <End Role="CharacterSubklasse" EntitySet="CharacterSubklasses" />
             <End Role="SubklassePerks" EntitySet="SubklassePerks" />
           </AssociationSet>
@@ -2154,23 +2101,7 @@
             <End Role="Wapenklasse" EntitySet="Wapenklasses" />
             <End Role="Wapen" EntitySet="Wapens" />
           </AssociationSet>
-          <AssociationSet Name="FK_Inventory_Character1" Association="DestinyModel.FK_Inventory_Character1">
-            <End Role="Character" EntitySet="Characters" />
-            <End Role="Inventory" EntitySet="Inventories" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_Inventory_Character1">
-          <End Type="DestinyModel.Character" Role="Character" Multiplicity="1" />
-          <End Type="DestinyModel.Inventory" Role="Inventory" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Character">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Inventory">
-              <PropertyRef Name="id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2180,8 +2111,6 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="DestinyModel.Account">
               <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="Naam" ColumnName="Naam" />
-                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Accountnaam" ColumnName="Accountnaam" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
@@ -2210,22 +2139,14 @@
             <EntityTypeMapping TypeName="DestinyModel.Character">
               <MappingFragment StoreEntitySet="Character">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="CharacterCustomizationId" ColumnName="CharacterCustomizationId" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="CharacterKlasseId" ColumnName="CharacterKlasseId" />
                 <ScalarProperty Name="Level" ColumnName="Level" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CharacterCustomizations">
-            <EntityTypeMapping TypeName="DestinyModel.CharacterCustomization">
-              <MappingFragment StoreEntitySet="CharacterCustomization">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="RasId" ColumnName="RasId" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Face" ColumnName="Face" />
                 <ScalarProperty Name="HeadOption" ColumnName="HeadOption" />
                 <ScalarProperty Name="Marking" ColumnName="Marking" />
+                <ScalarProperty Name="RasId" ColumnName="RasId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2322,6 +2243,7 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="CharacterId" ColumnName="CharacterId" />
                 <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2530,7 +2452,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

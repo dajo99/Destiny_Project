@@ -18,7 +18,7 @@ namespace Destiny_DAL
         public Damagetype()
         {
             this.Enemies = new HashSet<Enemy>();
-            this.GranaatAbilityDamages = new HashSet<GranaatAbilityDamage>();
+            this.GranaatAbilitiesDamage = new HashSet<GranaatAbilityDamage>();
             this.SubklasseAbilities = new HashSet<SubklasseAbility>();
             this.Wapens = new HashSet<Wapen>();
         }
@@ -29,7 +29,7 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Enemy> Enemies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GranaatAbilityDamage> GranaatAbilityDamages { get; set; }
+        public virtual ICollection<GranaatAbilityDamage> GranaatAbilitiesDamage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubklasseAbility> SubklasseAbilities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

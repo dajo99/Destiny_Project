@@ -18,7 +18,7 @@ namespace Destiny_DAL
         public Wapen()
         {
             this.Enemies = new HashSet<Enemy>();
-            this.PerkWapens = new HashSet<PerkWapen>();
+            this.PerksWapen = new HashSet<PerkWapen>();
         }
     
         public int id { get; set; }
@@ -38,7 +38,7 @@ namespace Destiny_DAL
         public virtual ICollection<Enemy> Enemies { get; set; }
         public virtual Item Item { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PerkWapen> PerkWapens { get; set; }
+        public virtual ICollection<PerkWapen> PerksWapen { get; set; }
         public virtual Wapenklasse Wapenklasse { get; set; }
     }
 }

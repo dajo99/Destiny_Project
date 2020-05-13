@@ -28,7 +28,6 @@ namespace Destiny_DAL
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Armor> Armors { get; set; }
         public virtual DbSet<Character> Characters { get; set; }
-        public virtual DbSet<CharacterCustomization> CharacterCustomizations { get; set; }
         public virtual DbSet<CharacterKlasse> CharacterKlasses { get; set; }
         public virtual DbSet<CharacterSubklasse> CharacterSubklasses { get; set; }
         public virtual DbSet<Currency> Currencies { get; set; }
