@@ -36,5 +36,12 @@ namespace Project_Destiny_WPF.UserControls
 
 
         }
+
+        private void btnAanmaken_Click(object sender, RoutedEventArgs e)
+        {
+            w.GridMain.Children.Clear();
+            UserControl usc = new Character_Maken();
+            w.GridMain.Children.Add(usc);
+        }
     }
 }

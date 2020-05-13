@@ -106,6 +106,7 @@
     <Compile Include="Enemy.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="fileOperations.cs" />
     <Compile Include="GranaatAbilityDamage.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
@@ -137,6 +138,9 @@
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Partials\Account.cs" />
+    <Compile Include="Partials\CharacterKlasse.cs" />
+    <Compile Include="Partials\CharacterSubklasse.cs" />
+    <Compile Include="Partials\Ras.cs" />
     <Compile Include="Perk.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>

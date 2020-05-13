@@ -85,6 +85,9 @@
     <Compile Include="UserControls\Armor.xaml.cs">
       <DependentUpon>Armor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Character-Maken.xaml.cs">
+      <DependentUpon>Character-Maken.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Character-Wijzigen.xaml.cs">
       <DependentUpon>Character-Wijzigen.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,10 @@
     <Page Include="UserControls\Armor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Character-Maken.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Character-Wijzigen.xaml">
       <SubType>Designer</SubType>
