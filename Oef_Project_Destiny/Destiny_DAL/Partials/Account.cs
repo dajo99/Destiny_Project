@@ -15,15 +15,15 @@ namespace Destiny_DAL
             {
                 if (columnName == "Accountnaam" && string.IsNullOrWhiteSpace(Accountnaam))
                 {
-                    return "Accountnaam is een verplicht veld!";
+                    return "Gelieve de gebruikersnaam in te vullen!";
                 }
                 if (columnName == "Mail" && string.IsNullOrWhiteSpace(Mail))
                 {
-                    return "Mail is een verplicht veld!";
+                    return "Gelieve het mail adres in te geven";
                 }
                 if (columnName == "Wachtwoord" && string.IsNullOrWhiteSpace(Wachtwoord))
                 {
-                    return "Wachtwoord is een verplicht veld!";
+                    return "Gelieve het wachtwoord in te geven";
                 }
                 return "";
             }
