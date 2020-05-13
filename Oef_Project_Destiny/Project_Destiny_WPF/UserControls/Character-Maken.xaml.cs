@@ -25,15 +25,16 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
-
+        /*
         ///heb dit zo moeten doen omdat wij in de database een misrekening hadden gemaakt destijds met de tabellen
         Destiny_DAL.CharacterCustomization customization = null;
 
         ///dit gaat ervoor zorgen dat de comboboxen de juiste waardes gaan krijgen en niet al de waardes
-        Destiny_DAL.Character karakter = new Destiny_DAL.Character();
+        Destiny_DAL.Character karakter = new Destiny_DAL.Character();*/
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            /*
             cmbGezicht.ItemsSource = OphalenOpties("gezicht");
             cmbHaar.ItemsSource = OphalenOpties("haar");
             cmbGender.ItemsSource = OphalenOpties("gender");
@@ -47,15 +48,16 @@ namespace Project_Destiny_WPF.UserControls
             ///knop aanmaken instellen bij het laden van het scherm
             btnAanmaken.IsEnabled = false;
 
-
+            */
 
             
            
         }
 
-
+        /*
         public List<string>OphalenOpties(string beschrijving)
         {
+            
            List<CharacterCustomization> opties = DatabaseOperations.OphalenCharacterOptiesVoorAanmaken();
             List<string> lijst = new List<string>();
               
@@ -97,34 +99,37 @@ namespace Project_Destiny_WPF.UserControls
             }
             return lijst;
            
-        }
+    }*/
 
         ///methode die nagaat welke CharacterKlasseId moet worden gezocht in de tabel subklasse aangezien subklasse verschilt per klasse//
-        private int OphalenSubklasses()
-        {
-            int id = 0;
-            if (cmbKlasse.SelectedItem is CharacterKlasse klasse)
-            {
-                switch (klasse.Naam)
-                {
-                    case "Titan":
-                         id = klasse.id;
-                        break;
+        /*  private int OphalenSubklasses()
+          {
 
-                    case "Hunter":
-                        id = klasse.id;
-                        break;
+              int id = 0;
+              if (cmbKlasse.SelectedItem is CharacterKlasse klasse)
+              {
+                  switch (klasse.Naam)
+                  {
+                      case "Titan":
+                           id = klasse.id;
+                          break;
 
-                    case "Warlock":
-                        id = klasse.id;
-                        break;
-                }
-            }
-            return id;
-        }
+                      case "Hunter":
+                          id = klasse.id;
+                          break;
 
+                      case "Warlock":
+                          id = klasse.id;
+                          break;
+                  }
+              }
+              return id;
+    }*/
+
+        /*
         private List <string> OphalenRas()
         {
+
             List<CharacterCustomization> rassen = DatabaseOperations.OphalenCharacterOptiesVoorAanmaken();
             List<string> returnLijst = new List<string>();
 
@@ -138,20 +143,21 @@ namespace Project_Destiny_WPF.UserControls
                 }
             }
             return returnLijst;
-        }
-       
- 
-        
+        }*/
+
+
+
 
         private void btnAanmaken_Click(object sender, RoutedEventArgs e)
         {
+            /*
            
             if (customization != null)
             {
                 karakter.CharacterCustomizationId = customization.id;
             }
             
-   
+   */
         }
 
       
@@ -167,8 +173,9 @@ namespace Project_Destiny_WPF.UserControls
 
         private void cmbKlasse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            /*
             cmbSubklasse.IsEnabled = true;
-            cmbSubklasse.ItemsSource = DatabaseOperations.OphalenCharacterSubklasseVoorAanmaken(OphalenSubklasses());
+            cmbSubklasse.ItemsSource = DatabaseOperations.OphalenCharacterSubklasseVoorAanmaken(OphalenSubklasses());*/
         }
 
         private void cmbGezicht_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -185,6 +192,7 @@ namespace Project_Destiny_WPF.UserControls
         {
 
         }
+        /*
         private string ValideerComboboxen()
         {
             
@@ -224,12 +232,13 @@ namespace Project_Destiny_WPF.UserControls
 
             return melding;
 
-            
 
-        }
+
+    }*/
 
         private void ComboboxItemsInstellenVoorBtnOpslagen()
         {
+            /*
             if (cmbGender.SelectedItem is string gender)
             {
                 customization.Gender = gender;
@@ -253,11 +262,12 @@ namespace Project_Destiny_WPF.UserControls
             {
                 customization.Marking = marking;
             }
-         
+         */
         }
 
         private void btnOpslagen_Click(object sender, RoutedEventArgs e)
         {
+            /*
             ComboboxItemsInstellenVoorBtnOpslagen();
 
             string foutmelding = ValideerComboboxen();
@@ -286,7 +296,7 @@ namespace Project_Destiny_WPF.UserControls
             else
             {
                 MessageBox.Show(foutmelding);
-            }
+            }*/
         }
     }
 }

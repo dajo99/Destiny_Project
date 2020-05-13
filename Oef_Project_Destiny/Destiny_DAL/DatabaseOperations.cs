@@ -29,16 +29,26 @@ namespace Destiny_DAL
 
 		public static List<Account> CheckLogin()
 		{
-			using (DestinyEntities destinyEntities = new DestinyEntities())
-			{
-				var query = destinyEntities.Accounts;
-					
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    var query = destinyEntities.Accounts;
 
-				return query.ToList();
 
-			}
+                    return query.ToList();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                fileOperations.Foutloggen(ex);
+                return null;
+            }            
+
 		}
-
+        /*
         public static List<CharacterCustomization> OphalenCharacterOptiesVoorAanmaken()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -84,7 +94,7 @@ namespace Destiny_DAL
            
             
         }
-
+        */
 
     }
 }

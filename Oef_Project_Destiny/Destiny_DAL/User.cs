@@ -11,7 +11,7 @@ namespace Destiny_DAL
         public static Account Acc { get; set; }
 
         public static Character Karakter { get; set; }
-        public static CharacterCustomization karakterMakenOfAanpassen { get; set; }
+        /*public static CharacterCustomization karakterMakenOfAanpassen { get; set; }*/
     }
     
 }
