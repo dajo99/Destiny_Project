@@ -16,6 +16,7 @@ using Destiny_DAL;
 using Destiny_Models;
 
 using System.ComponentModel.DataAnnotations;//voor mail te checken
+using Project_Destiny_WPF.UserControls;
 
 namespace Project_Destiny_WPF
 {
@@ -33,6 +34,7 @@ namespace Project_Destiny_WPF
             this.Close();
             w.BtnInloggen.IsEnabled = true;
             w.BtnRegistreren.IsEnabled = true;
+
 
         }
         MainWindow w = (MainWindow)Application.Current.MainWindow;
@@ -68,7 +70,7 @@ namespace Project_Destiny_WPF
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 //nieuw account aanmaken
-                Account a = new Account();
+                Destiny_DAL.Account a = new Destiny_DAL.Account();
                 a.Accountnaam = txtGebruikersnaam.Text;
                 a.Mail = txtEmailadres.Text;
                 //wachtwoord encrypteren
@@ -76,17 +78,23 @@ namespace Project_Destiny_WPF
                 a.Wachtwoord = ep;
                 if (a.IsGeldig())
                 {
-                    List<Account> accounts = new List<Account>();
+                    List<Destiny_DAL.Account> accounts = new List<Destiny_DAL.Account>();
                     accounts = DatabaseOperations.CheckLogin();
                     if (!accounts.Contains(a))
                     {
                         int ok = DatabaseOperations.ToevoegenAccount(a);
                         if (ok > 0)
                         {
+                            User.Acc = a; //nodig om account te onthouden van persoon
                             this.Close();
                             w.Accountnaam.Text = a.Accountnaam;
                             w.Loginpanel.Visibility = Visibility.Hidden;
                             w.Accountpanel.Visibility = Visibility.Visible;
+                            w.ListViewMenu.IsEnabled = true;
+
+                            w.GridMain.Children.Clear();
+                            UserControl usc = new Ingelogd();
+                            w.GridMain.Children.Add(usc);
                         }
                         else
                         {

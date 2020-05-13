@@ -1,6 +1,7 @@
 ﻿using Project_Destiny_WPF.UserControls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,7 @@ namespace Project_Destiny_WPF
             GridMain.Children.Add(usc);
             BtnRegistreren.IsEnabled = true;
             BtnInloggen.IsEnabled = true;
+            ListViewMenu.IsEnabled = false;
         }
 
         private void ButtonMenu_Click(object sender, RoutedEventArgs e)
@@ -85,8 +87,7 @@ namespace Project_Destiny_WPF
             
             Inlogscreen inlog = new Inlogscreen();
             inlog.Show();
-            BtnRegistreren.IsEnabled = false;
-            BtnInloggen.IsEnabled = false;
+            DisablingButtons();
         }
 
         private void BtnAfsluiten_Click(object sender, RoutedEventArgs e)
@@ -135,8 +136,7 @@ namespace Project_Destiny_WPF
         {
             Registerscreen registreer = new Registerscreen();
             registreer.Show();
-            BtnRegistreren.IsEnabled = false;
-            BtnInloggen.IsEnabled = false;
+            DisablingButtons();
         }
 
         private void BtnSettings_Click(object sender, RoutedEventArgs e)
@@ -144,6 +144,12 @@ namespace Project_Destiny_WPF
             GridMain.Children.Clear();
             usc = new Instellingen();
             GridMain.Children.Add(usc);
+        }
+
+        private void DisablingButtons()
+        {
+            BtnRegistreren.IsEnabled = false;
+            BtnInloggen.IsEnabled = false;
         }
     }
 }

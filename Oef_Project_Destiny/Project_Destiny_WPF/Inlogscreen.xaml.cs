@@ -1,5 +1,6 @@
 ﻿using Destiny_DAL;
 using Destiny_Models;
+using Project_Destiny_WPF.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,12 +37,12 @@ namespace Project_Destiny_WPF
 
         private void BtnInloggen_Click(object sender, RoutedEventArgs e)
         {
-            Account a = new Account();
+            Destiny_DAL.Account a = new Destiny_DAL.Account();
             a.Accountnaam = txtGebruikersnaam.Text;
             a.Wachtwoord = txtWachtwoord.Password;
 
 
-            List<Account> accounts = DatabaseOperations.CheckLogin();
+            List<Destiny_DAL.Account> accounts = DatabaseOperations.CheckLogin();
             List<string> namen = new List<string>();
             List<string> wachtwoorden = new List<string>();
 
@@ -57,11 +58,16 @@ namespace Project_Destiny_WPF
                 string dp = SecurePassword.DecryptString(wachtwoorden[idx]);
                 if (a.Wachtwoord == dp)
                 {
+                    User.Acc = a; //nodig om account te onthouden van persoon
                     this.Close();
                     w.Accountnaam.Text = a.Accountnaam;
                     w.Loginpanel.Visibility = Visibility.Hidden;
                     w.Accountpanel.Visibility = Visibility.Visible;
+                    w.ListViewMenu.IsEnabled = true;
                     
+                    w.GridMain.Children.Clear();
+                    UserControl usc = new Ingelogd();
+                    w.GridMain.Children.Add(usc);
                 }
                 else
                 {

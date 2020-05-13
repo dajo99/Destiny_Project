@@ -1,7 +1,6 @@
 ﻿using Destiny_DAL;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,14 +17,18 @@ using System.Windows.Shapes;
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
-    /// Interaction logic for Welkom.xaml
+    /// Interaction logic for Ingelogd.xaml
     /// </summary>
-    public partial class Welkom : UserControl
+    public partial class Ingelogd : UserControl
     {
-        public Welkom()
+        public Ingelogd()
         {
-            InitializeComponent();               
-            
+            InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            tbWelkom.Text += Environment.NewLine + User.Acc.Accountnaam;
         }
     }
 }
