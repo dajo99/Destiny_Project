@@ -18,9 +18,9 @@ namespace Project_Destiny_WPF.UserControls
     /// <summary>
     /// Interaction logic for Locations.xaml
     /// </summary>
-    public partial class Locations : UserControl
+    public partial class LocationsUserControl : UserControl
     {
-        public Locations()
+        public LocationsUserControl()
         {
             InitializeComponent();
         }

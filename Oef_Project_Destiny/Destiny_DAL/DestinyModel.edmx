@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DestinyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DestinyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -14,6 +14,8 @@
           <Property Name="Mail" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Regio" Type="varchar" MaxLength="255" />
           <Property Name="Wachtwoord" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Voornaam" Type="varchar" MaxLength="255" />
+          <Property Name="Achternaam" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Armor">
           <Key>
@@ -1009,8 +1011,7 @@
             <End Role="Wapen" EntitySet="Wapen" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DestinyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1024,6 +1025,8 @@
           <Property Name="Regio" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Wachtwoord" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Characters" Relationship="Self.FK_Character_Account" FromRole="Account" ToRole="Character" />
+          <Property Name="Voornaam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Achternaam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Armor">
           <Key>
@@ -2111,6 +2114,8 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="DestinyModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
+                <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Accountnaam" ColumnName="Accountnaam" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
