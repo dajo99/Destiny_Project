@@ -1,4 +1,5 @@
-﻿using Project_Destiny_WPF.UserControls;
+﻿using Destiny_DAL;
+using Project_Destiny_WPF.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Armor = Project_Destiny_WPF.UserControls.Armor;
+using Character = Project_Destiny_WPF.UserControls.Character;
+using SpecialItem = Project_Destiny_WPF.UserControls.SpecialItem;
 
 namespace Project_Destiny_WPF
 {
@@ -151,5 +155,30 @@ namespace Project_Destiny_WPF
             BtnRegistreren.IsEnabled = false;
             BtnInloggen.IsEnabled = false;
         }
+
+        private void btnAccount_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnHelp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAfmelden_Click(object sender, RoutedEventArgs e)
+        {
+            User.Acc = null;
+            GridMain.Children.Clear();
+            usc = new Welkom();
+            GridMain.Children.Add(usc);
+            BtnRegistreren.IsEnabled = true;
+            BtnInloggen.IsEnabled = true;
+            ListViewMenu.IsEnabled = false;
+            Accountpanel.Visibility = Visibility.Hidden;
+            Loginpanel.Visibility = Visibility.Visible;
+        }
+
+
     }
 }
