@@ -37,7 +37,7 @@ namespace Project_Destiny_WPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             GridMain.Children.Clear();
-            usc = new Welkom();
+            usc = new WelcomeControl();
             GridMain.Children.Add(usc);
             BtnRegistreren.IsEnabled = true;
             BtnInloggen.IsEnabled = true;
@@ -66,16 +66,16 @@ namespace Project_Destiny_WPF
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "Character":
-                    usc = new UserControls.Character();
+                    usc = new CharacterControl();
                     break;
                 case "Wapens":
-                    usc = new Weapons();
+                    usc = new WeaponsControl();
                     break;
                 case "Armor":
-                    usc = new UserControls.Armor();
+                    usc = new ArmorControl();
                     break;
                 case "SpecialItems":
-                    usc = new UserControls.SpecialItem();
+                    usc = new SpecialItemControl();
                     break;
                 case "Locations":
                     usc = new Locations();  
@@ -88,7 +88,7 @@ namespace Project_Destiny_WPF
         private void BtnInloggen_Click(object sender, RoutedEventArgs e)
         {
             
-            Inlogscreen inlog = new Inlogscreen();
+            Window inlog = new LogInWindow();
             inlog.Show();
             DisablingButtons();
         }
@@ -108,11 +108,11 @@ namespace Project_Destiny_WPF
             GridMain.Children.Clear();
             if (User.Acc == null)
             {
-                usc = new Welkom();
+                usc = new WelcomeControl();
             }
             else
             {
-                usc = new Ingelogd();
+                usc = new LoggedInControl();
             }
             
             GridMain.Children.Add(usc);
@@ -126,16 +126,16 @@ namespace Project_Destiny_WPF
                 switch (item.Name)
                 {
                     case "Character":
-                        usc = new UserControls.Character();
+                        usc = new CharacterControl();
                         break;
                     case "Wapens":
-                        usc = new Weapons();
+                        usc = new WeaponsControl();
                         break;
                     case "Armor":
-                        usc = new UserControls.Armor();
+                        usc = new ArmorControl();
                         break;
                     case "SpecialItems":
-                        usc = new UserControls.SpecialItem();
+                        usc = new UserControls.SpecialItemControl();
                         break;
                     case "Locations":
                         usc = new Locations();
@@ -147,7 +147,7 @@ namespace Project_Destiny_WPF
 
         private void BtnRegistreren_Click(object sender, RoutedEventArgs e)
         {
-            Registerscreen registreer = new Registerscreen();
+            Window registreer = new RegisterWindow();
             registreer.Show();
             DisablingButtons();
         }
@@ -155,7 +155,7 @@ namespace Project_Destiny_WPF
         private void BtnSettings_Click(object sender, RoutedEventArgs e)
         {
             GridMain.Children.Clear();
-            usc = new Instellingen();
+            usc = new SettingsControl();
             GridMain.Children.Add(usc);
         }
 
@@ -168,7 +168,7 @@ namespace Project_Destiny_WPF
         private void btnAccount_Click(object sender, RoutedEventArgs e)
         {
             GridMain.Children.Clear();
-            usc = new UserControls.Account();
+            usc = new AccountControl();
             GridMain.Children.Add(usc);
         }
 
@@ -181,7 +181,7 @@ namespace Project_Destiny_WPF
         {
             User.Acc = null;
             GridMain.Children.Clear();
-            usc = new Welkom();
+            usc = new WelcomeControl();
             GridMain.Children.Add(usc);
             BtnRegistreren.IsEnabled = true;
             BtnInloggen.IsEnabled = true;

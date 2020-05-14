@@ -19,9 +19,9 @@ namespace Project_Destiny_WPF.UserControls
     /// <summary>
     /// Interaction logic for Character_Maken.xaml
     /// </summary>
-    public partial class Character_Maken : UserControl
+    public partial class CharacterCreateControl : UserControl
     {
-        public Character_Maken()
+        public CharacterCreateControl()
         {
             InitializeComponent();
         }

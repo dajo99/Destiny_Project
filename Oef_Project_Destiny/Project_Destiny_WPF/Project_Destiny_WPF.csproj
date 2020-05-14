@@ -73,46 +73,46 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Inlogscreen.xaml.cs">
-      <DependentUpon>Inlogscreen.xaml</DependentUpon>
+    <Compile Include="LogInWindow.xaml.cs">
+      <DependentUpon>LogInWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Registerscreen.xaml.cs">
-      <DependentUpon>Registerscreen.xaml</DependentUpon>
+    <Compile Include="RegisterWindow.xaml.cs">
+      <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Account.xaml.cs">
-      <DependentUpon>Account.xaml</DependentUpon>
+    <Compile Include="UserControls\AccountControl.xaml.cs">
+      <DependentUpon>AccountControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Armor.xaml.cs">
-      <DependentUpon>Armor.xaml</DependentUpon>
+    <Compile Include="UserControls\ArmorControl.xaml.cs">
+      <DependentUpon>ArmorControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Character-Maken.xaml.cs">
-      <DependentUpon>Character-Maken.xaml</DependentUpon>
+    <Compile Include="UserControls\CharacterCreateControl.xaml.cs">
+      <DependentUpon>CharacterCreateControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Character-Wijzigen.xaml.cs">
-      <DependentUpon>Character-Wijzigen.xaml</DependentUpon>
+    <Compile Include="UserControls\CharacterChangeControl.xaml.cs">
+      <DependentUpon>CharacterChangeControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Character.xaml.cs">
-      <DependentUpon>Character.xaml</DependentUpon>
+    <Compile Include="UserControls\CharacterControl.xaml.cs">
+      <DependentUpon>CharacterControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Ingelogd.xaml.cs">
-      <DependentUpon>Ingelogd.xaml</DependentUpon>
+    <Compile Include="UserControls\LoggedInControl.xaml.cs">
+      <DependentUpon>LoggedInControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Instellingen.xaml.cs">
-      <DependentUpon>Instellingen.xaml</DependentUpon>
+    <Compile Include="UserControls\SettingsControl.xaml.cs">
+      <DependentUpon>SettingsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Locations.xaml.cs">
       <DependentUpon>Locations.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SpecialItem.xaml.cs">
-      <DependentUpon>SpecialItem.xaml</DependentUpon>
+    <Compile Include="UserControls\SpecialItemControl.xaml.cs">
+      <DependentUpon>SpecialItemControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Weapons.xaml.cs">
-      <DependentUpon>Weapons.xaml</DependentUpon>
+    <Compile Include="UserControls\WeaponsControl.xaml.cs">
+      <DependentUpon>WeaponsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Welkom.xaml.cs">
-      <DependentUpon>Welkom.xaml</DependentUpon>
+    <Compile Include="UserControls\WelcomeControl.xaml.cs">
+      <DependentUpon>WelcomeControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="Inlogscreen.xaml">
+    <Page Include="LogInWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,35 +128,35 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Registerscreen.xaml">
+    <Page Include="RegisterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Account.xaml">
+    <Page Include="UserControls\AccountControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Armor.xaml">
+    <Page Include="UserControls\ArmorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Character-Maken.xaml">
+    <Page Include="UserControls\CharacterCreateControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\Character-Wijzigen.xaml">
+    <Page Include="UserControls\CharacterChangeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Character.xaml">
+    <Page Include="UserControls\CharacterControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Ingelogd.xaml">
+    <Page Include="UserControls\LoggedInControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Instellingen.xaml">
+    <Page Include="UserControls\SettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,15 +164,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\SpecialItem.xaml">
+    <Page Include="UserControls\SpecialItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Weapons.xaml">
+    <Page Include="UserControls\WeaponsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Welkom.xaml">
+    <Page Include="UserControls\WelcomeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

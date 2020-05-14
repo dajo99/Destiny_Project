@@ -20,9 +20,9 @@ namespace Project_Destiny_WPF
     /// <summary>
     /// Interaction logic for Inlogscreen.xaml
     /// </summary>
-    public partial class Inlogscreen : Window
+    public partial class LogInWindow : Window
     {
-        public Inlogscreen()
+        public LogInWindow()
         {
             InitializeComponent();
         }
@@ -41,12 +41,12 @@ namespace Project_Destiny_WPF
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                Destiny_DAL.Account a = new Destiny_DAL.Account();
+                Account a = new Account();
                 a.Accountnaam = txtGebruikersnaam.Text;
                 a.Wachtwoord = txtWachtwoord.Password;
 
 
-                List<Destiny_DAL.Account> accounts = DatabaseOperations.CheckLogin();
+                List<Account> accounts = DatabaseOperations.CheckLogin();
                 List<string> namen = new List<string>();
                 List<string> wachtwoorden = new List<string>();
 
@@ -70,7 +70,7 @@ namespace Project_Destiny_WPF
                         w.ListViewMenu.IsEnabled = true;
 
                         w.GridMain.Children.Clear();
-                        UserControl usc = new Ingelogd();
+                        UserControl usc = new LoggedInControl();
                         w.GridMain.Children.Add(usc);
                     }
                     else
@@ -93,7 +93,7 @@ namespace Project_Destiny_WPF
         private void BtnGeenAccount_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            Registerscreen register = new Registerscreen();
+            Window register = new RegisterWindow();
             register.Show();
         }
 

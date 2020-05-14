@@ -20,9 +20,9 @@ namespace Project_Destiny_WPF.UserControls
     /// <summary>
     /// Interaction logic for Welkom.xaml
     /// </summary>
-    public partial class Welkom : UserControl
+    public partial class WelcomeControl : UserControl
     {
-        public Welkom()
+        public WelcomeControl()
         {
             InitializeComponent();               
             
