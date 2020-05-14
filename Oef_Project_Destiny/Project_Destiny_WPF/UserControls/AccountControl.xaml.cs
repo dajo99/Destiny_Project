@@ -18,9 +18,9 @@ namespace Project_Destiny_WPF.UserControls
     /// <summary>
     /// Interaction logic for Account.xaml
     /// </summary>
-    public partial class Account : UserControl
+    public partial class AccountControl : UserControl
     {
-        public Account()
+        public AccountControl()
         {
             InitializeComponent();
         }

@@ -18,9 +18,9 @@ namespace Project_Destiny_WPF.UserControls
     /// <summary>
     /// Interaction logic for Character.xaml
     /// </summary>
-    public partial class Character : UserControl
+    public partial class CharacterControl : UserControl
     {
-        public Character()
+        public CharacterControl()
         {
             InitializeComponent();
         }
@@ -31,7 +31,7 @@ namespace Project_Destiny_WPF.UserControls
         {
 
             w.GridMain.Children.Clear();
-            UserControl usc = new Character_Wijzigen();
+            UserControl usc = new CharacterChangeControl();
             w.GridMain.Children.Add(usc);
 
 
@@ -40,7 +40,7 @@ namespace Project_Destiny_WPF.UserControls
         private void btnAanmaken_Click(object sender, RoutedEventArgs e)
         {
             w.GridMain.Children.Clear();
-            UserControl usc = new Character_Maken();
+            UserControl usc = new CharacterCreateControl();
             w.GridMain.Children.Add(usc);
         }
     }

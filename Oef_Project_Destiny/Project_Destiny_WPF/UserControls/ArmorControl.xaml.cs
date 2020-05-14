@@ -16,21 +16,16 @@ using System.Windows.Shapes;
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
-    /// Interaction logic for SpecialItem.xaml
+    /// Interaction logic for Armor.xaml
     /// </summary>
-    public partial class SpecialItem : UserControl
+    public partial class ArmorControl : UserControl
     {
-        public SpecialItem()
+        public ArmorControl()
         {
             InitializeComponent();
         }
 
-        private void tbZoekItem_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void cmbCategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void tbZoekArmor_KeyDown(object sender, KeyEventArgs e)
         {
 
         }
@@ -40,7 +35,17 @@ namespace Project_Destiny_WPF.UserControls
 
         }
 
-        private void dbItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dbArmor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cmbArmorSlot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
 
         }

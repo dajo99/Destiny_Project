@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Destiny_DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,38 +17,18 @@ using System.Windows.Shapes;
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
-    /// Interaction logic for Armor.xaml
+    /// Interaction logic for Ingelogd.xaml
     /// </summary>
-    public partial class Armor : UserControl
+    public partial class LoggedInControl : UserControl
     {
-        public Armor()
+        public LoggedInControl()
         {
             InitializeComponent();
         }
 
-        private void tbZoekArmor_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void cmbZeldzaamheid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void dbArmor_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void cmbArmorSlot_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
+            tbWelkom.Text += Environment.NewLine + User.Acc.Accountnaam;
         }
     }
 }
