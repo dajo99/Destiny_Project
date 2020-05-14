@@ -82,7 +82,7 @@ namespace Destiny_DAL
                 return query.ToList();
             }
         }
-       
+
         public static int CharacterToevoegen(Character aanmaking)
         {
 
@@ -100,13 +100,44 @@ namespace Destiny_DAL
                 fileOperations.Foutloggen(ex);
                 return 0;
             }
-                
-            
-           
-              
+
+
+
+
 
         }
 
+        public static List<Character> CharactersOphalenViaAccountId(int id)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                var query = destinyEntities.Characters.Include(x => x.Ras)
+                    .Include(x => x.CharacterKlasse)
+                    .Where(x => x.AccountId == id)
+                    .OrderBy(x => x.AccountId);
 
+                return query.ToList();
+
+            }
+        }
+
+        public static int CharacterVerwijderen(Character verwijderen)
+        {
+
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(verwijderen).State = EntityState.Deleted;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Project_Destiny_WPF.UserControls;
+using Destiny_DAL;
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
@@ -26,6 +27,27 @@ namespace Project_Destiny_WPF.UserControls
         }
 
         MainWindow w = (MainWindow)Application.Current.MainWindow;
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<Character> karakters = DatabaseOperations.CharactersOphalenViaAccountId(User.Acc.id);
+
+            if (karakters.Count > 0)
+            {
+                lbCharacters.Items.Clear();
+                lbCharacters.Items.Add(User.Acc.Accountnaam + "," + Environment.NewLine
+                       + "u beschikt over volgende karakters" + Environment.NewLine + new string('*', 1000) + Environment.NewLine);
+                foreach (var item in karakters)
+                {
+                    lbCharacters.Items.Add("karakter " +  ": " + item.Ras + " " +
+                    item.Gender + " " + item.HeadOption + " " + item.Face + " " + item.Marking + " "
+                    + item.CharacterKlasse.Naam +  "\n\n"+"Level van het karakter: "
+                    + item.Level + "\n\n" + new string('*', 1000));
+                   
+                }
+            }
+            
+        }
 
         private void btnAanpassen_Click(object sender, RoutedEventArgs e)
         {
@@ -42,6 +64,26 @@ namespace Project_Destiny_WPF.UserControls
             w.GridMain.Children.Clear();
             UserControl usc = new CharacterCreateControl();
             w.GridMain.Children.Add(usc);
+        }
+
+        private void btnVerwijderen_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (lbCharacters.SelectedItem is Character character)
+            {
+                
+              int ok = DatabaseOperations.CharacterVerwijderen(character);
+                if (ok > 0)
+                {
+                    MessageBox.Show("Karakter is succesvol verwijderd!", "succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                    lbCharacters.Items.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show("niet verwijderd");
+                }
+            }
+            */
         }
     }
 }

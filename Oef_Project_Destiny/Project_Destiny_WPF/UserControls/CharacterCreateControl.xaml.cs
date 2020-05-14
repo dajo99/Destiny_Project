@@ -272,7 +272,7 @@ namespace Project_Destiny_WPF.UserControls
                 
                 MessageBox.Show("karakter succesvol toegevoegd");
                 w.GridMain.Children.Clear();
-                UserControl usc = new CharacterCreateControl();
+                UserControl usc = new CharacterControl();
                 w.GridMain.Children.Add(usc);
             }
            

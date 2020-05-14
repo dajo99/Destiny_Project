@@ -135,6 +135,7 @@
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Partials\Account.cs" />
+    <Compile Include="Partials\Character.cs" />
     <Compile Include="Partials\CharacterKlasse.cs" />
     <Compile Include="Partials\CharacterSubklasse.cs" />
     <Compile Include="Partials\Ras.cs" />
