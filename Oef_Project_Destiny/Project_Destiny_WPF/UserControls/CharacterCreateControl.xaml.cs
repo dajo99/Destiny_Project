@@ -39,7 +39,7 @@ namespace Project_Destiny_WPF.UserControls
             cmbGender.ItemsSource = OphalenOpties("gender");
             cmbMarking.ItemsSource = OphalenOpties("tattoo");
             cmbRas.ItemsSource = OphalenRassen();
-            cmbKlasse.ItemsSource = DatabaseOperations.OphalenCharacterKlasseVoorAanmaken();
+            cmbKlasse.ItemsSource = ControleKlasses();
             ///een subklasse kan niet gekozen worden zolang de klasse niet is gekozen
             cmbSubklasse.IsEnabled = false;
 
@@ -48,7 +48,20 @@ namespace Project_Destiny_WPF.UserControls
             btnAanmaken.IsEnabled = false;
 
         }
-
+        public List<CharacterKlasse>ControleKlasses()
+        {
+            List<CharacterKlasse>klasses = DatabaseOperations.OphalenCharacterKlasseVoorAanmaken();
+            List<CharacterKlasse> returnList = new List<CharacterKlasse>();
+            foreach (var item in klasses)
+            {
+                if (!returnList.Contains(item))
+                {
+                    returnList.Add(item);
+                }
+                
+            }
+            return returnList;
+        }
         public List<string> OphalenOpties(string beschrijving)
         {
 
@@ -96,7 +109,11 @@ namespace Project_Destiny_WPF.UserControls
             {
                 if (item.Naam == "Awoken" || item.Naam == "Human" || item.Naam == "Exo")
                 {
-                    returnLijst.Add(item);
+                    if (!returnLijst.Contains(item))
+                    {
+                        returnLijst.Add(item);
+                    }
+                    
                 }
             }
             return returnLijst;
@@ -194,7 +211,6 @@ namespace Project_Destiny_WPF.UserControls
             if (cmbRas.SelectedItem is Ras ras)
             {
                 karakter.RasId = ras.id;
-                karakter.Ras = ras;
             }
 
             if (cmbMarking.SelectedItem is string marking)
@@ -202,13 +218,10 @@ namespace Project_Destiny_WPF.UserControls
                 karakter.Marking = marking;
             }
 
-            if (cmbKlasse.SelectedItem is CharacterKlasse klasse && cmbSubklasse.SelectedItem is CharacterSubklasse subklasse)
+            if (cmbKlasse.SelectedItem is CharacterKlasse klasse)
             {
-                karakter.CharacterKlasse = klasse;
-                if (karakter.CharacterKlasse.id == subklasse.CharacterKlasseId)
-                {
-                    karakter.CharacterKlasse.CharacterSubklasses.Add(subklasse);
-                }
+                karakter.CharacterKlasseId = klasse.id;
+                
             }
         }
 
@@ -230,24 +243,17 @@ namespace Project_Destiny_WPF.UserControls
 
             if (string.IsNullOrWhiteSpace(foutmelding))
             {
-                attributen.Add("haar: " + karakter.HeadOption);
-                attributen.Add("ras: " + karakter.Ras.Naam + karakter.RasId); ;
-                attributen.Add("gezicht: " + karakter.Face);
-                attributen.Add("gender: " + karakter.Gender);
-                attributen.Add("marking: " + karakter.Marking);
-                attributen.Add("Klasse: " + karakter.CharacterKlasse.Naam);
-
-                foreach (var item in karakter.CharacterKlasse.CharacterSubklasses)
-                {
-                    if (item == cmbSubklasse.SelectedItem as CharacterSubklasse)
-                    {
-                        attributen.Add("Subklasse: " + item.Naam);
-                    }
-
-                }
+                attributen.Add("haar: " + cmbHaar.SelectedItem as string);
+                attributen.Add("ras: " + cmbRas.SelectedItem as string); ;
+                attributen.Add("gezicht: " + cmbGezicht.SelectedItem as string);
+                attributen.Add("gender: " + cmbGender.SelectedItem as string);
+                attributen.Add("marking: " + cmbMarking.SelectedItem as string);
+                attributen.Add("Klasse: " + cmbKlasse.SelectedItem as string);
+                attributen.Add("Subklasse: " + cmbSubklasse.SelectedItem as string);
+                  
                 lstToon.ItemsSource = attributen;
-                btnAanmaken.IsEnabled = true;
                 MessageBox.Show("Als je zeker bent van je keuzes dan kan je nu het karakter aanmaken", "melding",MessageBoxButton.OK,MessageBoxImage.Information);
+                btnAanmaken.IsEnabled = true;
             }
            
 
@@ -255,17 +261,22 @@ namespace Project_Destiny_WPF.UserControls
 
         private void btnAanmaken_Click(object sender, RoutedEventArgs e)
         {
-            User.Acc.id = DatabaseOperations.IdOphalenAccount(User.Acc.Accountnaam);
+            MainWindow w = (MainWindow)Application.Current.MainWindow;
             karakter.AccountId = User.Acc.id;
-            //startlevel//
+
+            ///startlevel///
             karakter.Level = 5;
             int ok = DatabaseOperations.CharacterToevoegen(karakter);
             if (ok > 0)
             {
-                User.Karakters.Add(karakter);
-                MessageBox.Show("karakter succesvol toegevoegt");
+                
+                MessageBox.Show("karakter succesvol toegevoegd");
+                w.GridMain.Children.Clear();
+                UserControl usc = new CharacterCreateControl();
+                w.GridMain.Children.Add(usc);
             }
-            
+           
+
         }
     }
 }
