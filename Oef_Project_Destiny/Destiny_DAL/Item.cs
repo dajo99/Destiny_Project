@@ -17,7 +17,7 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item()
         {
-            this.CharacterInventories = new HashSet<CharacterInventory>();
+            this.Inventories = new HashSet<Inventory>();
             this.NpcSellItems = new HashSet<NpcSellItem>();
             this.RewardTables = new HashSet<RewardTable>();
         }
@@ -31,7 +31,7 @@ namespace Destiny_DAL
     
         public virtual Armor Armor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CharacterInventory> CharacterInventories { get; set; }
+        public virtual ICollection<Inventory> Inventories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NpcSellItem> NpcSellItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

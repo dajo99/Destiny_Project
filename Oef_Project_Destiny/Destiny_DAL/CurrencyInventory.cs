@@ -15,11 +15,11 @@ namespace Destiny_DAL
     public partial class CurrencyInventory
     {
         public int id { get; set; }
-        public int CharacterInventoryId { get; set; }
+        public int InventoryId { get; set; }
         public int CurrencyId { get; set; }
         public int AmountOfCurrency { get; set; }
     
-        public virtual CharacterInventory CharacterInventory { get; set; }
         public virtual Currency Currency { get; set; }
+        public virtual Inventory Inventory { get; set; }
     }
 }

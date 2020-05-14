@@ -18,17 +18,17 @@ namespace Destiny_DAL
         public Wapen()
         {
             this.Enemies = new HashSet<Enemy>();
-            this.PerkWapens = new HashSet<PerkWapen>();
+            this.PerksWapen = new HashSet<PerkWapen>();
         }
     
         public int id { get; set; }
-        public int Magazine { get; set; }
-        public int FireRate { get; set; }
-        public int Impact { get; set; }
-        public int Stability { get; set; }
-        public int ReloadSpeed { get; set; }
+        public Nullable<int> Magazine { get; set; }
+        public Nullable<int> FireRate { get; set; }
+        public Nullable<int> Impact { get; set; }
+        public Nullable<int> Stability { get; set; }
+        public Nullable<int> ReloadSpeed { get; set; }
         public string Soort { get; set; }
-        public int LightAmount { get; set; }
+        public Nullable<int> LightAmount { get; set; }
         public Nullable<int> MaxPerks { get; set; }
         public int DamagetypeId { get; set; }
         public int WapenklasseId { get; set; }
@@ -38,7 +38,7 @@ namespace Destiny_DAL
         public virtual ICollection<Enemy> Enemies { get; set; }
         public virtual Item Item { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PerkWapen> PerkWapens { get; set; }
+        public virtual ICollection<PerkWapen> PerksWapen { get; set; }
         public virtual Wapenklasse Wapenklasse { get; set; }
     }
 }

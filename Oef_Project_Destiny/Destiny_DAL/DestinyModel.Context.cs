@@ -25,37 +25,36 @@ namespace Destiny_DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Account { get; set; }
-        public virtual DbSet<Armor> Armor { get; set; }
-        public virtual DbSet<Character> Character { get; set; }
-        public virtual DbSet<CharacterCustomization> CharacterCustomization { get; set; }
-        public virtual DbSet<CharacterInventory> CharacterInventory { get; set; }
-        public virtual DbSet<CharacterKlasse> CharacterKlasse { get; set; }
-        public virtual DbSet<CharacterSubklasse> CharacterSubklasse { get; set; }
-        public virtual DbSet<Currency> Currency { get; set; }
-        public virtual DbSet<CurrencyDropTable> CurrencyDropTable { get; set; }
-        public virtual DbSet<CurrencyInventory> CurrencyInventory { get; set; }
-        public virtual DbSet<Damagetype> Damagetype { get; set; }
-        public virtual DbSet<Enemy> Enemy { get; set; }
-        public virtual DbSet<GranaatAbilityDamage> GranaatAbilityDamage { get; set; }
-        public virtual DbSet<GranaatSubklasse> GranaatSubklasse { get; set; }
-        public virtual DbSet<Item> Item { get; set; }
-        public virtual DbSet<Locatie> Locatie { get; set; }
-        public virtual DbSet<Map> Map { get; set; }
-        public virtual DbSet<MapEnemy> MapEnemy { get; set; }
-        public virtual DbSet<Mission> Mission { get; set; }
-        public virtual DbSet<Npc> Npc { get; set; }
-        public virtual DbSet<NpcSellItem> NpcSellItem { get; set; }
-        public virtual DbSet<Perk> Perk { get; set; }
-        public virtual DbSet<PerkArmor> PerkArmor { get; set; }
-        public virtual DbSet<PerkWapen> PerkWapen { get; set; }
-        public virtual DbSet<Ras> Ras { get; set; }
-        public virtual DbSet<RewardTable> RewardTable { get; set; }
-        public virtual DbSet<SpecialItem> SpecialItem { get; set; }
-        public virtual DbSet<SpecialItemCategorie> SpecialItemCategorie { get; set; }
-        public virtual DbSet<SubklasseAbility> SubklasseAbility { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Armor> Armors { get; set; }
+        public virtual DbSet<Character> Characters { get; set; }
+        public virtual DbSet<CharacterKlasse> CharacterKlasses { get; set; }
+        public virtual DbSet<CharacterSubklasse> CharacterSubklasses { get; set; }
+        public virtual DbSet<Currency> Currencies { get; set; }
+        public virtual DbSet<CurrencyDropTable> CurrencyDropTables { get; set; }
+        public virtual DbSet<CurrencyInventory> CurrencyInventories { get; set; }
+        public virtual DbSet<Damagetype> Damagetypes { get; set; }
+        public virtual DbSet<Enemy> Enemies { get; set; }
+        public virtual DbSet<GranaatAbilityDamage> GranaatAbilityDamages { get; set; }
+        public virtual DbSet<GranaatSubklasse> GranaatSubklasses { get; set; }
+        public virtual DbSet<Inventory> Inventories { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<Locatie> Locaties { get; set; }
+        public virtual DbSet<Map> Maps { get; set; }
+        public virtual DbSet<MapEnemy> MapEnemies { get; set; }
+        public virtual DbSet<Mission> Missions { get; set; }
+        public virtual DbSet<Npc> Npcs { get; set; }
+        public virtual DbSet<NpcSellItem> NpcSellItems { get; set; }
+        public virtual DbSet<Perk> Perks { get; set; }
+        public virtual DbSet<PerkArmor> PerkArmors { get; set; }
+        public virtual DbSet<PerkWapen> PerkWapens { get; set; }
+        public virtual DbSet<Ras> Ras1 { get; set; }
+        public virtual DbSet<RewardTable> RewardTables { get; set; }
+        public virtual DbSet<SpecialItem> SpecialItems { get; set; }
+        public virtual DbSet<SpecialItemCategorie> SpecialItemCategories { get; set; }
+        public virtual DbSet<SubklasseAbility> SubklasseAbilities { get; set; }
         public virtual DbSet<SubklassePerk> SubklassePerks { get; set; }
-        public virtual DbSet<Wapen> Wapen { get; set; }
-        public virtual DbSet<Wapenklasse> Wapenklasse { get; set; }
+        public virtual DbSet<Wapen> Wapens { get; set; }
+        public virtual DbSet<Wapenklasse> Wapenklasses { get; set; }
     }
 }

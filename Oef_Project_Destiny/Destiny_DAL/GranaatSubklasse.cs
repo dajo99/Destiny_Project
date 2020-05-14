@@ -17,7 +17,7 @@ namespace Destiny_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public GranaatSubklasse()
         {
-            this.GranaatAbilityDamages = new HashSet<GranaatAbilityDamage>();
+            this.GranaatAbilitiesDamage = new HashSet<GranaatAbilityDamage>();
         }
     
         public int id { get; set; }
@@ -26,6 +26,6 @@ namespace Destiny_DAL
     
         public virtual CharacterSubklasse CharacterSubklasse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GranaatAbilityDamage> GranaatAbilityDamages { get; set; }
+        public virtual ICollection<GranaatAbilityDamage> GranaatAbilitiesDamage { get; set; }
     }
 }
