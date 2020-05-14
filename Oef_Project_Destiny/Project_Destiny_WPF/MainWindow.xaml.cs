@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,9 +17,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Armor = Project_Destiny_WPF.UserControls.Armor;
-using Character = Project_Destiny_WPF.UserControls.Character;
-using SpecialItem = Project_Destiny_WPF.UserControls.SpecialItem;
+
 
 namespace Project_Destiny_WPF
 {
@@ -67,16 +66,16 @@ namespace Project_Destiny_WPF
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "Character":
-                    usc = new Character();
+                    usc = new UserControls.Character();
                     break;
                 case "Wapens":
                     usc = new Weapons();
                     break;
                 case "Armor":
-                    usc = new Armor();
+                    usc = new UserControls.Armor();
                     break;
                 case "SpecialItems":
-                    usc = new SpecialItem();
+                    usc = new UserControls.SpecialItem();
                     break;
                 case "Locations":
                     usc = new Locations();  
@@ -106,7 +105,17 @@ namespace Project_Destiny_WPF
 
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
+            GridMain.Children.Clear();
+            if (User.Acc == null)
+            {
+                usc = new Welkom();
+            }
+            else
+            {
+                usc = new Ingelogd();
+            }
             
+            GridMain.Children.Add(usc);
         }
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -117,16 +126,16 @@ namespace Project_Destiny_WPF
                 switch (item.Name)
                 {
                     case "Character":
-                        usc = new Character();
+                        usc = new UserControls.Character();
                         break;
                     case "Wapens":
                         usc = new Weapons();
                         break;
                     case "Armor":
-                        usc = new Armor();
+                        usc = new UserControls.Armor();
                         break;
                     case "SpecialItems":
-                        usc = new SpecialItem();
+                        usc = new UserControls.SpecialItem();
                         break;
                     case "Locations":
                         usc = new Locations();
@@ -158,7 +167,9 @@ namespace Project_Destiny_WPF
 
         private void btnAccount_Click(object sender, RoutedEventArgs e)
         {
-
+            GridMain.Children.Clear();
+            usc = new UserControls.Account();
+            GridMain.Children.Add(usc);
         }
 
         private void btnHelp_Click(object sender, RoutedEventArgs e)
@@ -178,7 +189,5 @@ namespace Project_Destiny_WPF
             Accountpanel.Visibility = Visibility.Hidden;
             Loginpanel.Visibility = Visibility.Visible;
         }
-
-
     }
 }
