@@ -18,9 +18,9 @@ namespace Project_Destiny_WPF.UserControls
     /// <summary>
     /// Interaction logic for Instellingen.xaml
     /// </summary>
-    public partial class Instellingen : UserControl
+    public partial class SettingsControl : UserControl
     {
-        public Instellingen()
+        public SettingsControl()
         {
             InitializeComponent();
         }

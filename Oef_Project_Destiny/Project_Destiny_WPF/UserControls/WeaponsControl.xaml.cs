@@ -1,5 +1,4 @@
-﻿using Destiny_DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,18 +16,37 @@ using System.Windows.Shapes;
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
-    /// Interaction logic for Ingelogd.xaml
+    /// Interaction logic for Weapons.xaml
     /// </summary>
-    public partial class Ingelogd : UserControl
+    public partial class WeaponsControl : UserControl
     {
-        public Ingelogd()
+        public WeaponsControl()
         {
             InitializeComponent();
+        }
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            tbWelkom.Text += Environment.NewLine + User.Acc.Accountnaam;
+
+        }
+
+        private void cmbCategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cmbZeldzaamheid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void dbWapens_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

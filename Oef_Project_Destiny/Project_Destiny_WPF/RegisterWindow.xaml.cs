@@ -23,9 +23,9 @@ namespace Project_Destiny_WPF
     /// <summary>
     /// Interaction logic for Registerscreen.xaml
     /// </summary>
-    public partial class Registerscreen : Window
+    public partial class RegisterWindow : Window
     {
-        public Registerscreen()
+        public RegisterWindow()
         {
             InitializeComponent();
         }
@@ -70,16 +70,15 @@ namespace Project_Destiny_WPF
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 //nieuw account aanmaken
-                Destiny_DAL.Account a = new Destiny_DAL.Account();
+                Account a = new Account();
                 a.Accountnaam = txtGebruikersnaam.Text;
                 a.Mail = txtEmailadres.Text;
                 //wachtwoord encrypteren
                 string ep = SecurePassword.EncryptString(txtWachtwoord.Password);
                 a.Wachtwoord = ep;
                 if (a.IsGeldig())
-                {
-                    List<Destiny_DAL.Account> accounts = new List<Destiny_DAL.Account>();
-                    accounts = DatabaseOperations.CheckLogin();
+                {                 
+                    List<Account> accounts = DatabaseOperations.CheckLogin();
                     if (!accounts.Contains(a))
                     {
                         int ok = DatabaseOperations.ToevoegenAccount(a);
@@ -93,7 +92,7 @@ namespace Project_Destiny_WPF
                             w.ListViewMenu.IsEnabled = true;
 
                             w.GridMain.Children.Clear();
-                            UserControl usc = new Ingelogd();
+                            UserControl usc = new LoggedInControl();
                             w.GridMain.Children.Add(usc);
                         }
                         else
@@ -121,7 +120,7 @@ namespace Project_Destiny_WPF
         private void BtnAlAccount_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            Inlogscreen inlog = new Inlogscreen();
+            Window inlog = new LogInWindow();
             inlog.Show();
         }
     }

@@ -1,4 +1,4 @@
-﻿<Window x:Class="Project_Destiny_WPF.Registerscreen"
+﻿<Window x:Class="Project_Destiny_WPF.RegisterWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -27,9 +27,6 @@
             <PasswordBox x:Name="txtWachtwoord" Background="#555555" Foreground="White" FontSize="18"/>
             <Label Content="Herhaal Wachtwoord" Foreground="#00FFFF" />
             <PasswordBox x:Name="txtHerhaalWachtwoord" Background="#555555" Foreground="White" FontSize="18"/>
-
-
-
             <Button x:Name="BtnRegistreren" Content="Registreren" Background="#555555" Foreground="White" BorderBrush="{x:Null}"  Margin="70,30" RenderTransformOrigin="0.49,-0.153" Click="BtnRegistreren_Click"/>
             <Button x:Name="BtnAlAccount" Content="Al een account?" Foreground="White" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnAlAccount_Click"/>
         </StackPanel>
