@@ -59,7 +59,7 @@ namespace Destiny_DAL
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
-                var query = destinyEntities.CharacterKlasses;
+                var query = destinyEntities.CharacterKlasses.Include(x => x.CharacterSubklasses);
                 return query.ToList();
             }
         }
@@ -73,6 +73,7 @@ namespace Destiny_DAL
             }
         }
 
+
         public static List<Ras> OphalenRasVoorAanmaken()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -81,15 +82,28 @@ namespace Destiny_DAL
                 return query.ToList();
             }
         }
-        public static int InstellingenVanAanmakenOpslaanInDatabase(Character aanmaking)
+       
+        public static int CharacterToevoegen(Character aanmaking)
         {
 
-            using (DestinyEntities destinyEntities = new DestinyEntities())
+            try
             {
-                destinyEntities.Characters.Add(aanmaking);
-                return destinyEntities.SaveChanges();
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Characters.Add(aanmaking);
+                    return destinyEntities.SaveChanges();
+                }
             }
+            catch (Exception ex)
+            {
 
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+                
+            
+           
+              
 
         }
 
