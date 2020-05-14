@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Data.Entity;
+
 namespace Destiny_DAL
 {
     public static class DatabaseOperations
@@ -84,6 +85,7 @@ namespace Destiny_DAL
        
         public static int CharacterToevoegen(Character aanmaking)
         {
+
             try
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -102,8 +104,9 @@ namespace Destiny_DAL
             
            
               
+
         }
-        
+
 
     }
 }
