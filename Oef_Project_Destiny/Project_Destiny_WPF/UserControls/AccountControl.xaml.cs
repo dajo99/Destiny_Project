@@ -31,7 +31,7 @@ namespace Project_Destiny_WPF.UserControls
         {
             txtProfielnaam.Text = User.Acc.Accountnaam;
             txtMail.Text = User.Acc.Mail;
-            
+            txtVoornaam.Text = User.Acc.Voornaam;
             ResetVelden();
         }
 
