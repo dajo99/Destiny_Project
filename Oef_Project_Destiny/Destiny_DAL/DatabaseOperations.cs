@@ -5,50 +5,48 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Data.Entity;
+
 namespace Destiny_DAL
 {
     public static class DatabaseOperations
     {
         public static int ToevoegenAccount(Account a)
         {
-			try
-			{
-				using (DestinyEntities destinyEntities = new DestinyEntities())
-				{
-					destinyEntities.Accounts.Add(a);
-					return destinyEntities.SaveChanges();
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message);
-                fileOperations.Foutloggen(ex);
-				return 0;
-			}
-        }
-
-		public static List<Account> CheckLogin()
-		{
             try
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
-                    var query = destinyEntities.Accounts;
-
-
-                    return query.ToList();
-
+                    destinyEntities.Accounts.Add(a);
+                    return destinyEntities.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 fileOperations.Foutloggen(ex);
-                return null;
-            }            
+                return 0;
+            }
+        }
 
-		}
-       
+        public static List<Account> CheckLogin()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Accounts
+                    .ToList();
+
+            }
+
+        }
+
+        public static Account OphalenAccount(string accountnaam)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Accounts
+                    .Where(x => x.Accountnaam.Contains(accountnaam)).SingleOrDefault();
+            }
+        }
+
         public static List<Character> OphalenCharacterOptiesVoorAanmaken()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -85,16 +83,16 @@ namespace Destiny_DAL
         }
         public static int InstellingenVanAanmakenOpslaanInDatabase(Character aanmaking)
         {
-           
-                using (DestinyEntities destinyEntities = new DestinyEntities())
-                {
-                    destinyEntities.Characters.Add(aanmaking);
-                    return destinyEntities.SaveChanges();
-                }
-           
-            
+
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                destinyEntities.Characters.Add(aanmaking);
+                return destinyEntities.SaveChanges();
+            }
+
+
         }
-        
+
 
     }
 }
