@@ -28,8 +28,8 @@ namespace Project_Destiny_WPF.UserControls
 
 
 
-        
-        Destiny_DAL.Character karakter  = new Destiny_DAL.Character();
+
+        Destiny_DAL.Character karakter = new Destiny_DAL.Character();
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -83,12 +83,12 @@ namespace Project_Destiny_WPF.UserControls
                 lijst.Add("Vrouw");
 
             }
-         
-               
+
+
             return lijst;
 
         }
-        private List<Ras>OphalenRassen()
+        private List<Ras> OphalenRassen()
         {
             List<Ras> rassen = DatabaseOperations.OphalenRasVoorAanmaken();
             List<Ras> returnLijst = new List<Ras>();
@@ -130,12 +130,12 @@ namespace Project_Destiny_WPF.UserControls
 
 
 
-        
 
-       
+
+
         private string ValideerComboboxen()
         {
-           
+
             string melding = "";
 
             if (cmbGender.SelectedIndex == -1)
@@ -175,7 +175,7 @@ namespace Project_Destiny_WPF.UserControls
         }
 
 
-       
+
         private void ComboboxItemsInstellenVoorBtnTonen()
         {
 
@@ -202,38 +202,70 @@ namespace Project_Destiny_WPF.UserControls
                 karakter.Marking = marking;
             }
 
+            if (cmbKlasse.SelectedItem is CharacterKlasse klasse && cmbSubklasse.SelectedItem is CharacterSubklasse subklasse)
+            {
+                karakter.CharacterKlasse = klasse;
+                if (karakter.CharacterKlasse.id == subklasse.CharacterKlasseId)
+                {
+                    karakter.CharacterKlasse.CharacterSubklasses.Add(subklasse);
+                }
+            }
         }
 
         private void cmbKlasse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-                cmbSubklasse.IsEnabled = true;
-                cmbSubklasse.ItemsSource = DatabaseOperations.OphalenCharacterSubklasseVoorAanmaken(OphalenSubklasses());
-            
+            cmbSubklasse.IsEnabled = true;
+            cmbSubklasse.ItemsSource = DatabaseOperations.OphalenCharacterSubklasseVoorAanmaken(OphalenSubklasses());
+
         }
 
-        
+
 
         private void btnToon_Click(object sender, RoutedEventArgs e)
         {
-           
+            string foutmelding = ValideerComboboxen();
             ComboboxItemsInstellenVoorBtnTonen();
             List<string> attributen = new List<string>();
-              
+
+            if (string.IsNullOrWhiteSpace(foutmelding))
+            {
                 attributen.Add("haar: " + karakter.HeadOption);
-                attributen.Add("ras: " + karakter.Ras.Naam);
+                attributen.Add("ras: " + karakter.Ras.Naam + karakter.RasId); ;
                 attributen.Add("gezicht: " + karakter.Face);
                 attributen.Add("gender: " + karakter.Gender);
                 attributen.Add("marking: " + karakter.Marking);
+                attributen.Add("Klasse: " + karakter.CharacterKlasse.Naam);
+
+                foreach (var item in karakter.CharacterKlasse.CharacterSubklasses)
+                {
+                    if (item == cmbSubklasse.SelectedItem as CharacterSubklasse)
+                    {
+                        attributen.Add("Subklasse: " + item.Naam);
+                    }
+
+                }
                 lstToon.ItemsSource = attributen;
-                lstToon.Items.Refresh();
                 btnAanmaken.IsEnabled = true;
-            
+                MessageBox.Show("Als je zeker bent van je keuzes dan kan je nu het karakter aanmaken", "melding",MessageBoxButton.OK,MessageBoxImage.Information);
+            }
+           
+
         }
 
         private void btnAanmaken_Click(object sender, RoutedEventArgs e)
         {
-
+            User.Acc.id = DatabaseOperations.IdOphalenAccount(User.Acc.Accountnaam);
+            karakter.AccountId = User.Acc.id;
+            //startlevel//
+            karakter.Level = 5;
+            int ok = DatabaseOperations.CharacterToevoegen(karakter);
+            if (ok > 0)
+            {
+                User.Karakters.Add(karakter);
+                MessageBox.Show("karakter succesvol toegevoegt");
+            }
+            
         }
     }
-    }
+}

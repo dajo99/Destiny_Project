@@ -9,8 +9,8 @@ namespace Destiny_DAL
     public static class User
     {
         public static Account Acc { get; set; }
-
-        public static Character Karakter { get; set; }
+        public static Character Character { get; set; }
+        public static List<Character> Karakters { get; set; }
         /*public static CharacterCustomization karakterMakenOfAanpassen { get; set; }*/
     }
     
