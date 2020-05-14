@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Project_Destiny_WPF.UserControls"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="900" Loaded="UserControl_Loaded">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="180"/>
@@ -30,11 +30,11 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <ComboBox x:Name="cmbRas" Grid.Row="0" Grid.Column="0" SelectionChanged="cmbRas_SelectionChanged"
+            <ComboBox Grid.Row="0" Grid.Column="0" x:Name="cmbRas"
                  materialDesign:HintAssist.Hint="Selecteer een ras"
                 MinWidth="72"
               FontSize="15"
-                    Margin="12,18,10,18"
+                    Margin="12,18,0,18"
                 Foreground="Gold"
                     ItemsSource="{Binding LongListToTestComboVirtualization}"
                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -44,11 +44,11 @@
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <ComboBox x:Name="cmbSubklasse" Grid.Row="1" Grid.Column="0" SelectionChanged="cmbSubklasse_SelectionChanged"
+            <ComboBox Grid.Row="1" Grid.Column="0" x:Name="cmbSubklasse"
                  materialDesign:HintAssist.Hint="Selecteer de subklasse"
                 MinWidth="72"
               FontSize="15"
-                    Margin="12,18,10,18"
+                    Margin="12,18,0,18"
                 Foreground="Gold"
                     ItemsSource="{Binding LongListToTestComboVirtualization}"
                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -58,11 +58,11 @@
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <ComboBox x:Name="cmbGender" Grid.Row="2" Grid.Column="0" SelectionChanged="cmbGender_SelectionChanged"
+            <ComboBox Grid.Row="2" Grid.Column="0" x:Name="cmbGender"
                  materialDesign:HintAssist.Hint="Selecteer het gender"
                 MinWidth="72"
               FontSize="15"
-                    Margin="12,18,10,18"
+                    Margin="12,18,0,18"
                 Foreground="Gold"
                     ItemsSource="{Binding LongListToTestComboVirtualization}"
                          Style="{StaticResource MaterialDesignFloatingHintComboBox}">
@@ -72,7 +72,7 @@
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <ComboBox x:Name="cmbKlasse" Grid.Row="0" Grid.Column="1" SelectionChanged="cmbKlasse_SelectionChanged"
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbKlasse" SelectionChanged="cmbKlasse_SelectionChanged"
                  materialDesign:HintAssist.Hint="Selecteer de klasse"
                 MinWidth="72"
               FontSize="15"
@@ -87,7 +87,7 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
 
-            <ComboBox x:Name="cmbGezicht" Grid.Row="1" Grid.Column="1" SelectionChanged="cmbGezicht_SelectionChanged"
+            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cmbGezicht"
                  materialDesign:HintAssist.Hint="Selecteer een gezicht"
                 MinWidth="72"
               FontSize="15"
@@ -101,7 +101,7 @@
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <ComboBox x:Name="cmbHaar" Grid.Row="2" Grid.Column="1" SelectionChanged="cmbHaar_SelectionChanged"
+            <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cmbHaar"
                  materialDesign:HintAssist.Hint="Selecteer het haar"
                 MinWidth="72"
               FontSize="15"
@@ -116,8 +116,9 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
         </Grid>
-        <ComboBox x:Name="cmbMarking" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
-                 materialDesign:HintAssist.Hint="Selecteer de marking"
+
+        <ComboBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="cmbMarking"
+                 materialDesign:HintAssist.Hint="Selecteer een marking"
                 MinWidth="72"
               FontSize="15"
                     Margin="12,43,10,43.6"
@@ -130,9 +131,8 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
-        <Button x:Name="btnAanmaken" Click="btnAanmaken_Click" ToolTip="" Content="Maak het character aan " Grid.Column="2" Grid.Row="3"  Margin="340,42,10,32.6" Height="55" />
-        <Button x:Name="btnOpslagen"  Click="btnOpslagen_Click" Content="Slaag de instellingen op"  Grid.Column="2" Grid.Row="3" Margin="10,42,340,32.6" Height="55" />
-        <ListBox x:Name="lstOverzicht" Grid.Column="2" Background="White" Grid.Row="1" Grid.RowSpan="2" Margin="15"/>
+        <Button x:Name="btnAanmaken" Click="btnAanmaken_Click" Content="Maak het character aan " Grid.Column="2" Grid.Row="3"  Margin="345,42,10,32.6" Height="55" />
+        <Button x:Name="btnToon" Click="btnToon_Click" Content="toon je keuzes" Grid.Column="2" Grid.Row="3"  Margin="10,42,345,32.6" Height="55" />
+        <ListBox x:Name="lstToon" Grid.Column="2" Background="White" Foreground="Black" Grid.Row="1" Grid.RowSpan="2" Margin="15"/>
     </Grid>
 </UserControl>
-

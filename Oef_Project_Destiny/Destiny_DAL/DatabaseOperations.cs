@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
+using System.Data.Entity;
 namespace Destiny_DAL
 {
     public static class DatabaseOperations
@@ -48,12 +48,12 @@ namespace Destiny_DAL
             }            
 
 		}
-        /*
-        public static List<CharacterCustomization> OphalenCharacterOptiesVoorAanmaken()
+       
+        public static List<Character> OphalenCharacterOptiesVoorAanmaken()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
-                var query = destinyEntities.CharacterCustomizations.Include("Ras");
+                var query = destinyEntities.Characters;
                 return query.ToList();
             }
         }
@@ -83,18 +83,18 @@ namespace Destiny_DAL
                 return query.ToList();
             }
         }
-        public static int InstellingenVanAanmakenOpslaanInDatabase(CharacterCustomization aanmaking)
+        public static int InstellingenVanAanmakenOpslaanInDatabase(Character aanmaking)
         {
            
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
-                    destinyEntities.CharacterCustomizations.Add(aanmaking);
+                    destinyEntities.Characters.Add(aanmaking);
                     return destinyEntities.SaveChanges();
                 }
            
             
         }
-        */
+        
 
     }
 }
