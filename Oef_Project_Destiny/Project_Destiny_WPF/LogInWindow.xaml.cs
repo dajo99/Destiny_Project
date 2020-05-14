@@ -45,26 +45,15 @@ namespace Project_Destiny_WPF
                 a.Accountnaam = txtGebruikersnaam.Text;
                 a.Wachtwoord = txtWachtwoord.Password;
 
-
-                List<Account> accounts = DatabaseOperations.CheckLogin();
-                List<string> namen = new List<string>();
-                List<string> wachtwoorden = new List<string>();
-
-                foreach (var account in accounts)
+                Account b = DatabaseOperations.OphalenAccount(a.Accountnaam);
+                if (b != null)
                 {
-                    namen.Add(account.Accountnaam);
-                    wachtwoorden.Add(account.Wachtwoord);
-                }
-                if (namen.Contains(a.Accountnaam))
-                {
-                    int idx = namen.IndexOf(a.Accountnaam);
-                    //deëncrypteren van database-wachtwoord van account;
-                    string dp = SecurePassword.DecryptString(wachtwoorden[idx]);
+                    string dp = SecurePassword.DecryptString(b.Wachtwoord); //deëncrypteren van database-wachtwoord van account;
                     if (a.Wachtwoord == dp)
                     {
-                        User.Acc = a; //nodig om account te onthouden van persoon
+                        User.Acc = b; //nodig om account te onthouden van persoon
                         this.Close();
-                        w.Accountnaam.Text = a.Accountnaam;
+                        w.Accountnaam.Text = b.Accountnaam;
                         w.Loginpanel.Visibility = Visibility.Hidden;
                         w.Accountpanel.Visibility = Visibility.Visible;
                         w.ListViewMenu.IsEnabled = true;
@@ -73,6 +62,7 @@ namespace Project_Destiny_WPF
                         UserControl usc = new LoggedInControl();
                         w.GridMain.Children.Add(usc);
                     }
+
                     else
                     {
                         MessageBox.Show("De opgegeven gebruikersnaam en het wachtwoord komen niet overeen!", "foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
