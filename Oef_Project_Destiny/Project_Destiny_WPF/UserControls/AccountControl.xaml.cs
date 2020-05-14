@@ -25,17 +25,6 @@ namespace Project_Destiny_WPF.UserControls
             InitializeComponent();
         }
 
-        private void btnwijzigen_Click(object sender, RoutedEventArgs e)
-        {
-            txtAchternaam.IsEnabled = true;
-            txtVoornaam.IsEnabled = true;
-            txtMail.IsEnabled = true;
-            cmbRegio.IsEnabled = true;
-            txtProfielnaam.IsEnabled = true;
-            txtWachtwoord.IsEnabled = true;
-            btnOpslaan.IsEnabled = true;
-            btnwijzigen.IsEnabled = false;
-        }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -58,7 +47,24 @@ namespace Project_Destiny_WPF.UserControls
             txtProfielnaam.IsEnabled = false;
             txtWachtwoord.IsEnabled = false;
             btnOpslaan.IsEnabled = false;
-            btnwijzigen.IsEnabled = true;
+            btnWijzigen.IsEnabled = true;
+        }
+
+        private void btnVerwijderen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnWijzigen_Click_1(object sender, RoutedEventArgs e)
+        {
+            txtAchternaam.IsEnabled = true;
+            txtVoornaam.IsEnabled = true;
+            txtMail.IsEnabled = true;
+            cmbRegio.IsEnabled = true;
+            txtProfielnaam.IsEnabled = true;
+            txtWachtwoord.IsEnabled = true;
+            btnOpslaan.IsEnabled = true;
+            btnWijzigen.IsEnabled = false;
         }
     }
 }
