@@ -100,8 +100,8 @@
     <Compile Include="UserControls\SettingsControl.xaml.cs">
       <DependentUpon>SettingsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Locations.xaml.cs">
-      <DependentUpon>Locations.xaml</DependentUpon>
+    <Compile Include="UserControls\LocationsControl.xaml.cs">
+      <DependentUpon>LocationsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SpecialItemControl.xaml.cs">
       <DependentUpon>SpecialItemControl.xaml</DependentUpon>
@@ -161,7 +161,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Locations.xaml">
+    <Page Include="UserControls\LocationsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -78,7 +78,7 @@ namespace Project_Destiny_WPF
                     usc = new SpecialItemControl();
                     break;
                 case "Locations":
-                    usc = new Locations();  
+                    usc = new LocationsUserControl();  
                     break;
 
             }
@@ -138,7 +138,7 @@ namespace Project_Destiny_WPF
                         usc = new UserControls.SpecialItemControl();
                         break;
                     case "Locations":
-                        usc = new Locations();
+                        usc = new LocationsUserControl();
                         break;
                 }
             }

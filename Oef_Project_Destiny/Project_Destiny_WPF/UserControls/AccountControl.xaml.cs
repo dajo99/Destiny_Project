@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Destiny_DAL;
 
 namespace Project_Destiny_WPF.UserControls
 {
@@ -28,7 +29,9 @@ namespace Project_Destiny_WPF.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            txtProfielnaam.Text = "Kevin";
+            txtProfielnaam.Text = User.Acc.Accountnaam;
+            txtMail.Text = User.Acc.Mail;
+            txtVoornaam.Text = User.Acc.Voornaam;
             ResetVelden();
         }
 

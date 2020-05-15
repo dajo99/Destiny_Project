@@ -28,8 +28,8 @@ namespace Project_Destiny_WPF.UserControls
 
 
 
-        
-        Destiny_DAL.Character karakter  = new Destiny_DAL.Character();
+
+        Destiny_DAL.Character karakter = new Destiny_DAL.Character();
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -39,7 +39,7 @@ namespace Project_Destiny_WPF.UserControls
             cmbGender.ItemsSource = OphalenOpties("gender");
             cmbMarking.ItemsSource = OphalenOpties("tattoo");
             cmbRas.ItemsSource = OphalenRassen();
-            cmbKlasse.ItemsSource = DatabaseOperations.OphalenCharacterKlasseVoorAanmaken();
+            cmbKlasse.ItemsSource = ControleKlasses();
             ///een subklasse kan niet gekozen worden zolang de klasse niet is gekozen
             cmbSubklasse.IsEnabled = false;
 
@@ -48,7 +48,20 @@ namespace Project_Destiny_WPF.UserControls
             btnAanmaken.IsEnabled = false;
 
         }
-
+        public List<CharacterKlasse>ControleKlasses()
+        {
+            List<CharacterKlasse>klasses = DatabaseOperations.OphalenCharacterKlasseVoorAanmaken();
+            List<CharacterKlasse> returnList = new List<CharacterKlasse>();
+            foreach (var item in klasses)
+            {
+                if (!returnList.Contains(item))
+                {
+                    returnList.Add(item);
+                }
+                
+            }
+            return returnList;
+        }
         public List<string> OphalenOpties(string beschrijving)
         {
 
@@ -83,12 +96,12 @@ namespace Project_Destiny_WPF.UserControls
                 lijst.Add("Vrouw");
 
             }
-         
-               
+
+
             return lijst;
 
         }
-        private List<Ras>OphalenRassen()
+        private List<Ras> OphalenRassen()
         {
             List<Ras> rassen = DatabaseOperations.OphalenRasVoorAanmaken();
             List<Ras> returnLijst = new List<Ras>();
@@ -96,7 +109,11 @@ namespace Project_Destiny_WPF.UserControls
             {
                 if (item.Naam == "Awoken" || item.Naam == "Human" || item.Naam == "Exo")
                 {
-                    returnLijst.Add(item);
+                    if (!returnLijst.Contains(item))
+                    {
+                        returnLijst.Add(item);
+                    }
+                    
                 }
             }
             return returnLijst;
@@ -130,12 +147,12 @@ namespace Project_Destiny_WPF.UserControls
 
 
 
-        
 
-       
+
+
         private string ValideerComboboxen()
         {
-           
+
             string melding = "";
 
             if (cmbGender.SelectedIndex == -1)
@@ -175,7 +192,7 @@ namespace Project_Destiny_WPF.UserControls
         }
 
 
-       
+
         private void ComboboxItemsInstellenVoorBtnTonen()
         {
 
@@ -194,7 +211,6 @@ namespace Project_Destiny_WPF.UserControls
             if (cmbRas.SelectedItem is Ras ras)
             {
                 karakter.RasId = ras.id;
-                karakter.Ras = ras;
             }
 
             if (cmbMarking.SelectedItem is string marking)
@@ -202,38 +218,65 @@ namespace Project_Destiny_WPF.UserControls
                 karakter.Marking = marking;
             }
 
+            if (cmbKlasse.SelectedItem is CharacterKlasse klasse)
+            {
+                karakter.CharacterKlasseId = klasse.id;
+                
+            }
         }
 
         private void cmbKlasse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-                cmbSubklasse.IsEnabled = true;
-                cmbSubklasse.ItemsSource = DatabaseOperations.OphalenCharacterSubklasseVoorAanmaken(OphalenSubklasses());
-            
+            cmbSubklasse.IsEnabled = true;
+            cmbSubklasse.ItemsSource = DatabaseOperations.OphalenCharacterSubklasseVoorAanmaken(OphalenSubklasses());
+
         }
 
-        
+
 
         private void btnToon_Click(object sender, RoutedEventArgs e)
         {
-           
+            string foutmelding = ValideerComboboxen();
             ComboboxItemsInstellenVoorBtnTonen();
             List<string> attributen = new List<string>();
-              
-                attributen.Add("haar: " + karakter.HeadOption);
-                attributen.Add("ras: " + karakter.Ras.Naam);
-                attributen.Add("gezicht: " + karakter.Face);
-                attributen.Add("gender: " + karakter.Gender);
-                attributen.Add("marking: " + karakter.Marking);
+
+            if (string.IsNullOrWhiteSpace(foutmelding))
+            {
+                attributen.Add("haar: " + cmbHaar.SelectedItem as string);
+                attributen.Add("ras: " + cmbRas.SelectedItem as string); ;
+                attributen.Add("gezicht: " + cmbGezicht.SelectedItem as string);
+                attributen.Add("gender: " + cmbGender.SelectedItem as string);
+                attributen.Add("marking: " + cmbMarking.SelectedItem as string);
+                attributen.Add("Klasse: " + cmbKlasse.SelectedItem as string);
+                attributen.Add("Subklasse: " + cmbSubklasse.SelectedItem as string);
+                  
                 lstToon.ItemsSource = attributen;
-                lstToon.Items.Refresh();
+                MessageBox.Show("Als je zeker bent van je keuzes dan kan je nu het karakter aanmaken", "melding",MessageBoxButton.OK,MessageBoxImage.Information);
                 btnAanmaken.IsEnabled = true;
-            
+            }
+           
+
         }
 
         private void btnAanmaken_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow w = (MainWindow)Application.Current.MainWindow;
+            karakter.AccountId = User.Acc.id;
+
+            ///startlevel///
+            karakter.Level = 5;
+            int ok = DatabaseOperations.CharacterToevoegen(karakter);
+            if (ok > 0)
+            {
+                
+                MessageBox.Show("karakter succesvol toegevoegd");
+                w.GridMain.Children.Clear();
+                UserControl usc = new CharacterCreateControl();
+                w.GridMain.Children.Add(usc);
+            }
+           
 
         }
     }
-    }
+}

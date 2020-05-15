@@ -5,50 +5,48 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Data.Entity;
+
 namespace Destiny_DAL
 {
     public static class DatabaseOperations
     {
         public static int ToevoegenAccount(Account a)
         {
-			try
-			{
-				using (DestinyEntities destinyEntities = new DestinyEntities())
-				{
-					destinyEntities.Accounts.Add(a);
-					return destinyEntities.SaveChanges();
-				}
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message);
-                fileOperations.Foutloggen(ex);
-				return 0;
-			}
-        }
-
-		public static List<Account> CheckLogin()
-		{
             try
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
-                    var query = destinyEntities.Accounts;
-
-
-                    return query.ToList();
-
+                    destinyEntities.Accounts.Add(a);
+                    return destinyEntities.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
                 fileOperations.Foutloggen(ex);
-                return null;
-            }            
+                return 0;
+            }
+        }
 
-		}
-       
+        public static List<Account> CheckLogin()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Accounts
+                    .ToList();
+
+            }
+
+        }
+
+        public static Account OphalenAccount(string accountnaam)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Accounts
+                    .Where(x => x.Accountnaam.Contains(accountnaam)).SingleOrDefault();
+            }
+        }
+
         public static List<Character> OphalenCharacterOptiesVoorAanmaken()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -61,7 +59,7 @@ namespace Destiny_DAL
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
-                var query = destinyEntities.CharacterKlasses;
+                var query = destinyEntities.CharacterKlasses.Include(x => x.CharacterSubklasses);
                 return query.ToList();
             }
         }
@@ -75,6 +73,7 @@ namespace Destiny_DAL
             }
         }
 
+
         public static List<Ras> OphalenRasVoorAanmaken()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -83,17 +82,31 @@ namespace Destiny_DAL
                 return query.ToList();
             }
         }
-        public static int InstellingenVanAanmakenOpslaanInDatabase(Character aanmaking)
+       
+        public static int CharacterToevoegen(Character aanmaking)
         {
-           
+
+            try
+            {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
                     destinyEntities.Characters.Add(aanmaking);
                     return destinyEntities.SaveChanges();
                 }
-           
+            }
+            catch (Exception ex)
+            {
+
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+                
             
+           
+              
+
         }
+
 
         public static List<Map> OphalenWerelden()
         {
@@ -175,6 +188,7 @@ namespace Destiny_DAL
                 return 0;
             }
         }
+
 
     }
 }
