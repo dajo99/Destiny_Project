@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Destiny_DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,11 +27,19 @@ namespace Project_Destiny_WPF.UserControls
         }
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.Key == Key.Enter)
+            {
+                MessageBox.Show("Enter key pressed");
+            }
+            
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            cmbCategorie.ItemsSource = DatabaseOperations.OphalenCategorie();
+            cmbCategorie.DisplayMemberPath = "Soort";
+            cmbZeldzaamheid.ItemsSource = DatabaseOperations.OphalenZeldzaamheid();
+            cmbZeldzaamheid.DisplayMemberPath = "Zeldzaamheid";
 
         }
 

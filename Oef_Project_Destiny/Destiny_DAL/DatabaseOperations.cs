@@ -234,6 +234,27 @@ namespace Destiny_DAL
             }
         }
 
+        //Usercontrole Weapons
+        public static List<Wapen> OphalenCategorie()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Wapens
+                    
+                    .OrderBy(x => x.Soort)
+                    .ToList();
+            }
+        }
 
+        public static List<Item> OphalenZeldzaamheid()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Items
+
+                    .OrderBy(x => x.Zeldzaamheid)
+                    .ToList();
+            }
+        }
     }
 }
