@@ -72,6 +72,7 @@
     <Compile Include="CharacterSubklasse.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="OptiesUiterlijk.cs" />
     <Compile Include="Currency.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>

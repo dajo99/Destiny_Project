@@ -40,12 +40,12 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Width="120" Header="Ras" Binding="{Binding Ras}"></DataGridTextColumn>
                 <DataGridTextColumn Width="120" Header="Gender" Binding="{Binding Gender}"></DataGridTextColumn>
-                <DataGridTextColumn Width="120" Header="Gezicht" Binding="{Binding Face}"></DataGridTextColumn>
-                <DataGridTextColumn Width="120" Header="Haar" Binding="{Binding HeadOption}"></DataGridTextColumn>
-                <DataGridTextColumn Width="120" Header="Marking" Binding="{Binding Marking}"></DataGridTextColumn>
-                <DataGridTextColumn Width="120" Header="Klasse" Binding="{Binding CharacterKlasse}"></DataGridTextColumn>
-                <DataGridTextColumn x:Name="celSub" Width="120" Header="Subklasse" ></DataGridTextColumn>
-                <DataGridTextColumn Width="120" Header="Level" Binding="{Binding Level}"></DataGridTextColumn>
+                <DataGridTextColumn Width="122" Header="Gezicht" Binding="{Binding Face}"></DataGridTextColumn>
+                <DataGridTextColumn Width="122" Header="Haar" Binding="{Binding HeadOption}"></DataGridTextColumn>
+                <DataGridTextColumn Width="122" Header="Marking" Binding="{Binding Marking}"></DataGridTextColumn>
+                <DataGridTextColumn Width="122" Header="Klasse" Binding="{Binding CharacterKlasse}"></DataGridTextColumn>
+                <DataGridTextColumn Width="122" Header="Subklasse" Binding="{Binding CharacterSubklasses}"></DataGridTextColumn>
+                <DataGridTextColumn Width="122" Header="Level" Binding="{Binding Level}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnAanpassen" Click="btnAanpassen_Click"

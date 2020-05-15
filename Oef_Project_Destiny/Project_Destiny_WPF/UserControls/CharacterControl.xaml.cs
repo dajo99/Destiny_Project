@@ -38,10 +38,17 @@ namespace Project_Destiny_WPF.UserControls
 
         private void btnAanpassen_Click(object sender, RoutedEventArgs e)
         {
+            if (dtgKarakters.SelectedItem is Character karakter)
+            {
+                ///gaat het geselecteerde karakter opslagen in de statische klassen. 
+                ///dit vereenvoudigd de CRUD update in de andere user-control
+                User.Character = karakter;
 
-            w.GridMain.Children.Clear();
-            UserControl usc = new CharacterChangeControl();
-            w.GridMain.Children.Add(usc);
+                w.GridMain.Children.Clear();
+                UserControl usc = new CharacterChangeControl();
+                w.GridMain.Children.Add(usc);
+            }
+            
 
 
         }

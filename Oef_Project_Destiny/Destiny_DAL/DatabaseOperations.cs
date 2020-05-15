@@ -112,7 +112,7 @@ namespace Destiny_DAL
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
                 var query = destinyEntities.Characters.Include(x => x.Ras)
-                    .Include(x => x.CharacterKlasse).Include(x => x.CharacterKlasse.CharacterSubklasses)
+                    .Include(x => x.CharacterKlasse)
                     .Where(x => x.AccountId == id)
                     .OrderBy(x => x.Level);
 
