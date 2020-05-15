@@ -94,7 +94,87 @@ namespace Destiny_DAL
            
             
         }
-        
+
+        public static List<Map> OphalenWerelden()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Maps
+                    .OrderBy(x => x.Wereld)
+                    .ToList();
+            }
+        }
+
+
+        public static List<Locatie> OphalenLocaties(int wereld)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Locaties
+                    .Where(x => x.MapId == wereld)
+                    .OrderBy(x => x.id)
+                    .ToList();
+            }
+        }
+
+
+        public static int AanpassenLocatie(Locatie locatie)
+        {
+            try
+            {
+                using(DestinyEntities destinyEntities = new DestinyEntities())
+                {
+
+                    destinyEntities.Entry(locatie).State = EntityState.Modified;
+                    return destinyEntities.SaveChanges();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
+
+        public static int ToevoegenLocatie(Locatie locatie)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+
+                    destinyEntities.Locaties.Add(locatie);
+                    return destinyEntities.SaveChanges();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
+        public static int VerwijderenLocatie(Locatie locatie)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+
+                    destinyEntities.Entry(locatie).State = EntityState.Deleted;
+                    return destinyEntities.SaveChanges();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
 
     }
 }
