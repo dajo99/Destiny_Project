@@ -25,7 +25,8 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
-
+        List<Locatie> locaties = new List<Locatie>();
+        string areaOorspronkelijk = "";
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             cmbWorld.ItemsSource = DatabaseOperations.OphalenWerelden();
@@ -49,7 +50,7 @@ namespace Project_Destiny_WPF.UserControls
         {
             if (columnName == "cmbWorld" && cmbWorld.SelectedItem == null)
             {
-                return "Selecteer een uitgever!" + Environment.NewLine;
+                return "Selecteer een wereld!" + Environment.NewLine;
             }
          
             if (columnName == "Locatie" && dbLocations.SelectedItem == null)
@@ -65,8 +66,8 @@ namespace Project_Destiny_WPF.UserControls
             {
                 txtLocations.Text = locatie.Naam;
                 txtArea.Text = locatie.RestrictedArea.ToString();
-                
-                
+
+                areaOorspronkelijk = txtArea.Text;
             }
         }
 
@@ -83,16 +84,25 @@ namespace Project_Destiny_WPF.UserControls
 
                 if (locatie.IsGeldig())
                 {
-                    int ok = DatabaseOperations.AanpassenLocatie(locatie);
-                    if (ok > 0)
+                    locaties = DatabaseOperations.OphalenLocaties(locatie.MapId);
+                    if (!locaties.Contains(locatie) || locatie.RestrictedArea != bool.Parse(areaOorspronkelijk))
                     {
-                        dbLocations.ItemsSource = DatabaseOperations.OphalenLocaties(locatie.MapId);
-                        Wissen();
+                        int ok = DatabaseOperations.AanpassenLocatie(locatie);
+                        if (ok > 0)
+                        {
+                            dbLocations.ItemsSource = DatabaseOperations.OphalenLocaties(locatie.MapId);
+                            Wissen();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Locatie is niet aangepast!");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Locatie is niet aangepast!");
+                        MessageBox.Show("Locatie bestaat al!");
                     }
+                    
                 }
                 else
                 {
@@ -109,6 +119,8 @@ namespace Project_Destiny_WPF.UserControls
         private void BtnToeevogen_Click(object sender, RoutedEventArgs e)
         {
             string foutmelding = Valideer("cmbWorld");
+
+            
             
             if (string.IsNullOrWhiteSpace(foutmelding))
             {
@@ -122,16 +134,29 @@ namespace Project_Destiny_WPF.UserControls
 
                 if (locatie.IsGeldig())
                 {
-                    int ok = DatabaseOperations.ToevoegenLocatie(locatie);
-                    if (ok > 0)
+
+                    locaties = DatabaseOperations.OphalenLocaties(locatie.MapId);
+
+                    if (!locaties.Contains(locatie))
                     {
-                        dbLocations.ItemsSource = DatabaseOperations.OphalenLocaties(locatie.MapId);
-                        Wissen();
+                        int ok = DatabaseOperations.ToevoegenLocatie(locatie);
+                        if (ok > 0)
+                        {
+                            
+                            dbLocations.ItemsSource = DatabaseOperations.OphalenLocaties(locatie.MapId);
+                            Wissen();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Locatie is niet toegevoegd!");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Locatie is niet toegevoegd!");
+                        MessageBox.Show("Locatie bestaat al!");
                     }
+
+
                 }
                 else
                 {

@@ -25,15 +25,15 @@ namespace Destiny_DAL
             }
         }
 
-
         public override bool Equals(object obj)
         {
             return obj is Locatie locatie &&
                    Naam == locatie.Naam;
         }
 
-
-
-
+        public override int GetHashCode()
+        {
+            return -1386946022 + EqualityComparer<string>.Default.GetHashCode(Naam);
+        }
     }
 }
