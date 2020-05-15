@@ -26,7 +26,7 @@
     Style="{StaticResource MaterialDesignRaisedButton}"
     Content="Character aanmaken"
     Margin="10"  Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom"/>
-        <DataGrid x:Name="dtgKarakters" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="15,10,15,0" AutoGenerateColumns="False" SelectionChanged="dtgKarakters_SelectionChanged">
+        <DataGrid x:Name="dtgKarakters" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="15,10,15,0" AutoGenerateColumns="False">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="#333" />

@@ -80,9 +80,6 @@ namespace Project_Destiny_WPF.UserControls
             
         }
 
-        private void dtgKarakters_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+       
     }
 }
