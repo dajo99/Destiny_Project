@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Data.Entity;
+using System.Security.Cryptography;
 
 namespace Destiny_DAL
 {
@@ -27,23 +28,67 @@ namespace Destiny_DAL
             }
         }
 
-        public static List<Account> CheckLogin()
+        public static List<Account> CheckLogin(Account a)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
                 return destinyEntities.Accounts
+                    .Where(x => x.Accountnaam != a.Accountnaam)
                     .ToList();
-
             }
 
         }
 
         public static Account OphalenAccount(string accountnaam)
         {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
+            try
             {
-                return destinyEntities.Accounts
-                    .Where(x => x.Accountnaam.Contains(accountnaam)).SingleOrDefault();
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    return destinyEntities.Accounts
+                        .Where(x => x.Accountnaam.Contains(accountnaam)).SingleOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return null;
+            }
+
+        }
+
+        public static int WijzigenAccount(Account a)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(a).State = EntityState.Modified;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
+        public static int VerwijderenAccount(Account a)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+
+                    destinyEntities.Entry(a).State = EntityState.Deleted;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
             }
         }
 
