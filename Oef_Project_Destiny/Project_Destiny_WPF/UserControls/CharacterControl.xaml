@@ -26,19 +26,28 @@
     Style="{StaticResource MaterialDesignRaisedButton}"
     Content="Character aanmaken"
     Margin="10"  Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom"/>
-        <ScrollViewer Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="25,10,15,0">
-        <ListBox x:Name="lbCharacters"  HorizontalContentAlignment="Center" FontSize="16"  BorderThickness="1" BorderBrush="Black" Background="White" Foreground="Black">
-            <ListBoxItem>
-                Hello
-            </ListBoxItem>
-            <ListBoxItem>
-                World
-            </ListBoxItem>
-            <ListBoxItem>
-                :D :D
-            </ListBoxItem>
-        </ListBox>
-        </ScrollViewer>
+        <DataGrid x:Name="dtgKarakters" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="15,10,15,0" AutoGenerateColumns="False" SelectionChanged="dtgKarakters_SelectionChanged">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#333" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Padding" Value="6"/>
+                    <Setter Property="BorderThickness" Value="0,0,2,0"></Setter>
+                    <Setter Property="BorderBrush" Value="#fff"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="120" Header="Ras" Binding="{Binding Ras}"></DataGridTextColumn>
+                <DataGridTextColumn Width="120" Header="Gender" Binding="{Binding Gender}"></DataGridTextColumn>
+                <DataGridTextColumn Width="120" Header="Gezicht" Binding="{Binding Face}"></DataGridTextColumn>
+                <DataGridTextColumn Width="120" Header="Haar" Binding="{Binding HeadOption}"></DataGridTextColumn>
+                <DataGridTextColumn Width="120" Header="Marking" Binding="{Binding Marking}"></DataGridTextColumn>
+                <DataGridTextColumn Width="120" Header="Klasse" Binding="{Binding CharacterKlasse}"></DataGridTextColumn>
+                <DataGridTextColumn x:Name="celSub" Width="120" Header="Subklasse" ></DataGridTextColumn>
+                <DataGridTextColumn Width="120" Header="Level" Binding="{Binding Level}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="btnAanpassen" Click="btnAanpassen_Click"
     Style="{StaticResource MaterialDesignRaisedButton}"
     Content="Character aanpassen"
