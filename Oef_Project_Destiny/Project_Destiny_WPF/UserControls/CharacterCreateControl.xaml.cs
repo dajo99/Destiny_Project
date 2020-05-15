@@ -183,6 +183,7 @@ namespace Project_Destiny_WPF.UserControls
 
             if (cmbKlasse.SelectedItem is CharacterKlasse klasse)
             {
+                User.characterKlasse = klasse;
                 karakter.CharacterKlasseId = klasse.id;
                 
             }

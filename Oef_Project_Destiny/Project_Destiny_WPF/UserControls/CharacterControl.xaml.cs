@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,7 @@ namespace Project_Destiny_WPF.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             List<Character> karakters = DatabaseOperations.CharactersOphalenViaAccountId(User.Acc.id);
+
             dtgKarakters.ItemsSource = karakters;
             
             
@@ -71,6 +73,7 @@ namespace Project_Destiny_WPF.UserControls
                 {
                     MessageBox.Show("Karakter is succesvol verwijderd!", "succes", MessageBoxButton.OK, MessageBoxImage.Information);
                     dtgKarakters.ItemsSource = DatabaseOperations.CharactersOphalenViaAccountId(User.Acc.id);
+                    
                 }
                 else
                 {
@@ -80,6 +83,32 @@ namespace Project_Destiny_WPF.UserControls
             
         }
 
-       
+        private void btnStrijden_Click(object sender, RoutedEventArgs e)
+        {
+            if (dtgKarakters.SelectedItem is Character c)
+            {
+                Random trommel = new Random();
+                int getal = trommel.Next(1, 7);
+                if (getal <= 3)
+                {
+                    c.Level++;
+                    SoundPlayer sound = new SoundPlayer("Short_triumphal_fanfare-John_Stracke-815794903.wav");
+                    sound.Play();
+                    MessageBox.Show("Het level van je karakter is gestegen!");
+                    
+                    
+                }
+                else
+                {
+                    SoundPlayer sound = new SoundPlayer("fail-trombone-01.wav");
+                    sound.Play();
+                    MessageBox.Show("je karakter heeft de strijd verloren, probeer het weer op een ander moment");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecteer een karakter dat ten strijde gaat!");
+            }
+        }
     }
 }

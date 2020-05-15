@@ -40,9 +40,10 @@
                 <ColumnDefinition Width="193*"/>
                 <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
-
-            <Label  Content="Selecteer wat je wil wijzigen" Margin="20,15,0,0.4"  Foreground="White" FontSize="20" HorizontalAlignment="Left" Width="344" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
-            <RadioButton Background="White" Grid.Row="1" HorizontalAlignment="Left" Margin="20,10.6,0,9.8" Height="30" Width="30" x:Name="rbMarking"
+          
+               
+                <Label  Content="Selecteer wat je wil wijzigen" Margin="20,15,0,0.4"  Foreground="White" FontSize="20" HorizontalAlignment="Left" Width="344" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+            <RadioButton Background="White" Grid.Row="1" HorizontalAlignment="Left" Margin="20,10.6,0,9.8" Height="30" Width="30" x:Name="rbMarking" Checked="rbMarking_Checked"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
             ToolTip="MaterialDesignFlatPrimaryToggleButton"
                          IsChecked="True">
@@ -54,7 +55,7 @@
             </RadioButton>
             <Label Content="Marking" Grid.Row="1" Foreground="White" Margin="60,14.6,0,49.4" FontSize="16" Grid.RowSpan="2"/>
 
-            <RadioButton Background="White" Grid.Row="2" HorizontalAlignment="Left" Margin="20,10.2,0,9.4" Height="30" Width="30" x:Name="rbHaar"
+            <RadioButton Background="White" Grid.Row="2" HorizontalAlignment="Left" Margin="20,10.2,0,9.4" Height="30" Width="30" x:Name="rbHaar" Checked="rbHaar_Checked"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
             ToolTip="MaterialDesignFlatPrimaryToggleButton"
                          IsChecked="False">
@@ -66,7 +67,7 @@
             </RadioButton>
             <Label Content="Haar" Grid.Row="2" Foreground="White" Margin="60,15.2,0,0.4" FontSize="16"/>
 
-            <RadioButton Background="White" Grid.Row="3" HorizontalAlignment="Left" Margin="20,9.6,0,10" Height="30" Width="30" x:Name="rbGezicht"
+            <RadioButton Background="White" Grid.Row="3" HorizontalAlignment="Left" Margin="20,9.6,0,10" Height="30" Width="30" x:Name="rbGezicht" Checked="rbGezicht_Checked"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
             ToolTip="MaterialDesignFlatPrimaryToggleButton"
                          IsChecked="False">
@@ -80,9 +81,28 @@
 
 
         </Grid>
-        <ListBox x:Name="lstOpties" Background="White" Grid.Row="1"  Grid.Column="1" BorderThickness="1" BorderBrush="Black" Margin="7.5">
-        </ListBox>
-
+        <DataGrid x:Name="dtgOpties" Grid.Row="1"  Grid.Column="1"  Margin="7.5">
+            <Style TargetType="{x:Type DataGridColumnHeader}">
+                <Setter Property="Background" Value="#333" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="6"/>
+                <Setter Property="BorderThickness" Value="0,0,2,0"></Setter>
+                <Setter Property="BorderBrush" Value="#fff"/>
+            </Style>
+            <Style TargetType="{x:Type DataGridCell}">
+                <Setter Property="Background" Value="#333" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="6"/>
+                <Setter Property="BorderThickness" Value="0,0,2,0"></Setter>
+                <Setter Property="BorderBrush" Value="#fff"/>
+            </Style>
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="Dtgveld"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
         <Grid Grid.Column="0" Grid.Row="2" Background="White" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -96,7 +116,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label  Content="Selecteer wat je wil toevoegen" Margin="20,1,0,0"  Foreground="Black" FontSize="20"  Width="344" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center"/>
-            <RadioButton Background="Black" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbMarkingWijzigen"
+            <RadioButton Background="Black" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbMarkingToevoegen" Checked="rbMarkingToevoegen_Checked"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
             ToolTip="MaterialDesignFlatPrimaryToggleButton"
                          IsChecked="True">
@@ -108,7 +128,7 @@
             </RadioButton>
             <Label Content="Marking" Grid.Row="1" Foreground="Black" Margin="60,15,0,0" FontSize="16"/>
 
-            <RadioButton Background="Black" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbHaarWijzigen"
+            <RadioButton Background="Black" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbHaarToevoegen" Checked="rbHaarToevoegen_Checked"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
             ToolTip="MaterialDesignFlatPrimaryToggleButton"
                          IsChecked="False">
@@ -120,7 +140,7 @@
             </RadioButton>
             <Label Content="Haar" Grid.Row="1" Grid.Column="1" Foreground="Black" Margin="60,15,0,0" FontSize="16"/>
 
-            <RadioButton Background="Black" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbGezichtWijzigen"
+            <RadioButton Background="Black" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbGezichtToevoegen" Checked="rbGezichtToevoegen_Checked"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
             ToolTip="MaterialDesignFlatPrimaryToggleButton"
                          IsChecked="False">

@@ -26,7 +26,7 @@
     Style="{StaticResource MaterialDesignRaisedButton}"
     Content="Character aanmaken"
     Margin="10"  Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom"/>
-        <DataGrid x:Name="dtgKarakters" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="15,10,15,0" AutoGenerateColumns="False">
+        <DataGrid x:Name="dtgKarakters" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="15,10,15,0" AutoGenerateColumns="False" >
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="#333" />
@@ -45,7 +45,7 @@
                 <DataGridTextColumn Width="122" Header="Marking" Binding="{Binding Marking}"></DataGridTextColumn>
                 <DataGridTextColumn Width="122" Header="Klasse" Binding="{Binding CharacterKlasse}"></DataGridTextColumn>
                 <DataGridTextColumn Width="122" Header="Subklasse" Binding="{Binding CharacterSubklasses}"></DataGridTextColumn>
-                <DataGridTextColumn Width="122" Header="Level" Binding="{Binding Level}"></DataGridTextColumn>
+                <DataGridTextColumn Width="130" Header="Level" Binding="{Binding Level}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnAanpassen" Click="btnAanpassen_Click"
@@ -56,6 +56,12 @@
     Style="{StaticResource MaterialDesignRaisedButton}"
     Content="Character verwijderen"
     Margin="10" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"/>
+
+        <Button x:Name="btnStrijden" Click="btnStrijden_Click"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Content="Ten strijde gaan!"
+    Margin="10" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
+       
 
     </Grid>
 </UserControl>

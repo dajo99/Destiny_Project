@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Destiny_DAL;
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
@@ -42,6 +42,41 @@ namespace Project_Destiny_WPF.UserControls
             w.GridMain.Children.Clear();
             UserControl usc = new CharacterControl();
             w.GridMain.Children.Add(usc);
+        }
+
+        private void rbMarking_Checked(object sender, RoutedEventArgs e)
+        {
+            dtgOpties.ItemsSource = OptiesUiterlijk.TattooOpties;
+            Dtgveld.Header = "Marking";
+            
+        }
+
+        private void rbHaar_Checked(object sender, RoutedEventArgs e)
+        {
+            dtgOpties.ItemsSource = OptiesUiterlijk.HaarOpties;
+            Dtgveld.Header = "Haar";
+            Dtgveld.Binding = new Binding("HeadOptions");
+        }
+
+        private void rbGezicht_Checked(object sender, RoutedEventArgs e)
+        {
+            dtgOpties.ItemsSource = OptiesUiterlijk.HaarOpties;
+            Dtgveld.Binding = new Binding("HeadOptions");
+        }
+
+        private void rbHaarToevoegen_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void rbGezichtToevoegen_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void rbMarkingToevoegen_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
