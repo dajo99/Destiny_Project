@@ -49,6 +49,7 @@ namespace Project_Destiny_WPF.UserControls
                 a.Accountnaam = txtProfielnaam.Text;
                 a.Achternaam = txtAchternaam.Text;
                 a.Voornaam = txtVoornaam.Text;
+                a.Mail = txtMail.Text;
                 a.Wachtwoord = SecurePassword.EncryptString(txtWachtwoord.Password);
                 if (cmbRegio.SelectedItem is string regio)
                 {
@@ -57,7 +58,7 @@ namespace Project_Destiny_WPF.UserControls
               
                 if (a.IsGeldig())
                 {
-                    List<Account> accounts = DatabaseOperations.CheckLogin(a);
+                    List<Account> accounts = DatabaseOperations.CheckLogin(User.Acc);
                     if (!accounts.Contains(a))
                     {
                         if (MessageBox.Show("Bent u zeker dat u deze wijzigingen wilt uitvoeren?", "Waarschuwing", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
@@ -75,10 +76,6 @@ namespace Project_Destiny_WPF.UserControls
                                 MessageBox.Show("Het account is niet aangepast!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
-                        else
-                        {
-                            ResetInputs();
-                        }
                     }
                     else
                     {
@@ -94,7 +91,7 @@ namespace Project_Destiny_WPF.UserControls
             {
                 MessageBox.Show(foutmeldingen, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
+            ResetInputs();
             ResetEnables(true);
         }
 
