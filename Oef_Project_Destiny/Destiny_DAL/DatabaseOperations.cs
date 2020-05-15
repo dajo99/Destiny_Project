@@ -35,18 +35,26 @@ namespace Destiny_DAL
                 return destinyEntities.Accounts
                     .Where(x => x.Accountnaam != a.Accountnaam)
                     .ToList();
-
             }
 
         }
 
         public static Account OphalenAccount(string accountnaam)
         {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
+            try
             {
-                return destinyEntities.Accounts
-                    .Where(x => x.Accountnaam.Contains(accountnaam)).SingleOrDefault();
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    return destinyEntities.Accounts
+                        .Where(x => x.Accountnaam.Contains(accountnaam)).SingleOrDefault();
+                }
             }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return null;
+            }
+
         }
 
         public static int WijzigenAccount(Account a)
