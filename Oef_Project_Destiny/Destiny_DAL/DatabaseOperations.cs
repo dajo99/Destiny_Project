@@ -245,6 +245,7 @@ namespace Destiny_DAL
                     .Where(x => x.SpecialItemCategorie.id == x.CategorieId)
                     .Where(x => x.Item.id == x.id)
                     .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
                     .ToList();
             }
         }
@@ -259,6 +260,7 @@ namespace Destiny_DAL
                     .Where(x => x.SpecialItemCategorie.id == x.CategorieId && x.SpecialItemCategorie.id == categorieId)
                     .Where(x => x.Item.id == x.id)
                     .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
+                    .OrderBy(x => x.Item.Naam)
                     .ToList();
             }
         }
@@ -272,6 +274,7 @@ namespace Destiny_DAL
                     .Where(x => x.SpecialItemCategorie.id == x.CategorieId && x.SpecialItemCategorie.id == categorieId)
                     .Where(x => x.Item.id == x.id)
                     .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
                     .ToList();
             }
         }
@@ -285,6 +288,7 @@ namespace Destiny_DAL
                     .Where(x => x.SpecialItemCategorie.id == x.CategorieId)
                     .Where(x => x.Item.id == x.id)
                     .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
+                    .OrderBy(x => x.Item.Naam)
                     .ToList();
             }
         }
@@ -322,7 +326,8 @@ namespace Destiny_DAL
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
-                return destinyEntities.Items.ToList();
+                return destinyEntities.Items
+                    .ToList();
             }
         }
     }
