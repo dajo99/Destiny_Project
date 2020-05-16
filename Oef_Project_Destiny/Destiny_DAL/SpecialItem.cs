@@ -16,8 +16,8 @@ namespace Destiny_DAL
     {
         public int id { get; set; }
         public string Type { get; set; }
-        public int Durability { get; set; }
-        public int Boost { get; set; }
+        public Nullable<int> Durability { get; set; }
+        public Nullable<int> Boost { get; set; }
         public int CategorieId { get; set; }
     
         public virtual Item Item { get; set; }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Data.Entity;
 using System.Security.Cryptography;
+using System.Windows.Controls;
 
 namespace Destiny_DAL
 {
@@ -234,6 +235,100 @@ namespace Destiny_DAL
             }
         }
 
+        public static List<SpecialItem> OphalenSpecialItemsViaNaam(string naam)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.SpecialItems
+                    .Include(x => x.Item)
+                    .Include(x => x.SpecialItemCategorie)
+                    .Where(x => x.SpecialItemCategorie.id == x.CategorieId)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
 
+        public static List<SpecialItem> OphalenSpecialItemsViaCategorieEnZeldzaamheid(string naam, int categorieId, string zeldzaamheid)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.SpecialItems
+                    .Include(x => x.Item)
+                    .Include(x => x.SpecialItemCategorie)
+                    .Where(x => x.SpecialItemCategorie.id == x.CategorieId && x.SpecialItemCategorie.id == categorieId)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+        public static List<SpecialItem> OphalenSpecialItemsViaCategorie(string naam, int categorieId)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.SpecialItems
+                    .Include(x => x.Item)
+                    .Include(x => x.SpecialItemCategorie)
+                    .Where(x => x.SpecialItemCategorie.id == x.CategorieId && x.SpecialItemCategorie.id == categorieId)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+        public static List<SpecialItem> OphalenSpecialItemsViaZeldzaamheid(string naam, string zeldzaamheid)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.SpecialItems
+                    .Include(x => x.Item)
+                    .Include(x => x.SpecialItemCategorie)
+                    .Where(x => x.SpecialItemCategorie.id == x.CategorieId)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+        public static List<SpecialItemCategorie> OphalenSpecialItemCategories()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.SpecialItemCategories
+                    .ToList();
+            }
+        }
+
+        public static int ToevoegenItem(Item i, SpecialItem si)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(i).State = EntityState.Added;
+                    destinyEntities.Entry(si).State = EntityState.Added;
+
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex )
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+            
+        }
+
+        public static List<Item> OphalenItems()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Items
+                    .ToList();
+            }
+        }
     }
 }
