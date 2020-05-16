@@ -253,8 +253,8 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="255" />
-          <Property Name="Durability" Type="int" Nullable="false" />
-          <Property Name="Boost" Type="int" Nullable="false" />
+          <Property Name="Durability" Type="int" />
+          <Property Name="Boost" Type="int" />
           <Property Name="CategorieId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SpecialItemCategorie">
@@ -1335,8 +1335,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Durability" Type="Int32" Nullable="false" />
-          <Property Name="Boost" Type="Int32" Nullable="false" />
+          <Property Name="Durability" Type="Int32" />
+          <Property Name="Boost" Type="Int32" />
           <Property Name="CategorieId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Item" Relationship="Self.FK_SpecialItem_Item" FromRole="SpecialItem" ToRole="Item" />
           <NavigationProperty Name="SpecialItemCategorie" Relationship="Self.FK_SpecialItem_Categorie" FromRole="SpecialItem" ToRole="SpecialItemCategorie" />
