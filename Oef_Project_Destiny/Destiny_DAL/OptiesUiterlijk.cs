@@ -57,23 +57,6 @@ namespace Destiny_DAL
          
         
         
-        /// voor bij het wijzigen van een karakter///
-      
-        public static void OptieToevoegen(string optie, string beschrijving)
-        {
-            switch (optie)
-            {
-                case "Haar":
-                    OptiesUiterlijk.HaarOpties.Add(beschrijving);
-                    break;
-                case "Tattoo":
-                    OptiesUiterlijk.TattooOpties.Add(beschrijving);
-                    break;
-                case "Gezicht":
-                    OptiesUiterlijk.TattooOpties.Add(beschrijving);
-                    break;
-            }
-
-        }
+       
     }
 }

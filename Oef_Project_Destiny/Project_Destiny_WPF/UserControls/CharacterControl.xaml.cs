@@ -34,53 +34,74 @@ namespace Project_Destiny_WPF.UserControls
             List<Character> karakters = DatabaseOperations.CharactersOphalenViaAccountId(User.Acc.id);
 
             dtgKarakters.ItemsSource = karakters;
-            
-            
+
+
         }
 
         private void btnAanpassen_Click(object sender, RoutedEventArgs e)
         {
-            if (dtgKarakters.SelectedItem is Character karakter)
+
+
+            if (dtgKarakters.SelectedItem is Character c)
             {
-                ///gaat het geselecteerde karakter opslagen in de statische klassen. 
-                ///dit vereenvoudigd de CRUD update in de andere user-control
-                User.Character = karakter;
+                if (c.Level <= 9)
+                {
+                    MessageBox.Show("Sorry," + "\n\n" + "de mogenlijkheid om het uiterlijk van je karakter te wijzigen is pas mogenlijk vanaf dat het geselecteerde karakter level 10 heeft bereikt");
+                }
 
-                w.GridMain.Children.Clear();
-                UserControl usc = new CharacterChangeControl();
-                w.GridMain.Children.Add(usc);
+                else
+                {
+                    ///gaat het geselecteerde karakter opslagen in de statische klassen. 
+                    ///dit vereenvoudigd de CRUD update in de andere user-control
+                    User.Character = c;
+
+                    w.GridMain.Children.Clear();
+                    UserControl usc = new CharacterChangeControl();
+                    w.GridMain.Children.Add(usc);
+                }
             }
-            
 
-
+            else
+            {
+                MessageBox.Show("Selecteer eerst het karakter dat je wil wijzigen!");
+            }
         }
+
+
+
+
 
         private void btnAanmaken_Click(object sender, RoutedEventArgs e)
         {
+
+
             w.GridMain.Children.Clear();
             UserControl usc = new CharacterCreateControl();
             w.GridMain.Children.Add(usc);
+
         }
+
+
 
         private void btnVerwijderen_Click(object sender, RoutedEventArgs e)
         {
-            
+
             if (dtgKarakters.SelectedItem is Character character)
             {
-                
-              int ok = DatabaseOperations.CharacterVerwijderen(character);
+
+                int ok = DatabaseOperations.CharacterVerwijderen(character);
                 if (ok > 0)
                 {
                     MessageBox.Show("Karakter is succesvol verwijderd!", "succes", MessageBoxButton.OK, MessageBoxImage.Information);
                     dtgKarakters.ItemsSource = DatabaseOperations.CharactersOphalenViaAccountId(User.Acc.id);
-                    
+
                 }
                 else
                 {
                     MessageBox.Show("niet verwijderd");
                 }
             }
-            
+
         }
 
         private void btnStrijden_Click(object sender, RoutedEventArgs e)
@@ -89,14 +110,19 @@ namespace Project_Destiny_WPF.UserControls
             {
                 Random trommel = new Random();
                 int getal = trommel.Next(1, 7);
+
                 if (getal <= 3)
                 {
                     c.Level++;
-                    SoundPlayer sound = new SoundPlayer("Short_triumphal_fanfare-John_Stracke-815794903.wav");
-                    sound.Play();
-                    MessageBox.Show("Het level van je karakter is gestegen!");
-                    
-                    
+                    int ok = DatabaseOperations.CharacterUpdaten(c);
+                    if (ok > 0)
+                    {
+                        SoundPlayer sound = new SoundPlayer("Short_triumphal_fanfare-John_Stracke-815794903.wav");
+                        sound.Play();
+                        dtgKarakters.ItemsSource = DatabaseOperations.CharactersOphalenViaAccountId(User.Acc.id);
+                        MessageBox.Show("Het level van je karakter is gestegen!");
+
+                    }
                 }
                 else
                 {

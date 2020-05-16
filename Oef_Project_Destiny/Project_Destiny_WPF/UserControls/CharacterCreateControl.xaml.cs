@@ -187,6 +187,8 @@ namespace Project_Destiny_WPF.UserControls
                 karakter.CharacterKlasseId = klasse.id;
                 
             }
+
+            
         }
 
         private void cmbKlasse_SelectionChanged(object sender, SelectionChangedEventArgs e)

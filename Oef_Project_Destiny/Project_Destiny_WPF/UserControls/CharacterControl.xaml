@@ -26,7 +26,8 @@
     Style="{StaticResource MaterialDesignRaisedButton}"
     Content="Character aanmaken"
     Margin="10"  Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom"/>
-        <DataGrid x:Name="dtgKarakters" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="15,10,15,0" AutoGenerateColumns="False" >
+        <ScrollViewer  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="15,10,15,0">
+        <DataGrid x:Name="dtgKarakters" AutoGenerateColumns="False" >
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="#333" />
@@ -48,6 +49,7 @@
                 <DataGridTextColumn Width="130" Header="Level" Binding="{Binding Level}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        </ScrollViewer>
         <Button x:Name="btnAanpassen" Click="btnAanpassen_Click"
     Style="{StaticResource MaterialDesignRaisedButton}"
     Content="Character aanpassen"

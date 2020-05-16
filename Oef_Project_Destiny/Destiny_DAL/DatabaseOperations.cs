@@ -121,6 +121,19 @@ namespace Destiny_DAL
             }
         }
 
+        public static List<Character> CharacterOphalenViaCharacterId(int id)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                var query = destinyEntities.Characters.Include(x => x.Ras)
+                    .Include(x => x.CharacterKlasse.CharacterSubklasses)
+                    .Where(x => x.AccountId == id);
+                 
+
+                return query.ToList();
+
+            }
+        }
         public static int CharacterVerwijderen(Character verwijderen)
         {
 
@@ -129,6 +142,25 @@ namespace Destiny_DAL
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
                     destinyEntities.Entry(verwijderen).State = EntityState.Deleted;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
+        public static int CharacterUpdaten(Character update)
+        {
+
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(update).State = EntityState.Modified;
                     return destinyEntities.SaveChanges();
                 }
             }
