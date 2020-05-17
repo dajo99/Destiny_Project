@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Security.Cryptography;
 using System.Windows.Controls;
 using System.IO;
+using MaterialDesignColors.Recommended;
 
 namespace Destiny_DAL
 {

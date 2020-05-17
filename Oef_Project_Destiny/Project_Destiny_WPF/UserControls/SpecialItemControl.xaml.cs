@@ -27,7 +27,6 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
-        List<SpecialItemCategorie> categorieLijst2 = new List<SpecialItemCategorie>();
         private void cmbCategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ZoekenItems();
@@ -62,27 +61,28 @@ namespace Project_Destiny_WPF.UserControls
 
         private void dbItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            User.Items = DatabaseOperations.OphalenItems();
             Wissen();
             
-            if (dbItems.SelectedItem is SpecialItem i)
+            if (dbItems.SelectedItem is SpecialItem si)
             {
-                txtNaam.Text = i.Item.Naam;
-                txtDurability.Text = i.Durability.ToString();
-                txtBoost.Text = i.Boost.ToString();
-                //cmbDbCategorie.SelectedItem = i.SpecialItemCategorie;
+                txtNaam.Text = si.Item.Naam;
+                txtDurability.Text = si.Durability.ToString();
+                txtBoost.Text = si.Boost.ToString();
+                cmbDbCategorie.SelectedItem = si.SpecialItemCategorie;
                 
-                //int count = -1;
+                /*//int count = -1;
                 foreach (SpecialItemCategorie ic in categorieLijst2)
                 {
                     //count++;
-                    if (ic.Naam == i.SpecialItemCategorie.Naam)
+                    if (ic.Naam == si.SpecialItemCategorie.Naam)
                     {
                         //cmbDbCategorie.SelectedItem = categorieLijst2[count];
                         cmbDbCategorie.SelectedItem = ic;
-                        Debug.WriteLine(ic.Naam == i.SpecialItemCategorie.Naam);
+                        Debug.WriteLine(ic.Naam == si.SpecialItemCategorie.Naam);
                     }
-                }
-                cmbDbZeldzaamheid.SelectedItem = i.Item.Zeldzaamheid;
+                }*/
+                cmbDbZeldzaamheid.SelectedItem = si.Item.Zeldzaamheid;
             }
 
         }
@@ -108,8 +108,7 @@ namespace Project_Destiny_WPF.UserControls
             cmbCategorie.SelectedIndex = 0;
 
             //lijst van categoriën om een item toe te voegen
-            categorieLijst2 = DatabaseOperations.OphalenSpecialItemCategories();
-            cmbDbCategorie.ItemsSource = categorieLijst2;
+            cmbDbCategorie.ItemsSource = DatabaseOperations.OphalenSpecialItemCategories(); 
             cmbDbCategorie.DisplayMemberPath = "Naam";
 
             ZoekenItems();
@@ -186,16 +185,12 @@ namespace Project_Destiny_WPF.UserControls
                 SpecialItemCategorie c = cmbDbCategorie.SelectedItem as SpecialItemCategorie;
                 SpecialItem si = dbItems.SelectedItem as SpecialItem;
                 Item i = si.Item;
-                User.Items.Remove(i); 
+                User.Items.Remove(i);
                 si.Boost = ConversieToInt(txtBoost.Text);
                 si.Durability = ConversieToInt(txtDurability.Text);
 
-                if (si.CategorieId != c.id)
-                {
-                    si.SpecialItemCategorie.id = c.id;
-                    si.CategorieId = si.SpecialItemCategorie.id;
-                    si.SpecialItemCategorie = c;
-                }
+                si.CategorieId = c.id;
+                si.SpecialItemCategorie = c;
 
                 i.Naam = txtNaam.Text;
                 i.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
@@ -325,7 +320,7 @@ namespace Project_Destiny_WPF.UserControls
             {
                 return number;
             }
-            return 0;
+            return null;
         }
     }
 }

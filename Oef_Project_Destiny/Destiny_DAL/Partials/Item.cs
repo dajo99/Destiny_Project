@@ -37,7 +37,8 @@ namespace Destiny_DAL
         {
             return obj is Item item &&
                    Naam == item.Naam &&
-                   Zeldzaamheid == "Exotic";
+                   Zeldzaamheid == item.Zeldzaamheid &&
+                   item.Zeldzaamheid.Contains("Exotic");
         }
         public override int GetHashCode()
         {
