@@ -183,6 +183,7 @@ namespace Project_Destiny_WPF
             GridMain.Children.Clear();
             usc = new WelcomeControl();
             GridMain.Children.Add(usc);
+            ProfileImage.Source = null;
             BtnRegistreren.IsEnabled = true;
             BtnInloggen.IsEnabled = true;
             ListViewMenu.IsEnabled = false;

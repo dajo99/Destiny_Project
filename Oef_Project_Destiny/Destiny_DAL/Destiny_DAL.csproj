@@ -139,6 +139,8 @@
     <Compile Include="Partials\Character.cs" />
     <Compile Include="Partials\CharacterKlasse.cs" />
     <Compile Include="Partials\CharacterSubklasse.cs" />
+    <Compile Include="Partials\Item.cs" />
+    <Compile Include="Partials\Locatie.cs" />
     <Compile Include="Partials\Ras.cs" />
     <Compile Include="Perk.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>

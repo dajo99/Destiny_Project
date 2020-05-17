@@ -183,20 +183,20 @@ namespace Project_Destiny_WPF.UserControls
 
             if (cmbKlasse.SelectedItem is CharacterKlasse klasse)
             {
-                User.characterKlasse = klasse;
+                User.CharacterKlasse = klasse;
                 karakter.CharacterKlasseId = klasse.id;
-                
             }
-
-            
+            if (cmbSubklasse.SelectedItem is CharacterSubklasse sub)
+            {
+                User.CharacterSubKlasse = sub;
+                karakter.CharacterSubklasseId = sub.id;
+            }
         }
 
         private void cmbKlasse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             cmbSubklasse.IsEnabled = true;
             cmbSubklasse.ItemsSource = DatabaseOperations.OphalenCharacterSubklasseVoorAanmaken(OphalenSubklasses());
-
         }
 
 

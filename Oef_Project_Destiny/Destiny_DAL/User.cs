@@ -10,8 +10,8 @@ namespace Destiny_DAL
     {
         public static Account Acc { get; set; }
         public static Character Character { get; set; }
-        public static CharacterKlasse characterKlasse { get; set; }
-
+        public static CharacterKlasse CharacterKlasse { get; set; }
+        public static CharacterSubklasse CharacterSubKlasse { get; set; }
     }
     
 }

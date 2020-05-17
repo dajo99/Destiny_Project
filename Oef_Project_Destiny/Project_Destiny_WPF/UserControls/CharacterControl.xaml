@@ -45,7 +45,7 @@
                 <DataGridTextColumn Width="122" Header="Haar" Binding="{Binding HeadOption}"></DataGridTextColumn>
                 <DataGridTextColumn Width="122" Header="Marking" Binding="{Binding Marking}"></DataGridTextColumn>
                 <DataGridTextColumn Width="122" Header="Klasse" Binding="{Binding CharacterKlasse}"></DataGridTextColumn>
-                <DataGridTextColumn Width="122" Header="Subklasse" Binding="{Binding CharacterSubklasses}"></DataGridTextColumn>
+                <DataGridTextColumn Width="122" Header="Subklasse" Binding="{Binding CharacterSubklasse}"></DataGridTextColumn>
                 <DataGridTextColumn Width="130" Header="Level" Binding="{Binding Level}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>

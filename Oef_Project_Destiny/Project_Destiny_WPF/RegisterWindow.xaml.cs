@@ -39,34 +39,11 @@ namespace Project_Destiny_WPF
         }
         MainWindow w = (MainWindow)Application.Current.MainWindow;
 
-        private string ValideerGegevens()
-        {
-            string password = txtWachtwoord.Password;
-            //Lengte van ingegeven gebruikersnaam checken
-            if (txtGebruikersnaam.Text.Length < 3)
-            {
-                return "Gebruikersnaam moet langer zijn dan 3 characters";
-            }
-            //checken als email-adres valide
-            if (!new EmailAddressAttribute().IsValid(txtEmailadres.Text))
-            {
-                return "Het opgegeven mailadres bestaat niet!";
-            }
-            //Wachtwoordvalidatie
-            if (password.Length < 6)
-            {
-                return "Lengte van wachtwoord moet langer zijn dan 6 characters!";
-            }
-            if (password != txtHerhaalWachtwoord.Password)
-            {
-                return "Wachtwoorden komen niet overeen!";
-            }
-            return "";
-        }
+        
 
         private void BtnRegistreren_Click(object sender, RoutedEventArgs e)
         {
-            string foutmeldingen = ValideerGegevens();
+            string foutmeldingen = Valideer.ValideerAccountGegevens(txtWachtwoord.Password, txtGebruikersnaam.Text, txtEmailadres.Text, txtHerhaalWachtwoord.Password); ;
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 //nieuw account aanmaken
@@ -77,8 +54,9 @@ namespace Project_Destiny_WPF
                 string ep = SecurePassword.EncryptString(txtWachtwoord.Password);
                 a.Wachtwoord = ep;
                 if (a.IsGeldig())
-                {                 
-                    List<Account> accounts = DatabaseOperations.CheckLogin();
+                {   
+                    // deze parameter is oorspronkelijk nodig omdat deze niet null kan zijn en is vereist om account te kunnen wijzigen!          
+                    List<Account> accounts = DatabaseOperations.CheckLogin(new Account());
                     if (!accounts.Contains(a))
                     {
                         int ok = DatabaseOperations.ToevoegenAccount(a);
@@ -86,7 +64,7 @@ namespace Project_Destiny_WPF
                         {
                             User.Acc = a; //nodig om account te onthouden van persoon
                             this.Close();
-                            w.Accountnaam.Text = a.Accountnaam;
+                            w.Accountnaam.Content = a.Accountnaam;
                             w.Loginpanel.Visibility = Visibility.Hidden;
                             w.Accountpanel.Visibility = Visibility.Visible;
                             w.ListViewMenu.IsEnabled = true;
