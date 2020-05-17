@@ -7,7 +7,7 @@
       <Diagram DiagramId="56407b0f62884b4db2e010cbf81e8b63" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="DestinyModel.Account" Width="1.5" PointX="1.5" PointY="31.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Armor" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinyModel.Character" Width="1.5" PointX="3.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinyModel.Character" Width="2.125" PointX="3.75" PointY="32.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.CharacterKlasse" Width="2.25" PointX="0.75" PointY="34.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.CharacterSubklasse" Width="2.25" PointX="3" PointY="38.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Currency" Width="2.25" PointX="0.75" PointY="28.25" IsExpanded="true" />
@@ -78,6 +78,7 @@
         <AssociationConnector Association="DestinyModel.FK_PerkWapen_Wapen" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_SpecialItem_Categorie" ManuallyRouted="false" />
         <AssociationConnector Association="DestinyModel.FK_Wapen_Wapenklasse" ManuallyRouted="false" />
+        <AssociationConnector Association="DestinyModel.FK_Character_CharacterSubklasse" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -46,6 +46,7 @@
           <Property Name="HeadOption" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Marking" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="RasId" Type="int" Nullable="false" />
+          <Property Name="CharacterSubklasseId" Type="int" />
         </EntityType>
         <EntityType Name="CharacterKlasse">
           <Key>
@@ -328,6 +329,18 @@
             </Principal>
             <Dependent Role="Character">
               <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_CharacterSubklasse">
+          <End Role="CharacterSubklasse" Type="Self.CharacterSubklasse" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="CharacterSubklasseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -851,6 +864,10 @@
             <End Role="Account" EntitySet="Account" />
             <End Role="Character" EntitySet="Character" />
           </AssociationSet>
+          <AssociationSet Name="FK_Character_CharacterSubklasse" Association="Self.FK_Character_CharacterSubklasse">
+            <End Role="CharacterSubklasse" EntitySet="CharacterSubklasse" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
           <AssociationSet Name="FK_Character_Ras" Association="Self.FK_Character_Ras">
             <End Role="Ras" EntitySet="Ras" />
             <End Role="Character" EntitySet="Character" />
@@ -1064,6 +1081,8 @@
           <NavigationProperty Name="Ras" Relationship="Self.FK_Character_Ras" FromRole="Character" ToRole="Ras" />
           <NavigationProperty Name="CharacterKlasse" Relationship="Self.FK_Customization_CharacterKlasse" FromRole="Character" ToRole="CharacterKlasse" />
           <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_Character" FromRole="Character" ToRole="Inventory" />
+          <Property Name="CharacterSubklasseId" Type="Int32" />
+          <NavigationProperty Name="CharacterSubklasse" Relationship="DestinyModel.FK_Character_CharacterSubklasse" FromRole="Character" ToRole="CharacterSubklasse" />
         </EntityType>
         <EntityType Name="CharacterKlasse">
           <Key>
@@ -1085,6 +1104,7 @@
           <NavigationProperty Name="GranaatSubklasses" Relationship="Self.FK_GranaatSubklasse_Character_Subklasse" FromRole="CharacterSubklasse" ToRole="GranaatSubklasse" />
           <NavigationProperty Name="SubklasseAbilities" Relationship="Self.FK_SubklasseAbility_Character_Subklasse" FromRole="CharacterSubklasse" ToRole="SubklasseAbility" />
           <NavigationProperty Name="SubklassePerks" Relationship="Self.FK_SubklassePerks_CharacterSubklasse" FromRole="CharacterSubklasse" ToRole="SubklassePerks" />
+          <NavigationProperty Name="Characters" Relationship="DestinyModel.FK_Character_CharacterSubklasse" FromRole="CharacterSubklasse" ToRole="Character" />
         </EntityType>
         <EntityType Name="Currency">
           <Key>
@@ -2106,7 +2126,23 @@
             <End Role="Wapenklasse" EntitySet="Wapenklasses" />
             <End Role="Wapen" EntitySet="Wapens" />
           </AssociationSet>
+          <AssociationSet Name="FK_Character_CharacterSubklasse" Association="DestinyModel.FK_Character_CharacterSubklasse">
+            <End Role="CharacterSubklasse" EntitySet="CharacterSubklasses" />
+            <End Role="Character" EntitySet="Characters" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Character_CharacterSubklasse">
+          <End Type="DestinyModel.CharacterSubklasse" Role="CharacterSubklasse" Multiplicity="0..1" />
+          <End Type="DestinyModel.Character" Role="Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="CharacterSubklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2146,6 +2182,7 @@
           <EntitySetMapping Name="Characters">
             <EntityTypeMapping TypeName="DestinyModel.Character">
               <MappingFragment StoreEntitySet="Character">
+                <ScalarProperty Name="CharacterSubklasseId" ColumnName="CharacterSubklasseId" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="CharacterKlasseId" ColumnName="CharacterKlasseId" />

@@ -7,7 +7,7 @@ using System.Windows;
 using System.Data.Entity;
 using System.Security.Cryptography;
 using System.Windows.Controls;
-using System.IO;
+using System.Linq.Expressions;
 
 namespace Destiny_DAL
 {
@@ -129,10 +129,9 @@ namespace Destiny_DAL
                 return query.ToList();
             }
         }
-       
+
         public static int CharacterToevoegen(Character aanmaking)
         {
-
             try
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -147,14 +146,72 @@ namespace Destiny_DAL
                 fileOperations.Foutloggen(ex);
                 return 0;
             }
-                
-            
-           
-              
-
         }
 
+        public static List<Character> CharactersOphalenViaAccountId(int id)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                var query = destinyEntities.Characters.Include(x => x.Ras)
+                    .Include(x => x.CharacterKlasse)
+                    .Include(x => x.CharacterSubklasse)
+                    .Where(x => x.AccountId == id)
+                    .OrderBy(x => x.Level);
 
+                return query.ToList();
+
+            }
+        }
+
+        public static List<Character> CharacterOphalenViaCharacterId(int id)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                var query = destinyEntities.Characters.Include(x => x.Ras)
+                    .Include(x => x.CharacterKlasse)
+                    .Include(x => x.CharacterSubklasse)
+                    .Where(x => x.AccountId == id);
+
+
+                return query.ToList();
+
+            }
+        }
+        public static int CharacterVerwijderen(Character verwijderen)
+        {
+
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(verwijderen).State = EntityState.Deleted;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
+
+        public static int CharacterUpdaten(Character update)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(update).State = EntityState.Modified;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+        }
         public static List<Map> OphalenWerelden()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -182,7 +239,7 @@ namespace Destiny_DAL
         {
             try
             {
-                using(DestinyEntities destinyEntities = new DestinyEntities())
+                using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
 
                     destinyEntities.Entry(locatie).State = EntityState.Modified;
@@ -204,10 +261,8 @@ namespace Destiny_DAL
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
-
                     destinyEntities.Locaties.Add(locatie);
                     return destinyEntities.SaveChanges();
-
                 }
             }
             catch (Exception ex)
