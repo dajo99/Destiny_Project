@@ -140,6 +140,7 @@
     <Compile Include="Partials\Item.cs" />
     <Compile Include="Partials\Locatie.cs" />
     <Compile Include="Partials\Ras.cs" />
+    <Compile Include="Partials\SpecialItem.cs" />
     <Compile Include="Perk.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>

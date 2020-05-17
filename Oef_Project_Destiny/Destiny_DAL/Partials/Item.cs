@@ -46,6 +46,5 @@ namespace Destiny_DAL
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Zeldzaamheid);
             return hashCode;
         }
-
     }
 }

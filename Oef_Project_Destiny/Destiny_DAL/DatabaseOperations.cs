@@ -7,6 +7,7 @@ using System.Windows;
 using System.Data.Entity;
 using System.Security.Cryptography;
 using System.Windows.Controls;
+using System.IO;
 
 namespace Destiny_DAL
 {
@@ -298,6 +299,7 @@ namespace Destiny_DAL
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
                 return destinyEntities.SpecialItemCategories
+                    .OrderBy(x => x.Naam)
                     .ToList();
             }
         }
@@ -327,8 +329,63 @@ namespace Destiny_DAL
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
                 return destinyEntities.Items
+                    .Include(x=> x.SpecialItem)
                     .ToList();
             }
+        }
+
+        public static int AanpassenSpecialItems(SpecialItem si)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(si).State = EntityState.Modified;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
+
+        public static int AanpassenItems(Item i)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(i).State = EntityState.Modified;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
+        public static int VerwijderenSpecialItem(Item i, SpecialItem si)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(si).State = EntityState.Deleted;
+                    destinyEntities.Entry(i).State = EntityState.Deleted;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+
         }
     }
 }
