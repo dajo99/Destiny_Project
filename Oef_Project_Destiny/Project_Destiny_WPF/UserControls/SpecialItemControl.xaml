@@ -30,7 +30,7 @@
         <ComboBox x:Name="cmbZeldzaamheid" Grid.Column="1" Width="210" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
                      materialDesign:HintAssist.Hint="Kies zeldzaamheid" SelectionChanged="cmbZeldzaamheid_SelectionChanged"  Grid.Row="1"  Margin="215,0,0,0" Grid.ColumnSpan="2"/>
 
-        <DataGrid x:Name="dbItems" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbItems_SelectionChanged"  Width="698" HorizontalAlignment="Center" Margin="10,20,5,20">
+        <DataGrid x:Name="dbItems" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dbItems_SelectionChanged"  Width="698" HorizontalAlignment="Center" Margin="10,20,5,20">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="#333" />
