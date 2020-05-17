@@ -197,8 +197,6 @@ namespace Project_Destiny_WPF.UserControls
                     si.SpecialItemCategorie = c;
                 }
 
-
-
                 i.Naam = txtNaam.Text;
                 i.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
 
@@ -206,7 +204,7 @@ namespace Project_Destiny_WPF.UserControls
 
                 if (i.IsGeldig())
                 {
-                    if (!User.Items.Contains(i) && !User.Items.Contains(si.Item))
+                    if (!User.Items.Contains(i))
                     {
                         int ok1 = DatabaseOperations.AanpassenItems(i);
                         if (ok1 > 0)

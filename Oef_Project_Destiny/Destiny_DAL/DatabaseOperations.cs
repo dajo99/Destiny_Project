@@ -299,7 +299,7 @@ namespace Destiny_DAL
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
                 return destinyEntities.SpecialItemCategories
-                    .OrderBy(x => x.Naam)
+                    .OrderBy(x => x.id)
                     .ToList();
             }
         }
@@ -330,6 +330,7 @@ namespace Destiny_DAL
             {
                 return destinyEntities.Items
                     .Include(x=> x.SpecialItem)
+                    .OrderBy(x => x.id)
                     .ToList();
             }
         }
