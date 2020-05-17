@@ -35,7 +35,7 @@
             <GridSplitter  Width="3" IsEnabled="True" Margin="0,10,0,33" BorderBrush="#333" BorderThickness="3" VerticalAlignment="Top" Height="280"></GridSplitter>
         </Grid>
         <WrapPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical" Margin="20,0,8,10">
-            
+
             <TextBox x:Name="txtVoornaam"  FontSize="15" Foreground="#333333" Margin="8,6" Width="200" materialDesign:ThemeAssist.Theme="Light"></TextBox>
             <TextBox x:Name="txtAchternaam"   FontSize="15" Foreground="#333333" Margin="8,6" Width="200" materialDesign:ThemeAssist.Theme="Light"></TextBox>
             <TextBox x:Name="txtMail"   FontSize="15" Foreground="#333333" Margin="8,4" Width="200" materialDesign:ThemeAssist.Theme="Light"></TextBox>
@@ -44,8 +44,10 @@
             <PasswordBox x:Name="txtWachtwoord"  FontSize="15" Foreground="#333333" Margin="8,4" Width="200" materialDesign:ThemeAssist.Theme="Light"></PasswordBox>
             <PasswordBox x:Name="txtHerhaalWachtwoord"  FontSize="15" Foreground="#333333" Margin="8,4" Width="200" materialDesign:ThemeAssist.Theme="Light"></PasswordBox>
             <Button x:Name="btnOpslaan" Content="Gegevens opslaan" Margin="8,20" Width="200" Click="btnOpslaan_Click" ></Button>
-            
+
         </WrapPanel>
-        
+        <Image x:Name="UploadFoto" HorizontalAlignment="Left" Height="105" Margin="103,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="115"/>
+        <Button x:Name="BtnUploaden" Content="Upload Image" HorizontalAlignment="Left" Margin="88,131,0,0" Grid.Row="2" VerticalAlignment="Top" Width="130" Click="BtnUploaden_Click"/>
+
     </Grid>
 </UserControl>

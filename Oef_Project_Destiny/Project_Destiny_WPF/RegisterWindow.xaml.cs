@@ -64,7 +64,7 @@ namespace Project_Destiny_WPF
                         {
                             User.Acc = a; //nodig om account te onthouden van persoon
                             this.Close();
-                            w.Accountnaam.Text = a.Accountnaam;
+                            w.Accountnaam.Content = a.Accountnaam;
                             w.Loginpanel.Visibility = Visibility.Hidden;
                             w.Accountpanel.Visibility = Visibility.Visible;
                             w.ListViewMenu.IsEnabled = true;

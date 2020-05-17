@@ -56,7 +56,11 @@
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
             </Grid.Effect>
             <StackPanel x:Name="Accountpanel" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="Hidden" Grid.Column="1">
-                <TextBlock x:Name="Accountnaam" VerticalAlignment="Center" FontSize="16"/>
+                <materialDesign:Chip x:Name="Accountnaam" Background="White" >
+                    <materialDesign:Chip.Icon>
+                        <Image x:Name="ProfileImage" />
+                    </materialDesign:Chip.Icon>
+                </materialDesign:Chip>
                 <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                     <StackPanel Width="150">
                         <Button x:Name="BtnSettings" Content="Settings" Click="BtnSettings_Click"/>
