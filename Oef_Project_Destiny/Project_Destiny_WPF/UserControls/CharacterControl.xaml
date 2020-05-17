@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              d:DesignHeight ="400" d:DesignWidth ="600"
-             Background="{x:Null}">
+             Background="{x:Null}" Loaded="UserControl_Loaded">
 
     <Grid x:Name="gridCharacter">
         <Grid.RowDefinitions>
@@ -26,25 +26,44 @@
     Style="{StaticResource MaterialDesignRaisedButton}"
     Content="Character aanmaken"
     Margin="10"  Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom"/>
-        <ListBox x:Name="lbCharacters" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HorizontalContentAlignment="Center" FontSize="16" Margin="10" BorderThickness="1" BorderBrush="Black" Background="White" Foreground="Black">
-            <ListBoxItem>
-                Hello
-            </ListBoxItem>
-            <ListBoxItem>
-                World
-            </ListBoxItem>
-            <ListBoxItem>
-                :D :D
-            </ListBoxItem>
-        </ListBox>
+        <ScrollViewer  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="15,10,15,0">
+        <DataGrid x:Name="dtgKarakters" AutoGenerateColumns="False" >
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#333" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Padding" Value="6"/>
+                    <Setter Property="BorderThickness" Value="0,0,2,0"></Setter>
+                    <Setter Property="BorderBrush" Value="#fff"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="120" Header="Ras" Binding="{Binding Ras}"></DataGridTextColumn>
+                <DataGridTextColumn Width="120" Header="Gender" Binding="{Binding Gender}"></DataGridTextColumn>
+                <DataGridTextColumn Width="122" Header="Gezicht" Binding="{Binding Face}"></DataGridTextColumn>
+                <DataGridTextColumn Width="122" Header="Haar" Binding="{Binding HeadOption}"></DataGridTextColumn>
+                <DataGridTextColumn Width="122" Header="Marking" Binding="{Binding Marking}"></DataGridTextColumn>
+                <DataGridTextColumn Width="122" Header="Klasse" Binding="{Binding CharacterKlasse}"></DataGridTextColumn>
+                <DataGridTextColumn Width="122" Header="Subklasse" Binding="{Binding CharacterSubklasse}"></DataGridTextColumn>
+                <DataGridTextColumn Width="130" Header="Level" Binding="{Binding Level}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        </ScrollViewer>
         <Button x:Name="btnAanpassen" Click="btnAanpassen_Click"
     Style="{StaticResource MaterialDesignRaisedButton}"
     Content="Character aanpassen"
     Margin="10" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
-        <Button
+        <Button x:Name="btnVerwijderen" Click="btnVerwijderen_Click"
     Style="{StaticResource MaterialDesignRaisedButton}"
     Content="Character verwijderen"
     Margin="10" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"/>
+
+        <Button x:Name="btnStrijden" Click="btnStrijden_Click"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Content="Ten strijde gaan!"
+    Margin="10" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
+       
 
     </Grid>
 </UserControl>
