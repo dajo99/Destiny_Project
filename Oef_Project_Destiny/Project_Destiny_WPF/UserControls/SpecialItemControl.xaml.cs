@@ -178,7 +178,7 @@ namespace Project_Destiny_WPF.UserControls
                 i.Naam = txtNaam.Text;
                 i.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
 
-                Debug.WriteLine(c.Naam + " " + si.id + "-" + si.CategorieId + "-" + si.Boost + "-" + si.Durability + "-" + i.Naam + "-" + i.Zeldzaamheid);
+                Debug.WriteLine(c.Naam + " " + si.id + "====" + si.Item.id + "-" + si.CategorieId + "===" + si.SpecialItemCategorie.id + "-" + si.SpecialItemCategorie.Naam + "===" + c.Naam);
 
                 if (i.IsGeldig())
                 {
