@@ -11,7 +11,7 @@ namespace Destiny_DAL
         public static Account Acc { get; set; }
         public static Character Character { get; set; }
         
-        public static List<Item> Items { get; set; }
+
 
     }
     

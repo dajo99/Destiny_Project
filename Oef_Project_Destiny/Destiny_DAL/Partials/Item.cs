@@ -9,6 +9,7 @@ namespace Destiny_DAL
 {
     public partial class Item : Basisklasse
     {
+        public static List<Item> Items { get; set; }
         public override string this[string columnName]
         {
             get
