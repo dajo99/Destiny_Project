@@ -124,7 +124,7 @@ namespace Project_Destiny_WPF.UserControls
                         if (ok > 0)
                         {
                             ZoekenItems();
-                            Wissen();
+                            WissenVelden();
                         }
                         else
                         {
@@ -186,7 +186,7 @@ namespace Project_Destiny_WPF.UserControls
                         {
                             Debug.WriteLine(c.Naam + " " + si.id + "-" + si.CategorieId + "-" + si.Boost + "-" + si.Durability + "-" + si.Item.Naam + "-" + si.Item.Zeldzaamheid);
                             ZoekenItems();
-                            Wissen();
+                            WissenVelden();
                         }
                         else
                         {
@@ -209,7 +209,7 @@ namespace Project_Destiny_WPF.UserControls
                 MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            Wissen();
+            WissenVelden();
         }
 
         private void btnRemoveItem_Click(object sender, RoutedEventArgs e)
@@ -222,7 +222,7 @@ namespace Project_Destiny_WPF.UserControls
                 if (ok > 0)
                 {
                     ZoekenItems();
-                    Wissen();
+                    WissenVelden();
                 }
                 else
                 {
@@ -254,7 +254,7 @@ namespace Project_Destiny_WPF.UserControls
             }
             return "";
         }
-        private void Wissen()
+        private void WissenVelden()
         {
             txtNaam.Text = "";
             txtDurability.Text = "";
