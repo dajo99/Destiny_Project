@@ -1,7 +1,10 @@
-﻿using Project_Destiny_WPF.UserControls;
+﻿using Destiny_DAL;
+using Project_Destiny_WPF.UserControls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +17,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace Project_Destiny_WPF
 {
@@ -33,8 +37,11 @@ namespace Project_Destiny_WPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             GridMain.Children.Clear();
-            usc = new Welkom();
+            usc = new WelcomeControl();
             GridMain.Children.Add(usc);
+            BtnRegistreren.IsEnabled = true;
+            BtnInloggen.IsEnabled = true;
+            ListViewMenu.IsEnabled = false;
         }
 
         private void ButtonMenu_Click(object sender, RoutedEventArgs e)
@@ -59,19 +66,19 @@ namespace Project_Destiny_WPF
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "Character":
-                    usc = new Character(this);
+                    usc = new CharacterControl();
                     break;
                 case "Wapens":
-                    usc = new Weapons();
+                    usc = new WeaponsControl();
                     break;
                 case "Armor":
-                    usc = new Armor();
+                    usc = new ArmorControl();
                     break;
                 case "SpecialItems":
-                    usc = new SpecialItem();
+                    usc = new SpecialItemControl();
                     break;
                 case "Locations":
-                    usc = new Locations();  
+                    usc = new LocationsUserControl();  
                     break;
 
             }
@@ -80,8 +87,10 @@ namespace Project_Destiny_WPF
 
         private void BtnInloggen_Click(object sender, RoutedEventArgs e)
         {
-            Inlogscreen inlog = new Inlogscreen();
+            
+            Window inlog = new LogInWindow();
             inlog.Show();
+            DisablingButtons();
         }
 
         private void BtnAfsluiten_Click(object sender, RoutedEventArgs e)
@@ -97,7 +106,15 @@ namespace Project_Destiny_WPF
         private void BtnHome_Click(object sender, RoutedEventArgs e)
         {
             GridMain.Children.Clear();
-            usc = new Account();
+            if (User.Acc == null)
+            {
+                usc = new WelcomeControl();
+            }
+            else
+            {
+                usc = new LoggedInControl();
+            }
+            
             GridMain.Children.Add(usc);
         }
         private void ListViewItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -109,23 +126,69 @@ namespace Project_Destiny_WPF
                 switch (item.Name)
                 {
                     case "Character":
-                        usc = new Character(this);
+                        usc = new CharacterControl();
                         break;
                     case "Wapens":
-                        usc = new Weapons();
+                        usc = new WeaponsControl();
                         break;
                     case "Armor":
-                        usc = new Armor();
+                        usc = new ArmorControl();
                         break;
                     case "SpecialItems":
-                        usc = new SpecialItem();
+                        usc = new UserControls.SpecialItemControl();
                         break;
                     case "Locations":
-                        usc = new Locations();
+                        usc = new LocationsUserControl();
                         break;
                 }
             }
             GridMain.Children.Add(usc);
+        }
+
+        private void BtnRegistreren_Click(object sender, RoutedEventArgs e)
+        {
+            Window registreer = new RegisterWindow();
+            registreer.Show();
+            DisablingButtons();
+        }
+
+        private void BtnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            GridMain.Children.Clear();
+            usc = new SettingsControl();
+            GridMain.Children.Add(usc);
+        }
+
+        private void DisablingButtons()
+        {
+            BtnRegistreren.IsEnabled = false;
+            BtnInloggen.IsEnabled = false;
+        }
+
+        private void btnAccount_Click(object sender, RoutedEventArgs e)
+        {
+            GridMain.Children.Clear();
+            usc = new AccountControl();
+            GridMain.Children.Add(usc);
+        }
+
+        private void btnHelp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAfmelden_Click(object sender, RoutedEventArgs e)
+        {
+            User.Acc = null;
+            GridMain.Children.Clear();
+            usc = new WelcomeControl();
+            GridMain.Children.Add(usc);
+            ProfileImage.Source = null;
+            BtnRegistreren.IsEnabled = true;
+            BtnInloggen.IsEnabled = true;
+            ListViewMenu.IsEnabled = false;
+            Accountpanel.Visibility = Visibility.Hidden;
+            Loginpanel.Visibility = Visibility.Visible;
         }
     }
 }

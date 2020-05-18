@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -37,6 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.5.1399, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.5-ci1399\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -66,40 +73,46 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Inlogscreen.xaml.cs">
-      <DependentUpon>Inlogscreen.xaml</DependentUpon>
+    <Compile Include="LogInWindow.xaml.cs">
+      <DependentUpon>LogInWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Registerscreen.xaml.cs">
-      <DependentUpon>Registerscreen.xaml</DependentUpon>
+    <Compile Include="RegisterWindow.xaml.cs">
+      <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Account.xaml.cs">
-      <DependentUpon>Account.xaml</DependentUpon>
+    <Compile Include="UserControls\AccountControl.xaml.cs">
+      <DependentUpon>AccountControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Armor.xaml.cs">
-      <DependentUpon>Armor.xaml</DependentUpon>
+    <Compile Include="UserControls\ArmorControl.xaml.cs">
+      <DependentUpon>ArmorControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Character-Wijzigen.xaml.cs">
-      <DependentUpon>Character-Wijzigen.xaml</DependentUpon>
+    <Compile Include="UserControls\CharacterCreateControl.xaml.cs">
+      <DependentUpon>CharacterCreateControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Character.xaml.cs">
-      <DependentUpon>Character.xaml</DependentUpon>
+    <Compile Include="UserControls\CharacterChangeControl.xaml.cs">
+      <DependentUpon>CharacterChangeControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Instellingen.xaml.cs">
-      <DependentUpon>Instellingen.xaml</DependentUpon>
+    <Compile Include="UserControls\CharacterControl.xaml.cs">
+      <DependentUpon>CharacterControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Locations.xaml.cs">
-      <DependentUpon>Locations.xaml</DependentUpon>
+    <Compile Include="UserControls\LoggedInControl.xaml.cs">
+      <DependentUpon>LoggedInControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SpecialItem.xaml.cs">
-      <DependentUpon>SpecialItem.xaml</DependentUpon>
+    <Compile Include="UserControls\SettingsControl.xaml.cs">
+      <DependentUpon>SettingsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Weapons.xaml.cs">
-      <DependentUpon>Weapons.xaml</DependentUpon>
+    <Compile Include="UserControls\LocationsControl.xaml.cs">
+      <DependentUpon>LocationsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Welkom.xaml.cs">
-      <DependentUpon>Welkom.xaml</DependentUpon>
+    <Compile Include="UserControls\SpecialItemControl.xaml.cs">
+      <DependentUpon>SpecialItemControl.xaml</DependentUpon>
     </Compile>
-    <Page Include="Inlogscreen.xaml">
+    <Compile Include="UserControls\WeaponsControl.xaml.cs">
+      <DependentUpon>WeaponsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\WelcomeControl.xaml.cs">
+      <DependentUpon>WelcomeControl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="LogInWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,43 +128,52 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Registerscreen.xaml">
+    <Page Include="RegisterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Account.xaml">
+    <Page Include="UserControls\AccountControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Armor.xaml">
+    <Page Include="UserControls\ArmorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Character-Wijzigen.xaml">
+    <Page Include="UserControls\CharacterCreateControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Character.xaml">
+    <Page Include="UserControls\CharacterChangeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Instellingen.xaml">
+    <Page Include="UserControls\CharacterControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Locations.xaml">
+    <Page Include="UserControls\LoggedInControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\SpecialItem.xaml">
+    <Page Include="UserControls\SettingsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Weapons.xaml">
+    <Page Include="UserControls\LocationsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Welkom.xaml">
+    <Page Include="UserControls\SpecialItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\WeaponsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\WelcomeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,7 +205,24 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Destiny_DAL\Destiny_DAL.csproj">
+      <Project>{d17d8489-7bf6-4a47-adbb-c221288815ae}</Project>
+      <Name>Destiny_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Destiny_Models\Destiny_Models.csproj">
+      <Project>{16f32f33-765a-4f53-a231-eaace37ecb7c}</Project>
+      <Name>Destiny_Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fail-trombone-01.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Short_triumphal_fanfare-John_Stracke-815794903.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.1.2-ci1399\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.2-ci1399\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -191,5 +230,8 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\MaterialDesignThemes.3.1.2-ci1399\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.3.1.2-ci1399\build\MaterialDesignThemes.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>

@@ -45,9 +45,9 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Window.Resources>
-    <Grid Background="#FF7C7C7C">
+    <Grid x:Name="GridMainWindow" Background="#FF7C7C7C">
         <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010"/>
-        <Grid Height="60" VerticalAlignment="Top" Background="#FF00C7A3">
+        <Grid x:Name="GridNav" Height="60" VerticalAlignment="Top" Background="#FF00C7A3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="13*"/>
                 <ColumnDefinition Width="32*"/>
@@ -55,21 +55,25 @@
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
             </Grid.Effect>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Visibility="Hidden" Grid.Column="1">
-                <TextBlock Text="Accountnaam" VerticalAlignment="Center" FontSize="16"/>
+            <StackPanel x:Name="Accountpanel" Orientation="Horizontal" HorizontalAlignment="Right" Visibility="Hidden" Grid.Column="1">
+                <materialDesign:Chip x:Name="Accountnaam" Background="White" >
+                    <materialDesign:Chip.Icon>
+                        <Image x:Name="ProfileImage" />
+                    </materialDesign:Chip.Icon>
+                </materialDesign:Chip>
                 <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
                     <StackPanel Width="150">
-                        <Button Content="Settings"/>
-                        <Button Content="Account"/>
-                        <Button Content="Help"/>
+                        <Button x:Name="BtnSettings" Content="Settings" Click="BtnSettings_Click"/>
+                        <Button x:Name="btnAccount" Content="Account" Click="btnAccount_Click"/>
+                        <Button x:Name="btnHelp" Content="Help" Click="btnHelp_Click"/>
                         <Separator/>
-                        <Button Content="Logout"/>
+                        <Button x:Name="btnAfmelden" Content="Logout" Click="btnAfmelden_Click"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,10,10" Visibility="Visible" Grid.Column="1">
+            <StackPanel x:Name="Loginpanel" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,10,10" Visibility="Visible" Grid.Column="1">
                 <Button x:Name="BtnInloggen" Content="Inloggen" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnInloggen_Click" />
-                <Button x:Name="BtnRegistreren" Content="Registreren" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}" materialDesign:ButtonAssist.CornerRadius="5" Height="30"  />
+                <Button x:Name="BtnRegistreren" Content="Registreren" Margin="5,5,5,0" Width="150" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}" materialDesign:ButtonAssist.CornerRadius="5" Height="30" Click="BtnRegistreren_Click" />
             </StackPanel>
 
     
@@ -78,7 +82,7 @@
         </Grid>
         <Grid x:Name="GridMenu" HorizontalAlignment="Left" Width="70" Background="#FF00C7A3">
             <StackPanel>
-                <Grid Height="150" Background="White"/>
+                <Grid x:Name="GridHamburger" Height="150" Background="White"/>
                 <ListView x:Name="ListViewMenu"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
