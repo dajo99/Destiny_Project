@@ -291,6 +291,10 @@ namespace Destiny_DAL
             }
         }
 
+       
+
+
+
         public static List<SpecialItem> OphalenSpecialItemsViaNaam(string naam)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -478,6 +482,16 @@ namespace Destiny_DAL
             }
         }
 
+        public static List<Item> OphalenZeldzaamheid()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Items
+
+                    .OrderBy(x => x.Zeldzaamheid)
+                    .ToList();
+            }
+        }
         public static List<Armor> OphalenArmorViaZeldzaamheid(string naam, string zeldzaamheid)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -562,6 +576,19 @@ namespace Destiny_DAL
                 return 0;
             }
 
+        }
+
+
+
+        //Usercontrole Weapons
+        public static List<Wapen> OphalenCategorie()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Wapens
+                    .OrderBy(x => x.Soort)
+                    .ToList();
+            }
         }
     }
 }
