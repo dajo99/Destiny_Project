@@ -81,7 +81,7 @@ namespace Project_Destiny_WPF
                                 int opnieuwWijzigen = DatabaseOperations.WijzigenAccount(b);
 
                                 MessageBox.Show("Er is iets fout gelopen bij het verzenden van de mail!", "Verzenden mislukt!", MessageBoxButton.OK, MessageBoxImage.Error);
-                                fileOperations.Foutloggen(ex);
+                                FileOperations.Foutloggen(ex);
                             }
 
                         }

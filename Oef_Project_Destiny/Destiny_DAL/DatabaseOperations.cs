@@ -25,7 +25,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -53,7 +53,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return null;
             }
 
@@ -71,7 +71,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -89,7 +89,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -143,7 +143,7 @@ namespace Destiny_DAL
             catch (Exception ex)
             {
 
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -191,7 +191,7 @@ namespace Destiny_DAL
             catch (Exception ex)
             {
 
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -208,7 +208,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -249,7 +249,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -267,7 +267,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -286,7 +286,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -373,7 +373,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex )
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
             
@@ -403,7 +403,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
 
@@ -439,7 +439,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
 
@@ -520,7 +520,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
 
@@ -539,7 +539,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
 
@@ -558,7 +558,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
 
