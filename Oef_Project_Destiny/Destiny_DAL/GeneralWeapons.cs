@@ -8,7 +8,7 @@ namespace Destiny_DAL
 {
     public static class GeneralWeapons
     {
-        public static List<Item> Items { get; set; }
+        public static List<Wapen> Weapons { get; set; }
         public static List<string> ZeldzaamheidLijst { get; set; }
 
 
