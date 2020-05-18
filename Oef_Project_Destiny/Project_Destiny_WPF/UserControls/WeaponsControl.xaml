@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="lblWapens" Content="Wapens" Grid.Column="1" FontWeight="Bold" FontSize="30" Foreground="#333333" HorizontalAlignment="Center" Margin="8"></Label>
 
-        <TextBox Grid.Row="1"  Width="230" FontSize="15" KeyDown="TextBox_KeyDown"
+        <TextBox Grid.Row="1"  Width="230" FontSize="15" KeyUp="TextBox_KeyUp"
   materialDesign:HintAssist.Hint="Zoek wapens" materialDesign:TextFieldAssist.UnderlineBrush="#333"
   VerticalAlignment="Bottom"/>
         <ComboBox x:Name="cmbCategorie" Grid.Column="1" Width="230" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"

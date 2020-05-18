@@ -22,15 +22,15 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="lblArmor" Content="Armor" Grid.Column="1" FontWeight="Bold" FontSize="30" Foreground="#333333" HorizontalAlignment="Center" Margin="8"></Label>
 
-        <TextBox x:Name="tbZoekArmor" Grid.Row="1"  Width="230" FontSize="15" KeyDown="tbZoekArmor_KeyDown"
+        <TextBox x:Name="tbZoekArmor" Grid.Row="1"  Width="230" FontSize="15" KeyUp="tbZoekArmor_KeyUp"
   materialDesign:HintAssist.Hint="Zoek armor" materialDesign:TextFieldAssist.UnderlineBrush="#333"
   VerticalAlignment="Bottom" Margin="124,0,0,0"/>
-        <ComboBox x:Name="cmbArmorSlot" Grid.Column="1" Width="210" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
-                     materialDesign:HintAssist.Hint="Kies armor slot" SelectionChanged="cmbArmorSlot_SelectionChanged"  Grid.Row="1"  Margin="0,0,0,0"/>
         <ComboBox x:Name="cmbZeldzaamheid" Grid.Column="1" Width="210" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
-                     materialDesign:HintAssist.Hint="Kies zeldzaamheid" SelectionChanged="cmbZeldzaamheid_SelectionChanged"  Grid.Row="1"  Margin="215,0,0,0" Grid.ColumnSpan="2"/>
+                     materialDesign:HintAssist.Hint="Kies zeldzaamheid"   Grid.Row="1" SelectionChanged="cmbZeldzaamheid_SelectionChanged" Margin="0,0,0,0"/>
+        <ComboBox x:Name="cmbArmorSlot" Grid.Column="1" Width="210" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
+                     materialDesign:HintAssist.Hint="Kies armorslot" SelectionChanged="cmbArmorSlot_SelectionChanged"   Grid.Row="1"  Margin="215,0,0,0" Grid.ColumnSpan="2"/>
 
-        <DataGrid x:Name="dbArmor" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbArmor_SelectionChanged" Width="793" HorizontalAlignment="Center" Margin="10,20,5,20">
+        <DataGrid x:Name="dbArmor" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbArmor_SelectionChanged" Width="800" HorizontalAlignment="Center" Margin="10,20,5,20">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="#333" />
@@ -42,15 +42,15 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Naam" Width="165"/>
-                <DataGridTextColumn Header="Zeldzaamheid" Width="105"/>
-                <DataGridTextColumn Header="Armor slot" Width="100"/>
-                <DataGridTextColumn Header="Mobility" Width="65"/>
-                <DataGridTextColumn Header="Resilience" Width="75"/>
-                <DataGridTextColumn Header="Recovery" Width="70"/>
-                <DataGridTextColumn Header="Discipline" Width="75"/>
-                <DataGridTextColumn Header="Intellect" Width="65"/>
-                <DataGridTextColumn Header="Strength" Width="75"/>
+                <DataGridTextColumn Binding="{Binding Item.Naam}" Header="Naam" Width="165"/>
+                <DataGridTextColumn Binding="{Binding Item.Zeldzaamheid}" Header="Zeldzaamheid" Width="105"/>
+                <DataGridTextColumn Binding="{Binding ArmorSlot}" Header="Armor slot" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Mobility}" Header="Mobility" Width="65"/>
+                <DataGridTextColumn Binding="{Binding Resilience}" Header="Resilience" Width="75"/>
+                <DataGridTextColumn Binding="{Binding Recovery}" Header="Recovery" Width="70"/>
+                <DataGridTextColumn Binding="{Binding Discipline}" Header="Discipline" Width="75"/>
+                <DataGridTextColumn Binding="{Binding Intellect}" Header="Intellect" Width="65"/>
+                <DataGridTextColumn Binding="{Binding Strength}" Header="Strength" Width="75"/>
             </DataGrid.Columns>
         </DataGrid>
         <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" Margin="110,10,0,10">
@@ -92,9 +92,9 @@
   VerticalAlignment="Bottom" Padding="2,0,0,0"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0" Margin="110,10,0,20">
-        <Button x:Name="btnAddWeapon" Content="Voeg armor toe" Grid.ColumnSpan="2" Width="250" Grid.Row="4" />
-        <Button x:Name="btnChangeWeapon" Content="Wijzig armor" Width="250" Grid.Row="4" Grid.Column="1" Margin="22,0,22,0" />
-        <Button x:Name="btnRemoveWeapon" Content="Verwijder armor" Width="250" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,0,0,0" />
+        <Button x:Name="btnAddArmor" Content="Voeg armor toe" Grid.ColumnSpan="2" Width="250" Grid.Row="4" Click="btnAddArmor_Click" />
+            <Button x:Name="btnChangeArmor" Content="Wijzig armor" Width="250" Grid.Row="4" Grid.Column="1" Margin="22,0,22,0" Click="btnChangeArmor_Click"/>
+            <Button x:Name="btnRemoveArmor" Content="Verwijder armor" Width="250" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,0,0,0" Click="btnRemoveArmor_Click" />
        </WrapPanel>
     </Grid>
 </UserControl>
