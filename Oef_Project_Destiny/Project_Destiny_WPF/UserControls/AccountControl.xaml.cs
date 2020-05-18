@@ -57,10 +57,6 @@ namespace Project_Destiny_WPF.UserControls
                 {
                     a.Image = Encoding.ASCII.GetBytes(op.FileName);
                 }
-                
-                    
-                    string profielImage = Encoding.ASCII.GetString(User.Acc.Image);
-                    w.ProfileImage.Source = new BitmapImage(new Uri(profielImage));
                
                 
                 if (cmbRegio.SelectedItem is string regio)

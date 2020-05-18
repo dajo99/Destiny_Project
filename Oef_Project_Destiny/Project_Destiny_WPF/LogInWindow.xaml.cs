@@ -54,8 +54,12 @@ namespace Project_Destiny_WPF
                         User.Acc = b; //nodig om account te onthouden van persoon
                         this.Close();
                         w.Accountnaam.Content = b.Accountnaam;
-                        string profielImage = Encoding.ASCII.GetString(b.Image);
-                        w.ProfileImage.Source = new BitmapImage(new Uri(profielImage));
+                        if (b.Image != null)
+                        {
+                            string profielImage = Encoding.ASCII.GetString(b.Image);
+                            w.ProfileImage.Source = new BitmapImage(new Uri(profielImage));
+                        }
+                        
                         w.Loginpanel.Visibility = Visibility.Hidden;
                         w.Accountpanel.Visibility = Visibility.Visible;
                         w.ListViewMenu.IsEnabled = true;
