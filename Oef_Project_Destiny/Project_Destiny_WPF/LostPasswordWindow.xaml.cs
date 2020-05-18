@@ -29,13 +29,10 @@ namespace Project_Destiny_WPF
             InitializeComponent();
         }
 
+        MainWindow w = (MainWindow)Application.Current.MainWindow;
         private void BtnLostPassAfsluiten_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow w = (MainWindow)Application.Current.MainWindow;
-
-            this.Close();
-            w.BtnInloggen.IsEnabled = true;
-            w.BtnRegistreren.IsEnabled = true;
+            ClosingWindow();
         }
 
         private void btnResetWachtwoord_Click(object sender, RoutedEventArgs e)
@@ -72,7 +69,8 @@ namespace Project_Destiny_WPF
                                     "\n\nMet vriendelijke groeten\nHet Destiny-Team";
                                 CreateMailMessage(message, b.Mail, c);
                                 MessageBox.Show("Er is een mail verstuurd naar " + b.Mail, "Mail verzonden", MessageBoxButton.OK, MessageBoxImage.Information);
-                                this.Close();
+                                ClosingWindow();
+
                             }
                             catch (Exception ex)
                             {
@@ -81,7 +79,7 @@ namespace Project_Destiny_WPF
                                 int opnieuwWijzigen = DatabaseOperations.WijzigenAccount(b);
 
                                 MessageBox.Show("Er is iets fout gelopen bij het verzenden van de mail!", "Verzenden mislukt!", MessageBoxButton.OK, MessageBoxImage.Error);
-                                fileOperations.Foutloggen(ex);
+                                FileOperations.Foutloggen(ex);
                             }
 
                         }
@@ -169,6 +167,13 @@ namespace Project_Destiny_WPF
             this.Close();
             Window login = new LogInWindow();
             login.Show();
+        }
+
+        private void ClosingWindow()
+        {
+            this.Close();
+            w.BtnInloggen.IsEnabled = true;
+            w.BtnRegistreren.IsEnabled = true;
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Destiny_Models
+namespace Destiny_DAL
 {
     public abstract class Basisklasse: IDataErrorInfo
     {

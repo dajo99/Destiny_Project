@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Project_Destiny_WPF.UserControls;
 using Destiny_DAL;
+using Destiny_Models;
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
