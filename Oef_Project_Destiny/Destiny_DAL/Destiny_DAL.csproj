@@ -72,6 +72,8 @@
     <Compile Include="CharacterSubklasse.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GeneralItems.cs" />
+    <Compile Include="OptiesUiterlijk.cs" />
     <Compile Include="Currency.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
@@ -135,8 +137,10 @@
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Partials\Account.cs" />
+    <Compile Include="Partials\Character.cs" />
     <Compile Include="Partials\CharacterKlasse.cs" />
     <Compile Include="Partials\CharacterSubklasse.cs" />
+    <Compile Include="Partials\Item.cs" />
     <Compile Include="Partials\Locatie.cs" />
     <Compile Include="Partials\Ras.cs" />
     <Compile Include="Perk.cs">

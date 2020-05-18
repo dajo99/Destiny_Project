@@ -53,7 +53,13 @@ namespace Project_Destiny_WPF
                     {
                         User.Acc = b; //nodig om account te onthouden van persoon
                         this.Close();
-                        w.Accountnaam.Text = b.Accountnaam;
+                        w.Accountnaam.Content = b.Accountnaam;
+                        if (b.Image != null)
+                        {
+                            string profielImage = Encoding.ASCII.GetString(b.Image);
+                            w.ProfileImage.Source = new BitmapImage(new Uri(profielImage));
+                        }
+                        
                         w.Loginpanel.Visibility = Visibility.Hidden;
                         w.Accountpanel.Visibility = Visibility.Visible;
                         w.ListViewMenu.IsEnabled = true;
@@ -100,6 +106,13 @@ namespace Project_Destiny_WPF
                 foutmeldingen += "Gelieve uw wachtwoord in te vullen!" + Environment.NewLine;
             }
             return foutmeldingen;
+        }
+
+        private void BtnWachtwoordVergeten_Click(object sender, RoutedEventArgs e)
+        {
+            Window lostpass = new LostPasswordWindow();
+            lostpass.Show();
+            this.Close();
         }
     }
 }

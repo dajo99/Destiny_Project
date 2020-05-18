@@ -25,7 +25,7 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
-        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
@@ -33,7 +33,6 @@ namespace Project_Destiny_WPF.UserControls
             }
             
         }
-
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             cmbCategorie.ItemsSource = DatabaseOperations.OphalenCategorie();
@@ -57,5 +56,7 @@ namespace Project_Destiny_WPF.UserControls
         {
 
         }
+
+
     }
 }

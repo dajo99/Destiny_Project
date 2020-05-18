@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Destiny_DAL;
 using Destiny_Models;
+using Microsoft.Win32;
 
 namespace Project_Destiny_WPF.UserControls
 {
@@ -49,7 +51,14 @@ namespace Project_Destiny_WPF.UserControls
                 a.Accountnaam = txtProfielnaam.Text;
                 a.Achternaam = txtAchternaam.Text;
                 a.Voornaam = txtVoornaam.Text;
+                a.Mail = txtMail.Text;
                 a.Wachtwoord = SecurePassword.EncryptString(txtWachtwoord.Password);
+                if (UploadFoto.Source != null)
+                {
+                    a.Image = Encoding.ASCII.GetBytes(op.FileName);
+                }
+               
+                
                 if (cmbRegio.SelectedItem is string regio)
                 {
                     a.Regio = regio;
@@ -57,7 +66,7 @@ namespace Project_Destiny_WPF.UserControls
               
                 if (a.IsGeldig())
                 {
-                    List<Account> accounts = DatabaseOperations.CheckLogin(a);
+                    List<Account> accounts = DatabaseOperations.CheckLogin(User.Acc);
                     if (!accounts.Contains(a))
                     {
                         if (MessageBox.Show("Bent u zeker dat u deze wijzigingen wilt uitvoeren?", "Waarschuwing", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
@@ -69,15 +78,20 @@ namespace Project_Destiny_WPF.UserControls
                                 w.GridMain.Children.Clear();
                                 UserControl usc = new AccountControl();
                                 w.GridMain.Children.Add(usc);
+                                if (UploadFoto.Source != null)
+                                {
+                                    w.ProfileImage.Source = new BitmapImage(new Uri(op.FileName));
+                                }
+                                
+
+                                    
+                                
+                                
                             }
                             else
                             {
                                 MessageBox.Show("Het account is niet aangepast!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
-                        }
-                        else
-                        {
-                            ResetInputs();
                         }
                     }
                     else
@@ -94,7 +108,7 @@ namespace Project_Destiny_WPF.UserControls
             {
                 MessageBox.Show(foutmeldingen, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
+            ResetInputs();
             ResetEnables(true);
         }
 
@@ -110,6 +124,7 @@ namespace Project_Destiny_WPF.UserControls
                 txtWachtwoord.IsEnabled = false;
                 btnOpslaan.IsEnabled = false;
                 btnWijzigen.IsEnabled = true;
+                BtnUploaden.IsEnabled = false;
                 lblHerhaalWachtwoord.Visibility = Visibility.Hidden;
                 txtHerhaalWachtwoord.Visibility = Visibility.Hidden;
             }
@@ -123,6 +138,7 @@ namespace Project_Destiny_WPF.UserControls
                 txtWachtwoord.IsEnabled = true;
                 btnOpslaan.IsEnabled = true;
                 btnWijzigen.IsEnabled = false;
+                BtnUploaden.IsEnabled = true;
                 lblHerhaalWachtwoord.Visibility = Visibility.Visible;
                 txtHerhaalWachtwoord.Visibility = Visibility.Visible;
             }
@@ -163,6 +179,23 @@ namespace Project_Destiny_WPF.UserControls
             ResetEnables(false);
         }
 
+
+        OpenFileDialog op = new OpenFileDialog();
+        private void BtnUploaden_Click(object sender, RoutedEventArgs e)
+        {
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
+            {
+                UploadFoto.Source = new BitmapImage(new Uri(op.FileName));
+            }
+        }
+
+        
+
+        
 
     }
 }

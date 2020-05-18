@@ -16,6 +16,7 @@
           <Property Name="Wachtwoord" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Voornaam" Type="varchar" MaxLength="255" />
           <Property Name="Achternaam" Type="varchar" MaxLength="255" />
+          <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Armor">
           <Key>
@@ -45,6 +46,7 @@
           <Property Name="HeadOption" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Marking" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="RasId" Type="int" Nullable="false" />
+          <Property Name="CharacterSubklasseId" Type="int" />
         </EntityType>
         <EntityType Name="CharacterKlasse">
           <Key>
@@ -253,8 +255,8 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="255" />
-          <Property Name="Durability" Type="int" Nullable="false" />
-          <Property Name="Boost" Type="int" Nullable="false" />
+          <Property Name="Durability" Type="int" />
+          <Property Name="Boost" Type="int" />
           <Property Name="CategorieId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SpecialItemCategorie">
@@ -319,7 +321,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Character_Account">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Character" Type="Self.Character" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Account">
@@ -327,6 +331,18 @@
             </Principal>
             <Dependent Role="Character">
               <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Character_CharacterSubklasse">
+          <End Role="CharacterSubklasse" Type="Self.CharacterSubklasse" Multiplicity="0..1" />
+          <End Role="Character" Type="Self.Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="CharacterSubklasseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -850,6 +866,10 @@
             <End Role="Account" EntitySet="Account" />
             <End Role="Character" EntitySet="Character" />
           </AssociationSet>
+          <AssociationSet Name="FK_Character_CharacterSubklasse" Association="Self.FK_Character_CharacterSubklasse">
+            <End Role="CharacterSubklasse" EntitySet="CharacterSubklasse" />
+            <End Role="Character" EntitySet="Character" />
+          </AssociationSet>
           <AssociationSet Name="FK_Character_Ras" Association="Self.FK_Character_Ras">
             <End Role="Ras" EntitySet="Ras" />
             <End Role="Character" EntitySet="Character" />
@@ -1027,6 +1047,7 @@
           <NavigationProperty Name="Characters" Relationship="Self.FK_Character_Account" FromRole="Account" ToRole="Character" />
           <Property Name="Voornaam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Achternaam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Armor">
           <Key>
@@ -1062,6 +1083,8 @@
           <NavigationProperty Name="Ras" Relationship="Self.FK_Character_Ras" FromRole="Character" ToRole="Ras" />
           <NavigationProperty Name="CharacterKlasse" Relationship="Self.FK_Customization_CharacterKlasse" FromRole="Character" ToRole="CharacterKlasse" />
           <NavigationProperty Name="Inventories" Relationship="Self.FK_Inventory_Character" FromRole="Character" ToRole="Inventory" />
+          <Property Name="CharacterSubklasseId" Type="Int32" />
+          <NavigationProperty Name="CharacterSubklasse" Relationship="DestinyModel.FK_Character_CharacterSubklasse" FromRole="Character" ToRole="CharacterSubklasse" />
         </EntityType>
         <EntityType Name="CharacterKlasse">
           <Key>
@@ -1083,6 +1106,7 @@
           <NavigationProperty Name="GranaatSubklasses" Relationship="Self.FK_GranaatSubklasse_Character_Subklasse" FromRole="CharacterSubklasse" ToRole="GranaatSubklasse" />
           <NavigationProperty Name="SubklasseAbilities" Relationship="Self.FK_SubklasseAbility_Character_Subklasse" FromRole="CharacterSubklasse" ToRole="SubklasseAbility" />
           <NavigationProperty Name="SubklassePerks" Relationship="Self.FK_SubklassePerks_CharacterSubklasse" FromRole="CharacterSubklasse" ToRole="SubklassePerks" />
+          <NavigationProperty Name="Characters" Relationship="DestinyModel.FK_Character_CharacterSubklasse" FromRole="CharacterSubklasse" ToRole="Character" />
         </EntityType>
         <EntityType Name="Currency">
           <Key>
@@ -1335,8 +1359,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Durability" Type="Int32" Nullable="false" />
-          <Property Name="Boost" Type="Int32" Nullable="false" />
+          <Property Name="Durability" Type="Int32" />
+          <Property Name="Boost" Type="Int32" />
           <Property Name="CategorieId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Item" Relationship="Self.FK_SpecialItem_Item" FromRole="SpecialItem" ToRole="Item" />
           <NavigationProperty Name="SpecialItemCategorie" Relationship="Self.FK_SpecialItem_Categorie" FromRole="SpecialItem" ToRole="SpecialItemCategorie" />
@@ -2104,7 +2128,23 @@
             <End Role="Wapenklasse" EntitySet="Wapenklasses" />
             <End Role="Wapen" EntitySet="Wapens" />
           </AssociationSet>
+          <AssociationSet Name="FK_Character_CharacterSubklasse" Association="DestinyModel.FK_Character_CharacterSubklasse">
+            <End Role="CharacterSubklasse" EntitySet="CharacterSubklasses" />
+            <End Role="Character" EntitySet="Characters" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Character_CharacterSubklasse">
+          <End Type="DestinyModel.CharacterSubklasse" Role="CharacterSubklasse" Multiplicity="0..1" />
+          <End Type="DestinyModel.Character" Role="Character" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CharacterSubklasse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Character">
+              <PropertyRef Name="CharacterSubklasseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2114,6 +2154,7 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="DestinyModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
                 <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -2143,6 +2184,7 @@
           <EntitySetMapping Name="Characters">
             <EntityTypeMapping TypeName="DestinyModel.Character">
               <MappingFragment StoreEntitySet="Character">
+                <ScalarProperty Name="CharacterSubklasseId" ColumnName="CharacterSubklasseId" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="CharacterKlasseId" ColumnName="CharacterKlasseId" />
