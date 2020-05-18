@@ -107,5 +107,12 @@ namespace Project_Destiny_WPF
             }
             return foutmeldingen;
         }
+
+        private void BtnWachtwoordVergeten_Click(object sender, RoutedEventArgs e)
+        {
+            Window lostpass = new LostPasswordWindow();
+            lostpass.Show();
+            this.Close();
+        }
     }
 }
