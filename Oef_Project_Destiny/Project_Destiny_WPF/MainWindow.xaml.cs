@@ -1,4 +1,4 @@
-﻿using Destiny_DAL;
+﻿using Destiny_Models;
 using Project_Destiny_WPF.UserControls;
 using System;
 using System.Collections.Generic;
@@ -183,6 +183,7 @@ namespace Project_Destiny_WPF
             GridMain.Children.Clear();
             usc = new WelcomeControl();
             GridMain.Children.Add(usc);
+            ProfileImage.Source = null;
             BtnRegistreren.IsEnabled = true;
             BtnInloggen.IsEnabled = true;
             ListViewMenu.IsEnabled = false;

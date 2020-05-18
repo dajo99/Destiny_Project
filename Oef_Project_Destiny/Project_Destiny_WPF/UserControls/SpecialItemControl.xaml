@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Project_Destiny_WPF.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="lblItems" Content="Special Items" Grid.Column="1" FontWeight="Bold" FontSize="30" Foreground="#333333" HorizontalAlignment="Center" Margin="8"></Label>
 
-        <TextBox x:Name="tbZoekItem" Grid.Row="1"  Width="230" FontSize="15" KeyDown="tbZoekItem_KeyDown"
+        <TextBox x:Name="tbZoekItem" Grid.Row="1"  Width="230" FontSize="15" KeyUp="tbZoekItem_KeyUp"
   materialDesign:HintAssist.Hint="Zoek item" materialDesign:TextFieldAssist.UnderlineBrush="#333"
   VerticalAlignment="Bottom" Margin="124,0,0,0"/>
         <ComboBox x:Name="cmbCategorie" Grid.Column="1" Width="210" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
@@ -30,7 +30,7 @@
         <ComboBox x:Name="cmbZeldzaamheid" Grid.Column="1" Width="210" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
                      materialDesign:HintAssist.Hint="Kies zeldzaamheid" SelectionChanged="cmbZeldzaamheid_SelectionChanged"  Grid.Row="1"  Margin="215,0,0,0" Grid.ColumnSpan="2"/>
 
-        <DataGrid x:Name="dbItems" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbItems_SelectionChanged"  Width="698" HorizontalAlignment="Center" Margin="10,20,5,20">
+        <DataGrid x:Name="dbItems" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dbItems_SelectionChanged"  Width="698" HorizontalAlignment="Center" Margin="10,20,5,20">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="Background" Value="#333" />
@@ -42,11 +42,11 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Naam" Width="200"/>
-                <DataGridTextColumn Header="Zeldzaamheid" Width="150"/>
-                <DataGridTextColumn Header="Categorie" Width="150"/>
-                <DataGridTextColumn Header="Durability" Width="100"/>
-                <DataGridTextColumn Header="Boost" Width="100"/>
+                <DataGridTextColumn  Binding= "{Binding Item.Naam}" Header="Naam" Width="200"/>
+                <DataGridTextColumn Binding="{Binding Item.Zeldzaamheid}" Header="Zeldzaamheid" Width="150"/>
+                <DataGridTextColumn Binding="{Binding SpecialItemCategorie.Naam}" Header="Categorie" Width="150"/>
+                <DataGridTextColumn Binding="{Binding Durability}" Header="Durability" Width="100"/>
+                <DataGridTextColumn Binding="{Binding Boost}" Header="Boost" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
         <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" Margin="159,10,0,10">
@@ -68,13 +68,13 @@
   VerticalAlignment="Bottom" Padding="2,0,0,0" />
 
             <TextBox x:Name="txtBoost"    Width="100" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Resilience"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+  materialDesign:HintAssist.Hint="Boost"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0" />
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0" Margin="110,10,0,20">
-            <Button x:Name="btnAddWeapon" Content="Voeg item toe" Grid.ColumnSpan="2" Width="250" Grid.Row="4" />
-            <Button x:Name="btnChangeWeapon" Content="Wijzig item" Width="250" Grid.Row="4" Grid.Column="1" Margin="22,0,22,0" />
-            <Button x:Name="btnRemoveWeapon" Content="Verwijder item" Width="250" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,0,0,0" />
+            <Button x:Name="btnAddItem" Content="Voeg item toe" Grid.ColumnSpan="2" Width="250" Grid.Row="4" Click="btnAddItem_Click"/>
+            <Button x:Name="btnChangeItem" Content="Wijzig item" Width="250" Grid.Row="4" Grid.Column="1" Margin="22,0,22,0" Click="btnChangeItem_Click"/>
+            <Button x:Name="btnRemoveItem" Content="Verwijder item" Width="250" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,0,0,0" Click="btnRemoveItem_Click"/>
         </WrapPanel>
     </Grid>
 </UserControl>

@@ -24,11 +24,10 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
-        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
         {
 
         }
-
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -48,5 +47,7 @@ namespace Project_Destiny_WPF.UserControls
         {
 
         }
+
+
     }
 }

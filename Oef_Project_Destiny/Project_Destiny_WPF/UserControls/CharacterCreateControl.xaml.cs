@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Destiny_Models;
 
 namespace Project_Destiny_WPF.UserControls
 {
@@ -30,14 +31,15 @@ namespace Project_Destiny_WPF.UserControls
 
 
         Destiny_DAL.Character karakter = new Destiny_DAL.Character();
-
+        
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
-            cmbGezicht.ItemsSource = OphalenOpties("gezicht");
-            cmbHaar.ItemsSource = OphalenOpties("haar");
-            cmbGender.ItemsSource = OphalenOpties("gender");
-            cmbMarking.ItemsSource = OphalenOpties("tattoo");
+            
+           
+            cmbGezicht.ItemsSource = OptiesUiterlijk.GezichtOpties;
+            cmbHaar.ItemsSource = OptiesUiterlijk.HaarOpties;
+            cmbGender.ItemsSource = OptiesUiterlijk.Gender;
+            cmbMarking.ItemsSource = OptiesUiterlijk.TattooOpties;
             cmbRas.ItemsSource = OphalenRassen();
             cmbKlasse.ItemsSource = ControleKlasses();
             ///een subklasse kan niet gekozen worden zolang de klasse niet is gekozen
@@ -62,45 +64,7 @@ namespace Project_Destiny_WPF.UserControls
             }
             return returnList;
         }
-        public List<string> OphalenOpties(string beschrijving)
-        {
-
-
-            List<string> lijst = new List<string>();
-
-
-
-            if (beschrijving == "haar")
-            {
-                lijst.Add("krullen");
-                lijst.Add("lang");
-                lijst.Add("kort");
-            }
-
-            if (beschrijving == "tattoo")
-            {
-                lijst.Add("streep");
-                lijst.Add("geen marking");
-                lijst.Add("gezicht tattoo");
-            }
-            if (beschrijving == "gezicht")
-            {
-                lijst.Add("jong");
-                lijst.Add("oud");
-                lijst.Add("krijger");
-            }
-            if (beschrijving == "gender")
-            {
-
-                lijst.Add("Man");
-                lijst.Add("Vrouw");
-
-            }
-
-
-            return lijst;
-
-        }
+       
         private List<Ras> OphalenRassen()
         {
             List<Ras> rassen = DatabaseOperations.OphalenRasVoorAanmaken();
@@ -220,17 +184,20 @@ namespace Project_Destiny_WPF.UserControls
 
             if (cmbKlasse.SelectedItem is CharacterKlasse klasse)
             {
+                User.CharacterKlasse = klasse;
                 karakter.CharacterKlasseId = klasse.id;
-                
+            }
+            if (cmbSubklasse.SelectedItem is CharacterSubklasse sub)
+            {
+                User.CharacterSubKlasse = sub;
+                karakter.CharacterSubklasseId = sub.id;
             }
         }
 
         private void cmbKlasse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             cmbSubklasse.IsEnabled = true;
             cmbSubklasse.ItemsSource = DatabaseOperations.OphalenCharacterSubklasseVoorAanmaken(OphalenSubklasses());
-
         }
 
 
@@ -255,6 +222,10 @@ namespace Project_Destiny_WPF.UserControls
                 MessageBox.Show("Als je zeker bent van je keuzes dan kan je nu het karakter aanmaken", "melding",MessageBoxButton.OK,MessageBoxImage.Information);
                 btnAanmaken.IsEnabled = true;
             }
+            else
+            {
+                MessageBox.Show(foutmelding);
+            }
            
 
         }
@@ -272,7 +243,7 @@ namespace Project_Destiny_WPF.UserControls
                 
                 MessageBox.Show("karakter succesvol toegevoegd");
                 w.GridMain.Children.Clear();
-                UserControl usc = new CharacterCreateControl();
+                UserControl usc = new CharacterControl();
                 w.GridMain.Children.Add(usc);
             }
            

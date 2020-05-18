@@ -29,11 +29,13 @@ namespace Destiny_DAL
         public string HeadOption { get; set; }
         public string Marking { get; set; }
         public int RasId { get; set; }
+        public Nullable<int> CharacterSubklasseId { get; set; }
     
         public virtual Account Account { get; set; }
         public virtual Ras Ras { get; set; }
         public virtual CharacterKlasse CharacterKlasse { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inventory> Inventories { get; set; }
+        public virtual CharacterSubklasse CharacterSubklasse { get; set; }
     }
 }

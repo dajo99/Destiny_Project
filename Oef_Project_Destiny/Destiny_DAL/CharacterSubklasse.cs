@@ -20,6 +20,7 @@ namespace Destiny_DAL
             this.GranaatSubklasses = new HashSet<GranaatSubklasse>();
             this.SubklasseAbilities = new HashSet<SubklasseAbility>();
             this.SubklassePerks = new HashSet<SubklassePerk>();
+            this.Characters = new HashSet<Character>();
         }
     
         public int id { get; set; }
@@ -33,5 +34,7 @@ namespace Destiny_DAL
         public virtual ICollection<SubklasseAbility> SubklasseAbilities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubklassePerk> SubklassePerks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Character> Characters { get; set; }
     }
 }
