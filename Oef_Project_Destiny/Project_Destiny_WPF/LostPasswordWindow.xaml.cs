@@ -66,8 +66,8 @@ namespace Project_Destiny_WPF
                             try
                             {
                                 //mail maken en versturen
-                                string message = "Geachte gebruiker\n\n " +
-                                    "Je ontvangt deze e-mail omdat je een aanvraag hebt gedaan voor het opnieuw instellen van het wachtwoord van je Destiny-Account." +
+                                string message = "Geachte gebruiker\n\n" +
+                                    "U ontvangt deze e-mail omdat u een aanvraag hebt gedaan om uw wachtwoord van uw Destiny-Account opnieuw in te stellen." +
                                     " \n\nNieuw wachtwoord: " + wachtwoord +
                                     "\n\nMet vriendelijke groeten\nHet Destiny-Team";
                                 CreateMailMessage(message, b.Mail, c);
