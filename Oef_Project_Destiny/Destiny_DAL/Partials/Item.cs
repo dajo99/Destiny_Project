@@ -9,6 +9,7 @@ namespace Destiny_DAL
 {
     public partial class Item : Basisklasse
     {
+        public static List<Item> Items { get; set; }
         public override string this[string columnName]
         {
             get
@@ -37,7 +38,8 @@ namespace Destiny_DAL
         {
             return obj is Item item &&
                    Naam == item.Naam &&
-                   Zeldzaamheid == "Exotic";
+                   Zeldzaamheid == item.Zeldzaamheid &&
+                   item.Zeldzaamheid.Contains("Exotic");
         }
         public override int GetHashCode()
         {
@@ -46,6 +48,5 @@ namespace Destiny_DAL
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Zeldzaamheid);
             return hashCode;
         }
-
     }
 }
