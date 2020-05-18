@@ -390,12 +390,13 @@ namespace Destiny_DAL
             }
         }
 
-        public static int AanpassenSpecialItems(SpecialItem si)
+        public static int AanpassenSpecialItems(Item i,SpecialItem si)
         {
             try
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
+                    destinyEntities.Entry(i).State = EntityState.Modified;
                     destinyEntities.Entry(si).State = EntityState.Modified;
                     return destinyEntities.SaveChanges();
                 }
@@ -408,7 +409,7 @@ namespace Destiny_DAL
 
         }
 
-        public static int AanpassenItems(Item i)
+        /*public static int AanpassenItems(Item i)
         {
             try
             {
@@ -424,7 +425,7 @@ namespace Destiny_DAL
                 return 0;
             }
 
-        }
+        }*/
         public static int VerwijderenSpecialItem(Item i, SpecialItem si)
         {
             try
@@ -432,6 +433,125 @@ namespace Destiny_DAL
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
                     destinyEntities.Entry(si).State = EntityState.Deleted;
+                    destinyEntities.Entry(i).State = EntityState.Deleted;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
+
+
+
+
+
+
+
+        public static List<Armor> OphalenArmorViaArmorSlotEnZeldzaamheid(string naam, string armorslot, string zeldzaamheid)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Armors
+                    .Include(x => x.Item)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
+                    .Where(x => x.ArmorSlot.Contains(armorslot))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+        public static List<Armor> OphalenArmorViaArmorslot(string naam, string armorslot)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Armors
+                    .Where(x => x.ArmorSlot.Contains(armorslot))
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+        public static List<Armor> OphalenArmorViaZeldzaamheid(string naam, string zeldzaamheid)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Armors
+                    .Include(x => x.Item)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+        public static List<Armor> OphalenArmorViaNaam(string naam)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Armors
+                    .Include(x => x.Item)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+
+
+        public static int ToevoegenArmor(Item i, Armor a)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(i).State = EntityState.Added;
+                    destinyEntities.Entry(a).State = EntityState.Added;
+
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
+
+        public static int AanpassenArmor(Armor a, Item i)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(i).State = EntityState.Modified;
+                    destinyEntities.Entry(a).State = EntityState.Modified;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                fileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
+
+        public static int VerwijderenArmor(Item i, Armor a)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(a).State = EntityState.Deleted;
                     destinyEntities.Entry(i).State = EntityState.Deleted;
                     return destinyEntities.SaveChanges();
                 }
