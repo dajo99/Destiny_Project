@@ -39,23 +39,27 @@ namespace Project_Destiny_WPF.UserControls
             cmbZeldzaamheid.SelectedItem = "All";
 
             //lijst van categoriën om wapens op te zoeken
-            List<string> categorieLijst = new List<string>() { "All", "heavy", "primary", "special"};
+            List<Wapenklasse> categorieLijst = DatabaseOperations.OphalenWapenCategorie();
+            Wapenklasse w = new Wapenklasse();
+            w.Naam = "All";
+            categorieLijst.Insert(0, w);
             cmbCategorie.ItemsSource = categorieLijst;
-            cmbCategorie.SelectedItem = "All";
+            cmbCategorie.DisplayMemberPath = "Naam";
+            cmbCategorie.SelectedIndex = 0;
 
 
             //Lijst van zeldzaamheden om een wapen toe te voegen
-            GeneralWapens.ZeldzaamheidLijst = new List<string>() { "Common", "Uncommon", "Rare", "Legendary", "Exotic" };
-            cmbDbZeldzaamheid.ItemsSource = GeneralWapens.ZeldzaamheidLijst;
+            GeneralItems.ZeldzaamheidLijst = new List<string>() { "Common", "Uncommon", "Rare", "Legendary", "Exotic" };
+            cmbDbZeldzaamheid.ItemsSource = GeneralItems.ZeldzaamheidLijst;
 
 
             //lijst van categoriën om een wapen toe te voegen
-            GeneralWapens.Categorielijst = new List<string>() { "heavy", "primary", "special" };
-            cmbDbCategorie.ItemsSource = GeneralWapens.Categorielijst;
+            cmbDbCategorie.ItemsSource = DatabaseOperations.OphalenWapenCategorie();
+            cmbDbCategorie.DisplayMemberPath = "Naam";
 
             //lijst van damagetypes om een wapen toe te voegen
-            GeneralWapens.Damagetypelijst = new List<string>() { "Kinetic", "Arc", "Light" };
-            cmbDbDamageType.ItemsSource = GeneralWapens.Damagetypelijst;
+            cmbDbDamageType.ItemsSource = DatabaseOperations.OphalenWapenDamagetype();
+            cmbDbDamageType.DisplayMemberPath = "Naam";
 
             ZoekenWapens();
 
@@ -79,27 +83,27 @@ namespace Project_Destiny_WPF.UserControls
                 txtImpact.Text = w.Impact.ToString();
                 txtMagazine.Text = w.Magazine.ToString();
                 txtLight.Text = w.LightAmount.ToString();
-                cmbDbCategorie.SelectedItem = w.Soort.ToString();
+                cmbDbCategorie.SelectedItem = w.Wapenklasse;
                 cmbDbZeldzaamheid.SelectedItem = w.Item.Zeldzaamheid.ToString();
-                cmbDbDamageType.SelectedItem = w.Damagetype.Naam.ToString();
+                cmbDbDamageType.SelectedItem = w.Damagetype;
                
             }
         }
 
         private void ZoekenWapens()
         {
-            string categorie = cmbCategorie.SelectedItem as String;
+            Wapenklasse w = cmbCategorie.SelectedItem as Wapenklasse;
             string zeldzaamheid = cmbZeldzaamheid.SelectedItem as string;
             
             //kijken als "All" geselecteerd is in lijst 
             
             if (cmbCategorie.SelectedIndex != 0 && cmbZeldzaamheid.SelectedIndex != 0)
             {
-                dbWapens.ItemsSource = DatabaseOperations.OphalenWapensViaCategorieEnZeldzaamheid(tbZoekWapen.Text, categorie, zeldzaamheid);
+                dbWapens.ItemsSource = DatabaseOperations.OphalenWapensViaCategorieEnZeldzaamheid(tbZoekWapen.Text, w, zeldzaamheid);
             }
             else if (cmbCategorie.SelectedIndex != 0)
             {
-                dbWapens.ItemsSource = DatabaseOperations.OphalenWapensViaCategorie(tbZoekWapen.Text, categorie);
+                dbWapens.ItemsSource = DatabaseOperations.OphalenWapensViaCategorie(tbZoekWapen.Text, w);
             }
             else if (cmbZeldzaamheid.SelectedIndex != 0)
             {
@@ -127,24 +131,24 @@ namespace Project_Destiny_WPF.UserControls
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 string zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
-                string categorie = cmbDbCategorie.SelectedItem as string;
-                string damagetype = cmbDbDamageType.SelectedItem as string;
-                Item i = new Item();
+                Wapenklasse wk = cmbDbCategorie.SelectedItem as Wapenklasse;
+                Damagetype d = cmbDbDamageType.SelectedItem as Damagetype;
                 Wapen w = new Wapen();
+                w.Item.Naam = txtNaam.Text;
+                w.Item.Zeldzaamheid = zeldzaamheid;
+                w.Wapenklasse = wk;
+                w.id = w.Item.id;
+                w.DamagetypeId = d.id;
+                w.Damagetype = d;
+                w.Impact = GeneralItems.ConversieToInt(txtImpact.Text);
+                w.Magazine = GeneralItems.ConversieToInt(txtMagazine.Text);
+                w.LightAmount = GeneralItems.ConversieToInt(txtLight.Text);
 
-                i.Naam = txtNaam.Text;
-                i.Zeldzaamheid = zeldzaamheid;
-                w.Soort = categorie;
-                w.id = i.id;
-                w.Impact = GeneralWapens.ConversieToInt(txtImpact.Text);
-                w.Magazine = GeneralWapens.ConversieToInt(txtMagazine.Text);
-                w.LightAmount = GeneralWapens.ConversieToInt(txtLight.Text);
-
-                if (i.IsGeldig())
+                if (w.Item.IsGeldig())
                 {
-                    if (!GeneralItems.Items.Contains(i))
+                    if (!GeneralItems.Items.Contains(w.Item))
                     {
-                        int ok = DatabaseOperations.ToevoegenWapen(i, w);
+                        int ok = DatabaseOperations.ToevoegenWapen(w.Item, w);
                         if (ok > 0)
                         {
                             ZoekenWapens();
@@ -152,7 +156,7 @@ namespace Project_Destiny_WPF.UserControls
                         }
                         else
                         {
-                            MessageBox.Show("Item is niet toegevoegd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Wapen is niet toegevoegd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
                     else
@@ -162,13 +166,14 @@ namespace Project_Destiny_WPF.UserControls
                 }
                 else
                 {
-                    MessageBox.Show(i.Error, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(w.Item.Error, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
                 MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            WissenVelden();
         }
         private string Valideer(string columnName)
         {
