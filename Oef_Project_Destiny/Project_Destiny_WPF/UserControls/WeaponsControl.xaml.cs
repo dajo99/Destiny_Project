@@ -140,11 +140,9 @@ namespace Project_Destiny_WPF.UserControls
                 Wapen wa = new Wapen();
                 it.Naam = txtNaam.Text;
                 it.Zeldzaamheid = zeldzaamheid;
-                wa.Wapenklasse = wk;
                 wa.WapenklasseId = wk.id;
                 wa.id = it.id;
                 wa.DamagetypeId = da.id;
-                wa.Damagetype = da;
                 wa.Impact = GeneralItems.ConversieToInt(txtImpact.Text);
                 wa.Magazine = GeneralItems.ConversieToInt(txtMagazine.Text);
                 wa.LightAmount = GeneralItems.ConversieToInt(txtLight.Text);
