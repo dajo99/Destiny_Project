@@ -671,7 +671,6 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "llo");
                 FileOperations.Foutloggen(ex);
                 return 0;
             }

@@ -77,6 +77,8 @@ namespace Project_Destiny_WPF.UserControls
 
         private void dbWapens_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            WissenVelden();
+
             if (dbWapens.SelectedItem is Wapen w)
             {
                 txtNaam.Text = w.Item.Naam;
@@ -88,6 +90,7 @@ namespace Project_Destiny_WPF.UserControls
                 cmbDbDamageType.SelectedItem = w.Damagetype;
                
             }
+           
         }
 
         private void ZoekenWapens()
@@ -133,22 +136,23 @@ namespace Project_Destiny_WPF.UserControls
                 string zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
                 Wapenklasse wk = cmbDbCategorie.SelectedItem as Wapenklasse;
                 Damagetype d = cmbDbDamageType.SelectedItem as Damagetype;
+                Item i = new Item();
                 Wapen w = new Wapen();
-                w.Item.Naam = txtNaam.Text;
-                w.Item.Zeldzaamheid = zeldzaamheid;
+                i.Naam = txtNaam.Text;
+                i.Zeldzaamheid = zeldzaamheid;
                 w.Wapenklasse = wk;
-                w.id = w.Item.id;
+                w.id = i.id;
                 w.DamagetypeId = d.id;
                 w.Damagetype = d;
                 w.Impact = GeneralItems.ConversieToInt(txtImpact.Text);
                 w.Magazine = GeneralItems.ConversieToInt(txtMagazine.Text);
                 w.LightAmount = GeneralItems.ConversieToInt(txtLight.Text);
 
-                if (w.Item.IsGeldig())
+                if (i.IsGeldig())
                 {
-                    if (!GeneralItems.Items.Contains(w.Item))
+                    if (!GeneralItems.Items.Contains(i))
                     {
-                        int ok = DatabaseOperations.ToevoegenWapen(w.Item, w);
+                        int ok = DatabaseOperations.ToevoegenWapen(i, w);
                         if (ok > 0)
                         {
                             ZoekenWapens();
@@ -166,14 +170,13 @@ namespace Project_Destiny_WPF.UserControls
                 }
                 else
                 {
-                    MessageBox.Show(w.Item.Error, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(i.Error, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
                 MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            WissenVelden();
         }
         private string Valideer(string columnName)
         {
