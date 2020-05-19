@@ -587,6 +587,7 @@ namespace Destiny_DAL
             {
                 return destinyEntities.Wapens
                     .OrderBy(x => x.Soort)
+     
                     .ToList();
             }
         }

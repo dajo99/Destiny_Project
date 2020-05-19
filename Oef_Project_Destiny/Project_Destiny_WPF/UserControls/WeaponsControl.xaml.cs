@@ -35,10 +35,21 @@ namespace Project_Destiny_WPF.UserControls
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            cmbCategorie.ItemsSource = DatabaseOperations.OphalenCategorie();
+            //Lijst voor te zoeken op zeldzaamheid
+            List<string> zeldzaamheidlijst = new List<string>() { "All", "Common", "Uncommon", "Rare", "Legendary", "Exotic" };
+            cmbZeldzaamheid.ItemsSource = zeldzaamheidlijst;
+            cmbZeldzaamheid.SelectedItem = "All";
+
+            List<Wapen> categorieLijst = DatabaseOperations.OphalenCategorie();
+            Wapen categorie = new Wapen();
+            categorie.Soort = "All";
+            categorieLijst.Insert(0, categorie);
+            cmbCategorie.ItemsSource = categorieLijst;
+            cmbCategorie.DisplayMemberPath = "Naam";
+            cmbCategorie.SelectedIndex = 0;
+
             cmbCategorie.DisplayMemberPath = "Soort";
-            cmbZeldzaamheid.ItemsSource = DatabaseOperations.OphalenZeldzaamheid();
-            cmbZeldzaamheid.DisplayMemberPath = "Zeldzaamheid";
+            
 
         }
 
