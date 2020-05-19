@@ -591,5 +591,18 @@ namespace Destiny_DAL
                     .ToList();
             }
         }
+
+        public static List<Wapen> OphalenWapensViaNaam(string naam)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Wapens
+                    .Include(x => x.Item)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
     }
 }

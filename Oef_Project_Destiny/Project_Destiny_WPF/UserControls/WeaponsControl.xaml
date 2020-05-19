@@ -42,7 +42,7 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Naam" Width="165"/>
+                <DataGridTextColumn Header="Naam" Binding= "{Binding Wapen.Naam}" Width="165"/>
                 <DataGridTextColumn Header="Categorie" Width="120"/>
                 <DataGridTextColumn Header="Zeldzaamheid" Width="120"/>
                 <DataGridTextColumn Header="Damagetype" Width="110"/>

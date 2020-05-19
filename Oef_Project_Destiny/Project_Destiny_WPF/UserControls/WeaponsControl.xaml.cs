@@ -29,7 +29,7 @@ namespace Project_Destiny_WPF.UserControls
         {
             if (e.Key == Key.Enter)
             {
-                MessageBox.Show("Enter key pressed");
+                ZoekenItems();
             }
             
         }
@@ -87,7 +87,7 @@ namespace Project_Destiny_WPF.UserControls
             }
             else
             {
-                dbWapens.ItemsSource = DatabaseOperations.OphalenSpecialItemsViaNaam(tbZoekItem.Text);
+                dbWapens.ItemsSource = DatabaseOperations.OphalenWapensViaNaam(tbZoekItem.Text);
             }
         }
 
