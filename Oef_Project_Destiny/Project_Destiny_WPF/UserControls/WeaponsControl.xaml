@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="lblWapens" Content="Wapens" Grid.Column="1" FontWeight="Bold" FontSize="30" Foreground="#333333" HorizontalAlignment="Center" Margin="8"></Label>
 
-        <TextBox Grid.Row="1"  Width="230" FontSize="15" KeyUp="TextBox_KeyUp"
+        <TextBox x:Name="tbZoekItem" Grid.Row="1"  Width="230" FontSize="15" KeyUp="TextBox_KeyUp"
   materialDesign:HintAssist.Hint="Zoek wapens" materialDesign:TextFieldAssist.UnderlineBrush="#333"
   VerticalAlignment="Bottom"/>
         <ComboBox x:Name="cmbCategorie" Grid.Column="1" Width="230" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
@@ -55,24 +55,34 @@
 
         <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" Margin="18,10,19.667,10">
 
-            <TextBox x:Name="txtNaam"    Width="200" FontSize="14" HorizontalAlignment="Center"
+            <TextBox x:Name="txtNaam"    Width="149" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Naam"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0" />
 
-            <ComboBox x:Name="cmbDbZeldzaamheid" Width="150" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Zeldzaamheid"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,5" />
-
-            <ComboBox x:Name="cmbDbCategorie" Width="150" FontSize="14" HorizontalAlignment="Center"
+            <ComboBox x:Name="cmbDbCategorie" Width="118" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Categorie"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,5"/>
 
-            <TextBox x:Name="txtDurability"    Width="100" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Durability"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+            <ComboBox x:Name="cmbDbZeldzaamheid" Width="123" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Zeldzaamheid"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+  VerticalAlignment="Bottom" Padding="2,0,0,5" />
+            
+            <ComboBox x:Name="cmbDbDamageType" Width="117" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Damage Type"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+  VerticalAlignment="Bottom" Padding="2,0,0,5" />
+
+            <TextBox x:Name="txtImpact"    Width="73" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Impact"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0" />
 
-            <TextBox x:Name="txtBoost"    Width="100" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Boost"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+            <TextBox x:Name="txtRange"    Width="56" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Range"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+            <TextBox x:Name="txtMagazine"    Width="69" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Magazine"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+            <TextBox x:Name="txtLight"    Width="55" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Light"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0" />
         </WrapPanel>
         

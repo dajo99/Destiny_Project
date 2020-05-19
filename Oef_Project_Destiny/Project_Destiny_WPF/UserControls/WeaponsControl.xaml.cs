@@ -68,6 +68,29 @@ namespace Project_Destiny_WPF.UserControls
 
         }
 
+        private void ZoekenItems()
+        {
+            Wapen categorie = cmbCategorie.SelectedItem as Wapen;
+            string zeldzaamheid = cmbZeldzaamheid.SelectedItem as string;
+
+            if (categorie != null && cmbCategorie.SelectedIndex != 0 && cmbZeldzaamheid.SelectedIndex != 0)
+            {
+                dbWapens.ItemsSource = DatabaseOperations.OphalenSpecialItemsViaCategorieEnZeldzaamheid(tbZoekItem.Text, categorie.id, zeldzaamheid);
+            }
+            else if (categorie != null && cmbCategorie.SelectedIndex != 0)
+            {
+                dbWapens.ItemsSource = DatabaseOperations.OphalenSpecialItemsViaCategorie(tbZoekItem.Text, categorie.id);
+            }
+            else if (cmbZeldzaamheid.SelectedIndex != 0)
+            {
+                dbWapens.ItemsSource = DatabaseOperations.OphalenSpecialItemsViaZeldzaamheid(tbZoekItem.Text, zeldzaamheid);
+            }
+            else
+            {
+                dbWapens.ItemsSource = DatabaseOperations.OphalenSpecialItemsViaNaam(tbZoekItem.Text);
+            }
+        }
+
 
     }
 }
