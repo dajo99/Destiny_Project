@@ -400,7 +400,7 @@ namespace Destiny_DAL
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
-                    //destinyEntities.Entry(i).State = EntityState.Modified;
+                    destinyEntities.Entry(i).State = EntityState.Modified;
                     destinyEntities.Entry(si).State = EntityState.Modified;
                     return destinyEntities.SaveChanges();
                 }
