@@ -28,11 +28,8 @@ namespace Project_Destiny_WPF.UserControls
         }
         private void TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter)
-            {
-                ZoekenWapens();
-            }
-            
+            ZoekenWapens();
+
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -66,17 +63,27 @@ namespace Project_Destiny_WPF.UserControls
 
         private void cmbCategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            ZoekenWapens();
         }
 
         private void cmbZeldzaamheid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            ZoekenWapens();
         }
 
         private void dbWapens_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (dbWapens.SelectedItem is Wapen w)
+            {
+                txtNaam.Text = w.Item.Naam;
+                txtImpact.Text = w.Impact.ToString();
+                txtMagazine.Text = w.Magazine.ToString();
+                txtLight.Text = w.LightAmount.ToString();
+                cmbDbCategorie.SelectedItem = w.Soort.ToString();
+                cmbDbZeldzaamheid.SelectedItem = w.Item.Zeldzaamheid.ToString();
+                cmbDbDamageType.SelectedItem = w.Damagetype.Naam.ToString();
+               
+            }
         }
 
         private void ZoekenWapens()

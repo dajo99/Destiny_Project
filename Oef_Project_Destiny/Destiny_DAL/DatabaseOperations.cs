@@ -626,14 +626,14 @@ namespace Destiny_DAL
                     .ToList();
             }
         }
-        public static List<SpecialItem> OphalenWapensViaZeldzaamheid(string naam, string zeldzaamheid)
+        public static List<Wapen> OphalenWapensViaZeldzaamheid(string naam, string zeldzaamheid)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
-                return destinyEntities.SpecialItems
+                return destinyEntities.Wapens
                     .Include(x => x.Item)
-                    .Include(x => x.SpecialItemCategorie)
-                    .Where(x => x.SpecialItemCategorie.id == x.CategorieId)
+                    .Include(x => x.Damagetype)
+                    .Where(x => x.Damagetype.id == x.DamagetypeId)
                     .Where(x => x.Item.id == x.id)
                     .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
                     .OrderBy(x => x.Item.Naam)
