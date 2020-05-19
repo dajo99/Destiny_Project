@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="lblWapens" Content="Wapens" Grid.Column="1" FontWeight="Bold" FontSize="30" Foreground="#333333" HorizontalAlignment="Center" Margin="8"></Label>
 
-        <TextBox x:Name="tbZoekItem" Grid.Row="1"  Width="230" FontSize="15" KeyUp="TextBox_KeyUp"
+        <TextBox x:Name="tbZoekWapen" Grid.Row="1"  Width="230" FontSize="15" KeyUp="TextBox_KeyUp"
   materialDesign:HintAssist.Hint="Zoek wapens" materialDesign:TextFieldAssist.UnderlineBrush="#333"
   VerticalAlignment="Bottom"/>
         <ComboBox x:Name="cmbCategorie" Grid.Column="1" Width="230" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
@@ -42,14 +42,14 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Naam" Binding= "{Binding Wapen.Naam}" Width="165"/>
-                <DataGridTextColumn Header="Categorie" Width="120"/>
-                <DataGridTextColumn Header="Zeldzaamheid" Width="120"/>
-                <DataGridTextColumn Header="Damagetype" Width="110"/>
-                <DataGridTextColumn Header="Impact" Width="66"/>
-                <DataGridTextColumn Header="Range" Width="66"/>
-                <DataGridTextColumn Header="Magazine" Width="78"/>
-                <DataGridTextColumn Header="Light" Width="70"/>
+                <DataGridTextColumn Header="Naam" Binding= "{Binding Item.Naam}" Width="165"/>
+                <DataGridTextColumn Header="Categorie" Binding="{Binding Soort}" Width="120"/>
+                <DataGridTextColumn Header="Zeldzaamheid" Binding= "{Binding Item.Zeldzaamheid}" Width="120"/>
+                <DataGridTextColumn Header="Damagetype" Binding="{Binding DamageType.Naam}" Width="110"/>
+                <DataGridTextColumn Header="Impact" Binding="{Binding Impact}" Width="66"/>
+                <DataGridTextColumn Header="Range" Binding="{Binding Soort}" Width="66"/>
+                <DataGridTextColumn Header="Magazine" Binding="{Binding Soort}" Width="78"/>
+                <DataGridTextColumn Header="Light" Binding="{Binding Soort}" Width="70"/>
             </DataGrid.Columns>
         </DataGrid>
 

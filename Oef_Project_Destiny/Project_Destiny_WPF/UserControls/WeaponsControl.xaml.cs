@@ -29,7 +29,7 @@ namespace Project_Destiny_WPF.UserControls
         {
             if (e.Key == Key.Enter)
             {
-                ZoekenItems();
+                ZoekenWapens();
             }
             
         }
@@ -43,13 +43,13 @@ namespace Project_Destiny_WPF.UserControls
             List<Wapen> categorieLijst = DatabaseOperations.OphalenCategorie();
             Wapen categorie = new Wapen();
             categorie.Soort = "All";
-            categorieLijst.Insert(0, categorie);
             cmbCategorie.ItemsSource = categorieLijst;
-            cmbCategorie.DisplayMemberPath = "Naam";
             cmbCategorie.SelectedIndex = 0;
 
             cmbCategorie.DisplayMemberPath = "Soort";
-            
+
+
+            ZoekenWapens();
 
         }
 
@@ -68,27 +68,32 @@ namespace Project_Destiny_WPF.UserControls
 
         }
 
-        private void ZoekenItems()
+        private void ZoekenWapens()
         {
-            Wapen categorie = cmbCategorie.SelectedItem as Wapen;
+            string categorie = cmbCategorie.SelectedItem as String;
             string zeldzaamheid = cmbZeldzaamheid.SelectedItem as string;
-
-            if (categorie != null && cmbCategorie.SelectedIndex != 0 && cmbZeldzaamheid.SelectedIndex != 0)
+            
+            //kijken als "All" geselecteerd is in lijst 
+            /*
+            if (cmbCategorie.SelectedIndex != 0 && cmbZeldzaamheid.SelectedIndex != 0)
             {
-                dbWapens.ItemsSource = DatabaseOperations.OphalenSpecialItemsViaCategorieEnZeldzaamheid(tbZoekItem.Text, categorie.id, zeldzaamheid);
+                dbWapens.ItemsSource = DatabaseOperations.OphalenArmorViaArmorSlotEnZeldzaamheid(tbZoekItem.Text, armorslot, zeldzaamheid);
             }
-            else if (categorie != null && cmbCategorie.SelectedIndex != 0)
+            else if (cmbCategorie.SelectedIndex != 0)
             {
-                dbWapens.ItemsSource = DatabaseOperations.OphalenSpecialItemsViaCategorie(tbZoekItem.Text, categorie.id);
+                dbWapens.ItemsSource = DatabaseOperations.OphalenArmorViaArmorslot(tbZoekItem.Text, armorslot);
             }
             else if (cmbZeldzaamheid.SelectedIndex != 0)
             {
-                dbWapens.ItemsSource = DatabaseOperations.OphalenSpecialItemsViaZeldzaamheid(tbZoekItem.Text, zeldzaamheid);
+                dbWapens.ItemsSource = DatabaseOperations.OphalenArmorViaZeldzaamheid(tbZoekItem.Text, zeldzaamheid);
             }
             else
             {
                 dbWapens.ItemsSource = DatabaseOperations.OphalenWapensViaNaam(tbZoekItem.Text);
             }
+            */
+
+            dbWapens.ItemsSource = DatabaseOperations.OphalenWapensViaNaam(tbZoekWapen.Text);
         }
 
 
