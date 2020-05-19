@@ -581,25 +581,61 @@ namespace Destiny_DAL
 
 
         //Usercontrole Weapons
-        public static List<Wapen> OphalenCategorie()
-        {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
-            {
-                return destinyEntities.Wapens
-                    .OrderBy(x => x.Soort)
-     
-                    .ToList();
-            }
-        }
-
         public static List<Wapen> OphalenWapensViaNaam(string naam)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
                 return destinyEntities.Wapens
                     .Include(x => x.Item)
+                    .Include(x=> x.Damagetype)
+                    .Where(x => x.Damagetype.id == x.DamagetypeId)
                     .Where(x => x.Item.id == x.id)
                     .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+        public static List<Wapen> OphalenWapensViaCategorieEnZeldzaamheid(string naam, string categorie, string zeldzaamheid)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Wapens
+                    .Include(x => x.Item)
+                    .Include(x => x.Damagetype)
+                    .Where(x => x.Damagetype.id == x.DamagetypeId)
+                    .Where(x => x.Soort == categorie)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+        public static List<Wapen> OphalenWapensViaCategorie(string naam, string categorie)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Wapens
+                    .Include(x => x.Item)
+                    .Include(x => x.Damagetype)
+                    .Where(x => x.Damagetype.id == x.DamagetypeId)
+                    .Where(x => x.Soort == categorie)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+        public static List<SpecialItem> OphalenWapensViaZeldzaamheid(string naam, string zeldzaamheid)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.SpecialItems
+                    .Include(x => x.Item)
+                    .Include(x => x.SpecialItemCategorie)
+                    .Where(x => x.SpecialItemCategorie.id == x.CategorieId)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
                     .OrderBy(x => x.Item.Naam)
                     .ToList();
             }
