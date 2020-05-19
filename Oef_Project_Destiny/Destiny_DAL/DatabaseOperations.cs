@@ -640,5 +640,25 @@ namespace Destiny_DAL
                     .ToList();
             }
         }
+
+        public static int ToevoegenWapen(Item i, Wapen w)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(i).State = EntityState.Added;
+                    destinyEntities.Entry(w).State = EntityState.Added;
+
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
     }
 }

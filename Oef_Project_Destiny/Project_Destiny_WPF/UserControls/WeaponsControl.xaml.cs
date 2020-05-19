@@ -114,6 +114,105 @@ namespace Project_Destiny_WPF.UserControls
             
         }
 
+        private void btnAddWeapon_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralItems.Items = DatabaseOperations.OphalenItems();
+            string foutmeldingen = Valideer("cmbDbZeldzaamheid");
+            foutmeldingen += Valideer("cmbDbCategorie");
+            foutmeldingen += Valideer("cmbDbDamageType");
+            foutmeldingen += Valideer("Impact");
+            foutmeldingen += Valideer("Magazine");
+            foutmeldingen += Valideer("Light");
 
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            {
+                string zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
+                string categorie = cmbDbCategorie.SelectedItem as string;
+                string damagetype = cmbDbDamageType.SelectedItem as string;
+                Item i = new Item();
+                Wapen w = new Wapen();
+
+                i.Naam = txtNaam.Text;
+                i.Zeldzaamheid = zeldzaamheid;
+                w.Soort = categorie;
+                w.id = i.id;
+                w.Impact = GeneralWapens.ConversieToInt(txtImpact.Text);
+                w.Magazine = GeneralWapens.ConversieToInt(txtMagazine.Text);
+                w.LightAmount = GeneralWapens.ConversieToInt(txtLight.Text);
+
+                if (i.IsGeldig())
+                {
+                    if (!GeneralItems.Items.Contains(i))
+                    {
+                        int ok = DatabaseOperations.ToevoegenWapen(i, w);
+                        if (ok > 0)
+                        {
+                            ZoekenWapens();
+                            WissenVelden();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Item is niet toegevoegd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Een exotic item met dezelfde naam kan niet 2x voorkomen!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(i.Error, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private string Valideer(string columnName)
+        {
+            if (columnName == "dbWapens" && dbWapens.SelectedItem == null)
+            {
+                return "Selecteer een Wapen!" + Environment.NewLine;
+            }
+            if (columnName == "cmbDbZeldzaamheid" && cmbDbZeldzaamheid.SelectedItem == null)
+            {
+                return "Selecteer een zeldzaamheid!" + Environment.NewLine;
+            }
+            if (columnName == "cmbDbCategorie" && cmbDbCategorie.SelectedItem == null)
+            {
+                return "Selecteer een categorie!" + Environment.NewLine;
+            }
+            if (columnName == "cmbDbDamageType" && cmbDbDamageType.SelectedItem == null)
+            {
+                return "Selecteer een damagetype!" + Environment.NewLine;
+            }
+            if (columnName == "Impact" && !string.IsNullOrWhiteSpace(txtImpact.Text) && int.TryParse(txtImpact.Text, out int impact) && impact < 0)
+            {
+                return "Impact moet een positief nummeriek getal zijn!" + Environment.NewLine;
+            }
+            if (columnName == "Magazine" && !string.IsNullOrWhiteSpace(txtMagazine.Text) && int.TryParse(txtMagazine.Text, out int magazine) && magazine < 0)
+            {
+                return "Magazine moet een positief nummeriek getal zijn!" + Environment.NewLine;
+            }
+            if (columnName == "Light" && !string.IsNullOrWhiteSpace(txtLight.Text) && int.TryParse(txtLight.Text, out int light) && light < 0)
+            {
+                return "Light moet een positief nummeriek getal zijn!" + Environment.NewLine;
+            }
+            return "";
+        }
+
+        private void WissenVelden()
+        {
+            txtNaam.Text = "";
+            txtImpact.Text = "";
+            txtMagazine.Text = "";
+            txtLight.Text = "";
+            cmbDbZeldzaamheid.SelectedIndex = -1;
+            cmbDbCategorie.SelectedIndex = -1;
+            cmbDbDamageType.SelectedIndex = -1;
+
+        }
     }
 }
