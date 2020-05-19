@@ -48,7 +48,8 @@ namespace Destiny_DAL
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
                     return destinyEntities.Accounts
-                        .Where(x => x.Accountnaam.Contains(accountnaam)).SingleOrDefault();
+                        .Where(x => x.Accountnaam == accountnaam)
+                        .SingleOrDefault();
                 }
             }
             catch (Exception ex)
