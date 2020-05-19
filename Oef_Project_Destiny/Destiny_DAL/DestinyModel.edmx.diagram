@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="56407b0f62884b4db2e010cbf81e8b63" Name="Diagram1" ZoomLevel="72">
+      <Diagram DiagramId="56407b0f62884b4db2e010cbf81e8b63" Name="Diagram1" ZoomLevel="80">
         <EntityTypeShape EntityType="DestinyModel.Account" Width="1.5" PointX="1.5" PointY="31.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Armor" Width="1.5" PointX="3" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinyModel.Character" Width="2.125" PointX="3.75" PointY="32.125" IsExpanded="true" />

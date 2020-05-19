@@ -144,6 +144,7 @@
     <Compile Include="Partials\Locatie.cs" />
     <Compile Include="Partials\Ras.cs" />
     <Compile Include="Partials\Wapenklasse.cs" />
+    <Compile Include="Partials\SpecialItemCategorie.cs" />
     <Compile Include="Perk.cs">
       <DependentUpon>DestinyModel.tt</DependentUpon>
     </Compile>
