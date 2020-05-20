@@ -712,8 +712,12 @@ namespace Destiny_DAL
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
-                    destinyEntities.Entry(i).State = EntityState.Modified;
-                    destinyEntities.Entry(w).State = EntityState.Modified;
+                    var weapon = destinyEntities.Wapens.Where(x => x.id == w.id).SingleOrDefault();
+                    destinyEntities.Entry(weapon).CurrentValues.SetValues(w);
+
+                    var item = destinyEntities.Items.Where(x => x.id == w.id).SingleOrDefault();
+                    destinyEntities.Entry(item).CurrentValues.SetValues(i);
+
                     return destinyEntities.SaveChanges();
                 }
             }
