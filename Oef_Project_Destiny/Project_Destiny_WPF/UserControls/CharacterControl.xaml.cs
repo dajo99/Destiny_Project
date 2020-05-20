@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Project_Destiny_WPF.UserControls;
 using Destiny_DAL;
+using Destiny_Models;
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
@@ -108,28 +109,12 @@ namespace Project_Destiny_WPF.UserControls
         {
             if (dtgKarakters.SelectedItem is Character c)
             {
-                Random trommel = new Random();
-                int getal = trommel.Next(1, 7);
-
-                if (getal <= 3)
-                {
-                    c.Level++;
-                    int ok = DatabaseOperations.CharacterUpdaten(c);
-                    if (ok > 0)
-                    {
-                        SoundPlayer sound = new SoundPlayer("Short_triumphal_fanfare-John_Stracke-815794903.wav");
-                        sound.Play();
-                        dtgKarakters.ItemsSource = DatabaseOperations.CharactersOphalenViaAccountId(User.Acc.id);
-                        MessageBox.Show("Het level van je karakter is gestegen!");
-
-                    }
-                }
-                else
-                {
-                    SoundPlayer sound = new SoundPlayer("fail-trombone-01.wav");
-                    sound.Play();
-                    MessageBox.Show("je karakter heeft de strijd verloren, probeer het weer op een ander moment");
-                }
+                User.Character = c;
+                CustomMessageBox b = new CustomMessageBox();
+                b.ShowDialog();
+                c = User.Character;
+                DatabaseOperations.CharacterUpdaten(c);
+                dtgKarakters.ItemsSource = DatabaseOperations.CharactersOphalenViaAccountId(User.Acc.id);
             }
             else
             {

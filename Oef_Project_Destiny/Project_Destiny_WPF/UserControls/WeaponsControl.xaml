@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Project_Destiny_WPF.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="550" Width="800" Loaded="UserControl_Loaded">
+             d:DesignHeight="450" Width="800" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -22,13 +22,13 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="lblWapens" Content="Wapens" Grid.Column="1" FontWeight="Bold" FontSize="30" Foreground="#333333" HorizontalAlignment="Center" Margin="8"></Label>
 
-        <TextBox Grid.Row="1"  Width="230" FontSize="15" KeyDown="TextBox_KeyDown"
+        <TextBox x:Name="tbZoekWapen" Grid.Row="1"  Width="230" FontSize="15" KeyUp="TextBox_KeyUp"
   materialDesign:HintAssist.Hint="Zoek wapens" materialDesign:TextFieldAssist.UnderlineBrush="#333"
   VerticalAlignment="Bottom"/>
         <ComboBox x:Name="cmbCategorie" Grid.Column="1" Width="230" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
-                     materialDesign:HintAssist.Hint="Kies categorie" SelectionChanged="cmbCategorie_SelectionChanged"  Grid.Row="1"/>
+                     materialDesign:HintAssist.Hint="" SelectionChanged="cmbCategorie_SelectionChanged"  Grid.Row="1"/>
         <ComboBox x:Name="cmbZeldzaamheid" Grid.Column="2" Width="230" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
-                     materialDesign:HintAssist.Hint="Kies zeldzaamheid" SelectionChanged="cmbZeldzaamheid_SelectionChanged"  Grid.Row="1"/>
+                     materialDesign:HintAssist.Hint="" SelectionChanged="cmbZeldzaamheid_SelectionChanged"  Grid.Row="1"/>
 
         <DataGrid x:Name="dbWapens" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbWapens_SelectionChanged" HorizontalAlignment="Center" Margin="5,20,5,10">
             <DataGrid.Resources>
@@ -42,52 +42,49 @@
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Naam" Width="165"/>
-                <DataGridTextColumn Header="Categorie" Width="120"/>
-                <DataGridTextColumn Header="Zeldzaamheid" Width="120"/>
-                <DataGridTextColumn Header="Damagetype" Width="110"/>
-                <DataGridTextColumn Header="Impact" Width="66"/>
-                <DataGridTextColumn Header="Range" Width="66"/>
-                <DataGridTextColumn Header="Magazine" Width="78"/>
-                <DataGridTextColumn Header="Light" Width="70"/>
+                <DataGridTextColumn Header="Naam" Binding= "{Binding Item.Naam}" Width="165"/>
+                <DataGridTextColumn Header="Categorie" Binding="{Binding Wapenklasse.Naam}" Width="120"/>
+                <DataGridTextColumn Header="Zeldzaamheid" Binding= "{Binding Item.Zeldzaamheid}" Width="120"/>
+                <DataGridTextColumn Header="Damagetype" Binding="{Binding Damagetype.Naam}" Width="110"/>
+                <DataGridTextColumn Header="Impact" Binding="{Binding Impact}" Width="66"/>
+                <DataGridTextColumn Header="Magazine" Binding="{Binding Magazine}" Width="78"/>
+                <DataGridTextColumn Header="Light" Binding="{Binding LightAmount}" Width="70"/>
             </DataGrid.Columns>
         </DataGrid>
-        <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" Margin="0,20.2,0,10" HorizontalAlignment="Right">
-            <TextBox x:Name="txtNaam"    Width="165" FontSize="15" HorizontalAlignment="Center"
+
+        <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" Margin="50,10,45.667,10">
+
+            <TextBox x:Name="txtNaam"    Width="149" FontSize="14" HorizontalAlignment="Center"
   materialDesign:HintAssist.Hint="Naam"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0"/>
-
-            <ComboBox x:Name="cmbDbCategorie" Width="120" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Categorie"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="5,0,0,5"/>
-
-            <ComboBox x:Name="cmbDbZeldzaamheid" Width="120" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Zeldzaamheid"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="5,0,0,5"/>
-
-            <ComboBox x:Name="cmbDbDamagetype" Width="110" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Damagetype"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="5,0,0,5"/>
-
-            <TextBox x:Name="txtImpact"    Width="66" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Impact"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="5,0,0,0" />
-
-            <TextBox x:Name="txtRange"    Width="66" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Range"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="5,0,0,0" />
-
-            <TextBox x:Name="txtMagazine"    Width="78" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Magazine"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
   VerticalAlignment="Bottom" Padding="2,0,0,0" />
 
-            <TextBox x:Name="txtLight" Width="70" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Light" materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,0,1"
-  VerticalAlignment="Bottom" Padding="2,0,0,0"/>
-        </WrapPanel>
+            <ComboBox x:Name="cmbDbCategorie" Width="118" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Categorie"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+  VerticalAlignment="Bottom" Padding="2,0,0,5"/>
 
-        <Button x:Name="btnAddWeapon" Content="Voeg wapen toe" Grid.Row="4" Margin="10,10,10,20"/>
+            <ComboBox x:Name="cmbDbZeldzaamheid" Width="123" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Zeldzaamheid"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+  VerticalAlignment="Bottom" Padding="2,0,0,5" />
+            
+            <ComboBox x:Name="cmbDbDamageType" Width="117" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Damage Type"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+  VerticalAlignment="Bottom" Padding="2,0,0,5" />
+
+            <TextBox x:Name="txtImpact"    Width="73" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Impact"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+
+            <TextBox x:Name="txtMagazine"    Width="69" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Magazine"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+            <TextBox x:Name="txtLight"    Width="55" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Light"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
+  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+        </WrapPanel>
+        
+        <Button x:Name="btnAddWeapon" Content="Voeg wapen toe" Grid.Row="4" Margin="10,10,10,20" Click="btnAddWeapon_Click"/>
         <Button x:Name="btnChangeWeapon" Content="Wijzig wapen" Grid.Row="4" Grid.Column="1" Margin="10,10,10,20" />
         <Button x:Name="btnRemoveWeapon" Content="Verwijder wapen" Grid.Row="4"  Grid.Column="2" Margin="10,10,10,20" />
+          
     </Grid>
 </UserControl>

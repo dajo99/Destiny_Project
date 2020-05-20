@@ -1,4 +1,4 @@
-﻿using Destiny_DAL;
+﻿using Destiny_Models;
 using Project_Destiny_WPF.UserControls;
 using System;
 using System.Collections.Generic;

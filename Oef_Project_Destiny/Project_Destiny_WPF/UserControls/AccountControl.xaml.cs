@@ -53,16 +53,11 @@ namespace Project_Destiny_WPF.UserControls
                 a.Voornaam = txtVoornaam.Text;
                 a.Mail = txtMail.Text;
                 a.Wachtwoord = SecurePassword.EncryptString(txtWachtwoord.Password);
-                if (w.ProfileImage.Source == null)
+                if (UploadFoto.Source != null)
                 {
                     a.Image = Encoding.ASCII.GetBytes(op.FileName);
                 }
-                else
-                {
-                    
-                    string profielImage = Encoding.ASCII.GetString(User.Acc.Image);
-                    w.ProfileImage.Source = new BitmapImage(new Uri(profielImage));
-                }
+               
                 
                 if (cmbRegio.SelectedItem is string regio)
                 {
@@ -83,16 +78,14 @@ namespace Project_Destiny_WPF.UserControls
                                 w.GridMain.Children.Clear();
                                 UserControl usc = new AccountControl();
                                 w.GridMain.Children.Add(usc);
-                                if (w.ProfileImage.Source == null)
+                                if (UploadFoto.Source != null)
                                 {
                                     w.ProfileImage.Source = new BitmapImage(new Uri(op.FileName));
                                 }
-                                else
-                                {
+                                
 
-                                    string profielImage = Encoding.ASCII.GetString(User.Acc.Image);
-                                    w.ProfileImage.Source = new BitmapImage(new Uri(profielImage));
-                                }
+                                    
+                                
                                 
                             }
                             else
