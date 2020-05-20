@@ -44,7 +44,6 @@ namespace Project_Destiny_WPF.UserControls
             Wissen();
             if (dbArmor.SelectedItem is Armor a)
             {
-                txtDiscipline.Text = a.Discipline.ToString();
                 txtIntellect.Text = a.Intellect.ToString();
                 txtMobility.Text = a.Mobility.ToString();
                 txtRecovery.Text = a.Recovery.ToString();
@@ -105,7 +104,6 @@ namespace Project_Destiny_WPF.UserControls
         private void Wissen()
         {
             txtNaam.Text = "";
-            txtDiscipline.Text = "";
             txtIntellect.Text = "";
             txtMobility.Text = "";
             txtRecovery.Text = "";
@@ -121,7 +119,6 @@ namespace Project_Destiny_WPF.UserControls
 
             string foutmeldingen = ValideerSelectie("cmbDbZeldzaamheid");
             foutmeldingen += ValideerSelectie("cmbDbArmorSlot");
-            foutmeldingen += ValideerTekstToInt(txtDiscipline.Text, "Discipline");
             foutmeldingen += ValideerTekstToInt(txtIntellect.Text, "Intellect");
             foutmeldingen += ValideerTekstToInt(txtMobility.Text, "Mobility");
             foutmeldingen += ValideerTekstToInt(txtRecovery.Text, "Recovery");
@@ -138,7 +135,6 @@ namespace Project_Destiny_WPF.UserControls
                 i.Zeldzaamheid = zeldzaamheid;
                 a.id = i.id;
                 a.ArmorSlot = armorslot;
-                a.Discipline = GeneralItems.ConversieToInt(txtDiscipline.Text);
                 a.Intellect = GeneralItems.ConversieToInt(txtIntellect.Text);
                 a.Mobility = GeneralItems.ConversieToInt(txtMobility.Text);
                 a.Recovery = GeneralItems.ConversieToInt(txtRecovery.Text);
@@ -169,6 +165,9 @@ namespace Project_Destiny_WPF.UserControls
             {
                 MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            ZoekenArmor();
+            Wissen();
         }
 
         private void btnChangeArmor_Click(object sender, RoutedEventArgs e)
@@ -178,7 +177,6 @@ namespace Project_Destiny_WPF.UserControls
             string foutmeldingen = ValideerSelectie("dbArmor");
             foutmeldingen += ValideerSelectie("cmbDbZeldzaamheid");
             foutmeldingen += ValideerSelectie("cmbDbArmorSlot");
-            foutmeldingen += ValideerTekstToInt(txtDiscipline.Text, "Discipline");
             foutmeldingen += ValideerTekstToInt(txtIntellect.Text, "Intellect");
             foutmeldingen += ValideerTekstToInt(txtMobility.Text, "Mobility");
             foutmeldingen += ValideerTekstToInt(txtRecovery.Text, "Recovery");
@@ -188,10 +186,10 @@ namespace Project_Destiny_WPF.UserControls
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 Armor a = dbArmor.SelectedItem as Armor;
+                GeneralItems.Items.Remove(a.Item);
                 a.Item.Naam = txtNaam.Text;
                 a.Item.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
                 a.ArmorSlot = cmbDbArmorSlot.SelectedItem as string;
-                a.Discipline = GeneralItems.ConversieToInt(txtDiscipline.Text);
                 a.Intellect = GeneralItems.ConversieToInt(txtIntellect.Text);
                 a.Mobility = GeneralItems.ConversieToInt(txtMobility.Text);
                 a.Recovery = GeneralItems.ConversieToInt(txtRecovery.Text);
@@ -262,10 +260,10 @@ namespace Project_Destiny_WPF.UserControls
         }
         private string ValideerTekstToInt(string tekst, string columnName)
         {
-            if (!string.IsNullOrWhiteSpace(tekst) && int.TryParse(tekst, out int number) && number < 0)
+            if (!string.IsNullOrWhiteSpace(tekst) && int.TryParse(tekst, out int number) && (number < 0 || number > 100))
             {
                 Debug.WriteLine(number + "---" + tekst);
-                return columnName + " moet een positief nummeriek getal zijn!" + Environment.NewLine;
+                return columnName + " moet een positief nummeriek getal zijn onder de 100!" + Environment.NewLine;
             }
             return "";
         }
