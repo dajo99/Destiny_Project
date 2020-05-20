@@ -150,12 +150,7 @@ namespace Project_Destiny_WPF.UserControls
                     if (!GeneralItems.Items.Contains(i))
                     {
                         int ok = DatabaseOperations.ToevoegenArmor(i, a);
-                        if (ok > 0)
-                        {
-                            ZoekenArmor();
-                            Wissen();
-                        }
-                        else
+                        if (ok == 0)
                         {
                             MessageBox.Show("Armor is niet toegevoegd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
@@ -208,12 +203,7 @@ namespace Project_Destiny_WPF.UserControls
                     if (!GeneralItems.Items.Contains(a.Item))
                     {
                         int ok = DatabaseOperations.AanpassenArmor(a, a.Item);
-                        if (ok > 0)
-                        {
-                            ZoekenArmor();
-                            Wissen();
-                        }
-                        else
+                        if (ok == 0)
                         {
                             MessageBox.Show("Armor is niet gewijzigd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
@@ -232,6 +222,8 @@ namespace Project_Destiny_WPF.UserControls
             {
                 MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            ZoekenArmor();
             Wissen();
         }
 
@@ -242,16 +234,13 @@ namespace Project_Destiny_WPF.UserControls
             {
                 Armor a = dbArmor.SelectedItem as Armor;
                 int ok = DatabaseOperations.VerwijderenArmor(a.Item, a);
-                if (ok > 0)
-                {
-                    ZoekenArmor();
-                    Wissen();
-                }
-                else
+                if (ok == 0)
                 {
                     MessageBox.Show("Armor is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+            ZoekenArmor();
+            Wissen();
         }
 
         private string ValideerSelectie(string columnName)

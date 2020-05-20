@@ -52,18 +52,6 @@ namespace Project_Destiny_WPF.UserControls
                 txtDurability.Text = i.Durability.ToString();
                 txtBoost.Text = i.Boost.ToString();
                 cmbDbCategorie.SelectedItem = i.SpecialItemCategorie;
-
-                //int count = -1;
-                /*foreach (SpecialItemCategorie ic in categorieLijst2)
-                {
-                    //count++;
-                    if (ic.Naam == i.SpecialItemCategorie.Naam)
-                    {
-                        //cmbDbCategorie.SelectedItem = categorieLijst2[count];
-                        cmbDbCategorie.SelectedItem = ic;
-                        Debug.WriteLine(ic.Naam == i.SpecialItemCategorie.Naam);
-                    }
-                }*/
                 cmbDbZeldzaamheid.SelectedItem = i.Item.Zeldzaamheid;
             }
         }
@@ -121,12 +109,7 @@ namespace Project_Destiny_WPF.UserControls
                     if (!GeneralItems.Items.Contains(i))
                     {
                         int ok = DatabaseOperations.ToevoegenItem(i, si);
-                        if (ok > 0)
-                        {
-                            ZoekenItems();
-                            WissenVelden();
-                        }
-                        else
+                        if (ok == 0)
                         {
                             MessageBox.Show("Item is niet toegevoegd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
@@ -145,6 +128,8 @@ namespace Project_Destiny_WPF.UserControls
             {
                 MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            ZoekenItems();
+            WissenVelden();
         }
 
         private void btnChangeItem_Click(object sender, RoutedEventArgs e)
@@ -167,9 +152,8 @@ namespace Project_Destiny_WPF.UserControls
                 si.Item.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
                 si.Boost = GeneralItems.ConversieToInt(txtBoost.Text);
                 si.Durability = GeneralItems.ConversieToInt(txtDurability.Text);
-
-                    si.CategorieId = c.id;
-                    si.SpecialItemCategorie = c;
+                si.CategorieId = c.id;
+                si.SpecialItemCategorie = c;
 
                 Debug.WriteLine(c.Naam + " " + si.id + "====" + si.Item.id + "-" + si.CategorieId + "===" + si.SpecialItemCategorie.id + "-" + si.SpecialItemCategorie.Naam + "===" + c.Naam);
 
@@ -180,14 +164,7 @@ namespace Project_Destiny_WPF.UserControls
                     {
                         int ok = DatabaseOperations.AanpassenSpecialItems(si.Item, si);
 
-                        if (ok > 0)
-                        {
-                            Debug.WriteLine(c.Naam + " " + si.id + "-" + si.CategorieId + "-" + si.Boost + "-" + si.Durability + "-" + si.Item.Naam + "-" + si.Item.Zeldzaamheid);
-                            ZoekenItems();
-                            WissenVelden();
-                        }
-
-                        else
+                        if (ok == 0)
                         {
                             MessageBox.Show("SpecialItem is niet gewijzigd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
@@ -219,15 +196,12 @@ namespace Project_Destiny_WPF.UserControls
             {
                 SpecialItem si = dbItems.SelectedItem as SpecialItem;
                 int ok = DatabaseOperations.VerwijderenSpecialItem(si.Item, si);
-                if (ok > 0)
-                {
-                    ZoekenItems();
-                    WissenVelden();
-                }
-                else
+                if (ok == 0)
                 {
                     MessageBox.Show("Item is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                ZoekenItems();
+                WissenVelden();
             }
         }
         private string Valideer(string columnName)
