@@ -221,5 +221,24 @@ namespace Project_Destiny_WPF.UserControls
             cmbDbDamageType.SelectedIndex = -1;
 
         }
+
+        private void btnRemoveWeapon_Click(object sender, RoutedEventArgs e)
+        {
+            string foutmeldingen = Valideer("dbWapens");
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            {
+                Wapen w = dbWapens.SelectedItem as Wapen;
+                int ok = DatabaseOperations.VerwijderenWapen(w.Item, w);
+                if (ok > 0)
+                {
+                    ZoekenWapens();
+                    WissenVelden();
+                }
+                else
+                {
+                    MessageBox.Show("Wapen is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
     }
 }

@@ -686,5 +686,24 @@ namespace Destiny_DAL
             }
 
         }
+
+        public static int VerwijderenWapen(Item i, Wapen w)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(w).State = EntityState.Deleted;
+                    destinyEntities.Entry(i).State = EntityState.Deleted;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
     }
 }
