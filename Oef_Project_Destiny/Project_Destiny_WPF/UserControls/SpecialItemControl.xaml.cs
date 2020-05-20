@@ -47,12 +47,12 @@ namespace Project_Destiny_WPF.UserControls
         private void dbItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dbItems.SelectedItem is SpecialItem i)
-            {
-                txtNaam.Text = i.Item.Naam;
+            { 
                 txtDurability.Text = i.Durability.ToString();
                 txtBoost.Text = i.Boost.ToString();
                 cmbDbCategorie.SelectedItem = i.SpecialItemCategorie;
                 cmbDbZeldzaamheid.SelectedItem = i.Item.Zeldzaamheid;
+                txtNaam.Text = i.Item.Naam;
             }
         }
 
@@ -128,6 +128,7 @@ namespace Project_Destiny_WPF.UserControls
             {
                 MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
             ZoekenItems();
             WissenVelden();
         }
@@ -146,6 +147,7 @@ namespace Project_Destiny_WPF.UserControls
             {
                 SpecialItemCategorie c = cmbDbCategorie.SelectedItem as SpecialItemCategorie;
                 SpecialItem si = dbItems.SelectedItem as SpecialItem;
+                //SpecialItem initialSi = dbItems.SelectedItem as SpecialItem;
                 GeneralItems.Items.Remove(si.Item);
 
                 si.Item.Naam = txtNaam.Text;
@@ -166,6 +168,7 @@ namespace Project_Destiny_WPF.UserControls
 
                         if (ok == 0)
                         {
+                            //DatabaseOperations.AanpassenSpecialItems(initialSi.Item, initialSi);
                             MessageBox.Show("SpecialItem is niet gewijzigd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                     }
@@ -185,6 +188,7 @@ namespace Project_Destiny_WPF.UserControls
             {
                 MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
             ZoekenItems();
             WissenVelden();
         }
@@ -200,9 +204,10 @@ namespace Project_Destiny_WPF.UserControls
                 {
                     MessageBox.Show("Item is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                ZoekenItems();
-                WissenVelden();
             }
+
+            ZoekenItems();
+            WissenVelden();
         }
         private string Valideer(string columnName)
         {
@@ -218,13 +223,13 @@ namespace Project_Destiny_WPF.UserControls
             {
                 return "Selecteer een categorie!" + Environment.NewLine;
             }
-            if (columnName == "Boost" && !string.IsNullOrWhiteSpace(txtBoost.Text) && int.TryParse(txtBoost.Text, out int boost) && boost < 0)
+            if (columnName == "Boost" && !string.IsNullOrWhiteSpace(txtBoost.Text) && int.TryParse(txtBoost.Text, out int boost) && (boost < 0 || boost > 100))
             {
-                return "Boost moet een positief nummeriek getal zijn!" + Environment.NewLine;
+                return "Boost moet een positief nummeriek getal zijn onder de 100!" + Environment.NewLine;
             }
-            if (columnName == "Durability" && !string.IsNullOrWhiteSpace(txtDurability.Text) && int.TryParse(txtDurability.Text, out int durability) && durability < 0)
+            if (columnName == "Durability" && !string.IsNullOrWhiteSpace(txtDurability.Text) && int.TryParse(txtDurability.Text, out int durability) && (durability < 0 || durability > 100))
             {
-                return "Durability moet een positief nummeriek getal zijn!" + Environment.NewLine;
+                return "Durability moet een positief nummeriek getal zijn onder de 100!" + Environment.NewLine;
             }
             return "";
         }
@@ -235,7 +240,6 @@ namespace Project_Destiny_WPF.UserControls
             txtBoost.Text = "";
             cmbDbZeldzaamheid.SelectedIndex = -1;
             cmbDbCategorie.SelectedIndex = -1;
-
         }
         private void ZoekenItems()
         {
@@ -259,6 +263,5 @@ namespace Project_Destiny_WPF.UserControls
                 dbItems.ItemsSource = DatabaseOperations.OphalenSpecialItemsViaNaam(tbZoekItem.Text);
             }
         }
-
     }
 }

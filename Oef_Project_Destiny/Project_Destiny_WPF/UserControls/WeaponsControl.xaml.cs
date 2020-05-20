@@ -177,6 +177,98 @@ namespace Project_Destiny_WPF.UserControls
                 MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        
+
+
+        private void btnChangeWeapon_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralItems.Items = DatabaseOperations.OphalenItems();
+            string foutmeldingen = Valideer("cmbDbZeldzaamheid");
+            foutmeldingen += Valideer("cmbDbCategorie");
+            foutmeldingen += Valideer("cmbDbDamageType");
+            foutmeldingen += Valideer("Impact");
+            foutmeldingen += Valideer("Magazine");
+            foutmeldingen += Valideer("Light");
+
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            {
+                Wapenklasse wk = cmbDbCategorie.SelectedItem as Wapenklasse;
+                Damagetype da = cmbDbDamageType.SelectedItem as Damagetype;
+                Wapen w = dbWapens.SelectedItem as Wapen;
+                GeneralItems.Items.Remove(w.Item);
+
+                w.Item.Naam = txtNaam.Text;
+                w.Item.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
+                w.Impact = GeneralItems.ConversieToInt(txtImpact.Text);
+                w.Magazine = GeneralItems.ConversieToInt(txtMagazine.Text);
+                w.LightAmount = GeneralItems.ConversieToInt(txtLight.Text);
+
+                w.WapenklasseId = wk.id;
+                w.Wapenklasse = wk;
+                w.DamagetypeId = da.id;
+                w.Damagetype = da;
+                
+
+                
+
+                if (w.Item.IsGeldig())
+                {
+
+                    if (!GeneralItems.Items.Contains(w.Item))
+                    {
+                        int ok = DatabaseOperations.AanpassenWapens(w.Item, w);
+
+                        if (ok > 0)
+                        {
+                            ZoekenWapens();
+                            WissenVelden();
+                        }
+
+                        else
+                        {
+                            MessageBox.Show("Wapen is niet gewijzigd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Een exotic item met dezelfde naam kan niet 2x voorkomen!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(w.Item.Error, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+            else
+            {
+                MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            ZoekenWapens();
+            WissenVelden();
+
+        }
+
+        private void btnRemoveWeapon_Click(object sender, RoutedEventArgs e)
+        {
+            string foutmeldingen = Valideer("dbWapens");
+            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            {
+                Wapen w = dbWapens.SelectedItem as Wapen;
+                int ok = DatabaseOperations.VerwijderenWapen(w.Item, w);
+                if (ok > 0)
+                {
+                    ZoekenWapens();
+                    WissenVelden();
+                }
+                else
+                {
+                    MessageBox.Show("Wapen is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
         private string Valideer(string columnName)
         {
             if (columnName == "dbWapens" && dbWapens.SelectedItem == null)
@@ -221,5 +313,7 @@ namespace Project_Destiny_WPF.UserControls
             cmbDbDamageType.SelectedIndex = -1;
 
         }
+
+
     }
 }
