@@ -52,39 +52,67 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" Margin="50,10,45.667,10">
+        <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" Margin="18,10">
 
-            <TextBox x:Name="txtNaam"    Width="149" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Naam"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+            <TextBox x:Name="txtNaam" Width="149" FontSize="14" Margin="0 0 10 3"   Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="16"><Run Text="Naam"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </TextBox>
 
-            <ComboBox x:Name="cmbDbCategorie" Width="118" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Categorie"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,5"/>
+            <ComboBox x:Name="cmbDbCategorie" Width="118" FontSize="14" Margin="0 0 10 0"   Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="16"><Run Text="Categorie"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </ComboBox>
 
-            <ComboBox x:Name="cmbDbZeldzaamheid" Width="123" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Zeldzaamheid"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,5" />
-            
-            <ComboBox x:Name="cmbDbDamageType" Width="117" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Damage Type"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,5" />
+            <ComboBox x:Name="cmbDbZeldzaamheid" Width="123" FontSize="14"  Margin="0 0 10 0"  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="16"><Run Text="Zeldzaamheid"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </ComboBox>
 
-            <TextBox x:Name="txtImpact"    Width="73" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Impact"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+            <ComboBox x:Name="cmbDbDamageType" Width="117" FontSize="14"  Margin="0 0 10 0"  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="16"><Run Text="DamageType"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </ComboBox>
 
-            <TextBox x:Name="txtMagazine"    Width="69" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Magazine"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0" />
-            <TextBox x:Name="txtLight"    Width="55" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Light"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+            <TextBox x:Name="txtImpact"    Width="73" FontSize="14"  Margin="0 0 10 3" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="16"><Run Text="Impact"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </TextBox>
+
+            <TextBox x:Name="txtMagazine"    Width="69" FontSize="14" Margin="0 0 10 3"  Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="16"><Run Text="Magazine"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </TextBox>
+            <TextBox x:Name="txtLight"    Width="55" FontSize="14" Margin="0 0 0 3" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="16"><Run Text="Magazine"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </TextBox>
         </WrapPanel>
-        
+
         <Button x:Name="btnAddWeapon" Content="Voeg wapen toe" Grid.Row="4" Margin="10,10,10,20" Click="btnAddWeapon_Click"/>
         <Button x:Name="btnChangeWeapon" Content="Wijzig wapen" Grid.Row="4" Grid.Column="1" Margin="10,10,10,20" Click="btnChangeWeapon_Click"/>
         <Button x:Name="btnRemoveWeapon" Content="Verwijder wapen" Grid.Row="4"  Grid.Column="2" Margin="10,10,10,20" Click="btnRemoveWeapon_Click"/>
-          
+
     </Grid>
 </UserControl>
