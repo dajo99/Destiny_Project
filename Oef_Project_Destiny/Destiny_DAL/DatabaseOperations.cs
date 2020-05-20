@@ -408,8 +408,15 @@ namespace Destiny_DAL
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
-                    destinyEntities.Entry(i).State = EntityState.Modified;
-                    destinyEntities.Entry(si).State = EntityState.Modified;
+                    var special = destinyEntities.SpecialItems.Where(x => x.id == si.id).SingleOrDefault();
+                    destinyEntities.Entry(special).CurrentValues.SetValues(si);
+
+                    var item = destinyEntities.Items.Where(x => x.id == i.id).SingleOrDefault();
+                    destinyEntities.Entry(item).CurrentValues.SetValues(i);
+
+                    //destinyEntities.Entry(i).State = EntityState.Modified;
+                    //destinyEntities.Entry(si).State = EntityState.Modified;
+
                     return destinyEntities.SaveChanges();
                 }
             }
@@ -554,8 +561,12 @@ namespace Destiny_DAL
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
-                    destinyEntities.Entry(i).State = EntityState.Modified;
-                    destinyEntities.Entry(a).State = EntityState.Modified;
+                    var armor = destinyEntities.Armors.Where(x => x.id == a.id).SingleOrDefault();
+                    destinyEntities.Entry(armor).CurrentValues.SetValues(a);
+
+                    var item = destinyEntities.Items.Where(x => x.id == i.id).SingleOrDefault();
+                    destinyEntities.Entry(item).CurrentValues.SetValues(i);
+
                     return destinyEntities.SaveChanges();
                 }
             }

@@ -21,80 +21,67 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label x:Name="lblArmor" Content="Armor" Grid.Column="1" FontWeight="Bold" FontSize="30" Foreground="#333333" HorizontalAlignment="Center" Margin="8"></Label>
-
-        <TextBox x:Name="tbZoekArmor" Grid.Row="1"  Width="230" FontSize="15" KeyUp="tbZoekArmor_KeyUp"
+        
+        <WrapPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="0" Margin="110,0,0,5">
+            <TextBox x:Name="tbZoekArmor"   Width="250" FontSize="15" KeyUp="tbZoekArmor_KeyUp"
   materialDesign:HintAssist.Hint="Zoek armor" materialDesign:TextFieldAssist.UnderlineBrush="#333"
-  VerticalAlignment="Bottom" Margin="124,0,0,0"/>
-        <ComboBox x:Name="cmbZeldzaamheid" Grid.Column="1" Width="210" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
-                     materialDesign:HintAssist.Hint="Kies zeldzaamheid"   Grid.Row="1" SelectionChanged="cmbZeldzaamheid_SelectionChanged" Margin="0,0,0,0"/>
-        <ComboBox x:Name="cmbArmorSlot" Grid.Column="1" Width="210" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
-                     materialDesign:HintAssist.Hint="Kies armorslot" SelectionChanged="cmbArmorSlot_SelectionChanged"   Grid.Row="1"  Margin="215,0,0,0" Grid.ColumnSpan="2"/>
-
-        <DataGrid x:Name="dbArmor" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbArmor_SelectionChanged" Width="800" HorizontalAlignment="Center" Margin="10,20,5,20">
-            <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridColumnHeader}">
-                    <Setter Property="Background" Value="#333" />
-                    <Setter Property="FontWeight" Value="Bold" />
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="Padding" Value="6"/>
-                    <Setter Property="BorderThickness" Value="0,0,2,0"></Setter>
-                    <Setter Property="BorderBrush" Value="#fff"/>
-                </Style>
-            </DataGrid.Resources>
+  VerticalAlignment="Bottom" Margin="0,0,30,5" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <ComboBox x:Name="cmbZeldzaamheid" Grid.Column="1" Width="210" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                     materialDesign:HintAssist.Hint="Kies zeldzaamheid"   Grid.Row="1" SelectionChanged="cmbZeldzaamheid_SelectionChanged" Margin="34,0,34,0" />
+            <ComboBox x:Name="cmbArmorSlot" Grid.Column="1" Width="210" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                     materialDesign:HintAssist.Hint="Kies armorslot" SelectionChanged="cmbArmorSlot_SelectionChanged"   Grid.Row="1"  Margin="30,0,0,0" Grid.ColumnSpan="2"/>
+        </WrapPanel>
+        
+        <DataGrid x:Name="dbArmor" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbArmor_SelectionChanged" Width="800" HorizontalAlignment="Center" Margin="14,20,5,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Item.Naam}" Header="Naam" Width="165"/>
-                <DataGridTextColumn Binding="{Binding Item.Zeldzaamheid}" Header="Zeldzaamheid" Width="105"/>
+                <DataGridTextColumn Binding="{Binding Item.Zeldzaamheid}" Header="Zeldzaamheid" Width="110"/>
                 <DataGridTextColumn Binding="{Binding ArmorSlot}" Header="Armor slot" Width="100"/>
-                <DataGridTextColumn Binding="{Binding Mobility}" Header="Mobility" Width="65"/>
-                <DataGridTextColumn Binding="{Binding Resilience}" Header="Resilience" Width="75"/>
-                <DataGridTextColumn Binding="{Binding Recovery}" Header="Recovery" Width="70"/>
-                <DataGridTextColumn Binding="{Binding Discipline}" Header="Discipline" Width="75"/>
-                <DataGridTextColumn Binding="{Binding Intellect}" Header="Intellect" Width="65"/>
-                <DataGridTextColumn Binding="{Binding Strength}" Header="Strength" Width="75"/>
+                <DataGridTextColumn Binding="{Binding Mobility}" Header="Mobility" Width="80"/>
+                <DataGridTextColumn Binding="{Binding Resilience}" Header="Resilience" Width="84"/>
+                <DataGridTextColumn Binding="{Binding Recovery}" Header="Recovery" Width="84"/>
+                <DataGridTextColumn Binding="{Binding Intellect}" Header="Intellect" Width="80"/>
+                <DataGridTextColumn Binding="{Binding Strength}" Header="Strength" Width="80"/>
             </DataGrid.Columns>
         </DataGrid>
-        <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" Margin="110,10,0,10">
+        <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" Margin="103,0,0,10">
             
-            <TextBox x:Name="txtNaam"    Width="165" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Naam"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+            <TextBox x:Name="txtNaam"    Width="156" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Naam"  materialDesign:TextFieldAssist.UnderlineBrush="#333"
+  VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="6"/>
 
-            <ComboBox x:Name="cmbDbZeldzaamheid" Width="105" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Zeldzaamheid"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,5" />
+            <ComboBox x:Name="cmbDbZeldzaamheid" Width="103" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Zeldzaamheid"  materialDesign:TextFieldAssist.UnderlineBrush="#333" 
+  VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="6"/>
 
-            <ComboBox x:Name="cmbDbArmorSlot" Width="100" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Armor slot"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,5"/>
+            <ComboBox x:Name="cmbDbArmorSlot" Width="95" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Armor slot"  materialDesign:TextFieldAssist.UnderlineBrush="#333"
+  VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="6"/>
 
-            <TextBox x:Name="txtMobility"    Width="65" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Mobility"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+            <TextBox x:Name="txtMobility"    Width="71" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Mobility"  materialDesign:TextFieldAssist.UnderlineBrush="#333"
+  VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="6"/>
 
-            <TextBox x:Name="txtResilience"    Width="75" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Resilience"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+            <TextBox x:Name="txtResilience"    Width="76" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Resilience"  materialDesign:TextFieldAssist.UnderlineBrush="#333" 
+  VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="6" />
 
-            <TextBox x:Name="txtRecovery"    Width="70" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Recovery"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+            <TextBox x:Name="txtRecovery"    Width="76" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Recovery"  materialDesign:TextFieldAssist.UnderlineBrush="#333"
+  VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="6"/>
 
-            <TextBox x:Name="txtDiscipline" Width="75" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Discipline" materialDesign:TextFieldAssist.UnderlineBrush="#333"  BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0"/>
+            <TextBox x:Name="txtIntellect" Width="70" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Intellect" materialDesign:TextFieldAssist.UnderlineBrush="#333" 
+  VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="6"/>
 
-            <TextBox x:Name="txtIntellect" Width="65" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Intellect" materialDesign:TextFieldAssist.UnderlineBrush="#333"  BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0"/>
-
-            <TextBox x:Name="txtStrength" Width="75" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Strength" materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,0,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0"/>
+            <TextBox x:Name="txtStrength" Width="70" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Strength" materialDesign:TextFieldAssist.UnderlineBrush="#333"
+  VerticalAlignment="Bottom" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="6"/>
         </WrapPanel>
         <WrapPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0" Margin="110,10,0,20">
-        <Button x:Name="btnAddArmor" Content="Voeg armor toe" Grid.ColumnSpan="2" Width="250" Grid.Row="4" Click="btnAddArmor_Click" />
-            <Button x:Name="btnChangeArmor" Content="Wijzig armor" Width="250" Grid.Row="4" Grid.Column="1" Margin="22,0,22,0" Click="btnChangeArmor_Click"/>
-            <Button x:Name="btnRemoveArmor" Content="Verwijder armor" Width="250" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,0,0,0" Click="btnRemoveArmor_Click" />
+        <Button x:Name="btnAddArmor" Content="Voeg armor toe" Grid.ColumnSpan="2" Width="245" Grid.Row="4" Click="btnAddArmor_Click" />
+            <Button x:Name="btnChangeArmor" Content="Wijzig armor" Width="245" Grid.Row="4" Grid.Column="1" Margin="33,0,33,0" Click="btnChangeArmor_Click"/>
+            <Button x:Name="btnRemoveArmor" Content="Verwijder armor" Width="245" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,0,0,0" Click="btnRemoveArmor_Click" />
        </WrapPanel>
     </Grid>
 </UserControl>
