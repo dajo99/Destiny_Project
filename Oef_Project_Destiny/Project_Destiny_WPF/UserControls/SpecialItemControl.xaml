@@ -21,25 +21,17 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label x:Name="lblItems" Content="Special Items" Grid.Column="1" FontWeight="Bold" FontSize="30" Foreground="#333333" HorizontalAlignment="Center" Margin="8"></Label>
-
-        <TextBox x:Name="tbZoekItem" Grid.Row="1"  Width="230" FontSize="15" KeyUp="tbZoekItem_KeyUp"
+        <WrapPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="0" Margin="148,0,0,5" >
+            <TextBox x:Name="tbZoekItem" Grid.Row="1" Width="239" Margin="0,0,30,5"  FontSize="15" KeyUp="tbZoekItem_KeyUp"
   materialDesign:HintAssist.Hint="Zoek item" materialDesign:TextFieldAssist.UnderlineBrush="#333"
-  VerticalAlignment="Bottom" Margin="124,0,0,0"/>
-        <ComboBox x:Name="cmbCategorie" Grid.Column="1" Width="210" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
-                     materialDesign:HintAssist.Hint="Kies categorie" SelectionChanged="cmbCategorie_SelectionChanged" Grid.Row="1"  Margin="0,0,0,0"/>
-        <ComboBox x:Name="cmbZeldzaamheid" Grid.Column="1" Width="210" FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
-                     materialDesign:HintAssist.Hint="Kies zeldzaamheid" SelectionChanged="cmbZeldzaamheid_SelectionChanged"  Grid.Row="1"  Margin="215,0,0,0" Grid.ColumnSpan="2"/>
-
-        <DataGrid x:Name="dbItems" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dbItems_SelectionChanged"  Width="698" HorizontalAlignment="Center" Margin="10,20,5,20">
+  VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <ComboBox x:Name="cmbCategorie" Grid.Column="1" Width="200" Margin="10,0,10,0"  FontSize="15" HorizontalAlignment="Center" VerticalContentAlignment="Center"
+                     materialDesign:HintAssist.Hint="Kies categorie" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="cmbCategorie_SelectionChanged" Grid.Row="1"/>
+            <ComboBox x:Name="cmbZeldzaamheid" Grid.Column="1"  FontSize="15" Width="200" HorizontalAlignment="Center" VerticalContentAlignment="Center"
+                     materialDesign:HintAssist.Hint="Kies zeldzaamheid" Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectionChanged="cmbZeldzaamheid_SelectionChanged"  Grid.Row="1"  Margin="30,0,0,0" Grid.ColumnSpan="2"/>
+        </WrapPanel>
+        <DataGrid x:Name="dbItems" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dbItems_SelectionChanged"  Width="720" HorizontalAlignment="Center" Margin="10,20,5,0">
             <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridColumnHeader}">
-                    <Setter Property="Background" Value="#333" />
-                    <Setter Property="FontWeight" Value="Bold" />
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="Padding" Value="6"/>
-                    <Setter Property="BorderThickness" Value="0,0,2,0"></Setter>
-                    <Setter Property="BorderBrush" Value="#fff"/>
-                </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn  Binding= "{Binding Item.Naam}" Header="Naam" Width="200"/>
@@ -49,32 +41,32 @@
                 <DataGridTextColumn Binding="{Binding Boost}" Header="Boost" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
-        <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" Margin="159,10,0,10">
+        <WrapPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="3" Grid.Column="0" Margin="143,0,0,15">
+            
+            <TextBox x:Name="txtNaam"    Width="195" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Naam" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:TextFieldAssist.UnderlineBrush="#333" 
+  VerticalAlignment="Center" Margin="6" />
 
-            <TextBox x:Name="txtNaam"    Width="200" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Naam"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+            <ComboBox x:Name="cmbDbZeldzaamheid" Width="144" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Zeldzaamheid" Style="{StaticResource MaterialDesignFloatingHintComboBox}"  materialDesign:TextFieldAssist.UnderlineBrush="#333" 
+  VerticalAlignment="Bottom" Margin="6"/>
 
-            <ComboBox x:Name="cmbDbZeldzaamheid" Width="150" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Zeldzaamheid"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,5" />
+            <ComboBox x:Name="cmbDbCategorie" Width="144" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Categorie" Style="{StaticResource MaterialDesignFloatingHintComboBox}"  materialDesign:TextFieldAssist.UnderlineBrush="#333" 
+  VerticalAlignment="Bottom"  Margin="6"/>
 
-            <ComboBox x:Name="cmbDbCategorie" Width="150" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Categorie"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,5"/>
+            <TextBox x:Name="txtDurability"    Width="94" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Durability"  materialDesign:TextFieldAssist.UnderlineBrush="#333"
+  VerticalAlignment="Bottom"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="6" />
 
-            <TextBox x:Name="txtDurability"    Width="100" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Durability"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0" />
-
-            <TextBox x:Name="txtBoost"    Width="100" FontSize="14" HorizontalAlignment="Center"
-  materialDesign:HintAssist.Hint="Boost"  materialDesign:TextFieldAssist.UnderlineBrush="#333" BorderThickness="0,0,2,1" BorderBrush="#fff"
-  VerticalAlignment="Bottom" Padding="2,0,0,0" />
+            <TextBox x:Name="txtBoost"    Width="94" FontSize="14" HorizontalAlignment="Center"
+  materialDesign:HintAssist.Hint="Boost" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  materialDesign:TextFieldAssist.UnderlineBrush="#333"
+  VerticalAlignment="Bottom"  Margin="6"/>
         </WrapPanel>
-        <WrapPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0" Margin="110,10,0,20">
-            <Button x:Name="btnAddItem" Content="Voeg item toe" Grid.ColumnSpan="2" Width="250" Grid.Row="4" Click="btnAddItem_Click"/>
-            <Button x:Name="btnChangeItem" Content="Wijzig item" Width="250" Grid.Row="4" Grid.Column="1" Margin="22,0,22,0" Click="btnChangeItem_Click"/>
-            <Button x:Name="btnRemoveItem" Content="Verwijder item" Width="250" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,0,0,0" Click="btnRemoveItem_Click"/>
+        <WrapPanel Orientation="Horizontal" Grid.Row="4" Grid.ColumnSpan="3" Grid.Column="0" Margin="148,10,0,20">
+            <Button x:Name="btnAddItem" Content="Voeg item toe" Grid.ColumnSpan="2" Width="220" Grid.Row="4" Click="btnAddItem_Click"/>
+            <Button x:Name="btnChangeItem" Content="Wijzig item" Width="220" Grid.Row="4" Grid.Column="1" Margin="30,0,30,0" Click="btnChangeItem_Click"/>
+            <Button x:Name="btnRemoveItem" Content="Verwijder item" Width="220" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="1" Margin="0,0,0,0" Click="btnRemoveItem_Click"/>
         </WrapPanel>
     </Grid>
 </UserControl>
