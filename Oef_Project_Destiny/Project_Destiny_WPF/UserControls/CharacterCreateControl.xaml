@@ -133,6 +133,6 @@
         </ComboBox>
         <Button x:Name="btnAanmaken" Click="btnAanmaken_Click" Content="Maak het character aan " Grid.Column="2" Grid.Row="3"  Margin="345,42,10,32.6" Height="55" />
         <Button x:Name="btnToon" Click="btnToon_Click" Content="toon je keuzes" Grid.Column="2" Grid.Row="3"  Margin="10,42,345,32.6" Height="55" />
-        <ListBox x:Name="lstToon" Grid.Column="2" Background="White" Foreground="Black" Grid.Row="1" Grid.RowSpan="2" Margin="15"/>
+        <ListView x:Name="lstToon" Grid.Column="2"  Foreground="White" Grid.Row="1" Grid.RowSpan="2" Margin="15,22,15,15" HorizontalContentAlignment="Center" FontSize="18"/>
     </Grid>
 </UserControl>
