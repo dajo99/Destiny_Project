@@ -83,8 +83,8 @@
         </WrapPanel>
         
         <Button x:Name="btnAddWeapon" Content="Voeg wapen toe" Grid.Row="4" Margin="10,10,10,20" Click="btnAddWeapon_Click"/>
-        <Button x:Name="btnChangeWeapon" Content="Wijzig wapen" Grid.Row="4" Grid.Column="1" Margin="10,10,10,20" />
-        <Button x:Name="btnRemoveWeapon" Content="Verwijder wapen" Grid.Row="4"  Grid.Column="2" Margin="10,10,10,20" />
+        <Button x:Name="btnChangeWeapon" Content="Wijzig wapen" Grid.Row="4" Grid.Column="1" Margin="10,10,10,20" Click="btnChangeWeapon_Click"/>
+        <Button x:Name="btnRemoveWeapon" Content="Verwijder wapen" Grid.Row="4"  Grid.Column="2" Margin="10,10,10,20" Click="btnRemoveWeapon_Click"/>
           
     </Grid>
 </UserControl>
