@@ -34,6 +34,8 @@ namespace Destiny_DAL
         }
         public override bool Equals(object obj)
         {
+            //Een exotic item met dezelfde naam kan maar 1x in wapens en/of armor en/of special items zitten. 
+            //BV een exotic wapen met naam x, en een exotic armorstuk met naam x kan dus niet!
             return obj is Item item &&
                    Naam == item.Naam &&
                    Zeldzaamheid == item.Zeldzaamheid &&
