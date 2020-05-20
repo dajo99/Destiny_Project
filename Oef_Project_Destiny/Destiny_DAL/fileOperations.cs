@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 namespace Destiny_DAL
 {
-   public static class fileOperations
+   public static class FileOperations
     {
         public static void Foutloggen(Exception fout)
         {

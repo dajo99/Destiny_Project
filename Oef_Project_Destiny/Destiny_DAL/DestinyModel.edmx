@@ -321,7 +321,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Character_Account">
-          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Character" Type="Self.Character" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Account">

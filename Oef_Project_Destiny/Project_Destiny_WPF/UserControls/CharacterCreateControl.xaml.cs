@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Destiny_Models;
 
 namespace Project_Destiny_WPF.UserControls
 {
@@ -209,11 +210,11 @@ namespace Project_Destiny_WPF.UserControls
 
             if (string.IsNullOrWhiteSpace(foutmelding))
             {
-                attributen.Add("haar: " + cmbHaar.SelectedItem as string);
-                attributen.Add("ras: " + cmbRas.SelectedItem as string); ;
-                attributen.Add("gezicht: " + cmbGezicht.SelectedItem as string);
-                attributen.Add("gender: " + cmbGender.SelectedItem as string);
-                attributen.Add("marking: " + cmbMarking.SelectedItem as string);
+                attributen.Add("Haar: " + cmbHaar.SelectedItem as string);
+                attributen.Add("Ras: " + cmbRas.SelectedItem as string); ;
+                attributen.Add("Gezicht: " + cmbGezicht.SelectedItem as string);
+                attributen.Add("Gender: " + cmbGender.SelectedItem as string);
+                attributen.Add("Marking: " + cmbMarking.SelectedItem as string);
                 attributen.Add("Klasse: " + cmbKlasse.SelectedItem as string);
                 attributen.Add("Subklasse: " + cmbSubklasse.SelectedItem as string);
                   

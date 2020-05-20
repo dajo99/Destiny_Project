@@ -25,7 +25,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -48,12 +48,13 @@ namespace Destiny_DAL
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
                     return destinyEntities.Accounts
-                        .Where(x => x.Accountnaam.Contains(accountnaam)).SingleOrDefault();
+                        .Where(x => x.Accountnaam == accountnaam)
+                        .SingleOrDefault();
                 }
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return null;
             }
 
@@ -71,7 +72,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -89,7 +90,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -143,7 +144,7 @@ namespace Destiny_DAL
             catch (Exception ex)
             {
 
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -191,7 +192,7 @@ namespace Destiny_DAL
             catch (Exception ex)
             {
 
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -208,7 +209,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -249,7 +250,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -267,7 +268,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
@@ -286,10 +287,14 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
         }
+
+       
+
+
 
         public static List<SpecialItem> OphalenSpecialItemsViaNaam(string naam)
         {
@@ -373,7 +378,7 @@ namespace Destiny_DAL
             }
             catch (Exception ex )
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
             
@@ -390,25 +395,26 @@ namespace Destiny_DAL
             }
         }
 
-        public static int AanpassenSpecialItems(SpecialItem si)
+        public static int AanpassenSpecialItems(Item i,SpecialItem si)
         {
             try
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
+                    destinyEntities.Entry(i).State = EntityState.Modified;
                     destinyEntities.Entry(si).State = EntityState.Modified;
                     return destinyEntities.SaveChanges();
                 }
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
 
         }
 
-        public static int AanpassenItems(Item i)
+        /*public static int AanpassenItems(Item i)
         {
             try
             {
@@ -424,7 +430,7 @@ namespace Destiny_DAL
                 return 0;
             }
 
-        }
+        }*/
         public static int VerwijderenSpecialItem(Item i, SpecialItem si)
         {
             try
@@ -438,7 +444,282 @@ namespace Destiny_DAL
             }
             catch (Exception ex)
             {
-                fileOperations.Foutloggen(ex);
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
+
+
+
+
+
+
+
+        public static List<Armor> OphalenArmorViaArmorSlotEnZeldzaamheid(string naam, string armorslot, string zeldzaamheid)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Armors
+                    .Include(x => x.Item)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
+                    .Where(x => x.ArmorSlot.Contains(armorslot))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+        public static List<Armor> OphalenArmorViaArmorslot(string naam, string armorslot)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Armors
+                    .Where(x => x.ArmorSlot.Contains(armorslot))
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+        public static List<Item> OphalenZeldzaamheid()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Items
+
+                    .OrderBy(x => x.Zeldzaamheid)
+                    .ToList();
+            }
+        }
+        public static List<Armor> OphalenArmorViaZeldzaamheid(string naam, string zeldzaamheid)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Armors
+                    .Include(x => x.Item)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+        public static List<Armor> OphalenArmorViaNaam(string naam)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Armors
+                    .Include(x => x.Item)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+
+
+        public static int ToevoegenArmor(Item i, Armor a)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(i).State = EntityState.Added;
+                    destinyEntities.Entry(a).State = EntityState.Added;
+
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
+
+        public static int AanpassenArmor(Armor a, Item i)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(i).State = EntityState.Modified;
+                    destinyEntities.Entry(a).State = EntityState.Modified;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
+
+        public static int VerwijderenArmor(Item i, Armor a)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(a).State = EntityState.Deleted;
+                    destinyEntities.Entry(i).State = EntityState.Deleted;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
+
+
+
+        //Usercontrole Weapons
+        public static List<Wapenklasse> OphalenWapenCategorie()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Wapenklasses
+                    .ToList();
+            }
+        }
+
+        public static List<Damagetype> OphalenWapenDamagetype()
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Damagetypes
+                    .ToList();
+            }
+        }
+        public static List<Wapen> OphalenWapensViaNaam(string naam)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Wapens
+                    .Include(x => x.Item)
+                    .Include(x => x.Wapenklasse)
+                    .Include(x => x.Damagetype)
+                    .Where(x => x.Wapenklasse.id == x.WapenklasseId)
+                    .Where(x => x.DamagetypeId == x.Damagetype.id)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+        public static List<Wapen> OphalenWapensViaCategorieEnZeldzaamheid(string naam, int wapenklasseId, string zeldzaamheid)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Wapens
+                    .Include(x => x.Item)
+                    .Include(x => x.Damagetype)
+                    .Include(x=> x.Wapenklasse)
+                    .Where(x => x.Wapenklasse.id == x.WapenklasseId && x.Wapenklasse.id == wapenklasseId)
+                    .Where(x => x.DamagetypeId == x.Damagetype.id)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+        public static List<Wapen> OphalenWapensViaCategorie(string naam, int wapenklasseId)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Wapens
+                    .Include(x => x.Item)
+                    .Include(x => x.Damagetype)
+                    .Include(x => x.Wapenklasse)
+                    .Where(x => x.Wapenklasse.id == x.WapenklasseId && x.Wapenklasse.id == wapenklasseId)
+                    .Where(x => x.DamagetypeId == x.Damagetype.id)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam))
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+
+        public static List<Wapen> OphalenWapensViaZeldzaamheid(string naam, string zeldzaamheid)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                    return destinyEntities.Wapens
+                        .Include(x => x.Item)
+                        .Include(x => x.Damagetype)
+                        .Include(x => x.Wapenklasse)
+                    .Where(x => x.Wapenklasse.id == x.WapenklasseId)
+                    .Where(x => x.DamagetypeId == x.Damagetype.id)
+                    .Where(x => x.Item.id == x.id)
+                    .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
+                    .OrderBy(x => x.Item.Naam)
+                    .ToList();
+            }
+        }
+
+        public static int ToevoegenWapen(Item i, Wapen w)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(i).State = EntityState.Added;
+                    destinyEntities.Entry(w).State = EntityState.Added;
+
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
+
+        public static int VerwijderenWapen(Item i, Wapen w)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(w).State = EntityState.Deleted;
+                    destinyEntities.Entry(i).State = EntityState.Deleted;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
+                return 0;
+            }
+
+        }
+
+        public static int AanpassenWapens(Item i, Wapen w)
+        {
+            try
+            {
+                using (DestinyEntities destinyEntities = new DestinyEntities())
+                {
+                    destinyEntities.Entry(i).State = EntityState.Modified;
+                    destinyEntities.Entry(w).State = EntityState.Modified;
+                    return destinyEntities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.Foutloggen(ex);
                 return 0;
             }
 

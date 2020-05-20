@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Destiny_Models;
 
 namespace Destiny_DAL
 {
     public partial class Item : Basisklasse
     {
-        public static List<Item> Items { get; set; }
         public override string this[string columnName]
         {
             get
@@ -48,5 +46,7 @@ namespace Destiny_DAL
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Zeldzaamheid);
             return hashCode;
         }
+
+        
     }
 }
