@@ -13,6 +13,7 @@ namespace Destiny_DAL
 {
     public static class DatabaseOperations
     {
+        //Usercontrole Account
         public static int ToevoegenAccount(Account a)
         {
             try
@@ -94,6 +95,8 @@ namespace Destiny_DAL
                 return 0;
             }
         }
+
+        //Usercontrole Character
 
         public static List<Character> OphalenCharacterOptiesVoorAanmaken()
         {
@@ -213,6 +216,10 @@ namespace Destiny_DAL
                 return 0;
             }
         }
+
+
+        //Usercontrole Location
+
         public static List<Map> OphalenWerelden()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -292,10 +299,10 @@ namespace Destiny_DAL
             }
         }
 
-       
 
 
 
+        //Usercontrole SpecialItems
         public static List<SpecialItem> OphalenSpecialItemsViaNaam(string naam)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -454,7 +461,7 @@ namespace Destiny_DAL
 
 
 
-
+        //Usercontrole Armor
 
         public static List<Armor> OphalenArmorViaArmorSlotEnZeldzaamheid(string naam, string armorslot, string zeldzaamheid)
         {
