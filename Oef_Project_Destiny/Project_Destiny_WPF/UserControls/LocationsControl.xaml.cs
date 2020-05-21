@@ -31,6 +31,9 @@ namespace Project_Destiny_WPF.UserControls
         {
             cmbWorld.ItemsSource = DatabaseOperations.OphalenWerelden();
             cmbWorld.DisplayMemberPath = "Wereld";
+
+            List<string> toegang = new List<string>() { "False", "True" };
+            cmbArea.ItemsSource = toegang;
         }
 
         private void cmbWorld_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -52,7 +55,12 @@ namespace Project_Destiny_WPF.UserControls
             {
                 return "Selecteer een wereld!" + Environment.NewLine;
             }
-         
+
+            if (columnName == "cmbArea" && cmbArea.SelectedItem == null)
+            {
+                return "Verboden ja of nee!" + Environment.NewLine;
+            }
+
             if (columnName == "Locatie" && dbLocations.SelectedItem == null)
             {
                 return "Selecteer een Locatie!" + Environment.NewLine;
@@ -64,23 +72,26 @@ namespace Project_Destiny_WPF.UserControls
         {
             if (dbLocations.SelectedItem is Locatie locatie)
             {
+                string omgeving = cmbArea.SelectedItem as string;
                 txtLocations.Text = locatie.Naam;
-                txtArea.Text = locatie.RestrictedArea.ToString();
-
-                areaOorspronkelijk = txtArea.Text;
+                cmbArea.SelectedItem = locatie.RestrictedArea.ToString();
+                omgeving = locatie.RestrictedArea.ToString();
+                areaOorspronkelijk = omgeving;
             }
         }
 
         private void BtnWijzig_Click(object sender, RoutedEventArgs e)
         {
             string foutmelding = Valideer("Locatie");
+            foutmelding += Valideer("cmbArea");
 
             if (string.IsNullOrWhiteSpace(foutmelding))
             {
                 Locatie locatie = dbLocations.SelectedItem as Locatie;
+                string omgeving = cmbArea.SelectedItem as string;
 
                 locatie.Naam = txtLocations.Text;
-                locatie.RestrictedArea = bool.Parse(txtArea.Text);
+                locatie.RestrictedArea = bool.Parse(omgeving);
 
                 if (locatie.IsGeldig())
                 {
@@ -119,17 +130,17 @@ namespace Project_Destiny_WPF.UserControls
         private void BtnToeevogen_Click(object sender, RoutedEventArgs e)
         {
             string foutmelding = Valideer("cmbWorld");
+            foutmelding += Valideer("cmbArea");
 
-            
-            
             if (string.IsNullOrWhiteSpace(foutmelding))
             {
+                string omgeving = cmbArea.SelectedItem as string;
                 Map map = cmbWorld.SelectedItem as Map;
 
                 Locatie locatie = new Locatie();
 
                 locatie.Naam = txtLocations.Text;
-                locatie.RestrictedArea = bool.Parse(txtArea.Text);
+                locatie.RestrictedArea = bool.Parse(omgeving);
                 locatie.MapId = map.id;
 
                 if (locatie.IsGeldig())
@@ -175,6 +186,7 @@ namespace Project_Destiny_WPF.UserControls
         private void BtnVerwijderen_Click(object sender, RoutedEventArgs e)
         {
             string foutmelding = Valideer("Locatie");
+            foutmelding += Valideer("cmbArea");
 
             if (string.IsNullOrWhiteSpace(foutmelding))
             {
@@ -205,7 +217,7 @@ namespace Project_Destiny_WPF.UserControls
         private void Wissen()
         {
             txtLocations.Text = "";
-            txtArea.Text = "False";
+            cmbArea.SelectedIndex = -1;
             dbLocations.SelectedIndex = -1;
         }
     }

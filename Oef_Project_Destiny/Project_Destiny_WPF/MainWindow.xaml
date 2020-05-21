@@ -65,7 +65,6 @@
                     <StackPanel Width="150">
                         <Button x:Name="BtnSettings" Content="Settings" Click="BtnSettings_Click"/>
                         <Button x:Name="btnAccount" Content="Account" Click="btnAccount_Click"/>
-                        <Button x:Name="btnHelp" Content="Help" Click="btnHelp_Click"/>
                         <Separator/>
                         <Button x:Name="btnAfmelden" Content="Logout" Click="btnAfmelden_Click"/>
                     </StackPanel>
