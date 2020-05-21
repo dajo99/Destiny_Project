@@ -106,6 +106,10 @@ namespace Project_Destiny_WPF.UserControls
                     MessageBox.Show("niet verwijderd");
                 }
             }
+            else
+            {
+                MessageBox.Show("Eerst een karakter selecteren om te verwijderen!", "halt!", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+            }
 
         }
 

@@ -33,27 +33,13 @@ namespace Destiny_Models
             get;
             set;
         }
-        //bij het opstarten gaat deze constructor automatisch de lijsten initialiseren en opvullen
+        //bij het opstarten gaat deze constructor automatisch de lijsten initialiseren en opvullen//
          static OptiesUiterlijk()
         {
-            GezichtOpties = new List<string>();
-            HaarOpties = new List<string>();
-            Gender = new List<string>();
-            TattooOpties = new List<string>();
-            OptiesUiterlijk.TattooOpties.Add("streep");
-            OptiesUiterlijk.TattooOpties.Add("geen marking");
-            OptiesUiterlijk.TattooOpties.Add("gezicht tattoo");
-
-            OptiesUiterlijk.HaarOpties.Add("krullen");
-            OptiesUiterlijk.HaarOpties.Add("lang");
-            OptiesUiterlijk.HaarOpties.Add("kort");
-
-            OptiesUiterlijk.GezichtOpties.Add("jong");
-            OptiesUiterlijk.GezichtOpties.Add("oud");
-            OptiesUiterlijk.GezichtOpties.Add("krijger");
-
-            OptiesUiterlijk.Gender.Add("Man");
-            OptiesUiterlijk.Gender.Add("Vrouw");
+            GezichtOpties = new List<string>() {"Jong","Oud","Krijger"};
+            HaarOpties = new List<string>() { "Krullen", "Lang", "Kort" };
+            Gender = new List<string>() { "Man", "Vrouw" };
+            TattooOpties = new List<string>() { "Streep", "Geen marking", "Gezicht tattoo" } ;
 
         }
          
