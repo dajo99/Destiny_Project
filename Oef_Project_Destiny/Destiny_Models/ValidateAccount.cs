@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Destiny_Models
 {
-    public static class Valideer
+    public static class ValidateAccount
     {
         public static string ValideerAccountGegevens(string wachtwoord, string gebruikersnaam, string mail, string herhaalWachtwoord)
         {

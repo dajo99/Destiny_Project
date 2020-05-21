@@ -14,7 +14,7 @@ namespace Destiny_UnitTests
 
             ///act
 
-            foutmelding = Valideer.ValideerAccountGegevens("blabla", "wawawa", "gillesekegui@hotmail.com", "blabla");
+            foutmelding = ValidateAccount.ValideerAccountGegevens("blabla", "wawawa", "gillesekegui@hotmail.com", "blabla");
 
             ///assert
             Assert.AreEqual("", foutmelding);
@@ -29,7 +29,7 @@ namespace Destiny_UnitTests
 
             ///act
 
-            foutmelding = Valideer.ValideerAccountGegevens("blabla", "", "gillesekegui@hotmail.com", "blabla");
+            foutmelding = ValidateAccount.ValideerAccountGegevens("blabla", "", "gillesekegui@hotmail.com", "blabla");
 
             ///assert
             Assert.IsTrue(foutmelding != "");
