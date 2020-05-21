@@ -22,22 +22,18 @@
         </Grid.ColumnDefinitions>
         <Label x:Name="lblLocations" Content="Locations" Grid.Column="1" FontWeight="Bold" FontSize="30" Foreground="#333333" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="7"></Label>
 
-        <ComboBox x:Name="cmbWorld" Grid.Column="1" Grid.Row="1" Width="230" FontSize="15" HorizontalAlignment="Center" HorizontalContentAlignment="Center"
-                     materialDesign:HintAssist.Hint="choose world" SelectionChanged="cmbWorld_SelectionChanged">
+        <ComboBox x:Name="cmbWorld" Grid.Column="1" Grid.Row="1" Width="230" FontSize="15" HorizontalContentAlignment="Center"
+                     SelectionChanged="cmbWorld_SelectionChanged" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <TextBlock Foreground="Black" FontSize="14"><Run Text="Kies Wereld"/></TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
         </ComboBox>
 
 
         <DataGrid x:Name="dbLocations" Grid.Row="2"  AutoGenerateColumns="False" SelectionChanged="dbLocations_SelectionChanged"  Margin="190,40,190,0" Grid.ColumnSpan="3" Width="428">
             <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridColumnHeader}">
-                    <Setter Property="Background" Value="#333" />
-                    <Setter Property="FontWeight" Value="Bold" />
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    <Setter Property="Padding" Value="10"/>
-                    <Setter Property="BorderThickness" Value="0,0,2,0"></Setter>
-                    <Setter Property="BorderBrush" Value="#fff"/>
-                </Style>
-
             </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Width="215" Binding="{Binding Naam}"/>
@@ -46,8 +42,21 @@
         </DataGrid>
 
         <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Grid.Row="3" HorizontalAlignment="Center" Margin="0,10,0,10">
-            <TextBox x:Name="txtLocations" materialDesign:HintAssist.Hint="Locatie" Width="205" Margin="0,0,10,0" />
-            <TextBox x:Name="txtArea" Text="False" materialDesign:HintAssist.Hint="Area" Width="205" Margin="10,0,0,0"/>
+            <TextBox x:Name="txtLocations" Width="192" Margin="0,0,10,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="-2 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="14"><Run Text="Locatie"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </TextBox>
+            
+            <ComboBox x:Name="cmbArea" Width="192" FontSize="14" Margin="10,0,0,0"  Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="14"><Run Text="Verboden?"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
+            </ComboBox>
         </StackPanel>
 
         <Button x:Name="BtnWijzig" Content="Wijzig" Grid.Column="0" Grid.Row="4" Margin="10,10,10,20" Click="BtnWijzig_Click"/>

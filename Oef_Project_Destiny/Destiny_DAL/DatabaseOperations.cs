@@ -13,6 +13,7 @@ namespace Destiny_DAL
 {
     public static class DatabaseOperations
     {
+        //Usercontrole Account
         public static int ToevoegenAccount(Account a)
         {
             try
@@ -94,6 +95,8 @@ namespace Destiny_DAL
                 return 0;
             }
         }
+
+        //Usercontrole Character
 
         public static List<Character> OphalenCharacterOptiesVoorAanmaken()
         {
@@ -213,6 +216,10 @@ namespace Destiny_DAL
                 return 0;
             }
         }
+
+
+        //Usercontrole Location
+
         public static List<Map> OphalenWerelden()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -292,10 +299,10 @@ namespace Destiny_DAL
             }
         }
 
-       
 
 
 
+        //Usercontrole SpecialItems
         public static List<SpecialItem> OphalenSpecialItemsViaNaam(string naam)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -404,7 +411,7 @@ namespace Destiny_DAL
                     var special = destinyEntities.SpecialItems.Where(x => x.id == si.id).SingleOrDefault();
                     destinyEntities.Entry(special).CurrentValues.SetValues(si);
 
-                    var item = destinyEntities.Items.Where(x => x.id == si.id).SingleOrDefault();
+                    var item = destinyEntities.Items.Where(x => x.id == i.id).SingleOrDefault();
                     destinyEntities.Entry(item).CurrentValues.SetValues(i);
 
                     //destinyEntities.Entry(i).State = EntityState.Modified;
@@ -461,7 +468,7 @@ namespace Destiny_DAL
 
 
 
-
+        //Usercontrole Armor
 
         public static List<Armor> OphalenArmorViaArmorSlotEnZeldzaamheid(string naam, string armorslot, string zeldzaamheid)
         {
@@ -554,8 +561,12 @@ namespace Destiny_DAL
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
-                    destinyEntities.Entry(i).State = EntityState.Modified;
-                    destinyEntities.Entry(a).State = EntityState.Modified;
+                    var armor = destinyEntities.Armors.Where(x => x.id == a.id).SingleOrDefault();
+                    destinyEntities.Entry(armor).CurrentValues.SetValues(a);
+
+                    var item = destinyEntities.Items.Where(x => x.id == i.id).SingleOrDefault();
+                    destinyEntities.Entry(item).CurrentValues.SetValues(i);
+
                     return destinyEntities.SaveChanges();
                 }
             }
@@ -719,8 +730,12 @@ namespace Destiny_DAL
             {
                 using (DestinyEntities destinyEntities = new DestinyEntities())
                 {
-                    destinyEntities.Entry(i).State = EntityState.Modified;
-                    destinyEntities.Entry(w).State = EntityState.Modified;
+                    var weapon = destinyEntities.Wapens.Where(x => x.id == w.id).SingleOrDefault();
+                    destinyEntities.Entry(weapon).CurrentValues.SetValues(w);
+
+                    var item = destinyEntities.Items.Where(x => x.id == w.id).SingleOrDefault();
+                    destinyEntities.Entry(item).CurrentValues.SetValues(i);
+
                     return destinyEntities.SaveChanges();
                 }
             }
