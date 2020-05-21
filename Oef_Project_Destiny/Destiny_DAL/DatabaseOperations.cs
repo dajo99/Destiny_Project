@@ -101,14 +101,7 @@ namespace Destiny_DAL
         //----------------------
         //Usercontrole Character
         //----------------------
-        public static List<Character> OphalenCharacterOptiesVoorAanmaken()
-        {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
-            {
-                var query = destinyEntities.Characters;
-                return query.ToList();
-            }
-        }
+        
         public static List<CharacterKlasse> OphalenCharacterKlasseVoorAanmaken()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -170,17 +163,7 @@ namespace Destiny_DAL
             }
         }
 
-        public static List<Character> CharacterOphalenViaCharacterId(int id)
-        {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
-            {
-                var query = destinyEntities.Characters.Include(x => x.Ras)
-                    .Include(x => x.CharacterKlasse)
-                    .Include(x => x.CharacterSubklasse)
-                    .Where(x => x.AccountId == id);
-                return query.ToList();
-            }
-        }
+        
         public static int CharacterVerwijderen(Character verwijderen)
         {
 
