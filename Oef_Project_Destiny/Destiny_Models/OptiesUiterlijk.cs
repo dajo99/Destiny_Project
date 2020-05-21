@@ -33,6 +33,7 @@ namespace Destiny_Models
             get;
             set;
         }
+        //bij het opstarten gaat deze constructor automatisch de lijsten initialiseren en opvullen
          static OptiesUiterlijk()
         {
             GezichtOpties = new List<string>();

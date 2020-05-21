@@ -47,7 +47,7 @@ namespace Project_Destiny_WPF.UserControls
             {
                 if (c.Level <= 9)
                 {
-                    MessageBox.Show("Sorry," + "\n\n" + "de mogenlijkheid om het uiterlijk van je karakter te wijzigen is pas mogenlijk vanaf dat het geselecteerde karakter level 10 heeft bereikt");
+                    MessageBox.Show("Sorry," + "\n" + "de mogenlijkheid om het uiterlijk van je karakter te wijzigen is pas beschikbaar vanaf dat het geselecteerde karakter level 10 heeft bereikt");
                 }
 
                 else
@@ -55,7 +55,6 @@ namespace Project_Destiny_WPF.UserControls
                     ///gaat het geselecteerde karakter opslagen in de statische klassen. 
                     ///dit vereenvoudigd de CRUD update in de andere user-control
                     User.Character = c;
-
                     w.GridMain.Children.Clear();
                     UserControl usc = new CharacterChangeControl();
                     w.GridMain.Children.Add(usc);
@@ -75,11 +74,17 @@ namespace Project_Destiny_WPF.UserControls
         private void btnAanmaken_Click(object sender, RoutedEventArgs e)
         {
 
+            if (dtgKarakters.Items.Count < 3)
+            {
+                w.GridMain.Children.Clear();
+                UserControl usc = new CharacterCreateControl();
+                w.GridMain.Children.Add(usc);
+            }
 
-            w.GridMain.Children.Clear();
-            UserControl usc = new CharacterCreateControl();
-            w.GridMain.Children.Add(usc);
-
+            else
+            {
+                MessageBox.Show("Een account kan maximaal 3 characters hebben!","limiet bereikt", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
 
@@ -95,7 +100,6 @@ namespace Project_Destiny_WPF.UserControls
                 {
                     MessageBox.Show("Karakter is succesvol verwijderd!", "succes", MessageBoxButton.OK, MessageBoxImage.Information);
                     dtgKarakters.ItemsSource = DatabaseOperations.CharactersOphalenViaAccountId(User.Acc.id);
-
                 }
                 else
                 {
