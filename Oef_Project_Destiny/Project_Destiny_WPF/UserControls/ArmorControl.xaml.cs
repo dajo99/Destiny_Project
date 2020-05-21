@@ -41,7 +41,6 @@ namespace Project_Destiny_WPF.UserControls
         }
         private void dbArmor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Wissen();
             if (dbArmor.SelectedItem is Armor a)
             {
                 txtIntellect.Text = a.Intellect.ToString();
@@ -82,7 +81,7 @@ namespace Project_Destiny_WPF.UserControls
             string zeldzaamheid = cmbZeldzaamheid.SelectedItem as string;
             string armorslot = cmbArmorSlot.SelectedItem as string;
 
-            //kijken als "All" geselecteerd is in lijst 
+            //Checken als "All" geselecteerd is in de comboboxen of als er zoekcriteria zijn
             if (cmbArmorSlot.SelectedIndex != 0 && cmbZeldzaamheid.SelectedIndex != 0)
             {
                 dbArmor.ItemsSource = DatabaseOperations.OphalenArmorViaArmorSlotEnZeldzaamheid(tbZoekArmor.Text, armorslot, zeldzaamheid);
@@ -101,7 +100,7 @@ namespace Project_Destiny_WPF.UserControls
             }
         }
 
-        private void Wissen()
+        private void VeldenWissen()
         {
             txtNaam.Text = "";
             txtIntellect.Text = "";
@@ -115,8 +114,10 @@ namespace Project_Destiny_WPF.UserControls
 
         private void btnAddArmor_Click(object sender, RoutedEventArgs e)
         {
+            ////Lijst maken van items voor equals (item controleren op zeldzaamheid en naam)
             GeneralItems.Items = DatabaseOperations.OphalenItems();
 
+            //valideren
             string foutmeldingen = ValideerSelectie("cmbDbZeldzaamheid");
             foutmeldingen += ValideerSelectie("cmbDbArmorSlot");
             foutmeldingen += ValideerTekstToInt(txtIntellect.Text, "Intellect");
@@ -127,6 +128,7 @@ namespace Project_Destiny_WPF.UserControls
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
+                //objecten aanmaken om toe te voegen (Armor en special item)
                 string zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
                 string armorslot = cmbDbArmorSlot.SelectedItem as string;
                 Item i = new Item();
@@ -141,9 +143,9 @@ namespace Project_Destiny_WPF.UserControls
                 a.Resilience = GeneralItems.ConversieToInt(txtResilience.Text);
                 a.Strength = GeneralItems.ConversieToInt(txtStrength.Text);
 
-                if (i.IsGeldig())
+                if (i.IsGeldig()) //Kijken als naam en zeldzaamheid zijn ingevuld
                 {
-                    if (!GeneralItems.Items.Contains(i))
+                    if (!GeneralItems.Items.Contains(i))//Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
                     {
                         int ok = DatabaseOperations.ToevoegenArmor(i, a);
                         if (ok == 0)
@@ -167,13 +169,15 @@ namespace Project_Destiny_WPF.UserControls
             }
 
             ZoekenArmor();
-            Wissen();
+            VeldenWissen();
         }
 
         private void btnChangeArmor_Click(object sender, RoutedEventArgs e)
         {
+            //Lijst maken van items voor equals (item controleren op zeldzaamheid en naam)
             GeneralItems.Items = DatabaseOperations.OphalenItems();
 
+            //valideren
             string foutmeldingen = ValideerSelectie("dbArmor");
             foutmeldingen += ValideerSelectie("cmbDbZeldzaamheid");
             foutmeldingen += ValideerSelectie("cmbDbArmorSlot");
@@ -185,8 +189,11 @@ namespace Project_Destiny_WPF.UserControls
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
+                //
                 Armor a = dbArmor.SelectedItem as Armor;
-                GeneralItems.Items.Remove(a.Item);
+                GeneralItems.Items.Remove(a.Item);//Origineel item uit de lijst verwijderen voor equals
+
+                //Gegevens van objecten veranderen (item en armor)
                 a.Item.Naam = txtNaam.Text;
                 a.Item.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
                 a.ArmorSlot = cmbDbArmorSlot.SelectedItem as string;
@@ -196,9 +203,9 @@ namespace Project_Destiny_WPF.UserControls
                 a.Resilience = GeneralItems.ConversieToInt(txtResilience.Text);
                 a.Strength = GeneralItems.ConversieToInt(txtStrength.Text);
 
-                if (a.Item.IsGeldig())
+                if (a.Item.IsGeldig()) //Kijken als naam en zeldzaamheid zijn ingevuld
                 {
-                    if (!GeneralItems.Items.Contains(a.Item))
+                    if (!GeneralItems.Items.Contains(a.Item)) //Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
                     {
                         int ok = DatabaseOperations.AanpassenArmor(a, a.Item);
                         if (ok == 0)
@@ -222,12 +229,14 @@ namespace Project_Destiny_WPF.UserControls
             }
 
             ZoekenArmor();
-            Wissen();
+            VeldenWissen();
         }
 
         private void btnRemoveArmor_Click(object sender, RoutedEventArgs e)
         {
+            //Checken als er iets geselecteerd is in datagrid
             string foutmeldingen = ValideerSelectie("dbArmor");
+
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 Armor a = dbArmor.SelectedItem as Armor;
@@ -237,8 +246,13 @@ namespace Project_Destiny_WPF.UserControls
                     MessageBox.Show("Armor is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+            else
+            {
+                MessageBox.Show(foutmeldingen, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
             ZoekenArmor();
-            Wissen();
+            VeldenWissen();
         }
 
         private string ValideerSelectie(string columnName)
@@ -260,11 +274,12 @@ namespace Project_Destiny_WPF.UserControls
         }
         private string ValideerTekstToInt(string tekst, string columnName)
         {
-            if (!string.IsNullOrWhiteSpace(tekst) && int.TryParse(tekst, out int number) && (number < 0 || number > 100))
+            if (!string.IsNullOrWhiteSpace(tekst) && int.TryParse(tekst, out int number) 
+                && (number < 0 || number > 100))
             {
-                Debug.WriteLine(number + "---" + tekst);
                 return columnName + " moet een positief nummeriek getal zijn onder de 100!" + Environment.NewLine;
             }
+
             return "";
         }
     }

@@ -267,6 +267,10 @@ namespace Project_Destiny_WPF.UserControls
                     MessageBox.Show("Wapen is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+            else
+            {
+                MessageBox.Show(foutmeldingen, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private string Valideer(string columnName)

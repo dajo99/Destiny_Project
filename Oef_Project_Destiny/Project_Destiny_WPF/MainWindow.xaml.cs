@@ -172,11 +172,6 @@ namespace Project_Destiny_WPF
             GridMain.Children.Add(usc);
         }
 
-        private void btnHelp_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnAfmelden_Click(object sender, RoutedEventArgs e)
         {
             User.Acc = null;

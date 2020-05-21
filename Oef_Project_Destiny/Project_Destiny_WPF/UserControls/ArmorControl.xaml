@@ -27,7 +27,7 @@
             <TextBox x:Name="tbZoekArmor" FontSize="15"  Width="250"  KeyUp="tbZoekArmor_KeyUp" Margin="0,0,30,5" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                 <materialDesign:HintAssist.Hint>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
-                        <TextBlock Foreground="Black" FontSize="14"><Run Text="Naam"/></TextBlock>
+                        <TextBlock Foreground="Black" FontSize="14"><Run Text="Zoek armor"/></TextBlock>
                     </StackPanel>
                 </materialDesign:HintAssist.Hint>
             </TextBox>
@@ -54,11 +54,11 @@
         
         <DataGrid x:Name="dbArmor" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbArmor_SelectionChanged" Width="800" HorizontalAlignment="Center" Margin="14,20,5,0">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Item.Naam}" Header="Naam" Width="165"/>
+                <DataGridTextColumn Binding="{Binding Item.Naam}" Header="Naam" Width="160"/>
                 <DataGridTextColumn Binding="{Binding Item.Zeldzaamheid}" Header="Zeldzaamheid" Width="110"/>
                 <DataGridTextColumn Binding="{Binding ArmorSlot}" Header="Armor slot" Width="100"/>
                 <DataGridTextColumn Binding="{Binding Mobility}" Header="Mobility" Width="80"/>
-                <DataGridTextColumn Binding="{Binding Resilience}" Header="Resilience" Width="84"/>
+                <DataGridTextColumn Binding="{Binding Resilience}" Header="Resilience" Width="86"/>
                 <DataGridTextColumn Binding="{Binding Recovery}" Header="Recovery" Width="84"/>
                 <DataGridTextColumn Binding="{Binding Intellect}" Header="Intellect" Width="80"/>
                 <DataGridTextColumn Binding="{Binding Strength}" Header="Strength" Width="80"/>
@@ -75,7 +75,7 @@
                 </materialDesign:HintAssist.Hint>
             </TextBox>
 
-            <ComboBox x:Name="cmbDbZeldzaamheid" Width="103" FontSize="14" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="6">
+            <ComboBox x:Name="cmbDbZeldzaamheid" Width="103" FontSize="14" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="6,13,6,6">
                 <materialDesign:HintAssist.Hint>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
                         <TextBlock Foreground="Black" FontSize="14"><Run Text="Zeldzaamheid"/></TextBlock>
@@ -83,7 +83,7 @@
                 </materialDesign:HintAssist.Hint>
             </ComboBox>
 
-            <ComboBox x:Name="cmbDbArmorSlot" Width="95" FontSize="14" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="6">
+            <ComboBox x:Name="cmbDbArmorSlot" Width="95" FontSize="14" Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="6,13,6,6">
                 <materialDesign:HintAssist.Hint>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
                         <TextBlock Foreground="Black" FontSize="14"><Run Text="Armor Slot"/></TextBlock>
@@ -99,7 +99,7 @@
                 </materialDesign:HintAssist.Hint>
             </TextBox>
 
-            <TextBox x:Name="txtResilience" Width="76" FontSize="14" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="6">
+            <TextBox x:Name="txtResilience" Width="75" FontSize="14" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="6">
                 <materialDesign:HintAssist.Hint>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
                         <TextBlock Foreground="Black" FontSize="14"><Run Text="Resilience"/></TextBlock>

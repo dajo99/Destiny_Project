@@ -10,14 +10,14 @@ namespace Destiny_DAL
     {
         public static void Foutloggen(Exception fout)
         {
-            using (StreamWriter schrijver = new StreamWriter("foutenbestand.txt", true))
+            using (StreamWriter writer = new StreamWriter("foutenbestand.txt", true))
             {
-                schrijver.WriteLine(DateTime.Now.ToString("HH:mm:ss:tt"));
-                schrijver.WriteLine(fout.GetType().Name);
-                schrijver.WriteLine(fout.Message);
-                schrijver.WriteLine(fout.StackTrace);
-                schrijver.WriteLine(new string('*', 100));
-                schrijver.WriteLine();
+                writer.WriteLine(DateTime.Now.ToString("HH:mm:ss:tt"));
+                writer.WriteLine(fout.GetType().Name);
+                writer.WriteLine(fout.Message);
+                writer.WriteLine(fout.StackTrace);
+                writer.WriteLine(new string('*', 100));
+                writer.WriteLine();
             }
         }
     }

@@ -37,13 +37,20 @@ namespace Project_Destiny_WPF
 
         private void btnResetWachtwoord_Click(object sender, RoutedEventArgs e)
         {
+            //Valideren of tekstvakken zijn ingevuld
             string foutmeldingen = ValiderenGegevens();
+            
+            //instantie aanmaken en opvullen met tekstvak gegevens
             Account a = new Account();
             a.Accountnaam = txtGebruikersnaam.Text;
             a.Mail = txtMail.Text;
+
+            //2de instantie aanmaken om te kijken als het account bestaat in database
             Account b = DatabaseOperations.OphalenAccount(txtGebruikersnaam.Text);
-            //Account nodig om wachtwoord op te halen mail
+
+            //Account van de admin ophalen om wachtwoord in te stellen van ons mailadres om mail te versturen
             Account c = DatabaseOperations.OphalenAccount("Admin");
+
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 if (b != null)
@@ -62,13 +69,16 @@ namespace Project_Destiny_WPF
                         {
                             try
                             {
-                                //mail maken en versturen
+                                //mail opstellen en versturen + venster sluiten
                                 string message = "Geachte gebruiker\n\n" +
                                     "U ontvangt deze e-mail omdat u een aanvraag hebt gedaan om uw wachtwoord van uw Destiny-Account opnieuw in te stellen." +
                                     " \n\nNieuw wachtwoord: " + wachtwoord +
                                     "\n\nMet vriendelijke groeten\nHet Destiny-Team";
+
                                 CreateMailMessage(message, b.Mail, c);
+
                                 MessageBox.Show("Er is een mail verstuurd naar " + b.Mail, "Mail verzonden", MessageBoxButton.OK, MessageBoxImage.Information);
+
                                 ClosingWindow();
 
                             }
@@ -76,7 +86,7 @@ namespace Project_Destiny_WPF
                             {
                                 //Terug het origineel wachtwoord instellen als de mail niet verstuurt is
                                 b.Wachtwoord = a.Wachtwoord;
-                                int opnieuwWijzigen = DatabaseOperations.WijzigenAccount(b);
+                                DatabaseOperations.WijzigenAccount(b);
 
                                 MessageBox.Show("Er is iets fout gelopen bij het verzenden van de mail!", "Verzenden mislukt!", MessageBoxButton.OK, MessageBoxImage.Error);
                                 FileOperations.Foutloggen(ex);
@@ -153,9 +163,10 @@ namespace Project_Destiny_WPF
             Random r = new Random();
             StringBuilder res = new StringBuilder();
             int count = 0;
+
             while (count <= length)
             {
-                // op het einde telkens 1 random character toevoegen van de variabele chars
+                // op het einde telkens 1 random character toevoegen van de variabele chars 
                 res.Append(chars[r.Next(chars.Length)]);
                 count++;
             }

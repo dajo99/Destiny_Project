@@ -14,11 +14,11 @@ namespace Destiny_DAL
             {
                 if (columnName == "Naam" && string.IsNullOrWhiteSpace(Naam))
                 {
-                    return "Gelieve de naam in te vullen!" + Environment.NewLine;
+                    return "Gelieve de naam in te vullen!";
                 }
                 if (columnName == "Zeldzaamheid" && string.IsNullOrWhiteSpace(Zeldzaamheid))
                 {
-                    return "Gelieve de zeldzaamheid in te geven!" + Environment.NewLine;
+                    return "Gelieve de zeldzaamheid in te geven!";
                 }
                 /* werkt niet!! Foutmelding als je dit probeert te inititialiseren bij partial klasse SpecialItem
                 if (columnName == "Boost" && SpecialItem.Boost != null && SpecialItem.Boost < 0)
