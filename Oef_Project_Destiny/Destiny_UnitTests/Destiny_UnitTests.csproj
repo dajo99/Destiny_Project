@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -56,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Destiny_DAL\Destiny_DAL.csproj">
+      <Project>{d17d8489-7bf6-4a47-adbb-c221288815ae}</Project>
+      <Name>Destiny_DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Destiny_Models\Destiny_Models.csproj">
       <Project>{16f32f33-765a-4f53-a231-eaace37ecb7c}</Project>
       <Name>Destiny_Models</Name>
