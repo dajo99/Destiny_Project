@@ -17,6 +17,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+
 
 
 namespace Project_Destiny_WPF
@@ -26,20 +28,21 @@ namespace Project_Destiny_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        bool StateClosed = true;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
         UserControl usc = null;
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonDown(e);
+        bool StateClosed = true;
 
-            // Begin dragging the window
+        private void mouse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            OnMouseLeftButtonDown(e);
             this.DragMove();
         }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             GridMain.Children.Clear();
@@ -191,5 +194,7 @@ namespace Project_Destiny_WPF
             Accountpanel.Visibility = Visibility.Hidden;
             Loginpanel.Visibility = Visibility.Visible;
         }
+
+       
     }
 }
