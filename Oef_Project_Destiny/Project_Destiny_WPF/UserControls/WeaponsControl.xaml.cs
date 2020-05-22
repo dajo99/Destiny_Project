@@ -123,6 +123,7 @@ namespace Project_Destiny_WPF.UserControls
 
         private void btnAddWeapon_Click(object sender, RoutedEventArgs e)
         {
+            //Lijst maken van items voor equals (item controleren op zeldzaamheid en naam)
             GeneralItems.Items = DatabaseOperations.OphalenItems();
             string foutmeldingen = Valideer("cmbDbZeldzaamheid");
             foutmeldingen += Valideer("cmbDbCategorie");
@@ -147,9 +148,9 @@ namespace Project_Destiny_WPF.UserControls
                 wa.Magazine = GeneralItems.ConversieToInt(txtMagazine.Text);
                 wa.LightAmount = GeneralItems.ConversieToInt(txtLight.Text);
 
-                if (it.IsGeldig())
+                if (it.IsGeldig()) 
                 {
-                    if (!GeneralItems.Items.Contains(it))
+                    if (!GeneralItems.Items.Contains(it))//Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
                     {
                         int ok = DatabaseOperations.ToevoegenWapen(it, wa);
                         if (ok > 0)
@@ -195,7 +196,7 @@ namespace Project_Destiny_WPF.UserControls
                 Wapenklasse wk = cmbDbCategorie.SelectedItem as Wapenklasse;
                 Damagetype da = cmbDbDamageType.SelectedItem as Damagetype;
                 Wapen w = dbWapens.SelectedItem as Wapen;
-                GeneralItems.Items.Remove(w.Item);
+                GeneralItems.Items.Remove(w.Item);//Origineel item uit de lijst verwijderen voor equals
 
                 w.Item.Naam = txtNaam.Text;
                 w.Item.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
@@ -252,25 +253,35 @@ namespace Project_Destiny_WPF.UserControls
 
         private void btnRemoveWeapon_Click(object sender, RoutedEventArgs e)
         {
+            //Checken als er iets geselecteerd is in datagrid
             string foutmeldingen = Valideer("dbWapens");
+            string errors = "";
+
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                Wapen w = dbWapens.SelectedItem as Wapen;
-                int ok = DatabaseOperations.VerwijderenWapen(w.Item, w);
-                if (ok > 0)
+                //Zorgen dat men meerdere items kan verwijderen uit database
+                for (int i = 0; i < dbWapens.SelectedItems.Count; i++)
                 {
-                    ZoekenWapens();
-                    WissenVelden();
+                    Wapen w = dbWapens.SelectedItems[i] as Wapen;
+                    int ok = DatabaseOperations.VerwijderenWapen(w.Item, w);
+                    if (ok == 0)
+                    {
+                        //string opvullen met itemnaam als verwijderen niet gelukt is
+                        errors += w.Item.Naam[i] + " is niet verwijderd!" + Environment.NewLine;
+                    }
                 }
-                else
+                if(!string.IsNullOrWhiteSpace(errors))
                 {
-                    MessageBox.Show("Wapen is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(errors, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
                 MessageBox.Show(foutmeldingen, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            ZoekenWapens();
+            WissenVelden();
         }
 
         private string Valideer(string columnName)
