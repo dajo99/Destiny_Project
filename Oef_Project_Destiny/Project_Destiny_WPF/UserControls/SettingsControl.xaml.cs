@@ -65,7 +65,7 @@ namespace Project_Destiny_WPF.UserControls
 
 
                     uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
-                    layoutKeuze = $"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml";
+                    layoutKeuze = "Teal";
                     break;
 
                 case 1:
@@ -73,7 +73,7 @@ namespace Project_Destiny_WPF.UserControls
                     mw.GridMenu.Background = Brushes.IndianRed;
 
                     uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml");
-                    layoutKeuze = $"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml";
+                    layoutKeuze = "DeepPurple";
                     break;
 
             }
@@ -102,7 +102,7 @@ namespace Project_Destiny_WPF.UserControls
                         User.Acc = a;
                         //UserControl terug refreshen
                         w.GridMain.Children.Clear();
-                        UserControl usc = new AccountControl();
+                        UserControl usc = new SettingsControl();
                         w.GridMain.Children.Add(usc);
                     }
                     else
