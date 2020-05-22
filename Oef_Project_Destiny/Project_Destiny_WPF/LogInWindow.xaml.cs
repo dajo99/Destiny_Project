@@ -41,8 +41,6 @@ namespace Project_Destiny_WPF
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                Uri uri = null;
-                var bc = new BrushConverter();
                 Account a = new Account();
                 a.Accountnaam = txtGebruikersnaam.Text;
                 a.Wachtwoord = txtWachtwoord.Password;
@@ -54,41 +52,17 @@ namespace Project_Destiny_WPF
                     if (a.Wachtwoord == dp)
                     {
                         User.Acc = b; //nodig om account te onthouden van persoon
-                        
-                        switch (b.ThemaFont)
+
+                        if (b.ThemaFont != "")
                         {
-                            case "Segoe UI":
-                                //gaat aanpassingen doen in app.xaml
-                                App.Current.Resources["font"] = new FontFamily(b.ThemaFont);
-                                
-                                break;
-
-                            case "Comic Sans MS":
-                                //gaat aanpassingen doen in app.xaml
-                                App.Current.Resources["font"] = new FontFamily(b.ThemaFont);
-                                break;
-
+                            SetFont(b.ThemaFont);
                         }
 
-                        switch (b.ThemaColor)
+                        if (b.ThemaColor != "")
                         {
-                            case "Teal":
-                                //Zo kan ik met Hex - kleurwaarden werken
-                                w.GridNav.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
-                                w.GridMenu.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
-
-
-                                uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
-                                break;
-
-                            case "DeepPurple":
-                                w.GridNav.Background = Brushes.IndianRed;
-                                w.GridMenu.Background = Brushes.IndianRed;
-
-                                uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml");
-                                break;
-
+                            SetThemeColor(b.ThemaColor);
                         }
+
                         this.Close();
                         w.Accountnaam.Content = b.Accountnaam;
                         if (b.Image != null)
@@ -150,6 +124,53 @@ namespace Project_Destiny_WPF
             Window lostpass = new LostPasswordWindow();
             lostpass.Show();
             this.Close();
+        }
+
+        private void SetFont(string font)
+        {
+            switch (font)
+            {
+                case "Segoe UI":
+                    //gaat aanpassingen doen in app.xaml
+                    App.Current.Resources["font"] = new FontFamily(font);
+
+                    break;
+
+                case "Comic Sans MS":
+                    //gaat aanpassingen doen in app.xaml
+                    App.Current.Resources["font"] = new FontFamily(font);
+                    break;
+
+            }
+        }
+
+        private void SetThemeColor(string color)
+        {
+            Uri uri = null;
+            var bc = new BrushConverter();
+            switch (color)
+            {
+                case "Teal":
+                    //Zo kan ik met Hex - kleurwaarden werken
+                    w.GridNav.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
+                    w.GridMenu.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
+
+
+                    uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
+                    break;
+
+                case "DeepPurple":
+                    w.GridNav.Background = Brushes.IndianRed;
+                    w.GridMenu.Background = Brushes.IndianRed;
+
+                    uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml");
+                    break;
+
+            }
+
+            //gaat aanpassingen doen in app.xaml
+            System.Windows.Application.Current.Resources.MergedDictionaries.RemoveAt(3);
+            System.Windows.Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
         }
     }
 }

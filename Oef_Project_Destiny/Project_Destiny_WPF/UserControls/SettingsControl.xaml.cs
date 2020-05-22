@@ -54,7 +54,7 @@ namespace Project_Destiny_WPF.UserControls
                 
             }
 
-
+            
             int layout = cbLayout.SelectedIndex;
             switch (layout)
             {
