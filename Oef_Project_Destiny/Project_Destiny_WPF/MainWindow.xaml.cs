@@ -17,6 +17,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+
 
 
 namespace Project_Destiny_WPF
@@ -26,13 +28,17 @@ namespace Project_Destiny_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        UserControl usc = null;
         bool StateClosed = true;
         public MainWindow()
         {
             InitializeComponent();
         }
-
-        UserControl usc = null;
+        private void mouse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            this.DragMove();
+        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -185,5 +191,7 @@ namespace Project_Destiny_WPF
             Accountpanel.Visibility = Visibility.Hidden;
             Loginpanel.Visibility = Visibility.Visible;
         }
+
+       
     }
 }
