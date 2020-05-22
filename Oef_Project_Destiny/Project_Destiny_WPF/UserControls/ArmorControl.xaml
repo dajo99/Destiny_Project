@@ -52,7 +52,7 @@
             
         </WrapPanel>
         
-        <DataGrid x:Name="dbArmor" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbArmor_SelectionChanged" Width="800" HorizontalAlignment="Center" Margin="14,20,5,0">
+        <DataGrid x:Name="dbArmor" Grid.Row="2" IsReadOnly="True" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbArmor_SelectionChanged" Width="800" HorizontalAlignment="Center" Margin="14,20,5,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Item.Naam}" Header="Naam" Width="160"/>
                 <DataGridTextColumn Binding="{Binding Item.Zeldzaamheid}" Header="Zeldzaamheid" Width="110"/>

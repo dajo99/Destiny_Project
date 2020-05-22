@@ -208,11 +208,16 @@ namespace Project_Destiny_WPF.UserControls
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                SpecialItem si = dbItems.SelectedItem as SpecialItem;
-                int ok = DatabaseOperations.VerwijderenSpecialItem(si.Item, si);
-                if (ok == 0)
+                //Zorgen dat men meerdere items kan verwijderen uit database
+                for (int i = 0; i < dbItems.SelectedItems.Count; i++)
                 {
-                    MessageBox.Show("Item is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                    SpecialItem si = dbItems.SelectedItems[i] as SpecialItem;
+                    int ok = DatabaseOperations.VerwijderenSpecialItem(si.Item, si);
+
+                    if (ok == 0)
+                    {
+                        MessageBox.Show(si.Item.Naam[i] + "is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
             else
