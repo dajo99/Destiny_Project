@@ -34,9 +34,11 @@ namespace Project_Destiny_WPF
         {
             InitializeComponent();
         }
-
-    
-
+        private void mouse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            this.DragMove();
+        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -190,10 +192,6 @@ namespace Project_Destiny_WPF
             Loginpanel.Visibility = Visibility.Visible;
         }
 
-        private void mouse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            base.OnMouseLeftButtonDown(e);
-            this.DragMove();
-        }
+       
     }
 }
