@@ -236,6 +236,7 @@ namespace Project_Destiny_WPF.UserControls
         {
             //Checken als er iets geselecteerd is in datagrid
             string foutmeldingen = ValideerSelectie("dbArmor");
+            string errors = "";
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
@@ -245,11 +246,15 @@ namespace Project_Destiny_WPF.UserControls
                     Armor a = dbArmor.SelectedItems[i] as Armor;
 
                     int ok = DatabaseOperations.VerwijderenArmor(a.Item, a);
-
                     if (ok == 0)
                     {
-                        MessageBox.Show(a.Item.Naam[i] +" is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                        //string opvullen met itemnaam als verwijderen niet gelukt is
+                        errors += a.Item.Naam[i] +" is niet verwijderd!" + Environment.NewLine;
                     }
+                }
+                if (! string.IsNullOrWhiteSpace(errors))
+                {
+                    MessageBox.Show(errors, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
