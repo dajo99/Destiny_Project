@@ -17,6 +17,7 @@ using Destiny_Models;
 
 using System.ComponentModel.DataAnnotations;//voor mail te checken
 using Project_Destiny_WPF.UserControls;
+using System.Diagnostics;
 
 namespace Project_Destiny_WPF
 {
@@ -29,46 +30,55 @@ namespace Project_Destiny_WPF
         {
             InitializeComponent();
         }
+
+        MainWindow w = (MainWindow)Application.Current.MainWindow;
         private void BtnRegistrerenAfsluiten_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
             w.BtnInloggen.IsEnabled = true;
             w.BtnRegistreren.IsEnabled = true;
-
-
         }
-        MainWindow w = (MainWindow)Application.Current.MainWindow;
-
-        
 
         private void BtnRegistreren_Click(object sender, RoutedEventArgs e)
         {
-            string foutmeldingen = Valideer.ValideerAccountGegevens(txtWachtwoord.Password, txtGebruikersnaam.Text, txtEmailadres.Text, txtHerhaalWachtwoord.Password); ;
+            string foutmeldingen = ValidateAccount.ValideerAccountGegevens(txtWachtwoord.Password, txtGebruikersnaam.Text, txtEmailadres.Text, txtHerhaalWachtwoord.Password); ;
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                //nieuw account aanmaken
+                //nieuw account aanmaken en invoergegevens erin zetten
                 Account a = new Account();
                 a.Accountnaam = txtGebruikersnaam.Text;
                 a.Mail = txtEmailadres.Text;
-                //wachtwoord encrypteren
+                //wachtwoord encrypteren 
                 string ep = SecurePassword.EncryptString(txtWachtwoord.Password);
                 a.Wachtwoord = ep;
+
                 if (a.IsGeldig())
-                {   
-                    // deze parameter is oorspronkelijk nodig omdat deze niet null kan zijn en is vereist om account te kunnen wijzigen!          
-                    List<Account> accounts = DatabaseOperations.CheckLogin(new Account());
-                    if (!accounts.Contains(a))
+                {
+                    // Lijst maken met alle accounts maken   
+                    //Nieuw account als paramater is nodig zodat ik geen 2de methode moet aanmaken om een lijst van accounts op te vullen (om account te wijzigen heb je een paramter nodig)
+                    List<Account> accounts = DatabaseOperations.CheckLogin(new Account()); 
+                    
+                    //debug voor te zien wat er in de lijst zit
+                    foreach (var item in accounts)
+                    {
+                        Debug.WriteLine(item.Accountnaam);
+                    }
+
+                    if (!accounts.Contains(a))//Kijken als er al een acocunt met deze accountnaam in database zit
                     {
                         int ok = DatabaseOperations.ToevoegenAccount(a);
                         if (ok > 0)
                         {
-                            User.Acc = a; //nodig om account te onthouden van persoon
-                            this.Close();
-                            w.Accountnaam.Content = a.Accountnaam;
-                            w.Loginpanel.Visibility = Visibility.Hidden;
-                            w.Accountpanel.Visibility = Visibility.Visible;
-                            w.ListViewMenu.IsEnabled = true;
+                            User.Acc = a; //nodig om account van de gebruiker te onthouden
 
+                            this.Close();
+
+                            w.Accountnaam.Content = a.Accountnaam;//Menubalk naam veranderen
+                            w.Loginpanel.Visibility = Visibility.Hidden; //Andere menu items weergeven
+                            w.Accountpanel.Visibility = Visibility.Visible;//Inloggen en registreren buttons verbergen
+                            w.ListViewMenu.IsEnabled = true; //navigatie op on zetten om te kunnen gebruiken
+
+                            //Nieuwe usercontrol oproepen
                             w.GridMain.Children.Clear();
                             UserControl usc = new LoggedInControl();
                             w.GridMain.Children.Add(usc);

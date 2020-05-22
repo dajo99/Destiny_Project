@@ -42,11 +42,13 @@
                 <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
             <ComboBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Foreground="White" x:Name="cmbKeuzes"
-                 materialDesign:HintAssist.Hint="Keuzes" materialDesign:HintAssist.Foreground="White"
-                MinWidth="72"
-              FontSize="15"
-                    ItemsSource="{Binding LongListToTestComboVirtualization}"
+                 
                          Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="43" Grid.RowSpan="2" Margin="20,43.6,7,13.4">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="16"><Run Text="Selecteer je keuze"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />

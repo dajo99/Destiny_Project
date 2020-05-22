@@ -13,7 +13,9 @@ namespace Destiny_DAL
 {
     public static class DatabaseOperations
     {
+        //----------------------
         //Usercontrole Account
+        //----------------------
         public static int ToevoegenAccount(Account a)
         {
             try
@@ -96,16 +98,10 @@ namespace Destiny_DAL
             }
         }
 
+        //----------------------
         //Usercontrole Character
-
-        public static List<Character> OphalenCharacterOptiesVoorAanmaken()
-        {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
-            {
-                var query = destinyEntities.Characters;
-                return query.ToList();
-            }
-        }
+        //----------------------
+        
         public static List<CharacterKlasse> OphalenCharacterKlasseVoorAanmaken()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -167,20 +163,7 @@ namespace Destiny_DAL
             }
         }
 
-        public static List<Character> CharacterOphalenViaCharacterId(int id)
-        {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
-            {
-                var query = destinyEntities.Characters.Include(x => x.Ras)
-                    .Include(x => x.CharacterKlasse)
-                    .Include(x => x.CharacterSubklasse)
-                    .Where(x => x.AccountId == id);
-
-
-                return query.ToList();
-
-            }
-        }
+        
         public static int CharacterVerwijderen(Character verwijderen)
         {
 
@@ -217,9 +200,9 @@ namespace Destiny_DAL
             }
         }
 
-
+        //----------------------
         //Usercontrole Location
-
+        //----------------------
         public static List<Map> OphalenWerelden()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -299,10 +282,9 @@ namespace Destiny_DAL
             }
         }
 
-
-
-
+        //---------------------------
         //Usercontrole SpecialItems
+        //---------------------------
         public static List<SpecialItem> OphalenSpecialItemsViaNaam(string naam)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -383,12 +365,12 @@ namespace Destiny_DAL
                     return destinyEntities.SaveChanges();
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 FileOperations.Foutloggen(ex);
                 return 0;
             }
-            
+
         }
 
         public static List<Item> OphalenItems()
@@ -396,13 +378,13 @@ namespace Destiny_DAL
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
                 return destinyEntities.Items
-                    .Include(x=> x.SpecialItem)
+                    .Include(x => x.SpecialItem)
                     .OrderBy(x => x.id)
                     .ToList();
             }
         }
 
-        public static int AanpassenSpecialItems(Item i,SpecialItem si)
+        public static int AanpassenSpecialItems(Item i, SpecialItem si)
         {
             try
             {
@@ -425,26 +407,8 @@ namespace Destiny_DAL
                 FileOperations.Foutloggen(ex);
                 return 0;
             }
-
         }
 
-        /*public static int AanpassenItems(Item i)
-        {
-            try
-            {
-                using (DestinyEntities destinyEntities = new DestinyEntities())
-                {
-                    destinyEntities.Entry(i).State = EntityState.Modified;
-                    return destinyEntities.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                fileOperations.Foutloggen(ex);
-                return 0;
-            }
-
-        }*/
         public static int VerwijderenSpecialItem(Item i, SpecialItem si)
         {
             try
@@ -461,15 +425,11 @@ namespace Destiny_DAL
                 FileOperations.Foutloggen(ex);
                 return 0;
             }
-
         }
 
-
-
-
-
+        //---------------------------
         //Usercontrole Armor
-
+        //---------------------------
         public static List<Armor> OphalenArmorViaArmorSlotEnZeldzaamheid(string naam, string armorslot, string zeldzaamheid)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -497,16 +457,6 @@ namespace Destiny_DAL
             }
         }
 
-        public static List<Item> OphalenZeldzaamheid()
-        {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
-            {
-                return destinyEntities.Items
-
-                    .OrderBy(x => x.Zeldzaamheid)
-                    .ToList();
-            }
-        }
         public static List<Armor> OphalenArmorViaZeldzaamheid(string naam, string zeldzaamheid)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -552,7 +502,6 @@ namespace Destiny_DAL
                 FileOperations.Foutloggen(ex);
                 return 0;
             }
-
         }
 
         public static int AanpassenArmor(Armor a, Item i)
@@ -597,9 +546,9 @@ namespace Destiny_DAL
 
         }
 
-
-
+        //---------------------------
         //Usercontrole Weapons
+        //---------------------------
         public static List<Wapenklasse> OphalenWapenCategorie()
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -617,6 +566,7 @@ namespace Destiny_DAL
                     .ToList();
             }
         }
+
         public static List<Wapen> OphalenWapensViaNaam(string naam)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
@@ -641,7 +591,7 @@ namespace Destiny_DAL
                 return destinyEntities.Wapens
                     .Include(x => x.Item)
                     .Include(x => x.Damagetype)
-                    .Include(x=> x.Wapenklasse)
+                    .Include(x => x.Wapenklasse)
                     .Where(x => x.Wapenklasse.id == x.WapenklasseId && x.Wapenklasse.id == wapenklasseId)
                     .Where(x => x.DamagetypeId == x.Damagetype.id)
                     .Where(x => x.Item.id == x.id)
@@ -672,10 +622,10 @@ namespace Destiny_DAL
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
-                    return destinyEntities.Wapens
-                        .Include(x => x.Item)
-                        .Include(x => x.Damagetype)
-                        .Include(x => x.Wapenklasse)
+                return destinyEntities.Wapens
+                    .Include(x => x.Item)
+                    .Include(x => x.Damagetype)
+                    .Include(x => x.Wapenklasse)
                     .Where(x => x.Wapenklasse.id == x.WapenklasseId)
                     .Where(x => x.DamagetypeId == x.Damagetype.id)
                     .Where(x => x.Item.id == x.id)
@@ -744,7 +694,6 @@ namespace Destiny_DAL
                 FileOperations.Foutloggen(ex);
                 return 0;
             }
-
         }
     }
 }

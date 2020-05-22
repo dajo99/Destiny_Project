@@ -86,14 +86,17 @@ namespace Project_Destiny_WPF.UserControls
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
+            //Lijst maken van items voor equals (item controleren op zeldzaamheid en naam)
             GeneralItems.Items = DatabaseOperations.OphalenItems();
-            string foutmeldingen = Valideer("cmbDbZeldzaamheid");
-            foutmeldingen += Valideer("cmbDbCategorie");
-            foutmeldingen += Valideer("Boost");
-            foutmeldingen += Valideer("Durability");
+
+            //Valideren 
+            string foutmeldingen = ValideerGegevens("cmbDbCategorie");
+            foutmeldingen += ValideerGegevens("Boost");
+            foutmeldingen += ValideerGegevens("Durability");
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
+                //objecten aanmaken om toe te voegen (item en special item)
                 string zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
                 Item i = new Item();
                 SpecialItem si = new SpecialItem();
@@ -104,9 +107,10 @@ namespace Project_Destiny_WPF.UserControls
                 si.CategorieId = sic.id;
                 si.Boost = GeneralItems.ConversieToInt(txtBoost.Text);
                 si.Durability = GeneralItems.ConversieToInt(txtDurability.Text);
-                if (i.IsGeldig())
+
+                if (i.IsGeldig())//Kijken als naam en zeldzaamheid zijn ingevuld
                 {
-                    if (!GeneralItems.Items.Contains(i))
+                    if (!GeneralItems.Items.Contains(i))//Kijken als er al een item bestaat met dezelfde naam en als deze exotic is
                     {
                         int ok = DatabaseOperations.ToevoegenItem(i, si);
                         if (ok == 0)
@@ -134,22 +138,26 @@ namespace Project_Destiny_WPF.UserControls
         }
 
         private void btnChangeItem_Click(object sender, RoutedEventArgs e)
-        {
+        {            
+            //Lijst maken van items voor equals (item controleren op zeldzaamheid en naam)
             GeneralItems.Items = DatabaseOperations.OphalenItems();
 
-            string foutmeldingen = Valideer("Boost");
-            foutmeldingen += Valideer("Durability");
-            foutmeldingen += Valideer("cmbDbZeldzaamheid");
-            foutmeldingen += Valideer("cmbDbCategorie");
-            foutmeldingen += Valideer("dbItems");
+            //Valideren
+            string foutmeldingen = ValideerGegevens("Boost");
+            foutmeldingen += ValideerGegevens("Durability");
+            foutmeldingen += ValideerGegevens("cmbDbCategorie");
+            foutmeldingen += ValideerGegevens("dbItems");
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
+                //Objecten ophalen en andere values erin zetten
                 SpecialItemCategorie c = cmbDbCategorie.SelectedItem as SpecialItemCategorie;
                 SpecialItem si = dbItems.SelectedItem as SpecialItem;
                 //SpecialItem initialSi = dbItems.SelectedItem as SpecialItem;
-                GeneralItems.Items.Remove(si.Item);
 
+                GeneralItems.Items.Remove(si.Item); //Origineel item uit de lijst verwijderen voor equals 
+
+                ////Gegevens van objecten veranderen (item en special item)
                 si.Item.Naam = txtNaam.Text;
                 si.Item.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
                 si.Boost = GeneralItems.ConversieToInt(txtBoost.Text);
@@ -159,10 +167,10 @@ namespace Project_Destiny_WPF.UserControls
 
                 Debug.WriteLine(c.Naam + " " + si.id + "====" + si.Item.id + "-" + si.CategorieId + "===" + si.SpecialItemCategorie.id + "-" + si.SpecialItemCategorie.Naam + "===" + c.Naam);
 
-                if (si.Item.IsGeldig())
+                if (si.Item.IsGeldig())//Kijken als naam en zeldzaamheid zijn ingevuld
                 {
                     
-                    if (!GeneralItems.Items.Contains(si.Item))
+                    if (!GeneralItems.Items.Contains(si.Item))//Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
                     {
                         int ok = DatabaseOperations.AanpassenSpecialItems(si.Item, si);
 
@@ -195,7 +203,9 @@ namespace Project_Destiny_WPF.UserControls
 
         private void btnRemoveItem_Click(object sender, RoutedEventArgs e)
         {
-            string foutmeldingen = Valideer("dbItems");
+            //Valideren als er iets geselecteerd is
+            string foutmeldingen = ValideerGegevens("dbItems");
+
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 SpecialItem si = dbItems.SelectedItem as SpecialItem;
@@ -205,29 +215,31 @@ namespace Project_Destiny_WPF.UserControls
                     MessageBox.Show("Item is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+            else
+            {
+                MessageBox.Show(foutmeldingen, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             ZoekenItems();
             WissenVelden();
         }
-        private string Valideer(string columnName)
+        private string ValideerGegevens(string columnName)
         {
             if (columnName == "dbItems" && dbItems.SelectedItem == null)
             {
                 return "Selecteer een item!" + Environment.NewLine;
             }
-            if (columnName == "cmbDbZeldzaamheid" && cmbDbZeldzaamheid.SelectedItem == null)
-            {
-                return "Selecteer een zeldzaamheid!" + Environment.NewLine;
-            }
             if (columnName == "cmbDbCategorie" && cmbDbCategorie.SelectedItem == null)
             {
                 return "Selecteer een categorie!" + Environment.NewLine;
             }
-            if (columnName == "Boost" && !string.IsNullOrWhiteSpace(txtBoost.Text) && int.TryParse(txtBoost.Text, out int boost) && (boost < 0 || boost > 100))
+            if (columnName == "Boost" && !string.IsNullOrWhiteSpace(txtBoost.Text) 
+                && int.TryParse(txtBoost.Text, out int boost) && (boost < 0 || boost > 100))
             {
                 return "Boost moet een positief nummeriek getal zijn onder de 100!" + Environment.NewLine;
             }
-            if (columnName == "Durability" && !string.IsNullOrWhiteSpace(txtDurability.Text) && int.TryParse(txtDurability.Text, out int durability) && (durability < 0 || durability > 100))
+            if (columnName == "Durability" && !string.IsNullOrWhiteSpace(txtDurability.Text) 
+                && int.TryParse(txtDurability.Text, out int durability) && (durability < 0 || durability > 100))
             {
                 return "Durability moet een positief nummeriek getal zijn onder de 100!" + Environment.NewLine;
             }
@@ -246,6 +258,7 @@ namespace Project_Destiny_WPF.UserControls
             SpecialItemCategorie categorie = cmbCategorie.SelectedItem as SpecialItemCategorie;
             string zeldzaamheid = cmbZeldzaamheid.SelectedItem as string;
 
+            //kijken als "All" geselecteerd is in de comboboxen of als er andere zoekcriteria zijn
             if (categorie != null && cmbCategorie.SelectedIndex != 0 && cmbZeldzaamheid.SelectedIndex != 0)
             {
                 dbItems.ItemsSource = DatabaseOperations.OphalenSpecialItemsViaCategorieEnZeldzaamheid(tbZoekItem.Text, categorie.id, zeldzaamheid);

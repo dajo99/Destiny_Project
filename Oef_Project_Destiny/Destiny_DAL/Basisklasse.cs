@@ -31,7 +31,6 @@ namespace Destiny_DAL
                 }
                 return foutmeldingen;
             }
-
         }
     }
 }

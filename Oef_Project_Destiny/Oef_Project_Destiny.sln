@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Destiny_DAL", "Destiny_DAL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Destiny_Models", "Destiny_Models\Destiny_Models.csproj", "{16F32F33-765A-4F53-A231-EAACE37ECB7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Destiny_UnitTests", "Destiny_UnitTests\Destiny_UnitTests.csproj", "{C607F947-D7D7-4245-9756-D196096C19F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{16F32F33-765A-4F53-A231-EAACE37ECB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16F32F33-765A-4F53-A231-EAACE37ECB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16F32F33-765A-4F53-A231-EAACE37ECB7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C607F947-D7D7-4245-9756-D196096C19F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C607F947-D7D7-4245-9756-D196096C19F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C607F947-D7D7-4245-9756-D196096C19F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C607F947-D7D7-4245-9756-D196096C19F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -17,7 +17,8 @@
             <RowDefinition Height="80"/>
             <RowDefinition Height="120"/>
             <RowDefinition Height="120"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="18*"/>
+            <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
         <Label FontSize="30" Content="Character aanmaken" Foreground="White" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="12"/>
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
@@ -31,13 +32,12 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <ComboBox Grid.Row="0" Grid.Column="0" x:Name="cmbRas"
-                 materialDesign:HintAssist.Hint="Selecteer een ras"
-                MinWidth="72"
-              FontSize="15"
-                    Margin="12,18,0,18"
-                Foreground="Gold"
-                    ItemsSource="{Binding LongListToTestComboVirtualization}"
-                         Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,18,0,18">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="15"><Run Text="Selecteer een ras"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />
@@ -45,13 +45,12 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
             <ComboBox Grid.Row="1" Grid.Column="0" x:Name="cmbSubklasse"
-                 materialDesign:HintAssist.Hint="Selecteer de subklasse"
-                MinWidth="72"
-              FontSize="15"
-                    Margin="12,18,0,18"
-                Foreground="Gold"
-                    ItemsSource="{Binding LongListToTestComboVirtualization}"
-                         Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,18,0,18">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="15"><Run Text="Selecteer de subklasse"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />
@@ -59,13 +58,12 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
             <ComboBox Grid.Row="2" Grid.Column="0" x:Name="cmbGender"
-                 materialDesign:HintAssist.Hint="Selecteer het gender"
-                MinWidth="72"
-              FontSize="15"
-                    Margin="12,18,0,18"
-                Foreground="Gold"
-                    ItemsSource="{Binding LongListToTestComboVirtualization}"
-                         Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,18,0,18">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="16"><Run Text="Selecteer het gender"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />
@@ -73,13 +71,12 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
             <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbKlasse" SelectionChanged="cmbKlasse_SelectionChanged"
-                 materialDesign:HintAssist.Hint="Selecteer de klasse"
-                MinWidth="72"
-              FontSize="15"
-                    Margin="12,18,10,18"
-                Foreground="Gold"
-                    ItemsSource="{Binding LongListToTestComboVirtualization}"
-                         Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,18,0,18">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="15"><Run Text="Selecteer een klasse"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />
@@ -88,13 +85,13 @@
             </ComboBox>
 
             <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cmbGezicht"
-                 materialDesign:HintAssist.Hint="Selecteer een gezicht"
-                MinWidth="72"
-              FontSize="15"
-                    Margin="12,18,10,18"
-                Foreground="Gold"
-                    ItemsSource="{Binding LongListToTestComboVirtualization}"
-                         Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                
+                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,18,0,18">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="15"><Run Text="Selecteer een gezicht"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />
@@ -102,13 +99,12 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
             <ComboBox Grid.Row="2" Grid.Column="1" x:Name="cmbHaar"
-                 materialDesign:HintAssist.Hint="Selecteer het haar"
-                MinWidth="72"
-              FontSize="15"
-                    Margin="12,18,10,18"
-                Foreground="Gold"
-                    ItemsSource="{Binding LongListToTestComboVirtualization}"
-                         Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,18,0,18">
+                <materialDesign:HintAssist.Hint>
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                        <TextBlock Foreground="Black" FontSize="15"><Run Text="Selecteer het haar"/></TextBlock>
+                    </StackPanel>
+                </materialDesign:HintAssist.Hint>
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel />
@@ -118,21 +114,20 @@
         </Grid>
 
         <ComboBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="cmbMarking"
-                 materialDesign:HintAssist.Hint="Selecteer een marking"
-                MinWidth="72"
-              FontSize="15"
-                    Margin="12,43,10,43.6"
-                Foreground="Gold"
-                    ItemsSource="{Binding LongListToTestComboVirtualization}"
-                         Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,43,0,43.6" Grid.RowSpan="2">
+            <materialDesign:HintAssist.Hint>
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                    <TextBlock Foreground="Black" FontSize="15"><Run Text="Selecteer een marking"/></TextBlock>
+                </StackPanel>
+            </materialDesign:HintAssist.Hint>
             <ComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel />
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
-        <Button x:Name="btnAanmaken" Click="btnAanmaken_Click" Content="Maak het character aan " Grid.Column="2" Grid.Row="3"  Margin="345,42,10,32.6" Height="55" />
-        <Button x:Name="btnToon" Click="btnToon_Click" Content="toon je keuzes" Grid.Column="2" Grid.Row="3"  Margin="10,42,345,32.6" Height="55" />
+        <Button x:Name="btnAanmaken" Click="btnAanmaken_Click" Content="Maak het character aan " Grid.Column="2" Grid.Row="3"  Margin="345,42,10,32.6" Height="55" Grid.RowSpan="2" />
+        <Button x:Name="btnToon" Click="btnToon_Click" Content="toon je keuzes" Grid.Column="2" Grid.Row="3"  Margin="10,42,345,32.6" Height="55" Grid.RowSpan="2" />
         <ListView x:Name="lstToon" Grid.Column="2"  Foreground="White" Grid.Row="1" Grid.RowSpan="2" Margin="15,22,15,15" HorizontalContentAlignment="Center" FontSize="18"/>
     </Grid>
 </UserControl>

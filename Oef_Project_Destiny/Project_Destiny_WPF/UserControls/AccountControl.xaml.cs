@@ -28,14 +28,16 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
-        //account globaal maken
+       
         Account a;
         MainWindow w = (MainWindow)Application.Current.MainWindow;
+
         //lijst van regio's handmatig opvullen
         List<string> Regio = new List<string>() { "Europa", "Amerika", "Azië", "Afrika", "Noord-Amerika", "Zuid-Amerika", "Oceanië" };
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            //Comboboc linken aan lijst regio's
             cmbRegio.ItemsSource = Regio;
             ResetInputs();
             ResetEnables(true);
@@ -44,21 +46,27 @@ namespace Project_Destiny_WPF.UserControls
 
         private void btnOpslaan_Click(object sender, RoutedEventArgs e)
         {
-            string foutmeldingen = Valideer.ValideerAccountGegevens(txtWachtwoord.Password, txtProfielnaam.Text, txtMail.Text, txtHerhaalWachtwoord.Password);
+            //Valideren
+            string foutmeldingen = ValidateAccount.ValideerAccountGegevens(txtWachtwoord.Password,
+                txtProfielnaam.Text, txtMail.Text, txtHerhaalWachtwoord.Password);
+
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
+                //Account van user ophalen uit database
                 a = DatabaseOperations.OphalenAccount(User.Acc.Accountnaam);
+
+                //Account opvullen met nieuwe invoer
                 a.Accountnaam = txtProfielnaam.Text;
                 a.Achternaam = txtAchternaam.Text;
                 a.Voornaam = txtVoornaam.Text;
                 a.Mail = txtMail.Text;
                 a.Wachtwoord = SecurePassword.EncryptString(txtWachtwoord.Password);
+
                 if (UploadFoto.Source != null)
                 {
                     a.Image = Encoding.ASCII.GetBytes(op.FileName);
                 }
-               
-                
+                             
                 if (cmbRegio.SelectedItem is string regio)
                 {
                     a.Regio = regio;
@@ -69,24 +77,25 @@ namespace Project_Destiny_WPF.UserControls
                     List<Account> accounts = DatabaseOperations.CheckLogin(User.Acc);
                     if (!accounts.Contains(a))
                     {
-                        if (MessageBox.Show("Bent u zeker dat u deze wijzigingen wilt uitvoeren?", "Waarschuwing", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                        if (MessageBox.Show("Bent u zeker dat u deze wijzigingen wilt uitvoeren?", "Waarschuwing",
+                            MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
                         {
                             int ok = DatabaseOperations.WijzigenAccount(a);
                             if (ok > 0)
                             {
+                                // User terug updaten met nieuwe gegevens
                                 User.Acc = a;
+
+                                //UserControl terug refreshen
                                 w.GridMain.Children.Clear();
                                 UserControl usc = new AccountControl();
                                 w.GridMain.Children.Add(usc);
-                                if (UploadFoto.Source != null)
-                                {
-                                    w.ProfileImage.Source = new BitmapImage(new Uri(op.FileName));
-                                }
-                                
 
-                                    
-                                
-                                
+                                if (UploadFoto.Source != null) //Kijken als pad bestaat
+                                {
+                                    //Bitmap instantie maken om afbeeldingbestand te lezen
+                                    w.ProfileImage.Source = new BitmapImage(new Uri(op.FileName));
+                                }                
                             }
                             else
                             {
@@ -108,12 +117,14 @@ namespace Project_Destiny_WPF.UserControls
             {
                 MessageBox.Show(foutmeldingen, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
             ResetInputs();
             ResetEnables(true);
         }
 
         private void ResetEnables(bool initial)
         {
+            //Eerste staat
             if (initial == true)
             {
                 txtAchternaam.IsEnabled = false;
@@ -128,6 +139,7 @@ namespace Project_Destiny_WPF.UserControls
                 lblHerhaalWachtwoord.Visibility = Visibility.Hidden;
                 txtHerhaalWachtwoord.Visibility = Visibility.Hidden;
             }
+            //2de staat 
             else
             {
                 txtAchternaam.IsEnabled = true;
@@ -163,7 +175,10 @@ namespace Project_Destiny_WPF.UserControls
                 int ok = DatabaseOperations.VerwijderenAccount(User.Acc);
                 if (ok > 0)
                 {
+                    //Account van gebruiker updaten
                     User.Acc = null;
+
+                    //Applicatie heropstarten
                     Application.Current.Shutdown();
                     System.Windows.Forms.Application.Restart();
                 }
@@ -179,23 +194,21 @@ namespace Project_Destiny_WPF.UserControls
             ResetEnables(false);
         }
 
-
+        //Deze klasse bekijkt opent een nieuw dialoogvenster om afbeeldingen te uploaden
         OpenFileDialog op = new OpenFileDialog();
         private void BtnUploaden_Click(object sender, RoutedEventArgs e)
         {
-            op.Title = "Select a picture";
+            //titel geven aan dialoogvenster
+            op.Title = "Select a picture"; 
+            //Zorgen dat er alleen ondersteunde bestandstypes geupload kunnen worden
             op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
               "Portable Network Graphic (*.png)|*.png";
+
             if (op.ShowDialog() == true)
             {
                 UploadFoto.Source = new BitmapImage(new Uri(op.FileName));
             }
         }
-
-        
-
-        
-
     }
 }
