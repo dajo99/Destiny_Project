@@ -33,7 +33,13 @@ namespace Project_Destiny_WPF
         }
 
         UserControl usc = null;
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
 
+            // Begin dragging the window
+            this.DragMove();
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             GridMain.Children.Clear();

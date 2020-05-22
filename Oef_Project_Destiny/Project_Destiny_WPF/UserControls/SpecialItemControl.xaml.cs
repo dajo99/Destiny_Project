@@ -112,7 +112,7 @@ namespace Project_Destiny_WPF.UserControls
                 {
                     if (!GeneralItems.Items.Contains(i))//Kijken als er al een item bestaat met dezelfde naam en als deze exotic is
                     {
-                        int ok = DatabaseOperations.ToevoegenItem(i, si);
+                        int ok = DatabaseOperations.ToevoegenSpecialItem(i, si);
                         if (ok == 0)
                         {
                             MessageBox.Show("Item is niet toegevoegd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
