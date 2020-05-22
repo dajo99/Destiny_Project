@@ -708,6 +708,16 @@ namespace Destiny_DAL
             }
         }
 
+        public static Damagetype OphalenWapenDamagetype(Wapen wapen)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.Damagetypes
+                    .Where(x => x.id == wapen.DamagetypeId)
+                    .FirstOrDefault();
+            }
+        }
+
         public static SpecialItemCategorie OphalenSpecialItemCategorie(SpecialItem sc)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
