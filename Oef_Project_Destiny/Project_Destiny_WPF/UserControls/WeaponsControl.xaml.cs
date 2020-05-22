@@ -253,24 +253,31 @@ namespace Project_Destiny_WPF.UserControls
         private void btnRemoveWeapon_Click(object sender, RoutedEventArgs e)
         {
             string foutmeldingen = Valideer("dbWapens");
+            string errors = "";
+
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                Wapen w = dbWapens.SelectedItem as Wapen;
-                int ok = DatabaseOperations.VerwijderenWapen(w.Item, w);
-                if (ok > 0)
+                for (int i = 0; i < dbWapens.SelectedItems.Count; i++)
                 {
-                    ZoekenWapens();
-                    WissenVelden();
+                    Wapen w = dbWapens.SelectedItem as Wapen;
+                    int ok = DatabaseOperations.VerwijderenWapen(w.Item, w);
+                    if (ok == 0)
+                    {
+                        errors += w.Item.Naam[i] + " is niet verwijderd!" + Environment.NewLine;
+                    }
                 }
-                else
+                if(!string.IsNullOrWhiteSpace(errors))
                 {
-                    MessageBox.Show("Wapen is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(errors, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
                 MessageBox.Show(foutmeldingen, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            ZoekenWapens();
+            WissenVelden();
         }
 
         private string Valideer(string columnName)
