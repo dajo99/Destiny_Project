@@ -205,7 +205,7 @@ namespace Project_Destiny_WPF.UserControls
         {
             //Valideren als er iets geselecteerd is
             string foutmeldingen = ValideerGegevens("dbItems");
-
+            string errors = "";
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 //Zorgen dat men meerdere items kan verwijderen uit database
@@ -213,11 +213,15 @@ namespace Project_Destiny_WPF.UserControls
                 {
                     SpecialItem si = dbItems.SelectedItems[i] as SpecialItem;
                     int ok = DatabaseOperations.VerwijderenSpecialItem(si.Item, si);
-
+                    //string opvullen met itemnaam als verwijderen niet gelukt is
                     if (ok == 0)
                     {
-                        MessageBox.Show(si.Item.Naam[i] + "is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                        errors += si.Item.Naam[i] + "is niet verwijderd!" + Environment.NewLine;
                     }
+                }
+                if (! string.IsNullOrWhiteSpace(errors))
+                {
+                    MessageBox.Show(errors, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
