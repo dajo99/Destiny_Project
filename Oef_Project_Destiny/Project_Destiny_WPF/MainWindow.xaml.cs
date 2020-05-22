@@ -17,6 +17,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+
 
 
 namespace Project_Destiny_WPF
@@ -33,8 +35,8 @@ namespace Project_Destiny_WPF
             InitializeComponent();
         }
 
-        int mouseX = 0, mousY = 0;
-        bool mouseDown;
+    
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -188,13 +190,10 @@ namespace Project_Destiny_WPF
             Loginpanel.Visibility = Visibility.Visible;
         }
 
-        public double X { get; set; }
-        public double Y { get; set; }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        private void mouse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            dragging = true;
-            startPoint = new Point(e.X, e.Y);
+            base.OnMouseLeftButtonDown(e);
+            this.DragMove();
         }
     }
 }
