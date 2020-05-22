@@ -47,7 +47,7 @@
     </Window.Resources>
     <Grid x:Name="GridMainWindow" Background="#FF7C7C7C">
         <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="540" Width="1010"/>
-        <Grid x:Name="GridNav" Height="60" VerticalAlignment="Top" Background="#FF00C7A3">
+        <Grid x:Name="GridNav" Height="60" VerticalAlignment="Top"  Background="#FF00C7A3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="13*"/>
                 <ColumnDefinition Width="32*"/>

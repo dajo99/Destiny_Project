@@ -41,6 +41,8 @@ namespace Project_Destiny_WPF
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
+                Uri uri = null;
+                var bc = new BrushConverter();
                 Account a = new Account();
                 a.Accountnaam = txtGebruikersnaam.Text;
                 a.Wachtwoord = txtWachtwoord.Password;
@@ -52,6 +54,41 @@ namespace Project_Destiny_WPF
                     if (a.Wachtwoord == dp)
                     {
                         User.Acc = b; //nodig om account te onthouden van persoon
+                        
+                        switch (b.ThemaFont)
+                        {
+                            case "Segoe UI":
+                                //gaat aanpassingen doen in app.xaml
+                                App.Current.Resources["font"] = new FontFamily(b.ThemaFont);
+                                
+                                break;
+
+                            case "Comic Sans MS":
+                                //gaat aanpassingen doen in app.xaml
+                                App.Current.Resources["font"] = new FontFamily(b.ThemaFont);
+                                break;
+
+                        }
+
+                        switch (b.ThemaColor)
+                        {
+                            case "Teal":
+                                //Zo kan ik met Hex - kleurwaarden werken
+                                w.GridNav.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
+                                w.GridMenu.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
+
+
+                                uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
+                                break;
+
+                            case "DeepPurple":
+                                w.GridNav.Background = Brushes.IndianRed;
+                                w.GridMenu.Background = Brushes.IndianRed;
+
+                                uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml");
+                                break;
+
+                        }
                         this.Close();
                         w.Accountnaam.Content = b.Accountnaam;
                         if (b.Image != null)

@@ -28,15 +28,18 @@ namespace Project_Destiny_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        UserControl usc = null;
-        bool StateClosed = true;
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        UserControl usc = null;
+        bool StateClosed = true;
+
         private void mouse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            base.OnMouseLeftButtonDown(e);
+            OnMouseLeftButtonDown(e);
             this.DragMove();
         }
 

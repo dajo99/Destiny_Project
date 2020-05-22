@@ -40,7 +40,7 @@
             </materialDesign:HintAssist.Hint>
         </ComboBox>
 
-        <DataGrid x:Name="dbWapens" Grid.Row="2" Grid.ColumnSpan="3"  AutoGenerateColumns="False" SelectionChanged="dbWapens_SelectionChanged" HorizontalAlignment="Center" Margin="10,20,5,0">
+        <DataGrid x:Name="dbWapens" Grid.Row="2" Grid.ColumnSpan="3" IsReadOnly="True" AutoGenerateColumns="False" SelectionChanged="dbWapens_SelectionChanged" HorizontalAlignment="Center" Margin="10,20,5,0">
             <DataGrid.Resources>
             </DataGrid.Resources>
             <DataGrid.Columns>

@@ -112,7 +112,7 @@ namespace Project_Destiny_WPF.UserControls
                 {
                     if (!GeneralItems.Items.Contains(i))//Kijken als er al een item bestaat met dezelfde naam en als deze exotic is
                     {
-                        int ok = DatabaseOperations.ToevoegenItem(i, si);
+                        int ok = DatabaseOperations.ToevoegenSpecialItem(i, si);
                         if (ok == 0)
                         {
                             MessageBox.Show("Item is niet toegevoegd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -205,14 +205,23 @@ namespace Project_Destiny_WPF.UserControls
         {
             //Valideren als er iets geselecteerd is
             string foutmeldingen = ValideerGegevens("dbItems");
-
+            string errors = "";
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                SpecialItem si = dbItems.SelectedItem as SpecialItem;
-                int ok = DatabaseOperations.VerwijderenSpecialItem(si.Item, si);
-                if (ok == 0)
+                //Zorgen dat men meerdere items kan verwijderen uit database
+                for (int i = 0; i < dbItems.SelectedItems.Count; i++)
                 {
-                    MessageBox.Show("Item is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                    SpecialItem si = dbItems.SelectedItems[i] as SpecialItem;
+                    int ok = DatabaseOperations.VerwijderenSpecialItem(si.Item, si);
+                    //string opvullen met itemnaam als verwijderen niet gelukt is
+                    if (ok == 0)
+                    {
+                        errors += si.Item.Naam[i] + "is niet verwijderd!" + Environment.NewLine;
+                    }
+                }
+                if (! string.IsNullOrWhiteSpace(errors))
+                {
+                    MessageBox.Show(errors, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else

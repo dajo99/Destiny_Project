@@ -353,7 +353,7 @@ namespace Destiny_DAL
             }
         }
 
-        public static int ToevoegenItem(Item i, SpecialItem si)
+        public static int ToevoegenSpecialItem(Item i, SpecialItem si)
         {
             try
             {
@@ -693,6 +693,18 @@ namespace Destiny_DAL
             {
                 FileOperations.Foutloggen(ex);
                 return 0;
+            }
+        }
+        //---------------------------
+        //UnitTesting
+        //---------------------------
+        public static SpecialItemCategorie OphalenSpecialItemCategorie(SpecialItem sc)
+        {
+            using (DestinyEntities destinyEntities = new DestinyEntities())
+            {
+                return destinyEntities.SpecialItemCategories
+                    .Where(x => x.id == sc.CategorieId)
+                    .FirstOrDefault();
             }
         }
     }
