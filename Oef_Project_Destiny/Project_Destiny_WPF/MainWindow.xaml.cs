@@ -26,18 +26,15 @@ namespace Project_Destiny_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        UserControl usc = null;
         bool StateClosed = true;
-        private bool dragging = false;
-        private Point startPoint = new Point(0, 0);
-
         public MainWindow()
         {
             InitializeComponent();
         }
 
-
-
-        UserControl usc = null;
+        int mouseX = 0, mousY = 0;
+        bool mouseDown;
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -191,6 +188,13 @@ namespace Project_Destiny_WPF
             Loginpanel.Visibility = Visibility.Visible;
         }
 
-        
+        public double X { get; set; }
+        public double Y { get; set; }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            dragging = true;
+            startPoint = new Point(e.X, e.Y);
+        }
     }
 }
