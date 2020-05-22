@@ -39,6 +39,7 @@ namespace Destiny_UnitTests
             Assert.IsTrue(foutmelding != "");
         }
 
+        //Author = Dajo
         [TestMethod]
         public void ConversieToInt_WhenCalled_ReturnsNumber()
         {
@@ -53,6 +54,7 @@ namespace Destiny_UnitTests
             Assert.AreEqual(5,getal);
         }
 
+        //Author = Dajo
         [TestMethod]
         public void ToevoegenLocatie_WhenCalled_ReturnZeroWhenMapIsEmpty()
         {
@@ -66,6 +68,28 @@ namespace Destiny_UnitTests
             ///assert
             Assert.IsTrue(antwoord == 0);
         }
+
+        //Author = Dajo
+        [TestMethod]
+        public void ToevoegenSpecialItem_WhenCalled_ReturnGreaterThanZero()
+        {
+            ///arrange
+            Item i = new Item();
+            i.Naam = "AK-47";
+            i.Zeldzaamheid = "Legendary";
+
+            Wapen wapen = new Wapen();
+            wapen.id = i.id;
+            wapen.WapenklasseId = 2;
+            wapen.Wapenklasse = DatabaseOperations.OphalenWapenCategorie(wapen);
+
+            ///act
+            int antwoord = DatabaseOperations.ToevoegenWapen(i, wapen);
+
+            ///assert
+            Assert.IsTrue(antwoord > 0);
+        }
+
 
         //Author = Kevin
         [TestMethod]
