@@ -27,10 +27,15 @@ namespace Project_Destiny_WPF
     public partial class MainWindow : Window
     {
         bool StateClosed = true;
+        private bool dragging = false;
+        private Point startPoint = new Point(0, 0);
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+
 
         UserControl usc = null;
 
@@ -185,5 +190,7 @@ namespace Project_Destiny_WPF
             Accountpanel.Visibility = Visibility.Hidden;
             Loginpanel.Visibility = Visibility.Visible;
         }
+
+        
     }
 }
