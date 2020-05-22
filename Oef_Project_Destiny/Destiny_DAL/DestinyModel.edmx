@@ -17,6 +17,8 @@
           <Property Name="Voornaam" Type="varchar" MaxLength="255" />
           <Property Name="Achternaam" Type="varchar" MaxLength="255" />
           <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="ThemaFont" Type="varchar" MaxLength="255" />
+          <Property Name="ThemaColor" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Armor">
           <Key>
@@ -1048,6 +1050,8 @@
           <Property Name="Voornaam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Achternaam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ThemaFont" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ThemaColor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Armor">
           <Key>
@@ -2154,6 +2158,8 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="DestinyModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="ThemaColor" ColumnName="ThemaColor" />
+                <ScalarProperty Name="ThemaFont" ColumnName="ThemaFont" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Achternaam" ColumnName="Achternaam" />
                 <ScalarProperty Name="Voornaam" ColumnName="Voornaam" />

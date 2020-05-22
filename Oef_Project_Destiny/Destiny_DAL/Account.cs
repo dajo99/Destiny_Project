@@ -28,6 +28,8 @@ namespace Destiny_DAL
         public string Voornaam { get; set; }
         public string Achternaam { get; set; }
         public byte[] Image { get; set; }
+        public string ThemaFont { get; set; }
+        public string ThemaColor { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Character> Characters { get; set; }
