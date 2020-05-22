@@ -239,11 +239,17 @@ namespace Project_Destiny_WPF.UserControls
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                Armor a = dbArmor.SelectedItem as Armor;
-                int ok = DatabaseOperations.VerwijderenArmor(a.Item, a);
-                if (ok == 0)
+                //Zorgen dat men meerdere items kan verwijderen uit database
+                for (int i = 0; i < dbArmor.SelectedItems.Count; i++)
                 {
-                    MessageBox.Show("Armor is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Armor a = dbArmor.SelectedItems[i] as Armor;
+
+                    int ok = DatabaseOperations.VerwijderenArmor(a.Item, a);
+
+                    if (ok == 0)
+                    {
+                        MessageBox.Show(a.Item.Naam[i] +" is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
             else
@@ -274,7 +280,7 @@ namespace Project_Destiny_WPF.UserControls
         }
         private string ValideerTekstToInt(string tekst, string columnName)
         {
-            if (!string.IsNullOrWhiteSpace(tekst) && int.TryParse(tekst, out int number) 
+            if (!string.IsNullOrWhiteSpace(tekst) && int.TryParse(tekst, out int number)
                 && (number < 0 || number > 100))
             {
                 return columnName + " moet een positief nummeriek getal zijn onder de 100!" + Environment.NewLine;
