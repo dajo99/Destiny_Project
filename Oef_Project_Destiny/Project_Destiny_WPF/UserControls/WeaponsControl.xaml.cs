@@ -259,7 +259,7 @@ namespace Project_Destiny_WPF.UserControls
             {
                 for (int i = 0; i < dbWapens.SelectedItems.Count; i++)
                 {
-                    Wapen w = dbWapens.SelectedItem as Wapen;
+                    Wapen w = dbWapens.SelectedItems[i] as Wapen;
                     int ok = DatabaseOperations.VerwijderenWapen(w.Item, w);
                     if (ok == 0)
                     {
