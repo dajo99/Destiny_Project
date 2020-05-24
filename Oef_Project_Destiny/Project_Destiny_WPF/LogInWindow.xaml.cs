@@ -68,6 +68,7 @@ namespace Project_Destiny_WPF
                         if (b.Image != null)
                         {
                             string profielImage = Encoding.ASCII.GetString(b.Image);
+
                             w.ProfileImage.Source = new BitmapImage(new Uri(profielImage));
                         }
                         

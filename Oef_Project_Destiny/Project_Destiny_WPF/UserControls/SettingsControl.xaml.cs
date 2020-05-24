@@ -98,6 +98,7 @@ namespace Project_Destiny_WPF.UserControls
                     int ok = DatabaseOperations.WijzigenAccount(a);
                     if (ok > 0)
                     {
+
                         // User terug updaten met nieuwe gegevens
                         User.Acc = a;
                         //UserControl terug refreshen
