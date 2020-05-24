@@ -105,12 +105,10 @@ namespace Destiny_UnitTests
             SpecialItem si1= new SpecialItem();
             si1.id = i1.id;
             si1.CategorieId = 1;
-            si1.SpecialItemCategorie = DatabaseOperations.OphalenSpecialItemCategorie(si1);
 
             SpecialItem si2 = new SpecialItem();
             si2.id = i1.id;
             si2.CategorieId = 2;
-            si1.SpecialItemCategorie = DatabaseOperations.OphalenSpecialItemCategorie(si1);
 
             DatabaseOperations.ToevoegenSpecialItem(i1, si1);
 
@@ -139,7 +137,6 @@ namespace Destiny_UnitTests
             SpecialItem si1 = new SpecialItem();
             si1.id = i1.id;
             si1.CategorieId = 1;
-            si1.SpecialItemCategorie = DatabaseOperations.OphalenSpecialItemCategorie(si1);
 
             Item i2 = new Item();
             i2.Naam = "browski3";
@@ -147,7 +144,6 @@ namespace Destiny_UnitTests
             SpecialItem si2 = new SpecialItem();
             si2.id = i1.id;
             si2.CategorieId = 2;
-            si1.SpecialItemCategorie = DatabaseOperations.OphalenSpecialItemCategorie(si1);
 
             DatabaseOperations.ToevoegenSpecialItem(i1, si1);
 
