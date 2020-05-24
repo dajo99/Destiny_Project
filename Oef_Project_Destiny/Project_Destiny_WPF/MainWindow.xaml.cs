@@ -184,6 +184,7 @@ namespace Project_Destiny_WPF
         private void btnAfmelden_Click(object sender, RoutedEventArgs e)
         {
             User.Acc = null;
+            var bc = new BrushConverter();
             GridMain.Children.Clear();
             usc = new WelcomeControl();
             GridMain.Children.Add(usc);
@@ -193,6 +194,10 @@ namespace Project_Destiny_WPF
             ListViewMenu.IsEnabled = false;
             Accountpanel.Visibility = Visibility.Hidden;
             Loginpanel.Visibility = Visibility.Visible;
+            GridNav.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
+            GridMenu.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
+            App.Current.Resources["font"] = new FontFamily("Segoe UI");
+            Uri uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
         }
 
        
