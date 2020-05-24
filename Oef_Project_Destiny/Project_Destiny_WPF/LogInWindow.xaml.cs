@@ -28,6 +28,7 @@ namespace Project_Destiny_WPF
         }
 
         MainWindow w = (MainWindow)Application.Current.MainWindow;
+        Uri uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
         private void BtnInlogAfsluiten_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -58,10 +59,15 @@ namespace Project_Destiny_WPF
                             SetFont(b.ThemaFont);
                         }
 
+
                         if (b.ThemaColor != "")
                         {
                             SetThemeColor(b.ThemaColor);
                         }
+
+                        //gaat aanpassingen doen in app.xaml
+                        System.Windows.Application.Current.Resources.MergedDictionaries.RemoveAt(3);
+                        System.Windows.Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
 
                         this.Close();
                         w.Accountnaam.Content = b.Accountnaam;
@@ -146,7 +152,7 @@ namespace Project_Destiny_WPF
 
         private void SetThemeColor(string color)
         {
-            Uri uri = null;
+            
             var bc = new BrushConverter();
             switch (color)
             {
@@ -167,10 +173,11 @@ namespace Project_Destiny_WPF
                     break;
 
             }
-
             //gaat aanpassingen doen in app.xaml
             System.Windows.Application.Current.Resources.MergedDictionaries.RemoveAt(3);
             System.Windows.Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
         }
+
+
     }
 }
