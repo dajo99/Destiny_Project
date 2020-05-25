@@ -10,6 +10,7 @@ namespace Destiny_UnitTests
     [TestClass]
     public class DestinyTests
     {
+        //Author = Gilles
         [TestMethod]
         public void ValideerAccountGegevens_WhenCalled_ReturnsEmptyString()
         {
@@ -24,7 +25,7 @@ namespace Destiny_UnitTests
             Assert.AreEqual("", foutmelding);
         }
 
-
+        //Author = Gilles
         [TestMethod]
         public void ValideerAccountGegevens_WhenCalled_ReturnsNotEmptyStringOnGebruikersNaam()
         {
@@ -39,6 +40,31 @@ namespace Destiny_UnitTests
             Assert.IsTrue(foutmelding != "");
         }
 
+
+        //Author = Gilles
+        [TestMethod]
+        public void CharacterToevoegen_WhenCalled_Returns0WhenPropertyHasNoValue()
+        {
+            ///arrange
+            Character c = new Character();
+            c.AccountId = 2;
+
+            // c.CharacterKlasseId LEGE PROPERTY
+            c.CharacterSubklasseId = 2;
+            //c.Face LEGE PROPERTY
+            c.Gender = "Man";
+            c.HeadOption = "kaal";
+            c.Marking = "Geen marking";
+            c.Level = 5;
+            c.RasId = 1;
+            c.id = 5;
+            ///act
+
+            int check = DatabaseOperations.CharacterToevoegen(c);
+
+            ///assert
+            Assert.AreEqual(0, check);
+        }
         //Author = Dajo
         [TestMethod]
         public void ConversieToInt_WhenCalled_ReturnsNumber()
