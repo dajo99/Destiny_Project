@@ -18,6 +18,7 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
+        List<Item> lijstItems = new List<Item>();
         private void TextBox_KeyUp(object sender, KeyEventArgs e)
         {
             ZoekenWapens();
@@ -115,7 +116,7 @@ namespace Project_Destiny_WPF.UserControls
         private void btnAddWeapon_Click(object sender, RoutedEventArgs e)
         {
             //Lijst maken van items voor equals (item controleren op zeldzaamheid en naam)
-            GeneralItems.Items = DatabaseOperations.OphalenItems();
+            lijstItems = DatabaseOperations.OphalenItems();
             string foutmeldingen = Valideer("cmbDbZeldzaamheid");
             foutmeldingen += Valideer("cmbDbCategorie");
             foutmeldingen += Valideer("cmbDbDamageType");
@@ -141,7 +142,7 @@ namespace Project_Destiny_WPF.UserControls
 
                 if (it.IsGeldig()) 
                 {
-                    if (!GeneralItems.Items.Contains(it))//Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
+                    if (!lijstItems.Contains(it))//Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
                     {
                         int ok = DatabaseOperations.ToevoegenWapen(it, wa);
                         if (ok > 0)
@@ -174,7 +175,7 @@ namespace Project_Destiny_WPF.UserControls
 
         private void btnChangeWeapon_Click(object sender, RoutedEventArgs e)
         {
-            GeneralItems.Items = DatabaseOperations.OphalenItems();
+            lijstItems = DatabaseOperations.OphalenItems();
             string foutmeldingen = Valideer("cmbDbZeldzaamheid");
             foutmeldingen += Valideer("cmbDbCategorie");
             foutmeldingen += Valideer("cmbDbDamageType");
@@ -187,7 +188,7 @@ namespace Project_Destiny_WPF.UserControls
                 Wapenklasse wk = cmbDbCategorie.SelectedItem as Wapenklasse;
                 Damagetype da = cmbDbDamageType.SelectedItem as Damagetype;
                 Wapen w = dbWapens.SelectedItem as Wapen;
-                GeneralItems.Items.Remove(w.Item);//Origineel item uit de lijst verwijderen voor equals
+                lijstItems.Remove(w.Item);//Origineel item uit de lijst verwijderen voor equals
 
                 w.Item.Naam = txtNaam.Text;
                 w.Item.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
@@ -206,7 +207,7 @@ namespace Project_Destiny_WPF.UserControls
                 if (w.Item.IsGeldig())
                 {
 
-                    if (!GeneralItems.Items.Contains(w.Item))
+                    if (!lijstItems.Contains(w.Item))
                     {
                         int ok = DatabaseOperations.AanpassenWapens(w.Item, w);
 
