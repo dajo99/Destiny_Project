@@ -121,7 +121,7 @@ namespace Destiny_UnitTests
 
         //Author = Kevin
         [TestMethod]
-        public void ToevoegenSpecialItem_WhenCalled_ReturnZeroWhenNamesAreEqualAndRarityBothExotic()
+        public void ToevoegenSpecialItem_WhenCalled_NamesAreEqualAndRarityAreBothExotic_ReturnZero()
         {
             ///arrange
             Item i1 = new Item();
@@ -153,7 +153,7 @@ namespace Destiny_UnitTests
 
         //Author = Kevin
         [TestMethod]
-        public void ToevoegenSpecialItem_WhenCalled_ReturnGreaterThanZeroWhenNamesAreNotEqualAndRarityNotExotic()
+        public void ToevoegenSpecialItem_WhenCalled_NamesAreNotEqualAndRarityIsNotExotic_ReturnGreaterThanZero()
         {
             ///arrange
             Item i1 = new Item();
@@ -189,7 +189,7 @@ namespace Destiny_UnitTests
 
         //Author = Kevin
         [TestMethod]
-        public void ToevoegenArmor_WhenCalled_ReturnAnwserGreaterThanZeroAndIntellectIsZeroWhenInputOfIntellectIsEmptyString()
+        public void ToevoegenArmor_WhenCalled_InputOfIntellectIsEmptyString_ReturnAnwserGreaterThanZeroAndIntellectIsZero()
         {
             ///arrange
             Item i = new Item();
@@ -211,7 +211,7 @@ namespace Destiny_UnitTests
 
         //Author = Kevin
         [TestMethod]
-        public void ToevoegenArmor_WhenCalled_ReturnAnwserGreaterThanZeroAndIntellectIs5WhenInputOfIntellectIs5()
+        public void ToevoegenArmor_WhenCalled_InputOfIntellectIsString5_ReturnAnwserGreaterThanZeroAndIntellectIs5()
         {
             ///arrange
             Item i = new Item();
