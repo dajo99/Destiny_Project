@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Destiny_DAL;
 using Destiny_Models;
 using Microsoft.Win32;
@@ -198,7 +189,7 @@ namespace Project_Destiny_WPF.UserControls
             ResetEnables(false);
         }
 
-        //Deze klasse bekijkt opent een nieuw dialoogvenster om afbeeldingen te uploaden
+        //Deze klasse opent een nieuw dialoogvenster om afbeeldingen te uploaden
         OpenFileDialog op = new OpenFileDialog();
         private void BtnUploaden_Click(object sender, RoutedEventArgs e)
         {
