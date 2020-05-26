@@ -1,19 +1,10 @@
 ﻿using Destiny_DAL;
 using Destiny_Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace Project_Destiny_WPF.UserControls
 {
@@ -28,7 +19,6 @@ namespace Project_Destiny_WPF.UserControls
         }
 
         string font = "";
-        string layoutKeuze = "";
         string themaColor = "";
         MainWindow w = (MainWindow)Application.Current.MainWindow;
 
@@ -74,7 +64,6 @@ namespace Project_Destiny_WPF.UserControls
 
             if (a.IsGeldig())
             {
-                List<Account> accounts = DatabaseOperations.CheckLogin(User.Acc);
                 if (MessageBox.Show("Bent u zeker dat u deze wijzigingen wilt uitvoeren?", "Waarschuwing", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
                 {
                     int ok = DatabaseOperations.WijzigenAccount(a);
@@ -97,11 +86,7 @@ namespace Project_Destiny_WPF.UserControls
             else
             {
                 MessageBox.Show(a.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-           
-
-            
-
+            }   
         }
         private void SetFont(string font)
         {
@@ -133,7 +118,6 @@ namespace Project_Destiny_WPF.UserControls
                     w.GridNav.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
                     w.GridMenu.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
 
-
                     uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
                     break;
 
@@ -146,8 +130,8 @@ namespace Project_Destiny_WPF.UserControls
 
             }
             //gaat aanpassingen doen in app.xaml
-            System.Windows.Application.Current.Resources.MergedDictionaries.RemoveAt(3);
-            System.Windows.Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
+            Application.Current.Resources.MergedDictionaries.RemoveAt(3);
+            Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
         }
     }
 }
