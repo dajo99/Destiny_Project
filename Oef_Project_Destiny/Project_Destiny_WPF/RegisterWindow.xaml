@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="Registerscreen" Height="500" Width="600" WindowStyle="None" AllowsTransparency="True" Background="{x:Null}">
     <Grid>
-        <Rectangle RadiusY="7.895" RadiusX="7.895" Fill="#AAAAAA"/>
+        <Rectangle RadiusY="7.895" RadiusX="7.895" Fill="#FF6C6C6C"/>
         <StackPanel HorizontalAlignment="Right" Margin="5">
             <Button x:Name="BtnRegistrerenAfsluiten" Background="{x:Null}" BorderBrush="{x:Null}" Click="BtnRegistrerenAfsluiten_Click">
                 <materialDesign:PackIcon Kind="WindowClose" Height="27" Width="27" Foreground="Black"/>
