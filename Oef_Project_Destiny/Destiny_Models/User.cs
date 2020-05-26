@@ -11,8 +11,6 @@ namespace Destiny_Models
     {
         public static Account Acc { get; set; }
         public static Character Character { get; set; }
-        public static CharacterKlasse CharacterKlasse { get; set; }
-        public static CharacterSubklasse CharacterSubKlasse { get; set; }
     }
     
 }

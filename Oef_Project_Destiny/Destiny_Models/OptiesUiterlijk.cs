@@ -26,8 +26,8 @@ namespace Destiny_Models
             get;
             set;
 
-        }
-        
+        } = new List<string>() { "Jong", "Oud", "Krijger" };
+
         public static List<string> Gender
         {
             get;
@@ -36,7 +36,7 @@ namespace Destiny_Models
         //bij het opstarten gaat deze constructor automatisch de lijsten initialiseren en opvullen//
          static OptiesUiterlijk()
         {
-            GezichtOpties = new List<string>() {"Jong","Oud","Krijger"};
+            
             HaarOpties = new List<string>() { "Krullen", "Lang", "Kort" };
             Gender = new List<string>() { "Man", "Vrouw" };
             TattooOpties = new List<string>() { "Streep", "Geen marking", "Gezicht tattoo" } ;

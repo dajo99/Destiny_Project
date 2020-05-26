@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:Project_Destiny_WPF"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Ga het gevecht aan!" Height="300" Width="460" Background="White" Loaded="Window_Loaded">
+        Title="Ga het gevecht aan!" Height="300" Width="460" Background="White">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="151*"/>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="106*"/>
+            <ColumnDefinition Width="151*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -19,12 +20,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="lblZin" Content="Speel een spelletje steen, papier, schaar tegen de computer. &#xA;Bij winst gaat je level omhoog!" Foreground="Black" FontSize="16" Grid.ColumnSpan="3" Margin="10"/>
-        <Label x:Name="lblResultaat" Content="" Grid.Column="0" Grid.Row="1" Foreground="Black" FontSize="16" Grid.ColumnSpan="3" Margin="10"/>
-        <Button x:Name="BtnSteen" Grid.Column="0" Grid.Row="2"  Content="Steen" Margin="5,5,5,0" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Click="BtnSteen_Click"/>
-        <Button x:Name="BtnPapier" Grid.Column="1" Grid.Row="2"  Content="Papier" Margin="5,5,5,0" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5"  Click="BtnPapier_Click" />
-        <Button x:Name="BtnSchaar" Grid.Column="2" Grid.Row="2"  Content="Schaar" Margin="5,5,5,0" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Click="BtnSchaar_Click"/>
-        <Button x:Name="BtnSchermAfsluiten" Background="Red"  Click="BtnSchermAfsluiten_Click"  Margin="78.8,-27,-1.467,89.4" Height="Auto" Grid.Column="2">
+        <Label x:Name="lblZin" Content="Speel een spelletje steen, papier, schaar tegen de computer. &#xA;Bij winst gaat je level omhoog!" Foreground="Black" FontSize="16" Grid.ColumnSpan="4" Margin="10,10,9.6,10"/>
+        <Label x:Name="lblResultaat" Content="" Grid.Column="0" Grid.Row="1" Foreground="Black" FontSize="16" Grid.ColumnSpan="4" Margin="10,10,9.6,10.4"/>
+        <Button x:Name="BtnSteen" Grid.Column="0" Grid.Row="2"  Content="Steen" Margin="5,26.6,5.2,21.4" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Click="BtnSteen_Click"/>
+        <Button x:Name="BtnPapier" Grid.Column="1" Grid.Row="2"  Content="Papier" Margin="4.8,26.6,5.4,21.4" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5"  Click="BtnPapier_Click" Grid.ColumnSpan="2" />
+        <Button x:Name="BtnSchaar" Grid.Column="3" Grid.Row="2"  Content="Schaar" Margin="4.6,26.6,4.6,21.4" VerticalAlignment="Center" Background="#555555" BorderBrush="{x:Null}"  materialDesign:ButtonAssist.CornerRadius="5" Click="BtnSchaar_Click"/>
+        <Button x:Name="BtnSchermAfsluiten" Background="Red"  Click="BtnSchermAfsluiten_Click"  Margin="78.6,-27,-1.4,89" Height="Auto" Grid.Column="3">
             <materialDesign:PackIcon Kind="WindowClose" Height="13" Width="25" Foreground="White"/>
         </Button>
     </Grid>

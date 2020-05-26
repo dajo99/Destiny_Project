@@ -20,7 +20,7 @@
             <RowDefinition Height="18*"/>
             <RowDefinition Height="25*"/>
         </Grid.RowDefinitions>
-        <Label FontSize="30" Content="Character aanmaken" Foreground="White" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="12"/>
+        <Label FontSize="30" Content="Character aanmaken" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="12" Foreground="#333333"/>
         <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -44,7 +44,7 @@
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <ComboBox Grid.Row="1" Grid.Column="0" x:Name="cmbSubklasse"
+            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cmbSubklasse"
                          Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,18,0,18">
                 <materialDesign:HintAssist.Hint>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
@@ -70,7 +70,7 @@
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbKlasse" SelectionChanged="cmbKlasse_SelectionChanged"
+            <ComboBox Grid.Row="1" Grid.Column="0" x:Name="cmbKlasse" SelectionChanged="cmbKlasse_SelectionChanged"
                          Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,18,0,18">
                 <materialDesign:HintAssist.Hint>
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
@@ -84,7 +84,7 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
 
-            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cmbGezicht"
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbGezicht"
                 
                          Style="{StaticResource MaterialDesignFloatingHintComboBox}" Margin="10,18,0,18">
                 <materialDesign:HintAssist.Hint>
