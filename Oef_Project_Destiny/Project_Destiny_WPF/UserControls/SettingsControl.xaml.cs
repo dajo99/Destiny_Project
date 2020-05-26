@@ -27,68 +27,50 @@ namespace Project_Destiny_WPF.UserControls
             InitializeComponent();
         }
 
+        string font = "";
+        string layoutKeuze = "";
+        string themaColor = "";
+        MainWindow w = (MainWindow)Application.Current.MainWindow;
+
         private void BtnOpslaanInstellingen_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow w = (MainWindow)Application.Current.MainWindow;
-            MainWindow mw = (MainWindow)Application.Current.MainWindow;
-            var bc = new BrushConverter();
-            Uri uri = null;
             Account a;
-            string fontKeuze = "";
-            string layoutKeuze = "";
-
-            int font = cbFont.SelectedIndex;
-            switch (font)
+            int fontindex = cbFont.SelectedIndex;
+            switch (fontindex)
             {
                 case 0:
-                    //gaat aanpassingen doen in app.xaml
-                    App.Current.Resources["font"] = new FontFamily("Segoe UI");
-                    fontKeuze = "Segoe UI";
+                    font = "Segoe UI";
+                    SetFont(font);
                     break;
 
                 case 1:
-                    //gaat aanpassingen doen in app.xaml
-                    App.Current.Resources["font"] = new FontFamily("Comic Sans MS");
-                    fontKeuze = "Comic Sans MS";
+                    font = "Comic Sans MS";
+                    SetFont(font);
                     break;
                 
             }
 
-            
-            int layout = cbLayout.SelectedIndex;
-            switch (layout)
+            int layoutIndex = cbLayout.SelectedIndex;
+            switch (layoutIndex)
             {
                 case 0:
-                    //Zo kan ik met Hex - kleurwaarden werken
-                    mw.GridNav.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
-                    mw.GridMenu.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
-
-
-                    uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
-                    layoutKeuze = "Teal";
+                    themaColor = "Teal";
+                    SetThemeColor(themaColor);
                     break;
 
                 case 1:
-                    mw.GridNav.Background = Brushes.IndianRed;
-                    mw.GridMenu.Background = Brushes.IndianRed;
-
-                    uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml");
-                    layoutKeuze = "DeepPurple";
+                    themaColor = "DeepPurple";
+                    SetThemeColor(themaColor);
                     break;
 
             }
-
-
-            //gaat aanpassingen doen in app.xaml
-            System.Windows.Application.Current.Resources.MergedDictionaries.RemoveAt(3);
-            System.Windows.Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
 
             //Account van user ophalen uit database
             a = DatabaseOperations.OphalenAccount(User.Acc.Accountnaam);
 
             //Account opvullen met nieuwe invoer
-            a.ThemaFont = fontKeuze;
-            a.ThemaColor = layoutKeuze;
+            a.ThemaFont = font;
+            a.ThemaColor = themaColor;
 
             if (a.IsGeldig())
             {
@@ -120,6 +102,52 @@ namespace Project_Destiny_WPF.UserControls
 
             
 
+        }
+        private void SetFont(string font)
+        {
+            
+            switch (font)
+            {
+                case "Segoe UI":
+                    //gaat aanpassingen doen in app.xaml
+                    App.Current.Resources["font"] = new FontFamily(font);
+
+                    break;
+
+                case "Comic Sans MS":
+                    //gaat aanpassingen doen in app.xaml
+                    App.Current.Resources["font"] = new FontFamily(font);
+                    break;
+
+            }
+        }
+
+        private void SetThemeColor(string color)
+        {
+            Uri uri = null;
+            var bc = new BrushConverter();
+            switch (color)
+            {
+                case "Teal":
+                    //Zo kan ik met Hex - kleurwaarden werken
+                    w.GridNav.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
+                    w.GridMenu.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
+
+
+                    uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
+                    break;
+
+                case "DeepPurple":
+                    w.GridNav.Background = Brushes.IndianRed;
+                    w.GridMenu.Background = Brushes.IndianRed;
+
+                    uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml");
+                    break;
+
+            }
+            //gaat aanpassingen doen in app.xaml
+            System.Windows.Application.Current.Resources.MergedDictionaries.RemoveAt(3);
+            System.Windows.Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
         }
     }
 }
