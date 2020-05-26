@@ -10,7 +10,7 @@ namespace Destiny_Models
     public static class GeneralItems
     {
         public static List<Item> Items { get; set; }
-        public static List<string> ZeldzaamheidLijst { get; set; }
+        public static List<string> ZeldzaamheidLijst { get; set; } = new List<string>() { "Common", "Uncommon", "Rare", "Legendary", "Exotic" };
 
 
         public static int ConversieToInt(string text)

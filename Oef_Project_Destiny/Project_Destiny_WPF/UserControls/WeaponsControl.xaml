@@ -48,7 +48,7 @@
                 <DataGridTextColumn Header="Categorie" Binding="{Binding Wapenklasse.Naam}" Width="120"/>
                 <DataGridTextColumn Header="Zeldzaamheid" Binding= "{Binding Item.Zeldzaamheid}" Width="120"/>
                 <DataGridTextColumn Header="Damagetype" Binding="{Binding Damagetype.Naam}" Width="110"/>
-                <DataGridTextColumn Header="Impact" Binding="{Binding Impact}" Width="66"/>
+                <DataGridTextColumn Header="Impact" Binding="{Binding Impact}" Width="70"/>
                 <DataGridTextColumn Header="Magazine" Binding="{Binding Magazine}" Width="78"/>
                 <DataGridTextColumn Header="Light" Binding="{Binding LightAmount}" Width="70"/>
             </DataGrid.Columns>
