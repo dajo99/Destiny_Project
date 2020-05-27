@@ -38,6 +38,8 @@ namespace Project_Destiny_WPF
                 //wachtwoord encrypteren 
                 string ep = SecurePassword.EncryptString(txtWachtwoord.Password);
                 a.Wachtwoord = ep;
+                a.ThemaColor = "Teal";
+                a.ThemaFont = "Segoe UI";
 
                 if (a.IsGeldig())
                 {

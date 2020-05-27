@@ -27,8 +27,9 @@ namespace Project_Destiny_WPF.UserControls
                 case "DeepPurple":
                     s = new SolidColorBrush(Colors.IndianRed);
                     break;
+
                 default :
-                    s = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00C7A3"));
+                    s = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00C7A3"));//Teal
                     break;
             }
 
