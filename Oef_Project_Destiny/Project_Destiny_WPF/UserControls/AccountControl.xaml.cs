@@ -45,7 +45,7 @@ namespace Project_Destiny_WPF.UserControls
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 //Account van user ophalen uit database
-                a = DatabaseOperations.OphalenAccount(User.Acc.Accountnaam);
+                a = DatabaseOperations.OphalenAccountViaAccountnaam(User.Acc.Accountnaam);
 
                 //Account opvullen met nieuwe invoer
                 a.Accountnaam = txtProfielnaam.Text;
@@ -68,7 +68,7 @@ namespace Project_Destiny_WPF.UserControls
                 if (a.IsGeldig())
                 {
                     //Controle of account al aangepast is.
-                    List<Account> accounts = DatabaseOperations.CheckLogin(User.Acc);
+                    List<Account> accounts = DatabaseOperations.OphalenAccountViaAccount(User.Acc);
                     if (!accounts.Contains(a))
                     {
                         if (MessageBox.Show("Bent u zeker dat u deze wijzigingen wilt uitvoeren?", "Waarschuwing",
