@@ -35,10 +35,10 @@ namespace Project_Destiny_WPF
             a.Mail = txtMail.Text;
 
             //2de instantie aanmaken om te kijken als het account bestaat in database
-            Account b = DatabaseOperations.OphalenAccount(txtGebruikersnaam.Text);
+            Account b = DatabaseOperations.OphalenAccountViaAccountnaam(txtGebruikersnaam.Text);
 
             //Account van de admin ophalen om wachtwoord in te stellen van ons mailadres om mail te versturen
-            Account c = DatabaseOperations.OphalenAccount("Admin");
+            Account c = DatabaseOperations.OphalenAccountViaAccountnaam("Admin");
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {

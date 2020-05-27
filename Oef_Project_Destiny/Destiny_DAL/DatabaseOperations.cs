@@ -27,7 +27,7 @@ namespace Destiny_DAL
             }
         }
 
-        public static List<Account> CheckLogin(Account a)
+        public static List<Account> OphalenAccountViaAccount(Account a)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
@@ -38,7 +38,7 @@ namespace Destiny_DAL
 
         }
 
-        public static Account OphalenAccount(string accountnaam)
+        public static Account OphalenAccountViaAccountnaam(string accountnaam)
         {
             try
             {

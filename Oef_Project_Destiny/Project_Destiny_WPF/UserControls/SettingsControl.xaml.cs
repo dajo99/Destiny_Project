@@ -58,7 +58,7 @@ namespace Project_Destiny_WPF.UserControls
                 }
 
                 //Account van user ophalen uit database
-                a = DatabaseOperations.OphalenAccount(User.Acc.Accountnaam);
+                a = DatabaseOperations.OphalenAccountViaAccountnaam(User.Acc.Accountnaam);
 
                 //Account opvullen met nieuwe invoer
                 a.ThemaFont = font;

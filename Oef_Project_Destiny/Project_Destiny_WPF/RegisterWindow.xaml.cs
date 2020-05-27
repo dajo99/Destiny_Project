@@ -45,7 +45,7 @@ namespace Project_Destiny_WPF
                 {
                     // Lijst maken met alle accounts maken   
                     //Nieuw account als paramater is nodig zodat ik geen 2de methode moet aanmaken om een lijst van accounts op te vullen (om account te wijzigen heb je een paramter nodig)
-                    List<Account> accounts = DatabaseOperations.CheckLogin(new Account()); 
+                    List<Account> accounts = DatabaseOperations.OphalenAccountViaAccount(new Account()); 
                     
                     //debug voor te zien wat er in de lijst zit
                     foreach (var item in accounts)
