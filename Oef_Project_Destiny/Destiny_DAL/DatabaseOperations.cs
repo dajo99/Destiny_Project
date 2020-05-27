@@ -432,7 +432,7 @@ namespace Destiny_DAL
                     .Include(x => x.Item)
                     .Where(x => x.Item.id == x.id)
                     .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
-                    .Where(x => x.ArmorSlot.Contains(armorslot))
+                    .Where(x => x.ArmorSlot == armorslot)
                     .OrderBy(x => x.Item.Naam)
                     .ToList();
             }
@@ -443,7 +443,8 @@ namespace Destiny_DAL
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
                 return destinyEntities.Armors
-                    .Where(x => x.ArmorSlot.Contains(armorslot))
+                    .Include(x => x.Item)
+                    .Where(x => x.ArmorSlot == armorslot)
                     .Where(x => x.Item.id == x.id)
                     .Where(x => x.Item.Naam.Contains(naam))
                     .OrderBy(x => x.Item.Naam)
