@@ -24,48 +24,49 @@ namespace Project_Destiny_WPF.UserControls
 
         private void BtnOpslaanInstellingen_Click(object sender, RoutedEventArgs e)
         {
-            Account a;
-            int fontindex = cbFont.SelectedIndex;
-            switch (fontindex)
+            if (MessageBox.Show("Bent u zeker dat u deze wijzigingen wilt uitvoeren?", "Waarschuwing", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
             {
-                case 0:
-                    font = "Segoe UI";
-                    SetFont(font);
-                    break;
-
-                case 1:
-                    font = "Comic Sans MS";
-                    SetFont(font);
-                    break;
-                
-            }
-
-            int layoutIndex = cbLayout.SelectedIndex;
-            switch (layoutIndex)
-            {
-                case 0:
-                    themaColor = "Teal";
-                    SetThemeColor(themaColor);
-                    break;
-
-                case 1:
-                    themaColor = "DeepPurple";
-                    SetThemeColor(themaColor);
-                    break;
-
-            }
-
-            //Account van user ophalen uit database
-            a = DatabaseOperations.OphalenAccount(User.Acc.Accountnaam);
-
-            //Account opvullen met nieuwe invoer
-            a.ThemaFont = font;
-            a.ThemaColor = themaColor;
-
-            if (a.IsGeldig())
-            {
-                if (MessageBox.Show("Bent u zeker dat u deze wijzigingen wilt uitvoeren?", "Waarschuwing", MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                Account a;
+                int fontindex = cbFont.SelectedIndex;
+                switch (fontindex)
                 {
+                    case 0:
+                        font = "Segoe UI";
+                        SetFont(font);
+                        break;
+
+                    case 1:
+                        font = "Comic Sans MS";
+                        SetFont(font);
+                        break;
+
+                }
+
+                int layoutIndex = cbLayout.SelectedIndex;
+                switch (layoutIndex)
+                {
+                    case 0:
+                        themaColor = "Teal";
+                        SetThemeColor(themaColor);
+                        break;
+
+                    case 1:
+                        themaColor = "DeepPurple";
+                        SetThemeColor(themaColor);
+                        break;
+
+                }
+
+                //Account van user ophalen uit database
+                a = DatabaseOperations.OphalenAccount(User.Acc.Accountnaam);
+
+                //Account opvullen met nieuwe invoer
+                a.ThemaFont = font;
+                a.ThemaColor = themaColor;
+
+                if (a.IsGeldig())
+                {
+
                     int ok = DatabaseOperations.WijzigenAccount(a);
                     if (ok > 0)
                     {
@@ -80,13 +81,13 @@ namespace Project_Destiny_WPF.UserControls
                     {
                         MessageBox.Show("De instellingen zijn niet aangepast!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
+
                 }
-                    
+                else
+                {
+                    MessageBox.Show(a.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
-            {
-                MessageBox.Show(a.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
-            }   
         }
         private void SetFont(string font)
         {
