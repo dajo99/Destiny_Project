@@ -121,26 +121,22 @@ namespace Project_Destiny_WPF.UserControls
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 //objecten aanmaken om toe te voegen (Armor en special item)
-                string zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
-                string armorslot = cmbDbArmorSlot.SelectedItem as string;
                 Item i = new Item();
                 Armor a = new Armor();
-                i.Naam = txtNaam.Text;
-                i.Zeldzaamheid = zeldzaamheid;
-                a.id = i.id;
-                a.ArmorSlot = armorslot;
-                a.Intellect = GeneralItems.ConversieToInt(txtIntellect.Text);
-                a.Mobility = GeneralItems.ConversieToInt(txtMobility.Text);
-                a.Recovery = GeneralItems.ConversieToInt(txtRecovery.Text);
-                a.Resilience = GeneralItems.ConversieToInt(txtResilience.Text);
-                a.Strength = GeneralItems.ConversieToInt(txtStrength.Text);
+
+                OpvullenArmor(a, i);
 
                 if (i.IsGeldig()) //Kijken als naam en zeldzaamheid zijn ingevuld
                 {
                     if (!lijstItems.Contains(i))//Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
                     {
                         int ok = DatabaseOperations.ToevoegenArmor(i, a);
-                        if (ok == 0)
+                        if (ok > 0)
+                        {
+                            ZoekenArmor();
+                            VeldenWissen();
+                        }
+                        else
                         {
                             MessageBox.Show("Armor is niet toegevoegd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
@@ -160,14 +156,15 @@ namespace Project_Destiny_WPF.UserControls
                 MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            ZoekenArmor();
-            VeldenWissen();
         }
 
         private void btnChangeArmor_Click(object sender, RoutedEventArgs e)
         {
-            //Lijst maken van items voor equals (item controleren op zeldzaamheid en naam)
+            //Lijst maken van items voor equals (item wordt gecontroleerd op zeldzaamheid en naam)
             lijstItems = DatabaseOperations.OphalenItems();
+
+            //plaats van geselecteerd armor in datagrid
+            int initialA = dbArmor.SelectedIndex;
 
             //valideren
             string foutmeldingen = ValideerSelectie("dbArmor");
@@ -181,26 +178,26 @@ namespace Project_Destiny_WPF.UserControls
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                //
                 Armor a = dbArmor.SelectedItem as Armor;
-                lijstItems.Remove(a.Item);//Origineel item uit de lijst verwijderen voor equals
 
-                //Gegevens van objecten veranderen (item en armor)
-                a.Item.Naam = txtNaam.Text;
-                a.Item.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
-                a.ArmorSlot = cmbDbArmorSlot.SelectedItem as string;
-                a.Intellect = GeneralItems.ConversieToInt(txtIntellect.Text);
-                a.Mobility = GeneralItems.ConversieToInt(txtMobility.Text);
-                a.Recovery = GeneralItems.ConversieToInt(txtRecovery.Text);
-                a.Resilience = GeneralItems.ConversieToInt(txtResilience.Text);
-                a.Strength = GeneralItems.ConversieToInt(txtStrength.Text);
+                //Origineel item uit de lijst verwijderen voor equals
+                lijstItems.Remove(a.Item);
+
+                //Gegevens van objecten aanpassen (item en armor)
+                OpvullenArmor(a, a.Item);
 
                 if (a.Item.IsGeldig()) //Kijken als naam en zeldzaamheid zijn ingevuld
                 {
                     if (!lijstItems.Contains(a.Item)) //Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
                     {
                         int ok = DatabaseOperations.AanpassenArmor(a, a.Item);
-                        if (ok == 0)
+                        if (ok > 0)
+                        {
+                            //geselecteerde armor in dtaagrid terug op -1 zetten
+                            initialA = -1;
+                            VeldenWissen();
+                        }
+                        else
                         {
                             MessageBox.Show("Armor is niet gewijzigd!", "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
@@ -221,7 +218,8 @@ namespace Project_Destiny_WPF.UserControls
             }
 
             ZoekenArmor();
-            VeldenWissen();
+            dbArmor.SelectedIndex = initialA;
+
         }
 
         private void btnRemoveArmor_Click(object sender, RoutedEventArgs e)
@@ -229,6 +227,9 @@ namespace Project_Destiny_WPF.UserControls
             //Checken als er iets geselecteerd is in datagrid
             string foutmeldingen = ValideerSelectie("dbArmor");
             string errors = "";
+
+            //plaats in datagrid van geselecteerd armor
+            int initialA = dbArmor.SelectedIndex;
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
@@ -238,7 +239,13 @@ namespace Project_Destiny_WPF.UserControls
                     Armor a = dbArmor.SelectedItems[i] as Armor;
 
                     int ok = DatabaseOperations.VerwijderenArmor(a.Item, a);
-                    if (ok == 0)
+                    if (ok > 0)
+                    {
+                        // positie selectie resetten in datagrid
+                        initialA = -1;
+                        VeldenWissen();
+                    }
+                    else
                     {
                         //string opvullen met itemnaam als verwijderen niet gelukt is
                         errors += a.Item.Naam[i] +" is niet verwijderd!" + Environment.NewLine;
@@ -255,7 +262,7 @@ namespace Project_Destiny_WPF.UserControls
             }
 
             ZoekenArmor();
-            VeldenWissen();
+            dbArmor.SelectedIndex = initialA;
         }
 
         private string ValideerSelectie(string columnName)
@@ -284,6 +291,19 @@ namespace Project_Destiny_WPF.UserControls
             }
 
             return "";
+        }
+
+        private void OpvullenArmor(Armor a, Item i)
+        {
+            a.id = i.id;
+            i.Naam = txtNaam.Text;
+            i.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
+            a.ArmorSlot = cmbDbArmorSlot.SelectedItem as string;
+            a.Intellect = GeneralItems.ConversieToInt(txtIntellect.Text);
+            a.Mobility = GeneralItems.ConversieToInt(txtMobility.Text);
+            a.Recovery = GeneralItems.ConversieToInt(txtRecovery.Text);
+            a.Resilience = GeneralItems.ConversieToInt(txtResilience.Text);
+            a.Strength = GeneralItems.ConversieToInt(txtStrength.Text);
         }
     }
 }
