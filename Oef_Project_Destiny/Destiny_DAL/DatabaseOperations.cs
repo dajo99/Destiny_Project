@@ -443,7 +443,8 @@ namespace Destiny_DAL
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
                 return destinyEntities.Armors
-                    .Where(x => x.ArmorSlot.Contains(armorslot))
+                    .Include(x => x.Item)
+                    .Where(x => x.ArmorSlot == armorslot)
                     .Where(x => x.Item.id == x.id)
                     .Where(x => x.Item.Naam.Contains(naam))
                     .OrderBy(x => x.Item.Naam)
