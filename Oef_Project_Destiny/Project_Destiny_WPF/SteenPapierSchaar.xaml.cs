@@ -27,101 +27,86 @@ namespace Project_Destiny_WPF
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+ 
         private void BtnSchermAfsluiten_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
        
-        private void SpelSpelen(string keuze)
+        private string SpelSpelen()
+        {
+            //deze methode gaat via een random bepalen welke keuze de computer maakt en returned deze
+            Random r = new Random();
+            string antwoord = "";
+           
+
+           int  computer = r.Next(1, 4);
+
+            switch (computer)
+            {
+                case 1:
+                    antwoord = "papier";
+                    break;
+                case 2:
+                    antwoord = "steen";
+                    break;
+                case 3:
+                    antwoord = "schaar";
+                    break;
+
+              
+            }
+            return antwoord;
+
+            
+        }
+        private void ControleWinnaar(string speler, string computer)
         {
             SoundPlayer winst = new SoundPlayer("Short_triumphal_fanfare-John_Stracke-815794903.wav");
             SoundPlayer verlies = new SoundPlayer("fail-trombone-01.wav");
-            Random r = new Random();
-            int resultaat = r.Next(1, 4);
-           switch (resultaat)
+            string tekst = "";
+
+            //gaat controleren op gelijkspel
+            if (speler == computer)
             {
-                case 1:
-                    if (keuze == "Steen")
-                    {
-                        lblResultaat.Content = "De computer koos voor papier en wint,\n het level van je karakter is niet gestegen";
-                        verlies.Play();
-                    }
-                    else if(keuze == "Papier")
-                    {
-                        lblResultaat.Content = "De computer koos ook voor papier dus is het gelijk,\n het level van je karakter is niet gestegen";
-                        verlies.Play();
-                    }
-                    else
-                    {
-                        lblResultaat.Content = "Gefeliciteerd je hebt gewonnen!\n de computer koos voor papier";
-                        User.Character.Level++;
-                        winst.Play();
-                        
-                    }
-               break;
-                case 2:
-                    if (keuze == "Steen")
-                    {
-                        lblResultaat.Content = "Gefeliciteerd je hebt gewonnen!\n de computer koos voor schaar"; 
-                        User.Character.Level++;
-                        winst.Play();
-                    }
-                    else if (keuze == "Papier")
-                    {
-                        lblResultaat.Content = "De computer koos voor schaar en wint,\n het level van je karakter is niet gestegen";
-                        verlies.Play();
-                    }
-                    else
-                    {
-                        lblResultaat.Content = "De computer koos ook voor schaar dus is het gelijk,\n het level van je karakter is niet gestegen ";
-                        verlies.Play();
-                    }
-                    break;
-                case 3:
-                    if (keuze == "Steen")
-                    {
-                        lblResultaat.Content = "De computer koos voor voor steen dus is het gelijk,\n het level van je karakter is niet gestegen";
-                        verlies.Play();
-                    }
-                    else if (keuze == "Papier")
-                    {
-                        lblResultaat.Content = "Gefeliciteerd je hebt gewonnen!\n de computer koos voor steen";
-                        User.Character.Level++;
-                        winst.Play();
-                    }
-                    else
-                    {
-                        lblResultaat.Content = "De computer koos voor steen en wint,\n het level van je karakter is niet gestegen";
-                        
-                        verlies.Play();
-                        
-                    }
-                    break;
-                default:
-                    break;
+                tekst += "de computer koos ook voor " + computer + "\n het level van je karakter is niet gestegen";
+                verlies.Play();
             }
 
+            else 
+            {
+                //gaat controleren op winst zo ja dan wordt het level van het character geupdate
+                if ((speler == "papier" && computer == "steen") || (speler == "schaar" && computer == "papier") || (speler == "steen" && computer == "schaar"))
+                {
+                    tekst += "gefeliciteerd je hebt gewonnen!\nde computer koos voor " + computer;
+                    winst.Play();
+                    User.Character.Level++;
+                }
+
+                //bij verlies
+                else
+                {
+                    tekst += "de computer koos voor " + computer + " en wint\nhet level van je karakter is niet gestegen";
+                    verlies.Play();
+                }
+            }
+            lblResultaat.Content = tekst;
             lblResultaat.Content += "\n huidig level: " + User.Character.Level;
         }
-
         private void BtnPapier_Click(object sender, RoutedEventArgs e)
         {
-            SpelSpelen("Papier");
+          ControleWinnaar("papier", SpelSpelen());
+           
         }
 
         private void BtnSteen_Click(object sender, RoutedEventArgs e)
         {
-            SpelSpelen("Steen");
+          ControleWinnaar("steen", SpelSpelen());
         }
 
         private void BtnSchaar_Click(object sender, RoutedEventArgs e)
         {
-            SpelSpelen("Schaar");
+          ControleWinnaar("schaar", SpelSpelen());
         }
     }
 }

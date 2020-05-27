@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Destiny_DAL;
 using Destiny_Models;
 using Microsoft.Win32;
@@ -30,6 +21,7 @@ namespace Project_Destiny_WPF.UserControls
         }
        
         Account a;
+        //The Application.Current.MainWindow property to return a valid reference to a window somewhere in your application
         MainWindow w = (MainWindow)Application.Current.MainWindow;
 
         //lijst van regio's handmatig opvullen
@@ -64,6 +56,7 @@ namespace Project_Destiny_WPF.UserControls
 
                 if (UploadFoto.Source != null)
                 {
+                    //Het datatype in de database is varbinary dus de string moet eerst omgezet worden.
                     a.Image = Encoding.ASCII.GetBytes(op.FileName);
                 }
                              
@@ -74,12 +67,14 @@ namespace Project_Destiny_WPF.UserControls
               
                 if (a.IsGeldig())
                 {
+                    //Controle of account al aangepast is.
                     List<Account> accounts = DatabaseOperations.CheckLogin(User.Acc);
                     if (!accounts.Contains(a))
                     {
                         if (MessageBox.Show("Bent u zeker dat u deze wijzigingen wilt uitvoeren?", "Waarschuwing",
                             MessageBoxButton.OKCancel, MessageBoxImage.Warning) == MessageBoxResult.OK)
                         {
+                            //Bij een return waarde groter als nul zal er wijziging gebeurd zijn. 
                             int ok = DatabaseOperations.WijzigenAccount(a);
                             if (ok > 0)
                             {
@@ -194,7 +189,7 @@ namespace Project_Destiny_WPF.UserControls
             ResetEnables(false);
         }
 
-        //Deze klasse bekijkt opent een nieuw dialoogvenster om afbeeldingen te uploaden
+        //Deze klasse opent een nieuw dialoogvenster om afbeeldingen te uploaden
         OpenFileDialog op = new OpenFileDialog();
         private void BtnUploaden_Click(object sender, RoutedEventArgs e)
         {

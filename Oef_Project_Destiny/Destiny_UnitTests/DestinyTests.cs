@@ -10,6 +10,7 @@ namespace Destiny_UnitTests
     [TestClass]
     public class DestinyTests
     {
+        //Author = Gilles
         [TestMethod]
         public void ValideerAccountGegevens_WhenCalled_ReturnsEmptyString()
         {
@@ -24,7 +25,7 @@ namespace Destiny_UnitTests
             Assert.AreEqual("", foutmelding);
         }
 
-
+        //Author = Gilles
         [TestMethod]
         public void ValideerAccountGegevens_WhenCalled_ReturnsNotEmptyStringOnGebruikersNaam()
         {
@@ -39,6 +40,31 @@ namespace Destiny_UnitTests
             Assert.IsTrue(foutmelding != "");
         }
 
+
+        //Author = Gilles
+        [TestMethod]
+        public void CharacterToevoegen_WhenCalled_Returns0WhenPropertyHasNoValue()
+        {
+            ///arrange
+            Character c = new Character();
+            c.AccountId = 2;
+
+            // c.CharacterKlasseId LEGE PROPERTY
+            c.CharacterSubklasseId = 2;
+            //c.Face LEGE PROPERTY
+            c.Gender = "Man";
+            c.HeadOption = "kaal";
+            c.Marking = "Geen marking";
+            c.Level = 5;
+            c.RasId = 1;
+            c.id = 5;
+            ///act
+
+            int check = DatabaseOperations.CharacterToevoegen(c);
+
+            ///assert
+            Assert.AreEqual(0, check);
+        }
         //Author = Dajo
         [TestMethod]
         public void ConversieToInt_WhenCalled_ReturnsNumber()
@@ -81,9 +107,7 @@ namespace Destiny_UnitTests
             Wapen wapen = new Wapen();
             wapen.id = i.id;
             wapen.WapenklasseId = 2;
-            wapen.Wapenklasse = DatabaseOperations.OphalenWapenCategorie(wapen);
             wapen.DamagetypeId = 1;
-            wapen.Damagetype = DatabaseOperations.OphalenWapenDamagetype(wapen);
 
             ///act
             int antwoord = DatabaseOperations.ToevoegenWapen(i, wapen);
@@ -95,7 +119,7 @@ namespace Destiny_UnitTests
 
         //Author = Kevin
         [TestMethod]
-        public void ToevoegenSpecialItem_WhenCalled_ReturnZeroWhenNamesAreEqualAndRarityBothExotic()
+        public void ToevoegenSpecialItem_WhenCalled_NamesAreEqualAndRarityAreBothExotic_ReturnZero()
         {
             ///arrange
             Item i1 = new Item();
@@ -105,12 +129,10 @@ namespace Destiny_UnitTests
             SpecialItem si1= new SpecialItem();
             si1.id = i1.id;
             si1.CategorieId = 1;
-            si1.SpecialItemCategorie = DatabaseOperations.OphalenSpecialItemCategorie(si1);
 
             SpecialItem si2 = new SpecialItem();
             si2.id = i1.id;
             si2.CategorieId = 2;
-            si1.SpecialItemCategorie = DatabaseOperations.OphalenSpecialItemCategorie(si1);
 
             DatabaseOperations.ToevoegenSpecialItem(i1, si1);
 
@@ -129,7 +151,7 @@ namespace Destiny_UnitTests
 
         //Author = Kevin
         [TestMethod]
-        public void ToevoegenSpecialItem_WhenCalled_ReturnGreaterThanZeroWhenNamesAreNotEqualAndRarityNotExotic()
+        public void ToevoegenSpecialItem_WhenCalled_NamesAreNotEqualAndRarityIsNotExotic_ReturnGreaterThanZero()
         {
             ///arrange
             Item i1 = new Item();
@@ -139,7 +161,6 @@ namespace Destiny_UnitTests
             SpecialItem si1 = new SpecialItem();
             si1.id = i1.id;
             si1.CategorieId = 1;
-            si1.SpecialItemCategorie = DatabaseOperations.OphalenSpecialItemCategorie(si1);
 
             Item i2 = new Item();
             i2.Naam = "browski3";
@@ -147,7 +168,6 @@ namespace Destiny_UnitTests
             SpecialItem si2 = new SpecialItem();
             si2.id = i1.id;
             si2.CategorieId = 2;
-            si1.SpecialItemCategorie = DatabaseOperations.OphalenSpecialItemCategorie(si1);
 
             DatabaseOperations.ToevoegenSpecialItem(i1, si1);
 
@@ -167,7 +187,7 @@ namespace Destiny_UnitTests
 
         //Author = Kevin
         [TestMethod]
-        public void ToevoegenArmor_WhenCalled_ReturnAnwserGreaterThanZeroAndIntellectIsZeroWhenInputOfIntellectIsEmptyString()
+        public void ToevoegenArmor_WhenCalled_InputOfIntellectIsEmptyString_ReturnAnwserGreaterThanZeroAndIntellectIsZero()
         {
             ///arrange
             Item i = new Item();
@@ -189,7 +209,7 @@ namespace Destiny_UnitTests
 
         //Author = Kevin
         [TestMethod]
-        public void ToevoegenArmor_WhenCalled_ReturnAnwserGreaterThanZeroAndIntellectIs5WhenInputOfIntellectIs5()
+        public void ToevoegenArmor_WhenCalled_InputOfIntellectIsString5_ReturnAnwserGreaterThanZeroAndIntellectIs5()
         {
             ///arrange
             Item i = new Item();

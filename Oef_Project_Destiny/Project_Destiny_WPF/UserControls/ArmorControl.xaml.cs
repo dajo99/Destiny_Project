@@ -2,19 +2,10 @@
 using Destiny_Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace Project_Destiny_WPF.UserControls
 {
@@ -27,6 +18,8 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
+
+        List<Item> lijstItems = new List<Item>();
         private void tbZoekArmor_KeyUp(object sender, KeyEventArgs e)
         {
             ZoekenArmor();
@@ -62,7 +55,6 @@ namespace Project_Destiny_WPF.UserControls
             cmbZeldzaamheid.SelectedItem = "All";
 
             //Lijst van zeldzaamheden om een item toe te voegen
-            GeneralItems.ZeldzaamheidLijst = new List<string>() { "Common", "Uncommon", "Rare", "Legendary", "Exotic" };
             cmbDbZeldzaamheid.ItemsSource = GeneralItems.ZeldzaamheidLijst;
 
             //Lijst van armor slots 
@@ -115,7 +107,7 @@ namespace Project_Destiny_WPF.UserControls
         private void btnAddArmor_Click(object sender, RoutedEventArgs e)
         {
             ////Lijst maken van items voor equals (item controleren op zeldzaamheid en naam)
-            GeneralItems.Items = DatabaseOperations.OphalenItems();
+            lijstItems = DatabaseOperations.OphalenItems();
 
             //valideren
             string foutmeldingen = ValideerSelectie("cmbDbZeldzaamheid");
@@ -145,7 +137,7 @@ namespace Project_Destiny_WPF.UserControls
 
                 if (i.IsGeldig()) //Kijken als naam en zeldzaamheid zijn ingevuld
                 {
-                    if (!GeneralItems.Items.Contains(i))//Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
+                    if (!lijstItems.Contains(i))//Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
                     {
                         int ok = DatabaseOperations.ToevoegenArmor(i, a);
                         if (ok == 0)
@@ -175,7 +167,7 @@ namespace Project_Destiny_WPF.UserControls
         private void btnChangeArmor_Click(object sender, RoutedEventArgs e)
         {
             //Lijst maken van items voor equals (item controleren op zeldzaamheid en naam)
-            GeneralItems.Items = DatabaseOperations.OphalenItems();
+            lijstItems = DatabaseOperations.OphalenItems();
 
             //valideren
             string foutmeldingen = ValideerSelectie("dbArmor");
@@ -191,7 +183,7 @@ namespace Project_Destiny_WPF.UserControls
             {
                 //
                 Armor a = dbArmor.SelectedItem as Armor;
-                GeneralItems.Items.Remove(a.Item);//Origineel item uit de lijst verwijderen voor equals
+                lijstItems.Remove(a.Item);//Origineel item uit de lijst verwijderen voor equals
 
                 //Gegevens van objecten veranderen (item en armor)
                 a.Item.Naam = txtNaam.Text;
@@ -205,7 +197,7 @@ namespace Project_Destiny_WPF.UserControls
 
                 if (a.Item.IsGeldig()) //Kijken als naam en zeldzaamheid zijn ingevuld
                 {
-                    if (!GeneralItems.Items.Contains(a.Item)) //Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
+                    if (!lijstItems.Contains(a.Item)) //Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
                     {
                         int ok = DatabaseOperations.AanpassenArmor(a, a.Item);
                         if (ok == 0)

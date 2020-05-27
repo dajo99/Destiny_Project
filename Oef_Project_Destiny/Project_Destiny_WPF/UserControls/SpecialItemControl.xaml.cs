@@ -1,20 +1,10 @@
 ﻿using Destiny_DAL;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Destiny_Models;
 
 namespace Project_Destiny_WPF.UserControls
@@ -28,6 +18,7 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
+        List<Item> lijstItems = new List<Item>();
         List<SpecialItemCategorie> categorieLijst2 = new List<SpecialItemCategorie>();
         private void cmbCategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -64,7 +55,6 @@ namespace Project_Destiny_WPF.UserControls
             cmbZeldzaamheid.SelectedItem = "All";
 
             //Lijst van zeldzaamheden om een item toe te voegen
-            GeneralItems.ZeldzaamheidLijst = new List<string>() { "Common", "Uncommon", "Rare", "Legendary", "Exotic" };
             cmbDbZeldzaamheid.ItemsSource = GeneralItems.ZeldzaamheidLijst;
 
             //lijst van categoriën om items op te zoeken
@@ -87,7 +77,7 @@ namespace Project_Destiny_WPF.UserControls
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
             //Lijst maken van items voor equals (item controleren op zeldzaamheid en naam)
-            GeneralItems.Items = DatabaseOperations.OphalenItems();
+            lijstItems = DatabaseOperations.OphalenItems();
 
             //Valideren 
             string foutmeldingen = ValideerGegevens("cmbDbCategorie");
@@ -110,7 +100,7 @@ namespace Project_Destiny_WPF.UserControls
 
                 if (i.IsGeldig())//Kijken als naam en zeldzaamheid zijn ingevuld
                 {
-                    if (!GeneralItems.Items.Contains(i))//Kijken als er al een item bestaat met dezelfde naam en als deze exotic is
+                    if (!lijstItems.Contains(i))//Kijken als er al een item bestaat met dezelfde naam en als deze exotic is
                     {
                         int ok = DatabaseOperations.ToevoegenSpecialItem(i, si);
                         if (ok == 0)
@@ -138,9 +128,9 @@ namespace Project_Destiny_WPF.UserControls
         }
 
         private void btnChangeItem_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             //Lijst maken van items voor equals (item controleren op zeldzaamheid en naam)
-            GeneralItems.Items = DatabaseOperations.OphalenItems();
+            lijstItems = DatabaseOperations.OphalenItems();
 
             //Valideren
             string foutmeldingen = ValideerGegevens("Boost");
@@ -155,7 +145,7 @@ namespace Project_Destiny_WPF.UserControls
                 SpecialItem si = dbItems.SelectedItem as SpecialItem;
                 //SpecialItem initialSi = dbItems.SelectedItem as SpecialItem;
 
-                GeneralItems.Items.Remove(si.Item); //Origineel item uit de lijst verwijderen voor equals 
+                lijstItems.Remove(si.Item); //Origineel item uit de lijst verwijderen voor equals 
 
                 ////Gegevens van objecten veranderen (item en special item)
                 si.Item.Naam = txtNaam.Text;
@@ -170,7 +160,7 @@ namespace Project_Destiny_WPF.UserControls
                 if (si.Item.IsGeldig())//Kijken als naam en zeldzaamheid zijn ingevuld
                 {
                     
-                    if (!GeneralItems.Items.Contains(si.Item))//Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
+                    if (!lijstItems.Contains(si.Item))//Kijken als er al een item bestaat met dezelfde naam en als ze allebei exotic zijn
                     {
                         int ok = DatabaseOperations.AanpassenSpecialItems(si.Item, si);
 
