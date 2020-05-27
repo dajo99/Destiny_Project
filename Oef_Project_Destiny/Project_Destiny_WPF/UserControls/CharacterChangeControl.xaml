@@ -21,7 +21,7 @@
         <Label Content="Character-Wijzigen" FontWeight="Bold" FontSize="30" Foreground="#333333"  Margin="0,-10,0,9.8" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"/>
         <Button x:Name="btnTerug" Click="btnTerug_Click" HorizontalAlignment="Left" Margin="10"
   Style="{StaticResource MaterialDesignIconForegroundButton}"
-  ToolTip="MaterialDesignIconForegroundButton">
+  ToolTip="ga terug">
             <materialDesign:PackIcon
      Kind="ArrowBack" 
                 Height="30"
@@ -59,7 +59,7 @@
             <Label  Content="Selecteer wat je wil veranderen" Margin="20,15,0,0.4"  Foreground="White" FontSize="20" HorizontalAlignment="Left" Width="344" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
             <RadioButton Background="White" Grid.Row="1" HorizontalAlignment="Left" Margin="20,13.6,0,6.8" Height="30" Width="30" x:Name="rbMarking" Checked="rbMarking_Checked"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-            ToolTip="MaterialDesignFlatPrimaryToggleButton"
+            
                          >
                 <materialDesign:PackIcon
                          Kind="SkullCrossbonesOutline"
@@ -71,7 +71,7 @@
 
             <RadioButton Background="White" Grid.Row="1" HorizontalAlignment="Left" Margin="154,13.6,0,6.8" Height="30" Width="30" x:Name="rbHaar" Checked="rbHaar_Checked"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-            ToolTip="MaterialDesignFlatPrimaryToggleButton"
+           
                          >
                 <materialDesign:PackIcon
                          Kind="HairDryer"
@@ -85,7 +85,7 @@
 
             <RadioButton Background="White" Grid.Row="1" HorizontalAlignment="Left" Margin="33,13.6,0,6.8" Height="30" Width="30" x:Name="rbGezicht" Checked="rbGezicht_Checked"
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-            ToolTip="MaterialDesignFlatPrimaryToggleButton" Grid.Column="1"
+             Grid.Column="1"
                          >
                 <materialDesign:PackIcon
                          Kind="BabyFaceOutline"
@@ -111,7 +111,7 @@
             <Label  Content="Geef hier zelf in wat je wil veranderen &#xA;       als de keuzes je niet bevallen" Margin="10,0,0.4,0"  Foreground="Black" FontSize="20"  Width="380" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" Height="66" VerticalAlignment="Top" Grid.RowSpan="3"/>
             <RadioButton Background="Black" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Margin="20,0,0,0" Height="30" Width="30" x:Name="rbMarkingToevoegen" 
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-            ToolTip="MaterialDesignFlatPrimaryToggleButton"
+            
                          >
 
                 <materialDesign:PackIcon
@@ -123,7 +123,7 @@
 
             <RadioButton Background="Black" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Margin="25.6,2.4,0,2.8" Height="30" Width="30" x:Name="rbHaarToevoegen" 
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-            ToolTip="MaterialDesignFlatPrimaryToggleButton"
+           
                          IsChecked="False">
                 <materialDesign:PackIcon
                          Kind="HairDryer"
@@ -135,7 +135,7 @@
 
             <RadioButton Background="Black" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Margin="10.2,2.4,0,2.8" Height="30" Width="30" x:Name="rbGezichtToevoegen" 
             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
-            ToolTip="MaterialDesignFlatPrimaryToggleButton"
+            
                          IsChecked="False">
                 <materialDesign:PackIcon
                          Kind="BabyFaceOutline"
@@ -147,11 +147,11 @@
             <TextBox x:Name="txtWijziging" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" BorderBrush="Black" BorderThickness="0.5" FontSize="12" materialDesign:HintAssist.Hint="Geef hier de naam van wat je wil toevoegen in" Margin="5,17.2,5.4,74.8"/>
             <Button x:Name="btnToevoegen" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,5.4,3" Click="btnToevoegen_Click"
     Style="{StaticResource MaterialDesignRaisedButton}"
-    ToolTip="Resource name: MaterialDesignRaisedButton" Content="Eigen aanpassing opslaan" VerticalContentAlignment="Top" Background="Black" Foreground="DarkGoldenrod" VerticalAlignment="Bottom">
+     Content="Eigen aanpassing opslaan" VerticalContentAlignment="Top" Background="Black" Foreground="DarkGoldenrod" VerticalAlignment="Bottom">
             </Button>
         </Grid>
         <Button x:Name="btnOpslaan" Grid.Row="2" Click="btnOpslaan_Click"
     Style="{StaticResource MaterialDesignRaisedButton}"
-    ToolTip="Resource name: MaterialDesignRaisedButton" Content="Keuze uit de keuzebox opslaan" VerticalAlignment="Bottom"  Margin="60,0,0,10.4" HorizontalAlignment="Left" Width="340" Grid.Column="1"/>
+     Content="Keuze uit de keuzebox opslaan" VerticalAlignment="Bottom"  Margin="60,0,0,10.4" HorizontalAlignment="Left" Width="340" Grid.Column="1"/>
     </Grid>
 </UserControl>
