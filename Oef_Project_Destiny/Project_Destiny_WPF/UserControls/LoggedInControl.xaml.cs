@@ -20,17 +20,16 @@ namespace Project_Destiny_WPF.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Account a = DatabaseOperations.OphalenAccount(User.Acc.Accountnaam);
-            User.Acc = a;
-            SolidColorBrush s = new SolidColorBrush();
+            SolidColorBrush s;
 
-            switch (User.Acc.ThemaColor)
+            switch (User.Acc.ThemaColor)//Kijken welk thema de user gebruikt volgens settingscherm
             {
-                case "Teal":
-                    s = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00C7A3"));
-                    break;
                 case "DeepPurple":
                     s = new SolidColorBrush(Colors.IndianRed);
+                    break;
+
+                default :
+                    s = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF00C7A3"));//Teal
                     break;
             }
 

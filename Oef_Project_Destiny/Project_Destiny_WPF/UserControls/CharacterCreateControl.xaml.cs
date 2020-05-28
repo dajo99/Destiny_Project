@@ -215,14 +215,11 @@ namespace Project_Destiny_WPF.UserControls
                                                                  "Subklasse: " + cmbSubklasse.SelectedItem as string
                                                                 };
                 lstToon.ItemsSource = attributen;
-                if (MessageBox.Show("ben je zeker van je keuzes? druk dan op yes en de optie om je karakter aan te maken wordt ontgrendeld", "melding", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
+                if (MessageBox.Show("ben je zeker van je keuzes? druk dan op ja en de optie om je karakter aan te maken wordt ontgrendeld", "melding", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes)
                 {
                     btnAanmaken.IsEnabled = true;
                 }
-                else
-                {
-                    lstToon.Items.Clear();
-                }
+                
             }
             //als de variabele "foutmelding" niet leeg is gaat hij deze tonen in een messagebox
             else

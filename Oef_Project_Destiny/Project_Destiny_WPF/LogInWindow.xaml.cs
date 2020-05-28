@@ -39,7 +39,7 @@ namespace Project_Destiny_WPF
                 a.Accountnaam = txtGebruikersnaam.Text;
                 a.Wachtwoord = txtWachtwoord.Password;
 
-                Account b = DatabaseOperations.OphalenAccount(a.Accountnaam);
+                Account b = DatabaseOperations.OphalenAccountViaAccountnaam(a.Accountnaam);
                 if (b != null)
                 {
                     string dp = SecurePassword.DecryptString(b.Wachtwoord); //deëncrypteren van database-wachtwoord van account;

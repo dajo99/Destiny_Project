@@ -64,6 +64,9 @@ namespace Destiny_UnitTests
 
             ///assert
             Assert.AreEqual(0, check);
+
+            DatabaseOperations.CharacterVerwijderen(c);
+
         }
         //Author = Dajo
         [TestMethod]
@@ -93,6 +96,8 @@ namespace Destiny_UnitTests
 
             ///assert
             Assert.IsTrue(antwoord == 0);
+
+            DatabaseOperations.VerwijderenLocatie(locatie);
         }
 
         //Author = Dajo
@@ -114,6 +119,8 @@ namespace Destiny_UnitTests
 
             ///assert
             Assert.IsTrue(antwoord > 0);
+
+            DatabaseOperations.VerwijderenWapen(i, wapen);
         }
 
 
@@ -129,6 +136,10 @@ namespace Destiny_UnitTests
             SpecialItem si1= new SpecialItem();
             si1.id = i1.id;
             si1.CategorieId = 1;
+
+            Item i2 = new Item();
+            i1.Naam = "browsky";
+            i1.Zeldzaamheid = "Exotic";
 
             SpecialItem si2 = new SpecialItem();
             si2.id = i1.id;
@@ -147,6 +158,9 @@ namespace Destiny_UnitTests
 
             ///assert
             Assert.IsTrue(answer == 0);
+
+            DatabaseOperations.VerwijderenSpecialItem(i1, si1);
+            DatabaseOperations.VerwijderenSpecialItem(i2, si2);
         }
 
         //Author = Kevin
@@ -183,6 +197,9 @@ namespace Destiny_UnitTests
 
             ///assert
             Assert.IsTrue(answer > 0);
+
+            DatabaseOperations.VerwijderenSpecialItem(i1, si1);
+            DatabaseOperations.VerwijderenSpecialItem(i2, si2);
         }
 
         //Author = Kevin
@@ -205,6 +222,8 @@ namespace Destiny_UnitTests
 
             ///assert
             Assert.IsTrue(answer > 0 && a.Intellect == 0);
+
+            DatabaseOperations.VerwijderenArmor(i, a);
         }
 
         //Author = Kevin
@@ -227,6 +246,8 @@ namespace Destiny_UnitTests
 
             ///assert
             Assert.IsTrue(answer > 0 && a.Intellect == 5);
+
+            DatabaseOperations.VerwijderenArmor(i, a);
         }
     }
 }

@@ -58,35 +58,27 @@ namespace Project_Destiny_WPF.UserControls
                 }
 
                 //Account van user ophalen uit database
-                a = DatabaseOperations.OphalenAccount(User.Acc.Accountnaam);
+                a = DatabaseOperations.OphalenAccountViaAccountnaam(User.Acc.Accountnaam);
 
                 //Account opvullen met nieuwe invoer
                 a.ThemaFont = font;
                 a.ThemaColor = themaColor;
-
-                if (a.IsGeldig())
+                int ok = DatabaseOperations.WijzigenAccount(a);
+                if (ok > 0)
                 {
-
-                    int ok = DatabaseOperations.WijzigenAccount(a);
-                    if (ok > 0)
-                    {
-                        // User terug updaten met nieuwe gegevens
-                        User.Acc = a;
-                        //UserControl terug refreshen
-                        w.GridMain.Children.Clear();
-                        UserControl usc = new SettingsControl();
-                        w.GridMain.Children.Add(usc);
-                    }
-                    else
-                    {
-                        MessageBox.Show("De instellingen zijn niet aangepast!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-
+                    // User terug updaten met nieuwe gegevens
+                    User.Acc = a;
+                    //UserControl terug refreshen
+                    w.GridMain.Children.Clear();
+                    UserControl usc = new SettingsControl();
+                    w.GridMain.Children.Add(usc);
                 }
                 else
                 {
-                    MessageBox.Show(a.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("De instellingen zijn niet aangepast!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+
+                
             }
         }
         private void SetFont(string font)

@@ -27,7 +27,7 @@ namespace Destiny_DAL
             }
         }
 
-        public static List<Account> CheckLogin(Account a)
+        public static List<Account> OphalenAccountViaAccount(Account a)
         {
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
@@ -38,7 +38,7 @@ namespace Destiny_DAL
 
         }
 
-        public static Account OphalenAccount(string accountnaam)
+        public static Account OphalenAccountViaAccountnaam(string accountnaam)
         {
             try
             {
@@ -432,7 +432,7 @@ namespace Destiny_DAL
                     .Include(x => x.Item)
                     .Where(x => x.Item.id == x.id)
                     .Where(x => x.Item.Naam.Contains(naam) && x.Item.Zeldzaamheid == zeldzaamheid)
-                    .Where(x => x.ArmorSlot.Contains(armorslot))
+                    .Where(x => x.ArmorSlot == armorslot)
                     .OrderBy(x => x.Item.Naam)
                     .ToList();
             }
@@ -443,7 +443,8 @@ namespace Destiny_DAL
             using (DestinyEntities destinyEntities = new DestinyEntities())
             {
                 return destinyEntities.Armors
-                    .Where(x => x.ArmorSlot.Contains(armorslot))
+                    .Include(x => x.Item)
+                    .Where(x => x.ArmorSlot == armorslot)
                     .Where(x => x.Item.id == x.id)
                     .Where(x => x.Item.Naam.Contains(naam))
                     .OrderBy(x => x.Item.Naam)
@@ -687,38 +688,6 @@ namespace Destiny_DAL
             {
                 FileOperations.Foutloggen(ex);
                 return 0;
-            }
-        }
-        //---------------------------
-        //UnitTesting
-        //---------------------------
-        public static Wapenklasse OphalenWapenCategorie(Wapen wapen)
-        {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
-            {
-                return destinyEntities.Wapenklasses
-                    .Where(x => x.id == wapen.WapenklasseId)
-                    .FirstOrDefault();
-            }
-        }
-
-        public static Damagetype OphalenWapenDamagetype(Wapen wapen)
-        {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
-            {
-                return destinyEntities.Damagetypes
-                    .Where(x => x.id == wapen.DamagetypeId)
-                    .FirstOrDefault();
-            }
-        }
-
-        public static SpecialItemCategorie OphalenSpecialItemCategorie(SpecialItem sc)
-        {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
-            {
-                return destinyEntities.SpecialItemCategories
-                    .Where(x => x.id == sc.CategorieId)
-                    .FirstOrDefault();
             }
         }
     }

@@ -38,5 +38,7 @@ namespace Destiny_DAL
         {
             return -332573477 + EqualityComparer<string>.Default.GetHashCode(Accountnaam);
         }
+
+
     }
 }

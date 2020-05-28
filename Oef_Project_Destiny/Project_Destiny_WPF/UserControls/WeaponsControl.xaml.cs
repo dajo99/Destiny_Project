@@ -27,8 +27,7 @@ namespace Project_Destiny_WPF.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             //Lijst voor te zoeken op zeldzaamheid
-            List<string> zeldzaamheidlijst = new List<string>() { "All", "Common", "Uncommon", "Rare", "Legendary", "Exotic" };
-            cmbZeldzaamheid.ItemsSource = zeldzaamheidlijst;
+            cmbZeldzaamheid.ItemsSource = GeneralItems.ZeldzaamheidLijstVoorZoeken;
             cmbZeldzaamheid.SelectedItem = "All";
 
             //lijst van categoriën om wapens op te zoeken
@@ -80,9 +79,7 @@ namespace Project_Destiny_WPF.UserControls
                 cmbDbCategorie.SelectedItem = w.Wapenklasse;
                 cmbDbZeldzaamheid.SelectedItem = w.Item.Zeldzaamheid;
                 cmbDbDamageType.SelectedItem = w.Damagetype;
-               
-            }
-           
+            }         
         }
 
         private void ZoekenWapens()
@@ -108,9 +105,6 @@ namespace Project_Destiny_WPF.UserControls
             {
                 dbWapens.ItemsSource = DatabaseOperations.OphalenWapensViaNaam(tbZoekWapen.Text);
             }
-            
-
-            
         }
 
         private void btnAddWeapon_Click(object sender, RoutedEventArgs e)
@@ -126,19 +120,11 @@ namespace Project_Destiny_WPF.UserControls
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                string zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
-                Wapenklasse wk = cmbDbCategorie.SelectedItem as Wapenklasse;
-                Damagetype da = cmbDbDamageType.SelectedItem as Damagetype;
                 Item it = new Item();
                 Wapen wa = new Wapen();
-                it.Naam = txtNaam.Text;
-                it.Zeldzaamheid = zeldzaamheid;
-                wa.WapenklasseId = wk.id;
-                wa.id = it.id;
-                wa.DamagetypeId = da.id;
-                wa.Impact = GeneralItems.ConversieToInt(txtImpact.Text);
-                wa.Magazine = GeneralItems.ConversieToInt(txtMagazine.Text);
-                wa.LightAmount = GeneralItems.ConversieToInt(txtLight.Text);
+
+                OpvullenWapen(it, wa);
+
 
                 if (it.IsGeldig()) 
                 {
@@ -176,6 +162,10 @@ namespace Project_Destiny_WPF.UserControls
         private void btnChangeWeapon_Click(object sender, RoutedEventArgs e)
         {
             lijstItems = DatabaseOperations.OphalenItems();
+
+            //plaats in datagrid van geselecteerd wapen
+            int initialW = dbWapens.SelectedIndex;
+
             string foutmeldingen = Valideer("cmbDbZeldzaamheid");
             foutmeldingen += Valideer("cmbDbCategorie");
             foutmeldingen += Valideer("cmbDbDamageType");
@@ -185,24 +175,11 @@ namespace Project_Destiny_WPF.UserControls
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                Wapenklasse wk = cmbDbCategorie.SelectedItem as Wapenklasse;
-                Damagetype da = cmbDbDamageType.SelectedItem as Damagetype;
                 Wapen w = dbWapens.SelectedItem as Wapen;
+
                 lijstItems.Remove(w.Item);//Origineel item uit de lijst verwijderen voor equals
 
-                w.Item.Naam = txtNaam.Text;
-                w.Item.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
-                w.Impact = GeneralItems.ConversieToInt(txtImpact.Text);
-                w.Magazine = GeneralItems.ConversieToInt(txtMagazine.Text);
-                w.LightAmount = GeneralItems.ConversieToInt(txtLight.Text);
-
-                w.WapenklasseId = wk.id;
-                w.Wapenklasse = wk;
-                w.DamagetypeId = da.id;
-                w.Damagetype = da;
-                
-
-                
+                OpvullenWapen(w.Item, w);
 
                 if (w.Item.IsGeldig())
                 {
@@ -213,7 +190,7 @@ namespace Project_Destiny_WPF.UserControls
 
                         if (ok > 0)
                         {
-                            ZoekenWapens();
+                            initialW = -1;
                             WissenVelden();
                         }
 
@@ -238,9 +215,9 @@ namespace Project_Destiny_WPF.UserControls
             {
                 MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            ZoekenWapens();
-            WissenVelden();
 
+            ZoekenWapens();
+            dbWapens.SelectedIndex = initialW;
         }
 
         private void btnRemoveWeapon_Click(object sender, RoutedEventArgs e)
@@ -249,6 +226,8 @@ namespace Project_Destiny_WPF.UserControls
             string foutmeldingen = Valideer("dbWapens");
             string errors = "";
 
+            int initialW = dbWapens.SelectedIndex;
+
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 //Zorgen dat men meerdere items kan verwijderen uit database
@@ -256,7 +235,12 @@ namespace Project_Destiny_WPF.UserControls
                 {
                     Wapen w = dbWapens.SelectedItems[i] as Wapen;
                     int ok = DatabaseOperations.VerwijderenWapen(w.Item, w);
-                    if (ok == 0)
+                    if (ok > 0)
+                    {
+                        initialW = -1;
+                        WissenVelden();
+                    }
+                    else
                     {
                         //string opvullen met itemnaam als verwijderen niet gelukt is
                         errors += w.Item.Naam[i] + " is niet verwijderd!" + Environment.NewLine;
@@ -273,7 +257,7 @@ namespace Project_Destiny_WPF.UserControls
             }
 
             ZoekenWapens();
-            WissenVelden();
+            dbWapens.SelectedIndex = initialW;
         }
 
         private string Valideer(string columnName)
@@ -318,9 +302,21 @@ namespace Project_Destiny_WPF.UserControls
             cmbDbZeldzaamheid.SelectedIndex = -1;
             cmbDbCategorie.SelectedIndex = -1;
             cmbDbDamageType.SelectedIndex = -1;
-
         }
 
+        private void OpvullenWapen(Item i, Wapen w)
+        {
+            Wapenklasse wk = cmbDbCategorie.SelectedItem as Wapenklasse;
+            Damagetype dt = cmbDbDamageType.SelectedItem as Damagetype;
 
+            i.id = w.id;
+            i.Naam = txtNaam.Text;
+            i.Zeldzaamheid = cmbDbZeldzaamheid.SelectedItem as string;
+            w.Impact = GeneralItems.ConversieToInt(txtImpact.Text);
+            w.Magazine = GeneralItems.ConversieToInt(txtMagazine.Text);
+            w.LightAmount = GeneralItems.ConversieToInt(txtLight.Text);
+            w.WapenklasseId = wk.id;
+            w.DamagetypeId = dt.id;
+        }
     }
 }
