@@ -45,7 +45,7 @@ namespace Project_Destiny_WPF.UserControls
             a.Accountnaam = txtProfielnaam.Text;
             a.Achternaam = txtAchternaam.Text;
             a.Voornaam = txtVoornaam.Text;
-            a.Mail = txtMail.Text;
+            a.Mail = User.DomeinNaarLowerCase(txtMail.Text); // Domein van mailaccount is case insensitive
             a.Wachtwoord = txtWachtwoord.Password;
 
             if (UploadFoto.Source != null)
@@ -92,6 +92,9 @@ namespace Project_Destiny_WPF.UserControls
                                     //Bitmap instantie maken om afbeeldingbestand te lezen
                                     w.ProfileImage.Source = new BitmapImage(new Uri(op.FileName));
                                 }
+
+                                ResetInputs();
+                                ResetEnables(true);
                             }
                             else
                             {
@@ -114,8 +117,7 @@ namespace Project_Destiny_WPF.UserControls
                 MessageBox.Show(a.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            ResetInputs();
-            ResetEnables(true);
+            
         }
 
         private void ResetEnables(bool initial)
@@ -130,10 +132,12 @@ namespace Project_Destiny_WPF.UserControls
                 txtProfielnaam.IsEnabled = false;
                 txtWachtwoord.IsEnabled = false;
                 btnOpslaan.IsEnabled = false;
-                btnWijzigen.IsEnabled = true;
                 BtnUploaden.IsEnabled = false;
+                
                 lblHerhaalWachtwoord.Visibility = Visibility.Hidden;
                 txtHerhaalWachtwoord.Visibility = Visibility.Hidden;
+                btnWijzigen.Visibility = Visibility.Visible;
+                btnAnnuleren.Visibility = Visibility.Hidden;
             }
             //2de staat 
             else
@@ -145,10 +149,12 @@ namespace Project_Destiny_WPF.UserControls
                 txtProfielnaam.IsEnabled = true;
                 txtWachtwoord.IsEnabled = true;
                 btnOpslaan.IsEnabled = true;
-                btnWijzigen.IsEnabled = false;
                 BtnUploaden.IsEnabled = true;
+
                 lblHerhaalWachtwoord.Visibility = Visibility.Visible;
                 txtHerhaalWachtwoord.Visibility = Visibility.Visible;
+                btnWijzigen.Visibility = Visibility.Hidden;
+                btnAnnuleren.Visibility = Visibility.Visible;
             }
 
         }
@@ -205,6 +211,12 @@ namespace Project_Destiny_WPF.UserControls
             {
                 UploadFoto.Source = new BitmapImage(new Uri(op.FileName));
             }
+        }
+
+        private void btnAnnuleren_Click(object sender, RoutedEventArgs e)
+        {
+            ResetInputs();
+            ResetEnables(true);
         }
     }
 }

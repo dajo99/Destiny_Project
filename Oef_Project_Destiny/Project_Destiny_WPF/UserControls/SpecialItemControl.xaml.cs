@@ -134,7 +134,6 @@ namespace Project_Destiny_WPF.UserControls
             //Valideren
             string foutmeldingen = ValideerGegevens("Boost");
             foutmeldingen += ValideerGegevens("Durability");
-            foutmeldingen += ValideerGegevens("cmbDbCategorie");
             foutmeldingen += ValideerGegevens("dbItems");
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
