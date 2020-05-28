@@ -98,9 +98,13 @@ namespace Project_Destiny_WPF.UserControls
             if (dtgKarakters.SelectedItem is Character character)
             {
                 //gaat de returnwaarde van de savechanges opvangen
-                int ok = DatabaseOperations.CharacterVerwijderen(character);
-                //controleerd of de returnwaarde van savechanges groter is dan 0
-                if (ok > 0)
+                
+                if (MessageBox.Show("bent u zeker dat u het karakter wilt verwijderen?", "bevestiging", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes )
+                {
+
+                    int ok = DatabaseOperations.CharacterVerwijderen(character);
+                    //controleerd of de returnwaarde van savechanges groter is dan 0
+                    if (ok > 0)
                 {
                     MessageBox.Show("Karakter is succesvol verwijderd!", "succes", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -110,7 +114,9 @@ namespace Project_Destiny_WPF.UserControls
                 //als het verwijderen niet is gelukt
                 else
                 {
-                    MessageBox.Show("niet verwijderd");
+                    MessageBox.Show("karakter is niet verwijderd!");
+                }
+
                 }
             }
             //als er geen karakter geselecteerd is
