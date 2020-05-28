@@ -27,8 +27,7 @@ namespace Project_Destiny_WPF.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             //Lijst voor te zoeken op zeldzaamheid
-            List<string> zeldzaamheidlijst = new List<string>() { "All", "Common", "Uncommon", "Rare", "Legendary", "Exotic" };
-            cmbZeldzaamheid.ItemsSource = zeldzaamheidlijst;
+            cmbZeldzaamheid.ItemsSource = GeneralItems.ZeldzaamheidLijstVoorZoeken;
             cmbZeldzaamheid.SelectedItem = "All";
 
             //lijst van categoriën om wapens op te zoeken

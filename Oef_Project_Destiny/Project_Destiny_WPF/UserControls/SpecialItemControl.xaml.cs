@@ -19,7 +19,7 @@ namespace Project_Destiny_WPF.UserControls
             InitializeComponent();
         }
         List<Item> lijstItems = new List<Item>();
-        List<SpecialItemCategorie> categorieLijst2 = new List<SpecialItemCategorie>();
+
         private void cmbCategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ZoekenItems();
@@ -50,25 +50,24 @@ namespace Project_Destiny_WPF.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             //Lijst voor te zoeken op zeldzaamheid
-            List<string> zeldzaamheidlijst = new List<string>() { "All", "Common", "Uncommon", "Rare", "Legendary", "Exotic" };
-            cmbZeldzaamheid.ItemsSource = zeldzaamheidlijst;
+            cmbZeldzaamheid.ItemsSource = GeneralItems.ZeldzaamheidLijstVoorZoeken;
             cmbZeldzaamheid.SelectedItem = "All";
 
             //Lijst van zeldzaamheden om een item toe te voegen
             cmbDbZeldzaamheid.ItemsSource = GeneralItems.ZeldzaamheidLijst;
 
             //lijst van categoriën om items op te zoeken
-            List<SpecialItemCategorie> categorieLijst = DatabaseOperations.OphalenSpecialItemCategories();
+            List<SpecialItemCategorie> categorieLijstZoeken = DatabaseOperations.OphalenSpecialItemCategories();
             SpecialItemCategorie categorie = new SpecialItemCategorie();
             categorie.Naam = "All";
-            categorieLijst.Insert(0, categorie);
-            cmbCategorie.ItemsSource = categorieLijst;
+            categorieLijstZoeken.Insert(0, categorie);
+            cmbCategorie.ItemsSource = categorieLijstZoeken;
             cmbCategorie.DisplayMemberPath = "Naam";
             cmbCategorie.SelectedIndex = 0;
 
             //lijst van categoriën om een item toe te voegen
-            categorieLijst2 = DatabaseOperations.OphalenSpecialItemCategories();
-            cmbDbCategorie.ItemsSource = categorieLijst2;
+            List<SpecialItemCategorie> categorieLijst = DatabaseOperations.OphalenSpecialItemCategories();
+            cmbDbCategorie.ItemsSource = categorieLijst;
             cmbDbCategorie.DisplayMemberPath = "Naam";
 
             ZoekenItems();
