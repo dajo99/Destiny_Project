@@ -28,30 +28,24 @@ namespace Project_Destiny_WPF
 
         private void BtnRegistreren_Click(object sender, RoutedEventArgs e)
         {
-            string foutmeldingen = ValidateAccount.ValideerAccountGegevens(txtWachtwoord.Password, txtGebruikersnaam.Text, txtEmailadres.Text, txtHerhaalWachtwoord.Password); ;
-            if (string.IsNullOrWhiteSpace(foutmeldingen))
-            {
-                //nieuw account aanmaken en invoergegevens erin zetten
-                Account a = new Account();
-                a.Accountnaam = txtGebruikersnaam.Text;
-                a.Mail = txtEmailadres.Text;
-                //wachtwoord encrypteren 
-                string ep = SecurePassword.EncryptString(txtWachtwoord.Password);
-                a.Wachtwoord = ep;
-                a.ThemaColor = "Teal";
-                a.ThemaFont = "Segoe UI";
+            //nieuw account aanmaken en invoergegevens erin zetten
+            Account a = new Account();
+            a.Accountnaam = txtGebruikersnaam.Text;
+            a.Mail = txtEmailadres.Text;
+            a.Wachtwoord = txtWachtwoord.Password;
+            a.ThemaColor = "Teal";
+            a.ThemaFont = "Segoe UI";
 
-                if (a.IsGeldig())
+            if (a.IsGeldig())
+            {
+                if (a.Wachtwoord == txtHerhaalWachtwoord.Password)
                 {
+                    //wachtwoord encrypteren 
+                    a.Wachtwoord = SecurePassword.EncryptString(a.Wachtwoord);
+
                     // Lijst maken met alle accounts maken   
                     //Nieuw account als paramater is nodig zodat ik geen 2de methode moet aanmaken om een lijst van accounts op te vullen (om account te wijzigen heb je een paramter nodig)
-                    List<Account> accounts = DatabaseOperations.OphalenAccountViaAccount(new Account()); 
-                    
-                    //debug voor te zien wat er in de lijst zit
-                    foreach (var item in accounts)
-                    {
-                        Debug.WriteLine(item.Accountnaam);
-                    }
+                    List<Account> accounts = DatabaseOperations.OphalenAccountViaAccount(new Account());
 
                     if (!accounts.Contains(a))//Kijken als er al een acocunt met deze accountnaam in database zit
                     {
@@ -81,16 +75,15 @@ namespace Project_Destiny_WPF
                     {
                         MessageBox.Show(a.Accountnaam + " is al in gebruik!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-
                 }
                 else
                 {
-                    MessageBox.Show(a.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Wachtwoorden komen niet overeen!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show(foutmeldingen, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(a.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

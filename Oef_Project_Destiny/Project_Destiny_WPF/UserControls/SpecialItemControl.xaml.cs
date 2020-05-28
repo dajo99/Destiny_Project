@@ -1,7 +1,6 @@
 ﻿using Destiny_DAL;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -18,6 +17,7 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
+
         List<Item> lijstItems = new List<Item>();
 
         private void cmbCategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -231,6 +231,8 @@ namespace Project_Destiny_WPF.UserControls
         }
         private string ValideerGegevens(string columnName)
         {
+            int max = 100;
+
             if (columnName == "dbItems" && dbItems.SelectedItem == null)
             {
                 return "Selecteer een item!" + Environment.NewLine;
@@ -240,14 +242,14 @@ namespace Project_Destiny_WPF.UserControls
                 return "Selecteer een categorie!" + Environment.NewLine;
             }
             if (columnName == "Boost" && !string.IsNullOrWhiteSpace(txtBoost.Text) 
-                && int.TryParse(txtBoost.Text, out int boost) && (boost < 0 || boost > 100))
+                && int.TryParse(txtBoost.Text, out int boost) && (boost < 0 || boost > max))
             {
-                return "Boost moet een positief nummeriek getal zijn onder de 100!" + Environment.NewLine;
+                return "Boost moet een positief nummeriek getal zijn onder de " + max + "!" + Environment.NewLine;
             }
             if (columnName == "Durability" && !string.IsNullOrWhiteSpace(txtDurability.Text) 
-                && int.TryParse(txtDurability.Text, out int durability) && (durability < 0 || durability > 100))
+                && int.TryParse(txtDurability.Text, out int durability) && (durability < 0 || durability > max))
             {
-                return "Durability moet een positief nummeriek getal zijn onder de 100!" + Environment.NewLine;
+                return "Durability moet een positief nummeriek getal zijn onder de " + max + "!" + Environment.NewLine;
             }
             return "";
         }
@@ -264,7 +266,7 @@ namespace Project_Destiny_WPF.UserControls
             SpecialItemCategorie categorie = cmbCategorie.SelectedItem as SpecialItemCategorie;
             string zeldzaamheid = cmbZeldzaamheid.SelectedItem as string;
 
-            //kijken als "All" geselecteerd is in de comboboxen of als er andere zoekcriteria zijn
+            //kijken als "All" geselecteerd is in de comboboxen en zoeken op alle ingevulde zoekcriteria
             if (categorie != null && cmbCategorie.SelectedIndex != 0 && cmbZeldzaamheid.SelectedIndex != 0)
             {
                 dbItems.ItemsSource = DatabaseOperations.OphalenSpecialItemsViaCategorieEnZeldzaamheid(tbZoekItem.Text, categorie.id, zeldzaamheid);

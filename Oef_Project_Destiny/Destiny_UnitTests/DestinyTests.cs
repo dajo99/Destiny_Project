@@ -16,10 +16,13 @@ namespace Destiny_UnitTests
         {
             ///arrange
             string foutmelding = "";
-
+            Account a = new Account() { Wachtwoord = "blabla", Accountnaam = "wawawa", Mail = "gillesekegui@hotmail.com"};
             ///act
 
-            foutmelding = ValidateAccount.ValideerAccountGegevens("blabla", "wawawa", "gillesekegui@hotmail.com", "blabla");
+            if (!a.IsGeldig())
+            {
+                foutmelding = a.Error;
+            }
 
             ///assert
             Assert.AreEqual("", foutmelding);
@@ -31,10 +34,13 @@ namespace Destiny_UnitTests
         {
             ///arrange
             string foutmelding = "";
+            Account a = new Account() { Wachtwoord = "blabla", Accountnaam = "", Mail = "gillesekegui@hotmail.com" };
 
             ///act
-
-            foutmelding = ValidateAccount.ValideerAccountGegevens("blabla", "", "gillesekegui@hotmail.com", "blabla");
+            if (! a.IsGeldig())
+            {
+                foutmelding = a.Error;
+            }
 
             ///assert
             Assert.IsTrue(foutmelding != "");

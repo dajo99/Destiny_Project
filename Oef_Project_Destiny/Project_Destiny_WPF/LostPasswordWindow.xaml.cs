@@ -29,31 +29,31 @@ namespace Project_Destiny_WPF
             //Valideren of tekstvakken zijn ingevuld
             string foutmeldingen = ValiderenGegevens();
             
-            //instantie aanmaken en opvullen met tekstvak gegevens
+            //instantie aanmaken en opvullen met tekstvakken
             Account a = new Account();
             a.Accountnaam = txtGebruikersnaam.Text;
             a.Mail = txtMail.Text;
 
             //2de instantie aanmaken om te kijken als het account bestaat in database
-            Account b = DatabaseOperations.OphalenAccountViaAccountnaam(txtGebruikersnaam.Text);
+            Account user = DatabaseOperations.OphalenAccountViaAccountnaam(txtGebruikersnaam.Text);
 
             //Account van de admin ophalen om wachtwoord in te stellen van ons mailadres om mail te versturen
-            Account c = DatabaseOperations.OphalenAccountViaAccountnaam("Admin");
+            Account admin = DatabaseOperations.OphalenAccountViaAccountnaam("Admin");
 
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                if (b != null)
+                if (user != null)
                 {
                     //nodig indien de mail niet verstuurt wordt dat men de verandering van wachtwoord ongedaan kan maken
-                    a.Wachtwoord = b.Wachtwoord;
+                    a.Wachtwoord = user.Wachtwoord;
 
-                    if (a.Mail == b.Mail)
+                    if (a.Mail == user.Mail)
                     {
                         //Nieuw wachtwoord instellen 
                         string wachtwoord = CreatePassword(10);
-                        b.Wachtwoord = SecurePassword.EncryptString(wachtwoord);
+                        user.Wachtwoord = SecurePassword.EncryptString(wachtwoord);
 
-                        int ok = DatabaseOperations.WijzigenAccount(b);
+                        int ok = DatabaseOperations.WijzigenAccount(user);
                         if (ok > 0)
                         {
                             try
@@ -61,12 +61,12 @@ namespace Project_Destiny_WPF
                                 //mail opstellen en versturen + venster sluiten
                                 string message = "Geachte gebruiker\n\n" +
                                     "U ontvangt deze e-mail omdat u een aanvraag hebt gedaan om uw wachtwoord van uw Destiny-Account opnieuw in te stellen." +
-                                    " \n\nNieuw wachtwoord: " + wachtwoord +
+                                    "\n\nNieuw wachtwoord: " + wachtwoord +
                                     "\n\nMet vriendelijke groeten\nHet Destiny-Team";
 
-                                CreateMailMessage(message, b.Mail, c);
+                                CreateMailMessage(message, admin, user);
 
-                                MessageBox.Show("Er is een mail verstuurd naar " + b.Mail, "Mail verzonden", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show("Er is een mail verstuurd naar " + user.Mail, "Mail verzonden", MessageBoxButton.OK, MessageBoxImage.Information);
 
                                 ClosingWindow();
 
@@ -74,8 +74,8 @@ namespace Project_Destiny_WPF
                             catch (Exception ex)
                             {
                                 //Terug het origineel wachtwoord instellen als de mail niet verstuurt is
-                                b.Wachtwoord = a.Wachtwoord;
-                                DatabaseOperations.WijzigenAccount(b);
+                                user.Wachtwoord = a.Wachtwoord;
+                                DatabaseOperations.WijzigenAccount(user);
 
                                 MessageBox.Show("Er is iets fout gelopen bij het verzenden van de mail!", "Verzenden mislukt!", MessageBoxButton.OK, MessageBoxImage.Error);
                                 FileOperations.Foutloggen(ex);
@@ -121,10 +121,10 @@ namespace Project_Destiny_WPF
             return foutmeldingen;
         }
 
-        private void CreateMailMessage(string emailBody, string uMail, Account a)
+        private void CreateMailMessage(string emailBody, Account admin, Account uMail)
         {
-            var from = new MailAddress(a.Mail);
-            var to = new MailAddress(uMail);
+            var from = new MailAddress(admin.Mail);
+            var to = new MailAddress(uMail.Mail);
             MailMessage message = new MailMessage(from, to);
             message.Subject = "Wachtwoord gewijzigd";
             message.Body = emailBody;
@@ -136,10 +136,10 @@ namespace Project_Destiny_WPF
             client.UseDefaultCredentials = false;
             client.Credentials = new System.Net.NetworkCredential()
             {
-                UserName = a.Mail.ToString(),
-                Password = SecurePassword.DecryptString(a.Wachtwoord)
+                UserName = admin.Mail.ToString(),
+                Password = SecurePassword.DecryptString(admin.Wachtwoord)
             };
-            //Secure Sockets Layer enbalen voor betere beveiliging
+            //Secure Sockets Layer mogelijk maken voor betere beveiliging
             client.EnableSsl = true;
 
             //mail verzenden
@@ -155,7 +155,7 @@ namespace Project_Destiny_WPF
 
             while (count <= length)
             {
-                // op het einde telkens 1 random character toevoegen van de variabele chars 
+                // op het einde telkens 1 random character toevoegen van de variabele chars aan de builder
                 res.Append(chars[r.Next(chars.Length)]);
                 count++;
             }
