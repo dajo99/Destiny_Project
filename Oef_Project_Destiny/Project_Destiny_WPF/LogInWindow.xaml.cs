@@ -59,8 +59,8 @@ namespace Project_Destiny_WPF
                         }
 
                         //gaat aanpassingen doen in app.xaml
-                        System.Windows.Application.Current.Resources.MergedDictionaries.RemoveAt(3);
-                        System.Windows.Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
+                        Application.Current.Resources.MergedDictionaries.RemoveAt(3);
+                        Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
 
                         this.Close();
                         w.Accountnaam.Content = b.Accountnaam;
@@ -167,8 +167,8 @@ namespace Project_Destiny_WPF
 
             }
             //gaat aanpassingen doen in app.xaml
-            System.Windows.Application.Current.Resources.MergedDictionaries.RemoveAt(3);
-            System.Windows.Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
+            Application.Current.Resources.MergedDictionaries.RemoveAt(3);
+            Application.Current.Resources.MergedDictionaries.Insert(3, new ResourceDictionary() { Source = uri });
         }
 
 

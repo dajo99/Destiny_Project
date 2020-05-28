@@ -1,21 +1,9 @@
-﻿using System;
-using System.Media;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Project_Destiny_WPF.UserControls;
 using Destiny_DAL;
 using Destiny_Models;
+
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
@@ -98,9 +86,13 @@ namespace Project_Destiny_WPF.UserControls
             if (dtgKarakters.SelectedItem is Character character)
             {
                 //gaat de returnwaarde van de savechanges opvangen
-                int ok = DatabaseOperations.CharacterVerwijderen(character);
-                //controleerd of de returnwaarde van savechanges groter is dan 0
-                if (ok > 0)
+                
+                if (MessageBox.Show("bent u zeker dat u het karakter wilt verwijderen?", "bevestiging", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes )
+                {
+
+                    int ok = DatabaseOperations.CharacterVerwijderen(character);
+                    //controleerd of de returnwaarde van savechanges groter is dan 0
+                    if (ok > 0)
                 {
                     MessageBox.Show("Karakter is succesvol verwijderd!", "succes", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -110,7 +102,9 @@ namespace Project_Destiny_WPF.UserControls
                 //als het verwijderen niet is gelukt
                 else
                 {
-                    MessageBox.Show("niet verwijderd");
+                    MessageBox.Show("karakter is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
                 }
             }
             //als er geen karakter geselecteerd is

@@ -19,7 +19,7 @@ namespace Project_Destiny_WPF.UserControls
         {
             InitializeComponent();
         }
-       
+
         Account a;
         //The Application.Current.MainWindow property to return a valid reference to a window somewhere in your application
         MainWindow w = (MainWindow)Application.Current.MainWindow;
@@ -38,35 +38,34 @@ namespace Project_Destiny_WPF.UserControls
 
         private void btnOpslaan_Click(object sender, RoutedEventArgs e)
         {
-            //Valideren
-            string foutmeldingen = ValidateAccount.ValideerAccountGegevens(txtWachtwoord.Password,
-                txtProfielnaam.Text, txtMail.Text, txtHerhaalWachtwoord.Password);
+            //Account van user ophalen uit database
+            a = DatabaseOperations.OphalenAccountViaAccountnaam(User.Acc.Accountnaam);
 
-            if (string.IsNullOrWhiteSpace(foutmeldingen))
+            //Account opvullen met nieuwe invoer
+            a.Accountnaam = txtProfielnaam.Text;
+            a.Achternaam = txtAchternaam.Text;
+            a.Voornaam = txtVoornaam.Text;
+            a.Mail = User.DomeinNaarLowerCase(txtMail.Text); // Domein van mailaccount is case insensitive
+            a.Wachtwoord = txtWachtwoord.Password;
+
+            if (UploadFoto.Source != null)
             {
-                //Account van user ophalen uit database
-                a = DatabaseOperations.OphalenAccountViaAccountnaam(User.Acc.Accountnaam);
+                //Het datatype in de database is varbinary dus de string moet eerst omgezet worden.
+                a.Image = Encoding.ASCII.GetBytes(op.FileName);
+            }
 
-                //Account opvullen met nieuwe invoer
-                a.Accountnaam = txtProfielnaam.Text;
-                a.Achternaam = txtAchternaam.Text;
-                a.Voornaam = txtVoornaam.Text;
-                a.Mail = txtMail.Text;
-                a.Wachtwoord = SecurePassword.EncryptString(txtWachtwoord.Password);
+            if (cmbRegio.SelectedItem is string regio)
+            {
+                a.Regio = regio;
+            }
 
-                if (UploadFoto.Source != null)
+            if (a.IsGeldig())
+            {
+                if (a.Wachtwoord == txtHerhaalWachtwoord.Password)
                 {
-                    //Het datatype in de database is varbinary dus de string moet eerst omgezet worden.
-                    a.Image = Encoding.ASCII.GetBytes(op.FileName);
-                }
-                             
-                if (cmbRegio.SelectedItem is string regio)
-                {
-                    a.Regio = regio;
-                }
-              
-                if (a.IsGeldig())
-                {
+                    //Wachtwoord encrypteren
+                    a.Wachtwoord = SecurePassword.EncryptString(a.Wachtwoord);
+
                     //Controle of account al aangepast is.
                     List<Account> accounts = DatabaseOperations.OphalenAccountViaAccount(User.Acc);
                     if (!accounts.Contains(a))
@@ -81,6 +80,8 @@ namespace Project_Destiny_WPF.UserControls
                                 // User terug updaten met nieuwe gegevens
                                 User.Acc = a;
 
+                                w.Accountnaam.Content = User.Acc.Accountnaam;// als accountnaam veranderd is, naam terug aanpassen in menubalke vanboven
+
                                 //UserControl terug refreshen
                                 w.GridMain.Children.Clear();
                                 UserControl usc = new AccountControl();
@@ -90,7 +91,10 @@ namespace Project_Destiny_WPF.UserControls
                                 {
                                     //Bitmap instantie maken om afbeeldingbestand te lezen
                                     w.ProfileImage.Source = new BitmapImage(new Uri(op.FileName));
-                                }                
+                                }
+
+                                ResetInputs();
+                                ResetEnables(true);
                             }
                             else
                             {
@@ -105,16 +109,15 @@ namespace Project_Destiny_WPF.UserControls
                 }
                 else
                 {
-                    MessageBox.Show(a.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Wachtwoorden komen niet overeen!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show(foutmeldingen, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(a.Error, "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            ResetInputs();
-            ResetEnables(true);
+            
         }
 
         private void ResetEnables(bool initial)
@@ -129,10 +132,12 @@ namespace Project_Destiny_WPF.UserControls
                 txtProfielnaam.IsEnabled = false;
                 txtWachtwoord.IsEnabled = false;
                 btnOpslaan.IsEnabled = false;
-                btnWijzigen.IsEnabled = true;
                 BtnUploaden.IsEnabled = false;
+                
                 lblHerhaalWachtwoord.Visibility = Visibility.Hidden;
                 txtHerhaalWachtwoord.Visibility = Visibility.Hidden;
+                btnWijzigen.Visibility = Visibility.Visible;
+                btnAnnuleren.Visibility = Visibility.Hidden;
             }
             //2de staat 
             else
@@ -144,10 +149,12 @@ namespace Project_Destiny_WPF.UserControls
                 txtProfielnaam.IsEnabled = true;
                 txtWachtwoord.IsEnabled = true;
                 btnOpslaan.IsEnabled = true;
-                btnWijzigen.IsEnabled = false;
                 BtnUploaden.IsEnabled = true;
+
                 lblHerhaalWachtwoord.Visibility = Visibility.Visible;
                 txtHerhaalWachtwoord.Visibility = Visibility.Visible;
+                btnWijzigen.Visibility = Visibility.Hidden;
+                btnAnnuleren.Visibility = Visibility.Visible;
             }
 
         }
@@ -181,7 +188,7 @@ namespace Project_Destiny_WPF.UserControls
                 {
                     MessageBox.Show("Uw account is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-            }            
+            }
         }
 
         private void btnWijzigen_Click(object sender, RoutedEventArgs e)
@@ -194,7 +201,7 @@ namespace Project_Destiny_WPF.UserControls
         private void BtnUploaden_Click(object sender, RoutedEventArgs e)
         {
             //titel geven aan dialoogvenster
-            op.Title = "Select a picture"; 
+            op.Title = "Select a picture";
             //Zorgen dat er alleen ondersteunde bestandstypes geupload kunnen worden
             op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
               "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
@@ -204,6 +211,12 @@ namespace Project_Destiny_WPF.UserControls
             {
                 UploadFoto.Source = new BitmapImage(new Uri(op.FileName));
             }
+        }
+
+        private void btnAnnuleren_Click(object sender, RoutedEventArgs e)
+        {
+            ResetInputs();
+            ResetEnables(true);
         }
     }
 }

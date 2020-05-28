@@ -1,25 +1,11 @@
 ﻿using Destiny_Models;
 using Project_Destiny_WPF.UserControls;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Win32;
-
-
 
 namespace Project_Destiny_WPF
 {
@@ -39,15 +25,18 @@ namespace Project_Destiny_WPF
 
         private void mouse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            //Zorgen dat window verplaatst kan worden
             OnMouseLeftButtonDown(e);
-            this.DragMove();
+            this.DragMove(); 
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //Nieuw scherm oproepen
             GridMain.Children.Clear();
             usc = new WelcomeControl();
             GridMain.Children.Add(usc);
+
             BtnRegistreren.IsEnabled = true;
             BtnInloggen.IsEnabled = true;
             ListViewMenu.IsEnabled = false;
@@ -55,11 +44,13 @@ namespace Project_Destiny_WPF
 
         private void ButtonMenu_Click(object sender, RoutedEventArgs e)
         {
+            //menu vergroten
             if (StateClosed)
             {
                 Storyboard sb = this.FindResource("OpenMenu") as Storyboard;
                 sb.Begin();
             }
+            //Menu verkleinen
             else
             {
                 Storyboard sb = this.FindResource("CloseMenu") as Storyboard;
@@ -71,7 +62,10 @@ namespace Project_Destiny_WPF
 
         public void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //Alle displays wissen
             GridMain.Children.Clear();
+
+            //Kijken welke selectie is gemaakt in listviewmenu en scherm oproepen
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "Character":
@@ -130,9 +124,9 @@ namespace Project_Destiny_WPF
         {
             var item = sender as ListViewItem;
             GridMain.Children.Clear();
-            if (item != null && item.IsSelected)
+            if (item != null && item.IsSelected) 
             {
-                switch (item.Name)
+                switch (item.Name) //Kijken welke selectie is gemaakt in listviewmenu en scherm oproepen
                 {
                     case "Character":
                         usc = new CharacterControl();
@@ -183,21 +177,29 @@ namespace Project_Destiny_WPF
 
         private void btnAfmelden_Click(object sender, RoutedEventArgs e)
         {
-            User.Acc = null;
             var bc = new BrushConverter();
-            GridMain.Children.Clear();
-            usc = new WelcomeControl();
-            GridMain.Children.Add(usc);
+
+            //User en profielfoto leegmaken
+            User.Acc = null;
             ProfileImage.Source = null;
+
+            //knoppen enablen
             BtnRegistreren.IsEnabled = true;
             BtnInloggen.IsEnabled = true;
             ListViewMenu.IsEnabled = false;
             Accountpanel.Visibility = Visibility.Hidden;
             Loginpanel.Visibility = Visibility.Visible;
+
+            //menu terug aanpassen
             GridNav.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
             GridMenu.Background = (Brush)bc.ConvertFrom("#FF00C7A3");
             App.Current.Resources["font"] = new FontFamily("Segoe UI");
             Uri uri = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Teal.xaml");
+
+            //Nieuw scherm oproepen
+            GridMain.Children.Clear();
+            usc = new WelcomeControl();
+            GridMain.Children.Add(usc);
         }
 
        

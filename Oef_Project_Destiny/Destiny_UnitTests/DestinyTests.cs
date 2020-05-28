@@ -16,10 +16,13 @@ namespace Destiny_UnitTests
         {
             ///arrange
             string foutmelding = "";
-
+            Account a = new Account() { Wachtwoord = "blabla", Accountnaam = "wawawa", Mail = "gillesekegui@hotmail.com"};
             ///act
 
-            foutmelding = ValidateAccount.ValideerAccountGegevens("blabla", "wawawa", "gillesekegui@hotmail.com", "blabla");
+            if (!a.IsGeldig())
+            {
+                foutmelding = a.Error;
+            }
 
             ///assert
             Assert.AreEqual("", foutmelding);
@@ -31,10 +34,13 @@ namespace Destiny_UnitTests
         {
             ///arrange
             string foutmelding = "";
+            Account a = new Account() { Wachtwoord = "blabla", Accountnaam = "", Mail = "gillesekegui@hotmail.com" };
 
             ///act
-
-            foutmelding = ValidateAccount.ValideerAccountGegevens("blabla", "", "gillesekegui@hotmail.com", "blabla");
+            if (! a.IsGeldig())
+            {
+                foutmelding = a.Error;
+            }
 
             ///assert
             Assert.IsTrue(foutmelding != "");
@@ -159,6 +165,7 @@ namespace Destiny_UnitTests
             ///assert
             Assert.IsTrue(answer == 0);
 
+            //Verwijderen van toegevoegde instanties in database
             DatabaseOperations.VerwijderenSpecialItem(i1, si1);
             DatabaseOperations.VerwijderenSpecialItem(i2, si2);
         }
@@ -198,6 +205,7 @@ namespace Destiny_UnitTests
             ///assert
             Assert.IsTrue(answer > 0);
 
+            //Verwijderen van toegevoegde instanties in database
             DatabaseOperations.VerwijderenSpecialItem(i1, si1);
             DatabaseOperations.VerwijderenSpecialItem(i2, si2);
         }
@@ -223,6 +231,7 @@ namespace Destiny_UnitTests
             ///assert
             Assert.IsTrue(answer > 0 && a.Intellect == 0);
 
+            //Verwijderen van toegevoegde instanties in database
             DatabaseOperations.VerwijderenArmor(i, a);
         }
 
@@ -247,6 +256,7 @@ namespace Destiny_UnitTests
             ///assert
             Assert.IsTrue(answer > 0 && a.Intellect == 5);
 
+            //Verwijderen van toegevoegde instanties in database
             DatabaseOperations.VerwijderenArmor(i, a);
         }
     }

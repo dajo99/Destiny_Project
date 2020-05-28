@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Destiny_DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -49,8 +50,9 @@ namespace Destiny_Models
                     }
                 }
             }
-            catch (FormatException)
-            {  
+            catch (FormatException fe)
+            {
+                FileOperations.Foutloggen(fe);
                 return "";
             }
             

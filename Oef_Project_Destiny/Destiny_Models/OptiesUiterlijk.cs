@@ -42,9 +42,5 @@ namespace Destiny_Models
             TattooOpties = new List<string>() { "Streep", "Geen marking", "Gezicht tattoo" } ;
 
         }
-         
-        
-        
-       
     }
 }

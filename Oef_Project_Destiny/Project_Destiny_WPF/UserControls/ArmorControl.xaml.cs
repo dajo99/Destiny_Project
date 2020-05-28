@@ -72,7 +72,7 @@ namespace Project_Destiny_WPF.UserControls
             string zeldzaamheid = cmbZeldzaamheid.SelectedItem as string;
             string armorslot = cmbArmorSlot.SelectedItem as string;
 
-            //Checken als "All" geselecteerd is in de comboboxen of als er zoekcriteria zijn
+            //Checken als "All" geselecteerd is in de comboboxen en zoeken op zoekcriteria die ingevuld is
             if (cmbArmorSlot.SelectedIndex != 0 && cmbZeldzaamheid.SelectedIndex != 0)
             {
                 dbArmor.ItemsSource = DatabaseOperations.OphalenArmorViaArmorSlotEnZeldzaamheid(tbZoekArmor.Text, armorslot, zeldzaamheid);
@@ -154,7 +154,6 @@ namespace Project_Destiny_WPF.UserControls
             {
                 MessageBox.Show(foutmeldingen, "Foutmeldingen", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         private void btnChangeArmor_Click(object sender, RoutedEventArgs e)
@@ -167,8 +166,6 @@ namespace Project_Destiny_WPF.UserControls
 
             //valideren
             string foutmeldingen = ValideerSelectie("dbArmor");
-            foutmeldingen += ValideerSelectie("cmbDbZeldzaamheid");
-            foutmeldingen += ValideerSelectie("cmbDbArmorSlot");
             foutmeldingen += ValideerTekstToInt(txtIntellect.Text, "Intellect");
             foutmeldingen += ValideerTekstToInt(txtMobility.Text, "Mobility");
             foutmeldingen += ValideerTekstToInt(txtRecovery.Text, "Recovery");
@@ -192,7 +189,7 @@ namespace Project_Destiny_WPF.UserControls
                         int ok = DatabaseOperations.AanpassenArmor(a, a.Item);
                         if (ok > 0)
                         {
-                            //geselecteerde armor in dtaagrid terug op -1 zetten
+                            //Zorgen dat er niks meer geselecteerd is in datagrid
                             initialA = -1;
                             VeldenWissen();
                         }
@@ -240,7 +237,7 @@ namespace Project_Destiny_WPF.UserControls
                     int ok = DatabaseOperations.VerwijderenArmor(a.Item, a);
                     if (ok > 0)
                     {
-                        // positie selectie resetten in datagrid
+                        //Zorgen dat er niks meer geselecteerd is in datagrid
                         initialA = -1;
                         VeldenWissen();
                     }
@@ -283,10 +280,12 @@ namespace Project_Destiny_WPF.UserControls
         }
         private string ValideerTekstToInt(string tekst, string columnName)
         {
+            int max = 100;
+
             if (!string.IsNullOrWhiteSpace(tekst) && int.TryParse(tekst, out int number)
-                && (number < 0 || number > 100))
+                && (number < 0 || number > max))
             {
-                return columnName + " moet een positief nummeriek getal zijn onder de 100!" + Environment.NewLine;
+                return columnName + " moet een positief nummeriek getal zijn onder de " + max +"!" + Environment.NewLine;
             }
 
             return "";
