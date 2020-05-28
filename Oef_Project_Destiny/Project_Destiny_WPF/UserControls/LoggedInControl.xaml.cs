@@ -2,7 +2,6 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Destiny_DAL;
 using Destiny_Models;
 
 

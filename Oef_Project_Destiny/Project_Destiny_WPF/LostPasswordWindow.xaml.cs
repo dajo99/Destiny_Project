@@ -32,7 +32,9 @@ namespace Project_Destiny_WPF
             //instantie aanmaken en opvullen met tekstvakken
             Account a = new Account();
             a.Accountnaam = txtGebruikersnaam.Text;
-            a.Mail = txtMail.Text;
+
+            //Domein van mail is case insensitive
+            a.Mail = User.DomeinNaarLowerCase(txtMail.Text);
 
             //2de instantie aanmaken om te kijken als het account bestaat in database
             Account user = DatabaseOperations.OphalenAccountViaAccountnaam(txtGebruikersnaam.Text);

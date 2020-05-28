@@ -1,21 +1,9 @@
-﻿using System;
-using System.Media;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Project_Destiny_WPF.UserControls;
 using Destiny_DAL;
 using Destiny_Models;
+
 namespace Project_Destiny_WPF.UserControls
 {
     /// <summary>
@@ -114,7 +102,7 @@ namespace Project_Destiny_WPF.UserControls
                 //als het verwijderen niet is gelukt
                 else
                 {
-                    MessageBox.Show("karakter is niet verwijderd!");
+                    MessageBox.Show("karakter is niet verwijderd!", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
                 }

@@ -31,7 +31,7 @@ namespace Project_Destiny_WPF
             //nieuw account aanmaken en invoergegevens erin zetten
             Account a = new Account();
             a.Accountnaam = txtGebruikersnaam.Text;
-            a.Mail = txtEmailadres.Text;
+            a.Mail =  User.DomeinNaarLowerCase(txtEmailadres.Text);
             a.Wachtwoord = txtWachtwoord.Password;
             a.ThemaColor = "Teal";
             a.ThemaFont = "Segoe UI";

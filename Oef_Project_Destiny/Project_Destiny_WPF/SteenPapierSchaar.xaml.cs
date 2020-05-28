@@ -3,8 +3,6 @@ using System;
 using System.Media;
 using System.Windows;
 
-
-
 namespace Project_Destiny_WPF
 {
     /// <summary>

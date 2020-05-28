@@ -166,9 +166,7 @@ namespace Project_Destiny_WPF.UserControls
             //plaats in datagrid van geselecteerd wapen
             int initialW = dbWapens.SelectedIndex;
 
-            string foutmeldingen = Valideer("cmbDbZeldzaamheid");
-            foutmeldingen += Valideer("cmbDbCategorie");
-            foutmeldingen += Valideer("cmbDbDamageType");
+            string foutmeldingen = Valideer("dbWapens");
             foutmeldingen += Valideer("Impact");
             foutmeldingen += Valideer("Magazine");
             foutmeldingen += Valideer("Light");

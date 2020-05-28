@@ -165,6 +165,7 @@ namespace Destiny_UnitTests
             ///assert
             Assert.IsTrue(answer == 0);
 
+            //Verwijderen van toegevoegde instanties in database
             DatabaseOperations.VerwijderenSpecialItem(i1, si1);
             DatabaseOperations.VerwijderenSpecialItem(i2, si2);
         }
@@ -204,6 +205,7 @@ namespace Destiny_UnitTests
             ///assert
             Assert.IsTrue(answer > 0);
 
+            //Verwijderen van toegevoegde instanties in database
             DatabaseOperations.VerwijderenSpecialItem(i1, si1);
             DatabaseOperations.VerwijderenSpecialItem(i2, si2);
         }
@@ -229,6 +231,7 @@ namespace Destiny_UnitTests
             ///assert
             Assert.IsTrue(answer > 0 && a.Intellect == 0);
 
+            //Verwijderen van toegevoegde instanties in database
             DatabaseOperations.VerwijderenArmor(i, a);
         }
 
@@ -253,6 +256,7 @@ namespace Destiny_UnitTests
             ///assert
             Assert.IsTrue(answer > 0 && a.Intellect == 5);
 
+            //Verwijderen van toegevoegde instanties in database
             DatabaseOperations.VerwijderenArmor(i, a);
         }
     }

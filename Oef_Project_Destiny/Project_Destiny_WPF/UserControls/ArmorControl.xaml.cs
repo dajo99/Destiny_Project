@@ -166,8 +166,6 @@ namespace Project_Destiny_WPF.UserControls
 
             //valideren
             string foutmeldingen = ValideerSelectie("dbArmor");
-            foutmeldingen += ValideerSelectie("cmbDbZeldzaamheid");
-            foutmeldingen += ValideerSelectie("cmbDbArmorSlot");
             foutmeldingen += ValideerTekstToInt(txtIntellect.Text, "Intellect");
             foutmeldingen += ValideerTekstToInt(txtMobility.Text, "Mobility");
             foutmeldingen += ValideerTekstToInt(txtRecovery.Text, "Recovery");
