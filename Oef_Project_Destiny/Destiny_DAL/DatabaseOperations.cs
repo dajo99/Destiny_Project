@@ -690,37 +690,5 @@ namespace Destiny_DAL
                 return 0;
             }
         }
-        //---------------------------
-        //UnitTesting
-        //---------------------------
-        public static Wapenklasse OphalenWapenCategorie(Wapen wapen)
-        {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
-            {
-                return destinyEntities.Wapenklasses
-                    .Where(x => x.id == wapen.WapenklasseId)
-                    .FirstOrDefault();
-            }
-        }
-
-        public static Damagetype OphalenWapenDamagetype(Wapen wapen)
-        {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
-            {
-                return destinyEntities.Damagetypes
-                    .Where(x => x.id == wapen.DamagetypeId)
-                    .FirstOrDefault();
-            }
-        }
-
-        public static SpecialItemCategorie OphalenSpecialItemCategorie(SpecialItem sc)
-        {
-            using (DestinyEntities destinyEntities = new DestinyEntities())
-            {
-                return destinyEntities.SpecialItemCategories
-                    .Where(x => x.id == sc.CategorieId)
-                    .FirstOrDefault();
-            }
-        }
     }
 }
