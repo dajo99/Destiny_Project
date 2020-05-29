@@ -260,6 +260,8 @@ namespace Project_Destiny_WPF.UserControls
 
         private string Valideer(string columnName)
         {
+            int max = 100;
+
             if (columnName == "dbWapens" && dbWapens.SelectedItem == null)
             {
                 return "Selecteer een Wapen!" + Environment.NewLine;
@@ -276,15 +278,18 @@ namespace Project_Destiny_WPF.UserControls
             {
                 return "Selecteer een damagetype!" + Environment.NewLine;
             }
-            if (columnName == "Impact" && !string.IsNullOrWhiteSpace(txtImpact.Text) && int.TryParse(txtImpact.Text, out int impact) && impact < 0)
+            if (columnName == "Impact" && !string.IsNullOrWhiteSpace(txtImpact.Text) 
+                && (!int.TryParse(txtImpact.Text, out int impact) || impact < 0 || impact > max))
             {
-                return "Impact moet een positief nummeriek getal zijn!" + Environment.NewLine;
+                return "Impact moet een positief nummeriek getal zijn onder de " + max + "!" + Environment.NewLine;
             }
-            if (columnName == "Magazine" && !string.IsNullOrWhiteSpace(txtMagazine.Text) && int.TryParse(txtMagazine.Text, out int magazine) && magazine < 0)
+            if (columnName == "Magazine" && !string.IsNullOrWhiteSpace(txtMagazine.Text) 
+                && (!int.TryParse(txtMagazine.Text, out int magazine) || magazine < 0 || magazine > max))
             {
-                return "Magazine moet een positief nummeriek getal zijn!" + Environment.NewLine;
+                return "Magazine moet een positief nummeriek getal zijn onder de " + max + "!" + Environment.NewLine;
             }
-            if (columnName == "Light" && !string.IsNullOrWhiteSpace(txtLight.Text) && int.TryParse(txtLight.Text, out int light) && light < 0)
+            if (columnName == "Light" && !string.IsNullOrWhiteSpace(txtLight.Text) 
+                && (!int.TryParse(txtLight.Text, out int light) || light < 0))
             {
                 return "Light moet een positief nummeriek getal zijn!" + Environment.NewLine;
             }
