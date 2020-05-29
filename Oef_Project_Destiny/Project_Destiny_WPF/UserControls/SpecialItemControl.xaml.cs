@@ -241,12 +241,12 @@ namespace Project_Destiny_WPF.UserControls
                 return "Selecteer een categorie!" + Environment.NewLine;
             }
             if (columnName == "Boost" && !string.IsNullOrWhiteSpace(txtBoost.Text) 
-                && int.TryParse(txtBoost.Text, out int boost) && (boost < 0 || boost > max))
+                && ( !int.TryParse(txtBoost.Text, out int boost) && boost < 0 || boost > max))
             {
                 return "Boost moet een positief nummeriek getal zijn onder de " + max + "!" + Environment.NewLine;
             }
             if (columnName == "Durability" && !string.IsNullOrWhiteSpace(txtDurability.Text) 
-                && int.TryParse(txtDurability.Text, out int durability) && (durability < 0 || durability > max))
+                && ( !int.TryParse(txtDurability.Text, out int durability) || durability < 0 || durability > max))
             {
                 return "Durability moet een positief nummeriek getal zijn onder de " + max + "!" + Environment.NewLine;
             }

@@ -282,8 +282,8 @@ namespace Project_Destiny_WPF.UserControls
         {
             int max = 100;
 
-            if (!string.IsNullOrWhiteSpace(tekst) && int.TryParse(tekst, out int number)
-                && (number < 0 || number > max))
+            if (!string.IsNullOrWhiteSpace(tekst) && (!int.TryParse(tekst, out int number)
+                || number < 0 || number > max))
             {
                 return columnName + " moet een positief nummeriek getal zijn onder de " + max +"!" + Environment.NewLine;
             }
