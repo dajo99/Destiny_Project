@@ -288,8 +288,7 @@ namespace Project_Destiny_WPF.UserControls
             {
                 return "Magazine moet een positief nummeriek getal zijn onder de " + max + "!" + Environment.NewLine;
             }
-            if (columnName == "Light" && !string.IsNullOrWhiteSpace(txtLight.Text) 
-                && (!int.TryParse(txtLight.Text, out int light) || light < 0))
+            if (columnName == "Light" && (!int.TryParse(txtLight.Text, out int light) || light < 0))
             {
                 return "Light moet een positief nummeriek getal zijn!" + Environment.NewLine;
             }
